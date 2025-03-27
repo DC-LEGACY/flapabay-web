@@ -122,7 +122,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
   }
   if (showConfirmationModal) {
     return (
-      <ConfirmationModal onClose={() => setShowConfirmationModal(false)} />
+      <FinishSignupModal onClose={() => setShowConfirmationModal(false)} />
     );
   }
   // Handle country code change

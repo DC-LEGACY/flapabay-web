@@ -667,7 +667,7 @@ const HelpPage = () => {
   
       try {
         const response = await axios.get(
-          `http://localhost/flapabay-engine-main/api/v1/payments/user-payment-details/${userId}`,
+          `http://localhost/flapabay-engine-main/api/v1/payments/user-payment-details`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

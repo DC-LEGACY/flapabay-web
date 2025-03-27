@@ -22,14 +22,14 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
     }
   };
 
-  const handleContinue = () => {
-    setShowFinishModal(true);
+  // const handleContinue = () => {
+  //   setShowFinishModal(true);
     
-    console.log("Code entered:", code);
-  };
-  if (showFinishModal) {
-    return <FinishSignupModal onClose={() => setShowFinishModal(false)} />;
-  }
+  //   console.log("Code entered:", code);
+  // };
+  // if (showFinishModal) {
+  //   return <FinishSignupModal onClose={() => setShowFinishModal(false)} />;
+  // }
 
   return (
     <div
@@ -72,7 +72,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
             </button>
           </div>
           <button
-            onClick={handleContinue}
+            
             className={`mt-4 w-[30%] font-semibold py-2 rounded-md ${
               code.length === 6
                 ? "bg-[#ffc500] text-white"

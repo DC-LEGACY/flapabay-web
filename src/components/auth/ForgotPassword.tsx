@@ -11,15 +11,15 @@ const ForgotPassword: React.FC<EnterCodeModalProps> = ({ onClose }) => {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-lg w-full max-w-md relative z-60"
+        className="bg-white w-full max-w-4xl  z-60"
         onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside
       >
-        <div className="p-6">
-          <div className=" flex items-center space-x-28">
+        <div className="p-2">
+          <div className=" flex items-center space-x-24">
             <button className="  top-4 right-4" onClick={onClose}>
               <img src={left} alt="Close" className="h-5 w-5" />
             </button>
-            <h2 className="text-lg font-semibold text-center">
+            <h2 className="text-lg font-semibold ">
               Forgot Password
             </h2>
           </div>
@@ -35,7 +35,7 @@ const ForgotPassword: React.FC<EnterCodeModalProps> = ({ onClose }) => {
           />
           <button
             className="w-full bg-[#ffc500] text-white font-semibold py-2 rounded-md"
-            onClick={onClose}
+            
           >
             Send reset link
           </button>

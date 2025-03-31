@@ -1,114 +1,114 @@
-// import { useState, useRef, useEffect } from "react";
-// import { FiSearch, FiFileText } from "react-icons/fi";
-// import Guest from "./Guest";
-// import Host from "./Host";
-// import ExperienceHost from "./ExperienceHost";
-// import TravelAdmin from "./TravelAdmin";
-// import Header from "../home/home-v1/Header";
-// import MobileMenu from "../common/mobile-menu";
-// import { SearchNormal } from "iconsax-react";
-// import Footer from "../common/default-footer";
+import { useState, useRef, useEffect } from "react";
+import { FiSearch, FiFileText } from "react-icons/fi";
+import Guest from "./Guest";
+import Host from "./Host";
+import ExperienceHost from "./ExperienceHost";
+import TravelAdmin from "./TravelAdmin";
+import Header from "../home/home-v1/Header";
+import MobileMenu from "../common/mobile-menu";
+import { SearchNormal } from "iconsax-react";
+import Footer from "../common/default-footer";
 
-// const tabs = [
-//   { name: "Guest", component: <Guest /> },
-//   { name: "Host", component: <Host /> },
-//   { name: "Experience Host", component: <ExperienceHost /> },
-//   { name: "Travel Admin", component: <TravelAdmin /> },
-// ];
+const tabs = [
+  { name: "Guest", component: <Guest /> },
+  { name: "Host", component: <Host /> },
+  { name: "Experience Host", component: <ExperienceHost /> },
+  { name: "Travel Admin", component: <TravelAdmin /> },
+];
 
-// const suggestions = [
-//   "How to book a trip?",
-//   "Cancel a reservation",
-//   "Change account settings",
-//   "Refund policies",
-//   "Host payment options",
-// ];
+const suggestions = [
+  "How to book a trip?",
+  "Cancel a reservation",
+  "Change account settings",
+  "Refund policies",
+  "Host payment options",
+];
 
-// export default function HelpPage() {
-//   const [activeTab, setActiveTab] = useState(tabs[0].name);
-//   const [searchText, setSearchText] = useState("");
-//   const [showSuggestions, setShowSuggestions] = useState(false);
-//   const searchRef = useRef(null);
+export default function HelpPage() {
+  const [activeTab, setActiveTab] = useState(tabs[0].name);
+  const [searchText, setSearchText] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchRef = useRef(null);
 
-//   const handleSelectSuggestion = (text) => {
-//     setSearchText(text);
-//     setShowSuggestions(false);
-//   };
+  const handleSelectSuggestion = (text) => {
+    setSearchText(text);
+    setShowSuggestions(false);
+  };
 
-//   const handleClickOutside = (event) => {
-//     if (searchRef.current && !searchRef.current.contains(event.target)) {
-//       setShowSuggestions(false);
-//     }
-//   };
+  const handleClickOutside = (event) => {
+    if (searchRef.current && !searchRef.current.contains(event.target)) {
+      setShowSuggestions(false);
+    }
+  };
 
-//   useEffect(() => {
-//     document.addEventListener("click", handleClickOutside);
-//     return () => {
-//       document.removeEventListener("click", handleClickOutside);
-//     };
-//   }, []);
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
-//   return (
-//     <>
-//       <Header />
-//       <MobileMenu />
-//       <div className="flex flex-col items-center pt-6 lg:pt-36">
-//         <h1 className="pb-6 text-3xl font-medium">Hi Fahad, how can we help?</h1>
+  return (
+    <>
+      <Header />
+      <MobileMenu />
+      <div className="flex flex-col items-center pt-6 lg:pt-36">
+        <h1 className="pb-6 text-3xl font-medium">Hi Fahad, how can we help?</h1>
         
-//         {/* Search Bar with Suggestions */}
-//         <div className="relative w-full max-w-4xl mb-6" ref={searchRef}>
-//           <input
-//             type="text"
-//             placeholder="Search how-tos and more"
-//             value={searchText}
-//             onChange={(e) => setSearchText(e.target.value)}
-//             onFocus={() => setShowSuggestions(true)}
-//             className="w-full px-4 py-3 border rounded-full shadow-sm"
-//           />
-//           <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#FFC500] text-white p-2 rounded-full">
-//             <SearchNormal size={18} />
-//           </button>
+        {/* Search Bar with Suggestions */}
+        <div className="relative w-full max-w-4xl mb-6" ref={searchRef}>
+          <input
+            type="text"
+            placeholder="Search how-tos and more"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            onFocus={() => setShowSuggestions(true)}
+            className="w-full px-4 py-3 border rounded-full shadow-sm"
+          />
+          <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#FFC500] text-white p-2 rounded-full">
+            <SearchNormal size={18} />
+          </button>
           
-//           {showSuggestions && (
-//             <div className="absolute z-10 w-full mt-2 bg-white border rounded-lg shadow-lg">
-//               {suggestions.map((suggestion, index) => (
-//                 <div
-//                   key={index}
-//                   className="flex items-center p-3 cursor-pointer hover:bg-gray-100"
-//                   onClick={() => handleSelectSuggestion(suggestion)}
-//                 >
-//                   <FiFileText className="mr-3 text-gray-500" size={18} />
-//                   <span>{suggestion}</span>
-//                 </div>
-//               ))}
-//             </div>
-//           )}
-//         </div>
+          {showSuggestions && (
+            <div className="absolute z-10 w-full mt-2 bg-white border rounded-lg shadow-lg">
+              {suggestions.map((suggestion, index) => (
+                <div
+                  key={index}
+                  className="flex items-center p-3 cursor-pointer hover:bg-gray-100"
+                  onClick={() => handleSelectSuggestion(suggestion)}
+                >
+                  <FiFileText className="mr-3 text-gray-500" size={18} />
+                  <span>{suggestion}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
-//         {/* Tabs */}
-//         <div className="flex w-full max-w-6xl px-2 pt-6 border-b">
-//           {tabs.map((tab) => (
-//             <button
-//               key={tab.name}
-//               onClick={() => setActiveTab(tab.name)}
-//               className={`pb-2 px-4 text-sm font-medium ${
-//                 activeTab === tab.name ? "border-b-2 border-black" : "text-gray-500"
-//               }`}
-//             >
-//               {tab.name}
-//             </button>
-//           ))}
-//         </div>
+        {/* Tabs */}
+        <div className="flex w-full max-w-6xl px-2 pt-6 border-b">
+          {tabs.map((tab) => (
+            <button
+              key={tab.name}
+              onClick={() => setActiveTab(tab.name)}
+              className={`pb-2 px-4 text-sm font-medium ${
+                activeTab === tab.name ? "border-b-2 border-black" : "text-gray-500"
+              }`}
+            >
+              {tab.name}
+            </button>
+          ))}
+        </div>
 
-//         {/* Active Tab Content */}
-//         <div className="w-full max-w-6xl pt-8 m-1">{tabs.find((tab) => tab.name === activeTab)?.component}</div>
-//       </div>
-//       <section className="pb-0 footer-style1 pt60">
-//         <Footer />
-//       </section>
-//     </>
-//   );
-// }
+        {/* Active Tab Content */}
+        <div className="w-full max-w-6xl pt-8 m-1">{tabs.find((tab) => tab.name === activeTab)?.component}</div>
+      </div>
+      <section className="pb-0 footer-style1 pt60">
+        <Footer />
+      </section>
+    </>
+  );
+}
 
 
 
@@ -642,77 +642,77 @@
 // get user detail payment Fetched Successfully
 
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import React, { useEffect, useState } from "react";
+// import axios from "axios";
 
-const HelpPage = () => {
-  const [paymentDetails, setPaymentDetails] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+// const HelpPage = () => {
+//   const [paymentDetails, setPaymentDetails] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchUserPaymentDetails = async () => {
-      const storedUser = JSON.parse(localStorage.getItem("user"));
-      console.log("User from localStorage:", storedUser); // Debugging
+//   useEffect(() => {
+//     const fetchUserPaymentDetails = async () => {
+//       const storedUser = JSON.parse(localStorage.getItem("user"));
+//       console.log("User from localStorage:", storedUser); // Debugging
   
-      const token = storedUser?.token;
-      const userId = storedUser?.user?.id; // Fix: Extract correct user ID
+//       const token = storedUser?.token;
+//       const userId = storedUser?.user?.id; // Fix: Extract correct user ID
   
-      if (!userId) {
-        console.error("User ID is missing");
-        setError("User ID is missing.");
-        setLoading(false);
-        return;
-      }
+//       if (!userId) {
+//         console.error("User ID is missing");
+//         setError("User ID is missing.");
+//         setLoading(false);
+//         return;
+//       }
   
-      try {
-        const response = await axios.get(
-          `http://localhost/flapabay-engine-main/api/v1/payments/user-payment-details`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+//       try {
+//         const response = await axios.get(
+//           `http://localhost/flapabay-engine-main/api/v1/payments/user-payment-details`,
+//           {
+//             headers: { Authorization: `Bearer ${token}` },
+//           }
+//         );
   
-        console.log("API Response:", response.data);
-        setPaymentDetails(response.data.data);
-      } catch (err) {
-        console.error("Error fetching data:", err);
-        setError("Failed to load payment details.");
-      } finally {
-        setLoading(false);
-      }
-    };
+//         console.log("API Response:", response.data);
+//         setPaymentDetails(response.data.data);
+//       } catch (err) {
+//         console.error("Error fetching data:", err);
+//         setError("Failed to load payment details.");
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
   
-    fetchUserPaymentDetails();
-  }, []);
+//     fetchUserPaymentDetails();
+//   }, []);
   
   
 
-  return (
-    <div className="p-4 bg-white shadow rounded-md">
-      <h2 className="text-lg font-semibold mb-3">User Payment Details</h2>
+//   return (
+//     <div className="p-4 bg-white shadow rounded-md">
+//       <h2 className="text-lg font-semibold mb-3">User Payment Details</h2>
 
-      {loading ? (
-        <div className="flex justify-center">
-          <div className="w-8 h-8 border-4 border-blue-500 border-solid border-t-transparent rounded-full animate-spin"></div>
-        </div>
-      ) : error ? (
-        <p className="text-red-500">{error}</p>
-      ) : paymentDetails.length === 0 ? (
-        <p>No payment details available.</p>
-      ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {paymentDetails.map((detail) => (
-            <div key={detail.id} className="border rounded-lg p-4 shadow-md">
-              <h3 className="text-md font-semibold">{detail.method_name}</h3>
-              <p className="text-sm text-gray-600">Account: {detail.account_number}</p>
-              <p className="text-sm text-gray-600">Status: {detail.status}</p>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
+//       {loading ? (
+//         <div className="flex justify-center">
+//           <div className="w-8 h-8 border-4 border-blue-500 border-solid border-t-transparent rounded-full animate-spin"></div>
+//         </div>
+//       ) : error ? (
+//         <p className="text-red-500">{error}</p>
+//       ) : paymentDetails.length === 0 ? (
+//         <p>No payment details available.</p>
+//       ) : (
+//         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+//           {paymentDetails.map((detail) => (
+//             <div key={detail.id} className="border rounded-lg p-4 shadow-md">
+//               <h3 className="text-md font-semibold">{detail.method_name}</h3>
+//               <p className="text-sm text-gray-600">Account: {detail.account_number}</p>
+//               <p className="text-sm text-gray-600">Status: {detail.status}</p>
+//             </div>
+//           ))}
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
 
-export default HelpPage;
+// export default HelpPage;

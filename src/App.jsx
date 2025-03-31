@@ -95,7 +95,7 @@ import CreateListingComplete from "./components/listingpage/complete-listing";
 import SignupModal from "./components/auth/SignupModal";
 import LoginModal from "./components/auth/LoginModal";
 import ConfirmationModal from "./components/auth/ConfirmationModal";
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import DemoPage from "./components/experience-page/demo-page";
 import NewHostingJourneyPage from "./components/experience-page/first-step";
 import SubmitExperiencePage from "./components/experience-page/second-step-exp";
@@ -112,6 +112,7 @@ import BottomNav from "./components/bottom-nav";
 import { useSetAtom } from "jotai";
 import { userAtom } from "./context/atom";
 import ExperiencePage from "./components/experiences";
+import BecomeHost from "./components/experiences/BecomeHost";
 
 
 
@@ -142,9 +143,11 @@ useEffect(() => {
     setUser(JSON.parse(storedUser));
   }
 }, []);
+const queryClient = new QueryClient();
 
   return (
     <>
+     <QueryClientProvider client={queryClient}>
         <div className="wrapper ovh">
         <BrowserRouter>
           <ScrollTopBehaviour />
@@ -162,6 +165,7 @@ useEffect(() => {
               <Route path="home-v9" element={<Home_V9 />} />
               <Route path="home-v10" element={<Home_V10 />} />
               <Route path="experiences" element={<ExperiencePage />} />
+              <Route path="flapabay-your-home" element={<BecomeHost />} />
 
               <Route path="grid-default" element={<GridDefault />} />
               <Route path="grid-full-3-col" element={<GridFull3Col />} />
@@ -332,6 +336,7 @@ useEffect(() => {
         </BrowserRouter>
         <ScrollToTop />
       </div>
+      </QueryClientProvider>
     </>
   );
 }

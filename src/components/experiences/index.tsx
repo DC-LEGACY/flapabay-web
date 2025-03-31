@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Footer from "../common/default-footer";
 import { FaRegHeart } from "react-icons/fa";
+import ExperienceContent from "../experience/ExperienceContent";
+import Experiences from "../experience/Experiences";
 
 const ExperiencePage = () => {
   const [activeTab, setActiveTab] = useState("All");
@@ -57,7 +59,7 @@ const ExperiencePage = () => {
     <>
       <Header />
       <MobileMenu />
-      <section className="home-banner-style1 p0">
+      {/* <section className="home-banner-style1 p0">
         <div className="home-style1">
           <div className="container-fluid container-fluidest">
             <div className="row">
@@ -73,78 +75,35 @@ const ExperiencePage = () => {
             </div>
           </a>
         </div>
-      </section>
-      <div className="relative min-h-screen ">
-        {/* Tabs */}
-        <div className="mt-16 flex gap-4 p-4">
-          {["All", "Meet celebrity", "Adventure", "Cooking"].map((tab) => (
-            <button
-              key={tab}
-              className={`px-4 py-2 border rounded-md transition-all ${
-                activeTab === tab
-                  ? "bg-[#ffc500] text-white"
-                  : "bg-white text-black"
-              }`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
+      </section> */}
 
-        {/* Meet Your Celebrity Section */}
-        <section className="p-4">
-          <div className=" flex items-center justify-between">
-            <h2 className="text-2xl font-medium pb-4">Meet Your Celebrity</h2>
-            <Link className=" font-medium" to={"/agents"}>
-              <MdKeyboardArrowRight className=" text-4xl" />
-            </Link>
-          </div>
-          <div
-            className="flex overflow-x-auto gap-4 no-scrollbar lg:grid lg:grid-cols-4 "
-            data-aos="fade-up"
-            data-aos-delay="0"
-          >
-            {celebrities.map((celeb) => (
-              <div
-                key={celeb.id}
-                className="relative rounded-3xl shadow-sm flex-shrink-0 w-80"
-              >
-                <FaRegHeart className=" absolute text-white text-xl top-2 right-3 cursor-pointer" />
-                <div className="absolute inset-0 rounded-3xl bg-black bg-opacity-50 flex flex-col justify-end p-4 text-white ">
-                  <h3 className="font-bold text-white">{celeb.name}</h3>
-                  <p className="text-sm text-white">{celeb.desc}</p>
-                  <button className="w-full bg-[#ffc500] text-white font-semibold py-2 mt-2 rounded-md">
-                    Book for ${celeb.price}
-                  </button>
-                </div>
-                <img
-                  src={celeb.image}
-                  alt={celeb.name}
-                  className="w-full h-44 object-cover rounded-3xl"
-                />
-              </div>
-            ))}
-          </div>
-        </section>
 
-        {/* Experiences Section */}
-        <section className="p-4">
-          <div className=" flex items-center justify-between">
-            <h2 className="text-2xl font-medium pb-4">Experiences</h2>
-            <Link className=" font-medium" to={"/agents"}>
-              <MdKeyboardArrowRight className=" text-4xl" />
-            </Link>
-          </div>
 
-          <section id="explore-property" className="pb90 pb30-md somesections">
-            {/* Popular Property */}
-            <PropertyByCitiesWrapper showCircularIcons={false} />
-            {/* Popular Property */}
-          </section>
-        </section>
-      </div>
-      <section className="pb-0 footer-style1 pt60">
+
+
+
+
+
+
+<Experiences/>
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+      <section className="pb-0   footer-style1 pt60">
         <Footer />
       </section>
     </>

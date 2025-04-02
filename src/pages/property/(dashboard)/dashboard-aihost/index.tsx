@@ -1,19 +1,17 @@
 import DashboardHeader from "@/components/common/DashboardHeader";
 import MobileMenu from "@/components/common/mobile-menu";
-import DboardMobileNavigation from "@/components/property/dashboard/DboardMobileNavigation";
-import Footer from "@/components/property/dashboard/Footer";
 import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
-import PackageDataTable from "@/components/property/dashboard/dashboard-package/PackageDataTable";
-
+import DboardMobileNavigation from "@/components/property/dashboard/DboardMobileNavigation";
 import MetaData from "@/components/common/MetaData";
-import EarningsDashboard from "@/components/property/dashboard/dashboard-earnings/EarningsDashboard";
-import Payouts from "@/components/dashboard/host/Payouts";
+import TellGuestsabout from "@/components/property/dashboard/dashboard-calender/TellGuestsabout";
+import HostCalendar from "@/components/dashboard/host/Calendar";
+import AICoHostSetup from "@/components/dashboard/host/AICoHostSetup";
 
 const metaInformation = {
-  title: "Dashboard My Package || Flapabay- Apartment Rental, Experiences and More!",
+  title: "Dashboard Properties || Flapabay- Apartment Rental, Experiences and More!",
 };
 
-const DashboardEarnings = () => {
+const DashboardAiHost = () => {
   return (
     <>
     <MetaData meta={metaInformation} />
@@ -41,23 +39,20 @@ const DashboardEarnings = () => {
               </div>
               {/* End .row */}
 
-              
-              {/* End .row */}
-
-              <div className="row">
-                <div className="col-xl-12">
-                  <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
-                    <div className="packages_table table-responsive">
-                      <Payouts />
-                    </div>
-                  </div>
+              <div className="row align-items-center pb40">
+                
+                <div className="col-xxl-12">
+                  <AICoHostSetup/>
                 </div>
               </div>
+              {/* End .row */}
+
+              
               {/* End .row */}
             </div>
             {/* End .dashboard__content */}
 
-            <Footer />
+           
           </div>
           {/* End .dashboard__main */}
         </div>
@@ -67,4 +62,4 @@ const DashboardEarnings = () => {
   );
 };
 
-export default DashboardEarnings;
+export default DashboardAiHost;

@@ -113,6 +113,15 @@ import { useSetAtom } from "jotai";
 import { userAtom } from "./context/atom";
 import ExperiencePage from "./components/experiences";
 import BecomeHost from "./components/experiences/BecomeHost";
+import HostDashboard from "./components/dashboard/HostDashboard";
+import { AuthProvider } from "./components/contexts/AuthContext";
+import { ThemeProvider } from "./components/contexts/ThemeContext";
+import Dashboard from "./components/dashboard/host/Dashboard";
+import Listings from "./components/dashboard/host/Listings";
+import DashboardExperiences from "./pages/property/(dashboard)/dashboard-host-experiences";
+import DashboardHostReviews from "./pages/property/(dashboard)/Dashboard-host-reviews";
+import DashboardAiHost from "./pages/property/(dashboard)/dashboard-aihost";
+
 
 
 
@@ -147,6 +156,8 @@ const queryClient = new QueryClient();
 
   return (
     <>
+      <AuthProvider>
+        <ThemeProvider>
      <QueryClientProvider client={queryClient}>
         <div className="wrapper ovh">
         <BrowserRouter>
@@ -154,7 +165,6 @@ const queryClient = new QueryClient();
           <Routes>
             <Route path="/">
               <Route index element={<Mainpage />} />
-
               <Route path="home-v2" element={<Home_V2 />} />
               <Route path="home-v3" element={<Home_V3 />} />
               <Route path="home-v4" element={<Home_V4 />} />
@@ -166,6 +176,14 @@ const queryClient = new QueryClient();
               <Route path="home-v10" element={<Home_V10 />} />
               <Route path="experiences" element={<ExperiencePage />} />
               <Route path="flapabay-your-home" element={<BecomeHost />} />
+              <Route path="host-dashboard" element={<HostDashboard />} />
+              <Route path="dashboard-host-dashboard" element={<Dashboard />} />
+              <Route path="dashboard-host-listings" element={<Listings />} />
+              <Route path="dashboard-host-Experiences" element={<DashboardExperiences />} />
+              <Route path="dashboard-host-reviews" element={<DashboardHostReviews />} />
+              <Route path="dashboard-host-aihost" element={<DashboardAiHost />} />
+              
+              
 
               <Route path="grid-default" element={<GridDefault />} />
               <Route path="grid-full-3-col" element={<GridFull3Col />} />
@@ -337,6 +355,8 @@ const queryClient = new QueryClient();
         <ScrollToTop />
       </div>
       </QueryClientProvider>
+      </ThemeProvider>
+      </AuthProvider>
     </>
   );
 }

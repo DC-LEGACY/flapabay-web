@@ -92,6 +92,7 @@ const Header = () => {
                     </Link>
                   ) : (
                     <Link to={"/flapabay-your-home"} className="font-medium">Flapabay your home</Link>
+                    // <Link to={"/host-dashboard"} className="font-medium">Flapabay your home</Link>
                   )}
 
                   <div className="flex items-center">

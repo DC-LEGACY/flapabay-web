@@ -1,24 +1,12 @@
 import React, { useEffect, useState } from "react";
-
-import About from "../../../components/home/home-v1/About";
-import ApartmentType from "../../../components/home/home-v1/ApartmentType";
-import Blog from "../../../components/common/Blog";
-import CallToActions from "../../../components/common/CallToActions";
 import Cta from "@/components/home/home-v6/Cta";
-import Explore from "../../../components/common/Explore";
-import FeaturedListings from "../../../components/home/home-v1/FeatuerdListings";
 import Footer from "../../../components/common/default-footer";
 import Header from "../../../components/home/home-v1/Header";
 import Hero from "../../../components/home/home-v1/hero";
-import { Link } from "react-router-dom";
 import MetaData from "@/components/common/MetaData";
 import MobileMenu from "../../../components/common/mobile-menu";
-import Partner from "../../../components/common/Partner";
-import PopulerProperty from "../../../components/home/home-v1/PopulerProperty";
 import PropertiesByCategory from "@/components/home/home-v4/PropertiesByCategory";
-import PropertiesByCities from "../../../components/home/home-v4/PropertiesByCities";
 import PropertyByCitiesWrapper from "@/components/home/home-v3/PropertyByCitiesWrapper";
-import Testimonial from "../../../components/home/home-v1/Testimonial";
 import { useScreenSize } from "@/utilis/screenUtils";
 
 const metaInformation = {

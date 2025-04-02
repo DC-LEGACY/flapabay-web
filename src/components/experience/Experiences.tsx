@@ -1,17 +1,30 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
 
-import { MapPin, Calendar, Users, Filter, Star, Heart, Search, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import {
+  MapPin,
+  Calendar,
+  Users,
+  Filter,
+  Star,
+  Heart,
+  Search,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
-import { useQuery } from '@tanstack/react-query';
-import { Tabs, TabsList, TabsTrigger } from '@/ui/tabs';
-import { Button } from '@/ui/button';
-import PropertyCard from '../experiencedev/PropertyCard';
+import { useQuery } from "@tanstack/react-query";
+import { Tabs, TabsList, TabsTrigger } from "@/ui/tabs";
+import { Button } from "@/ui/button";
+import PropertyCard from "../experiencedev/PropertyCard";
+import PropertiesByCategory from "../home/home-v4/PropertiesByCategory";
+import { useScreenSize } from "@/utilis/screenUtils";
+import Hero from "../home/home-v1/hero";
 
 const fetchExperiences = async () => {
-  await new Promise(resolve => setTimeout(resolve, 300));
-  
+  await new Promise((resolve) => setTimeout(resolve, 300));
+
   return [
     {
       id: 101,
@@ -20,16 +33,18 @@ const fetchExperiences = async () => {
       price: 75,
       rating: 4.8,
       reviewCount: 156,
-      image: "https://images.unsplash.com/photo-1584661156301-2a5248132334?q=80&w=2070&auto=format&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1584661156301-2a5248132334?q=80&w=2070&auto=format&fit=crop",
       type: "experience" as const,
       date: "Available today",
       duration: "3 hours",
       host: {
         name: "Michael K.",
-        image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop",
-        isSuperhost: true
+        image:
+          "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop",
+        isSuperhost: true,
       },
-      tags: ["Arts", "Photography", "Small group"]
+      tags: ["Arts", "Photography", "Small group"],
     },
     // ... rest of mock data remains unchanged
   ];
@@ -63,41 +78,42 @@ const categoriesWithIcons = [
   { name: "Crafts", icon: "🧶" },
   { name: "Local", icon: "📍" },
   { name: "Water", icon: "🏊‍♂️" },
-  { name: "Virtual", icon: "💻" }
+  { name: "Virtual", icon: "💻" },
 ];
 
 const Experiences = () => {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   }, []);
 
   const { data: experiences = [], isLoading } = useQuery({
-    queryKey: ['experiences'],
-    queryFn: fetchExperiences
+    queryKey: ["experiences"],
+    queryFn: fetchExperiences,
   });
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('Trending');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Trending");
   const categoryScrollRef = useRef<HTMLDivElement>(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const [viewedExperiences, setViewedExperiences] = useState<any[]>([]);
-  
+
   useEffect(() => {
     const scrollInterval = setInterval(() => {
       if (categoryScrollRef.current) {
         if (
-          categoryScrollRef.current.scrollLeft + categoryScrollRef.current.offsetWidth >=
+          categoryScrollRef.current.scrollLeft +
+            categoryScrollRef.current.offsetWidth >=
           categoryScrollRef.current.scrollWidth - 20
         ) {
-          categoryScrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+          categoryScrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
         } else {
           categoryScrollRef.current.scrollTo({
             left: categoryScrollRef.current.scrollLeft + 200,
-            behavior: 'smooth',
+            behavior: "smooth",
           });
         }
       }
@@ -110,8 +126,9 @@ const Experiences = () => {
     if (categoryScrollRef.current) {
       setShowLeftArrow(categoryScrollRef.current.scrollLeft > 20);
       setShowRightArrow(
-        categoryScrollRef.current.scrollLeft + categoryScrollRef.current.offsetWidth < 
-        categoryScrollRef.current.scrollWidth - 20
+        categoryScrollRef.current.scrollLeft +
+          categoryScrollRef.current.offsetWidth <
+          categoryScrollRef.current.scrollWidth - 20
       );
     }
   };
@@ -119,15 +136,19 @@ const Experiences = () => {
   useEffect(() => {
     const scrollContainer = categoryScrollRef.current;
     if (scrollContainer) {
-      scrollContainer.addEventListener('scroll', handleCategoryScroll);
-      return () => scrollContainer.removeEventListener('scroll', handleCategoryScroll);
+      scrollContainer.addEventListener("scroll", handleCategoryScroll);
+      return () =>
+        scrollContainer.removeEventListener("scroll", handleCategoryScroll);
     }
   }, []);
 
-  const scrollCategories = (direction: 'left' | 'right') => {
+  const scrollCategories = (direction: "left" | "right") => {
     if (categoryScrollRef.current) {
-      const scrollAmount = direction === 'left' ? -300 : 300;
-      categoryScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      const scrollAmount = direction === "left" ? -300 : 300;
+      categoryScrollRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -135,25 +156,35 @@ const Experiences = () => {
     if (selectedCategory) {
       setTimeout(() => {
         const mockCategoryData = [
-          ...Array(8).fill(null).map((_, index) => ({
-            id: 1000 + index,
-            title: `${selectedCategory} Experience ${index + 1}`,
-            location: ["Miami", "New York", "Los Angeles", "Chicago", "San Francisco"][Math.floor(Math.random() * 5)],
-            price: Math.floor(Math.random() * 100) + 30,
-            rating: (Math.random() * 1.5 + 3.5).toFixed(1),
-            reviewCount: Math.floor(Math.random() * 200) + 50,
-            image: `https://source.unsplash.com/featured/?${selectedCategory.toLowerCase()},experience&sig=${index}`,
-            type: "experience" as const,
-            duration: `${Math.floor(Math.random() * 4) + 1} hours`,
-            host: {
-              name: ["Michael", "Emma", "David", "Sofia", "Alex"][Math.floor(Math.random() * 5)],
-              image: `https://source.unsplash.com/featured/?person,portrait&sig=${index}`,
-              isSuperhost: Math.random() > 0.5
-            },
-            tags: [selectedCategory, "Recommended", "Popular"]
-          }))
+          ...Array(8)
+            .fill(null)
+            .map((_, index) => ({
+              id: 1000 + index,
+              title: `${selectedCategory} Experience ${index + 1}`,
+              location: [
+                "Miami",
+                "New York",
+                "Los Angeles",
+                "Chicago",
+                "San Francisco",
+              ][Math.floor(Math.random() * 5)],
+              price: Math.floor(Math.random() * 100) + 30,
+              rating: (Math.random() * 1.5 + 3.5).toFixed(1),
+              reviewCount: Math.floor(Math.random() * 200) + 50,
+              image: `https://source.unsplash.com/featured/?${selectedCategory.toLowerCase()},experience&sig=${index}`,
+              type: "experience" as const,
+              duration: `${Math.floor(Math.random() * 4) + 1} hours`,
+              host: {
+                name: ["Michael", "Emma", "David", "Sofia", "Alex"][
+                  Math.floor(Math.random() * 5)
+                ],
+                image: `https://source.unsplash.com/featured/?person,portrait&sig=${index}`,
+                isSuperhost: Math.random() > 0.5,
+              },
+              tags: [selectedCategory, "Recommended", "Popular"],
+            })),
         ];
-        
+
         setViewedExperiences(mockCategoryData);
       }, 500);
     }
@@ -164,77 +195,66 @@ const Experiences = () => {
     console.log("Searching for:", searchQuery);
   };
 
+  const isMobile = useScreenSize();
+
   return (
     <div className="min-h-screen bg-white">
       {/* <Navbar /> */}
-      
-      <section className="pt-24 pb-16 bg-[#FFC500]">
-        <div className="flapabay-container">
-          <motion.div 
-            className="max-w-3xl mx-auto text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-              Unforgettable Experiences
-            </h1>
-            <p className="text-xl text-white/90 mb-8">
-              Discover unique activities hosted by local experts
-            </p>
 
-            <form onSubmit={handleSearch} className="relative max-w-2xl mx-auto mb-8">
-              <div className="relative bg-white shadow-lg rounded-full overflow-hidden">
-                <input
-                  type="text"
-                  placeholder="Search experiences..."
-                  className="w-full py-4 pl-6 pr-16 text-gray-700 focus:outline-none"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                <button 
-                  type="submit"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full hover:bg-[#FFC500]/10"
-                >
-                  <Search className="h-5 w-5 text-gray-800" />
-                </button>
+      <section className="home-banner-style1 p0">
+        <div className="home-style1">
+          <div className="container-fluid container-fluidest">
+            <div className="row">
+              <div className="mx-auto col-xl-10">
+                <Hero />
               </div>
-            </form>
-
-            <div className="bg-white p-4 rounded-xl shadow-md mb-8">
-              <Tabs defaultValue="all" className="w-full">
-                <TabsList className="w-full mb-4 bg-gray-100 p-1 rounded-lg grid grid-cols-4">
-                  <TabsTrigger value="all">All</TabsTrigger>
-                  <TabsTrigger value="today">Today</TabsTrigger>
-                  <TabsTrigger value="weekend">This Weekend</TabsTrigger>
-                  <TabsTrigger value="groups">For Groups</TabsTrigger>
-                </TabsList>
-
-                <div className="flex flex-wrap gap-4 justify-center">
-                  <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
-                    <MapPin className="w-4 h-4 mr-2 text-gray-500" />
-                    <span className="text-sm font-medium">Location</span>
-                  </div>
-                  <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
-                    <Calendar className="w-4 h-4 mr-2 text-gray-500" />
-                    <span className="text-sm font-medium">Date</span>
-                  </div>
-                  <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
-                    <Users className="w-4 h-4 mr-2 text-gray-500" />
-                    <span className="text-sm font-medium">Guests</span>
-                  </div>
-                  <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
-                    <Filter className="w-4 h-4 mr-2 text-gray-500" />
-                    <span className="text-sm font-medium">Filters</span>
+            </div>
+            {isMobile && (
+              <section className="filtericons">
+                <div className="">
+                  <div className="row">
+                    <div
+                      className="col-lg-12"
+                      data-aos="fade-up"
+                      data-aos-delay="300"
+                    >
+                      <div className="property-city-slider position-relative">
+                        <PropertiesByCategory />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </Tabs>
+              </section>
+            )}
+          </div>
+
+          <a href="#explore-property">
+            <div className="mouse_scroll animate-up-4">
+              <img src="/images/about/home-scroll.png" alt="scroll image" />
             </div>
-          </motion.div>
+          </a>
         </div>
       </section>
 
-      <section className="py-8 max-w-6xl mx-auto bg-white">
+      {!isMobile && (
+        <section className="filtericons">
+          <div className="container-fluid container-fluidest">
+            <div className="row">
+              <div
+                className="col-lg-12"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <div className="property-city-slider position-relative">
+                  <PropertiesByCategory />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* <section className="py-8 max-w-6xl mx-auto bg-white">
         <div className="flapabay-container relative">
           {showLeftArrow && (
             <button 
@@ -285,25 +305,30 @@ const Experiences = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {selectedCategory && viewedExperiences.length > 0 && (
         <section className="py-12 max-w-6xl mx-auto bg-white">
           <div className="flapabay-container">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold">{selectedCategory} Experiences</h2>
-              <Button variant="outline" className="border-[#FFC500] hover:bg-[#FFC500]/10 text-black">
+              <h2 className="text-2xl font-bold">
+                {selectedCategory} Experiences
+              </h2>
+              <Button
+                variant="outline"
+                className="border-[#FFC500] hover:bg-[#FFC500]/10 text-black"
+              >
                 <Filter className="mr-2 h-4 w-4" />
                 Filters
               </Button>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {viewedExperiences.map((experience) => (
                 <PropertyCard key={experience.id} {...experience} />
               ))}
             </div>
-            
+
             <div className="flex justify-center mt-10">
               <Button className="bg-[#FFC500] hover:bg-[#e6b000] text-black">
                 View More {selectedCategory} Experiences
@@ -322,7 +347,9 @@ const Experiences = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold mb-4">Meet Your Celebrity Experiences</h2>
+            <h2 className="text-4xl font-bold mb-4">
+              Meet Your Celebrity Experiences
+            </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Exclusive activities hosted by your favorite celebrities
             </p>
@@ -339,8 +366,8 @@ const Experiences = () => {
                 viewport={{ once: true }}
               >
                 <div className="relative overflow-hidden h-[220px]">
-                  <img 
-                    src={experience.image} 
+                  <img
+                    src={experience.image}
                     alt={experience.title}
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                   />
@@ -350,33 +377,47 @@ const Experiences = () => {
                     </button>
                   </div>
                   <div className="absolute top-3 left-3">
-                    <span className="bg-[#FFC500] text-black text-xs font-bold px-3 py-1 rounded-full">Celebrity</span>
+                    <span className="bg-[#FFC500] text-black text-xs font-bold px-3 py-1 rounded-full">
+                      Celebrity
+                    </span>
                   </div>
                 </div>
                 <div className="p-5">
                   <div className="flex items-center mb-2">
                     <Star className="h-4 w-4 text-[#FFC500] fill-[#FFC500]" />
-                    <span className="ml-1 text-sm font-medium">{experience.rating}</span>
+                    <span className="ml-1 text-sm font-medium">
+                      {experience.rating}
+                    </span>
                     <span className="mx-1 text-gray-400">·</span>
-                    <span className="text-sm text-gray-400">{experience.reviewCount} reviews</span>
+                    <span className="text-sm text-gray-400">
+                      {experience.reviewCount} reviews
+                    </span>
                   </div>
-                  <h3 className="text-lg font-bold mb-1 text-white">{experience.title}</h3>
+                  <h3 className="text-lg font-bold mb-1 text-white">
+                    {experience.title}
+                  </h3>
                   <p className="text-sm text-gray-400 mb-2">
                     <MapPin className="inline-block h-3 w-3 mr-1" />
                     {experience.location}
                   </p>
                   <div className="flex items-center mt-4">
-                    <img 
-                      src={experience.host.image} 
+                    <img
+                      src={experience.host.image}
                       alt={experience.host.name}
                       className="h-10 w-10 rounded-full border-2 border-[#FFC500] mr-3"
                     />
                     <div>
-                      <p className="text-sm font-medium text-white">Hosted by</p>
-                      <p className="text-xs text-[#FFC500]">{experience.host.name}</p>
+                      <p className="text-sm font-medium text-white">
+                        Hosted by
+                      </p>
+                      <p className="text-xs text-[#FFC500]">
+                        {experience.host.name}
+                      </p>
                     </div>
                     <div className="ml-auto">
-                      <p className="text-xl font-bold text-white">${experience.price}</p>
+                      <p className="text-xl font-bold text-white">
+                        ${experience.price}
+                      </p>
                       <p className="text-xs text-gray-400">per person</p>
                     </div>
                   </div>
@@ -408,16 +449,16 @@ const Experiences = () => {
           {isLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[1, 2, 3, 4, 5, 6].map((item) => (
-                <div key={item} className="h-80 bg-gray-100 rounded-[30px] animate-pulse"></div>
+                <div
+                  key={item}
+                  className="h-80 bg-gray-100 rounded-[30px] animate-pulse"
+                ></div>
               ))}
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {experiences.map((experience: any) => (
-                <PropertyCard
-                  key={experience.id}
-                  {...experience}
-                />
+                <PropertyCard key={experience.id} {...experience} />
               ))}
             </div>
           )}
@@ -435,16 +476,14 @@ const Experiences = () => {
           >
             <h2 className="text-4xl font-bold mb-4">Explore Africa</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover authentic activities across the beautiful continent of Africa
+              Discover authentic activities across the beautiful continent of
+              Africa
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {africanExperiences.map((experience) => (
-              <PropertyCard
-                key={experience.id}
-                {...experience}
-              />
+              <PropertyCard key={experience.id} {...experience} />
             ))}
           </div>
 
@@ -470,7 +509,9 @@ const Experiences = () => {
                 <span className="bg-[#FFC500] text-black px-3 py-1 rounded-full text-sm font-medium inline-block mb-4 w-fit">
                   Featured Experience
                 </span>
-                <h2 className="text-3xl font-bold mb-4">Coastal Sunset Sail & Wine Tasting</h2>
+                <h2 className="text-3xl font-bold mb-4">
+                  Coastal Sunset Sail & Wine Tasting
+                </h2>
                 <div className="flex items-center mb-2">
                   <Star className="h-5 w-5 text-[#FFC500] fill-[#FFC500] mr-1" />
                   <span className="font-medium">4.96</span>
@@ -478,27 +519,37 @@ const Experiences = () => {
                   <span className="text-gray-500">312 reviews</span>
                 </div>
                 <p className="text-gray-600 mb-6 text-lg">
-                  Join Captain Maria on her vintage sailboat for a breathtaking sunset cruise along the coast, 
-                  followed by a guided tasting of local wines paired with artisanal cheeses.
+                  Join Captain Maria on her vintage sailboat for a breathtaking
+                  sunset cruise along the coast, followed by a guided tasting of
+                  local wines paired with artisanal cheeses.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="bg-[#FFC500]/10 px-3 py-1 rounded-full text-sm">2.5 hours</span>
-                  <span className="bg-[#FFC500]/10 px-3 py-1 rounded-full text-sm">Up to 8 people</span>
-                  <span className="bg-[#FFC500]/10 px-3 py-1 rounded-full text-sm">All equipment provided</span>
+                  <span className="bg-[#FFC500]/10 px-3 py-1 rounded-full text-sm">
+                    2.5 hours
+                  </span>
+                  <span className="bg-[#FFC500]/10 px-3 py-1 rounded-full text-sm">
+                    Up to 8 people
+                  </span>
+                  <span className="bg-[#FFC500]/10 px-3 py-1 rounded-full text-sm">
+                    All equipment provided
+                  </span>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 mt-2">
                   <Button className="bg-[#FFC500] hover:bg-[#e6b000] text-black px-6 py-2 h-12 rounded-lg">
                     Book Now - $129/person
                   </Button>
-                  <Button variant="outline" className="border-[#FFC500] text-black hover:bg-[#FFC500]/10 h-12 rounded-lg">
+                  <Button
+                    variant="outline"
+                    className="border-[#FFC500] text-black hover:bg-[#FFC500]/10 h-12 rounded-lg"
+                  >
                     <Heart className="mr-2 h-5 w-5" /> Save
                   </Button>
                 </div>
               </div>
               <div className="order-1 lg:order-2 h-72 lg:h-auto">
-                <img 
-                  src="https://images.unsplash.com/photo-1534438097545-a2c22c57f2ad?q=80&w=2070&auto=format&fit=crop" 
-                  alt="Sunset Sail" 
+                <img
+                  src="https://images.unsplash.com/photo-1534438097545-a2c22c57f2ad?q=80&w=2070&auto=format&fit=crop"
+                  alt="Sunset Sail"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -509,16 +560,19 @@ const Experiences = () => {
 
       <section className="py-16 bg-gradient-to-br from-[#000] to-[#222] text-white">
         <div className="flapabay-container">
-          <motion.div 
+          <motion.div
             className="max-w-3xl mx-auto text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-4">Share Your Passion with the World</h2>
+            <h2 className="text-3xl font-bold mb-4">
+              Share Your Passion with the World
+            </h2>
             <p className="text-xl text-gray-300 mb-8">
-              Create memorable experiences by sharing your expertise, skill, or local knowledge with travelers.
+              Create memorable experiences by sharing your expertise, skill, or
+              local knowledge with travelers.
             </p>
             <Button className="bg-[#FFC500] hover:bg-[#e6b000] text-black px-8 py-6 rounded-lg font-medium text-lg">
               Become an Experience Host

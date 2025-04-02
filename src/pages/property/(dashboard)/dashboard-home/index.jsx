@@ -5,6 +5,7 @@ import MobileMenu from "@/components/common/mobile-menu";
 import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import TodayHome from "@/components/property/dashboard/dashboard-home/TodayHome";
 import TopStateBlock from "@/components/property/dashboard/dashboard-home/TopStateBlock";
+import Dashboard from "@/components/dashboard/host/Dashboard";
 
 const metaInformation = {
   title: "Dashboard Home || Flapabay- Apartment Rental, Experiences and More!",
@@ -48,10 +49,10 @@ const DashboardHome = () => {
 
                 <div>
                   <div className="overflow-hidden ps-widget bgc-white bdrs12 default-box-shadow2 mb30 position-relative">
-                    <div className="packages_table table-responsive">
-                     <TopStateBlock />
+                    <div className="">
+                     {/* <TopStateBlock /> */}
                      
-                      <TodayHome />
+                      <Dashboard />
                     </div>
                   </div>
                 </div>

@@ -7,6 +7,7 @@ import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import SearchDataTable from "@/components/property/dashboard/dashboard-saved-search/SearchDataTable";
 
 import MetaData from "@/components/common/MetaData";
+import Listings from "@/components/dashboard/host/Listings";
 
 const metaInformation = {
   title: "Dashboard Saved Search || Flapabay- Apartment Rental, Experiences and More!",
@@ -46,8 +47,8 @@ const DashboardSavedSearch = () => {
               <div className="row">
                 <div className="col-xl-12">
                   <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
-                    <div className="packages_table table-responsive">
-                      <SearchDataTable />
+                    <div className="">
+                      <Listings />
                     </div>
                     
                   </div>

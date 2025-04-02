@@ -7,6 +7,7 @@ import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import ListingsFavourites from "@/components/property/dashboard/dashboard-my-favourites/ListingsFavourites";
 
 import MetaData from "@/components/common/MetaData";
+import Reservations from "@/components/dashboard/host/Reservations";
 
 const metaInformation = {
   title: "Dashboard My Favourites || Flapabay- Apartment Rental, Experiences and More!",
@@ -44,7 +45,7 @@ const DashboardMyFavourites = () => {
               {/* End .row */}
 
               <div className="row">
-                <ListingsFavourites />
+                <Reservations />
                 
               </div>
               {/* End .row */}

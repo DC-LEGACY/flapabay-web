@@ -34,6 +34,12 @@ const SidebarDashboard = () => {
           text: "Reservation",
         },
         {
+          // href: "/dashboard-my-favourites",
+          href: "/dashboard-host-Experiences",
+          icon: "flaticon-like",
+          text: "Experiences",
+        },
+        {
           // href: "/dashboard-saved-search",
           href: "/dashboard-saved-search",
           icon: "flaticon-search-2",
@@ -52,6 +58,18 @@ const SidebarDashboard = () => {
           text: "Insights",
         },
         {
+          // href: "/dashboard-reviews",
+          href: "/dashboard-host-reviews",
+          icon: "flaticon-review",
+          text: "Reviews",
+        },
+        {
+          // href: "/dashboard-reviews",
+          href: "/dashboard-host-aihost",
+          icon: "flaticon-review",
+          text: "AIHOST",
+        },
+        {
           // href: "/dashboard-add-property",
           href: "/create-listing",
           icon: "flaticon-new-tab",
@@ -68,6 +86,12 @@ const SidebarDashboard = () => {
           // href: "/dashboard-my-package",
           icon: "flaticon-protection",
           text: "Host an experience",
+        },
+        {
+          href: "/help-center",
+          // href: "/dashboard-my-package",
+          icon: "flaticon-protection",
+          text: "Help Center",
         },
 
         {
@@ -88,13 +112,24 @@ const SidebarDashboard = () => {
           text: "Explore",
         },
         {
-          href: "/whishlist-page",
-          icon: "flaticon-heart-1",
-          text: "Wishlist",
+          href: "/dashboard-home",
+          icon: "flaticon-discovery",
+          text: "Today",
         },
         {
           href: "/whishlist-page",
-          icon: "flaticon-heart-1",
+          icon: "flaticon-home-1",
+          text: "Wishlist",
+        },
+        {
+          // href: "/dashboard-reviews",
+          href: "/dashboard-host-reviews",
+          icon: "flaticon-review",
+          text: "Reviews",
+        },
+        {
+          href: "/whishlist-page",
+          icon: "flaticon-home-1",
           text: "Trips",
         },
         {
@@ -103,11 +138,18 @@ const SidebarDashboard = () => {
           text: "Messages",
         },
         
+        
         {
           href: "/dashboard-experience",
           // href: "/dashboard-my-package",
           icon: "flaticon-protection",
           text: "Host an experience",
+        },
+        {
+          href: "/help-center",
+          // href: "/dashboard-my-package",
+          icon: "flaticon-protection",
+          text: "Help Center",
         },
         {
           href: "/login",

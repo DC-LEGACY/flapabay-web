@@ -9,6 +9,7 @@ import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import MetaData from "@/components/common/MetaData";
 import SingleReview from "@/components/property/reviews/SingleReview";
 import OpportunitiesPage from "@/components/property/dashboard/dashboard-reviews/OpportunitiesPage";
+import Insights from "@/components/dashboard/host/Insights";
 
 
 const metaInformation = {
@@ -49,7 +50,7 @@ const DashboardReviews = () => {
               <div className="row">
                 <div className="col-xl-12">
                   <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
-                    <OpportunitiesPage/>
+                    <Insights/>
                     
                   </div>
                 </div>

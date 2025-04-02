@@ -4,6 +4,7 @@ import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import DboardMobileNavigation from "@/components/property/dashboard/DboardMobileNavigation";
 import MetaData from "@/components/common/MetaData";
 import TellGuestsabout from "@/components/property/dashboard/dashboard-calender/TellGuestsabout";
+import HostCalendar from "@/components/dashboard/host/Calendar";
 
 const metaInformation = {
   title: "Dashboard Properties || Flapabay- Apartment Rental, Experiences and More!",
@@ -40,7 +41,7 @@ const Dashboardcalender = () => {
               <div className="row align-items-center pb40">
                 
                 <div className="col-xxl-12">
-                  <TellGuestsabout/>
+                  <HostCalendar/>
                 </div>
               </div>
               {/* End .row */}

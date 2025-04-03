@@ -167,7 +167,7 @@ const BecomeHost = () => {
                 </h3>
 
                 <div className="space-y-6">
-                  <div className="bg-flapabay-lightGray rounded-xl p-6">
+                  <div className="bg-flapabay-lightGray rounded-2xl p-6">
                     <label className="block text-sm font-medium mb-2">
                       Where's your place located?
                     </label>
@@ -185,7 +185,7 @@ const BecomeHost = () => {
                     </select>
                   </div>
 
-                  <div className="bg-flapabay-lightGray rounded-xl p-6">
+                  <div className="bg-flapabay-lightGray rounded-2xl p-6">
                     <label className="block text-sm font-medium mb-2">
                       What type of place will you host?
                     </label>
@@ -200,7 +200,7 @@ const BecomeHost = () => {
                     </select>
                   </div>
 
-                  <div className="bg-flapabay-lightGray rounded-xl p-6">
+                  <div className="bg-flapabay-lightGray rounded-2xl p-6">
                     <label className="block text-sm font-medium mb-2">
                       How many guests can your place accommodate?
                     </label>
@@ -523,7 +523,7 @@ const BecomeHost = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="border border-gray-200 rounded-xl overflow-hidden"
+                  className="border border-gray-200 rounded-2xl overflow-hidden"
                 >
                   <details className="group">
                     <summary className="flex justify-between items-center p-6 cursor-pointer">

@@ -116,7 +116,7 @@ const LoginModal: React.FC<SignupModalProps> = ({ onClose }) => {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-lg w-full max-w-md relative z-60"
+        className="bg-white rounded-2xl shadow-lg w-full max-w-md relative z-60"
         onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside
       >
         <div className="flex items-center space-x-32 text-center pt-5 text-lg font-semibold mb-4 ">

@@ -8,7 +8,7 @@ interface CommunityCommitmentModalProps {
 const CommunityCommitmentModal: React.FC<CommunityCommitmentModalProps> = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={onClose}>
-      <div className="bg-white rounded-xl shadow-lg w-full max-w-md p-6 relative z-60" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6 relative z-60" onClick={(e) => e.stopPropagation()}>
         <div className="text-center">
         <div className="text-2xl font-bold text-black">
               <Link className="header-logo logo1 flex justify-center pt-2 pb-2 items-center" to="/">

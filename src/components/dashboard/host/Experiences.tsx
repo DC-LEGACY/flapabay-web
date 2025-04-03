@@ -25,7 +25,7 @@ const HostExperiences = () => {
       
       {hasExperiences ? (
         <div className="space-y-8">
-          <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+          <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow">
             <div className="flex flex-col md:flex-row gap-6">
               <div className="w-full md:w-1/3 h-48 md:h-auto rounded-lg overflow-hidden">
                 <img 
@@ -96,7 +96,7 @@ const HostExperiences = () => {
           <div className="mt-12 bg-gradient-to-br from-[#FFC500]/10 to-[#FFC500]/5 p-8 rounded-2xl">
             <h2 className="text-xl font-semibold mb-4">Why Host Experiences?</h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-xl shadow-sm">
+              <div className="bg-white p-6 rounded-2xl shadow-sm">
                 <div className="w-12 h-12 bg-[#FFC500]/20 rounded-full flex items-center justify-center mb-4">
                   <Users className="h-6 w-6 text-[#FFC500]" />
                 </div>
@@ -104,7 +104,7 @@ const HostExperiences = () => {
                 <p className="text-gray-600 text-sm">Create memorable activities around your interests, skills, or local expertise.</p>
               </div>
               
-              <div className="bg-white p-6 rounded-xl shadow-sm">
+              <div className="bg-white p-6 rounded-2xl shadow-sm">
                 <div className="w-12 h-12 bg-[#FFC500]/20 rounded-full flex items-center justify-center mb-4">
                   <Star className="h-6 w-6 text-[#FFC500]" />
                 </div>
@@ -112,7 +112,7 @@ const HostExperiences = () => {
                 <p className="text-gray-600 text-sm">Set your own prices and schedule to maximize your hosting potential.</p>
               </div>
               
-              <div className="bg-white p-6 rounded-xl shadow-sm">
+              <div className="bg-white p-6 rounded-2xl shadow-sm">
                 <div className="w-12 h-12 bg-[#FFC500]/20 rounded-full flex items-center justify-center mb-4">
                   <MapPin className="h-6 w-6 text-[#FFC500]" />
                 </div>
@@ -122,7 +122,7 @@ const HostExperiences = () => {
             </div>
           </div>
 
-          <div className="mt-10 p-6 border border-gray-200 rounded-xl">
+          <div className="mt-10 p-6 border border-gray-200 rounded-2xl">
             <h3 className="font-medium mb-4">Popular Experience Categories</h3>
             <div className="flex flex-wrap gap-3">
               {["Cooking", "Outdoor Adventure", "Arts & Crafts", "Music", "Tours", "Wellness", "Photography", "History", "Food & Drink"].map((category, index) => (

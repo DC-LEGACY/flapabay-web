@@ -79,7 +79,7 @@ const FinishSignupModal = ({ onClose, email }: { onClose: () => void; email: str
 
   return (
     <div className="inset-0 shadow-lg rounded-2xl w-fit ml-auto mr-auto bg-opacity-50 flex items-center justify-center z-50" onClick={onClose}>
-      <div className="bg-white rounded-xl w-full max-w-md p-6 relative" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-white rounded-2xl w-full max-w-md p-6 relative" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center space-x-24">
           <button className="right-4" onClick={onClose}>
             <img src={close} alt="Close" className="h-5 w-5" />

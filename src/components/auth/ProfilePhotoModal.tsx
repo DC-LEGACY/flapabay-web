@@ -26,7 +26,7 @@ const ProfilePhotoModal: React.FC<ProfilePhotoModalProps> = ({ onClose }) => {
     <>
       {!showCommitmentModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={onClose}>
-          <div className="bg-white rounded-xl shadow-lg w-full max-w-md p-6 relative z-60" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6 relative z-60" onClick={(e) => e.stopPropagation()}>
             <h2 className="text-lg font-semibold text-center">Create your profile</h2>
             <p className="text-sm text-gray-500 text-center">STEP 1 OF 1</p>
             <h3 className="text-md font-bold text-center mt-2">Add a profile photo</h3>

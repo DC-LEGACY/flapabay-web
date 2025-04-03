@@ -26,7 +26,7 @@ const MenuWidget = () => {
       links: [
         { label: "Help Center", href: "help-center" },
         { label: "Cancellation options", href: "#" },
-        { label: "Report Neighbourhood Concern", href: "#" },
+        { label: "Report Neighbourhood Concern", href: "/help/neighborhood" },
         { label: "Supported Countries", href: "#" },
       ],
     },

@@ -359,7 +359,7 @@ const Experiences = () => {
             {celebrityExperiences.map((experience, index) => (
               <motion.div
                 key={experience.id}
-                className="bg-white/5 backdrop-blur-md rounded-xl overflow-hidden shadow-xl hover-lift"
+                className="bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden shadow-xl hover-lift"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}

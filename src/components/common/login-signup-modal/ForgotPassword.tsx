@@ -11,7 +11,7 @@ const ForgotPassword: React.FC<EnterCodeModalProps> = ({ onClose }) => {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-lg w-full max-w-md relative z-60"
+        className="bg-white rounded-2xl shadow-lg w-full max-w-md relative z-60"
         onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside
       >
         <div className="p-6">

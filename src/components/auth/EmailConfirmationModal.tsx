@@ -27,11 +27,11 @@ const EmailConfirmationModal = ({
 
   return (
     <div
-      className=" inset-0 shadow-lg w-fit ml-auto mr-auto rounded-xl flex items-center justify-center z-50"
+      className=" inset-0 shadow-lg w-fit ml-auto mr-auto rounded-2xl flex items-center justify-center z-50"
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl w-full max-w-md p-6 relative"
+        className="bg-white rounded-2xl w-full max-w-md p-6 relative"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex space-x-20">

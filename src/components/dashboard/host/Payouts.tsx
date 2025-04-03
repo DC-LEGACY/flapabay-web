@@ -116,7 +116,7 @@ const Payouts = () => {
         </TabsList>
         
         <TabsContent value="earnings">
-          <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
             <div className="p-4 border-b flex justify-between items-center">
               <h3 className="font-medium">Recent Transactions</h3>
               <Button variant="outline" size="sm">
@@ -212,7 +212,7 @@ const Payouts = () => {
         </TabsContent>
         
         <TabsContent value="taxDocuments">
-          <div className="bg-white rounded-xl shadow-sm p-6 text-center">
+          <div className="bg-white rounded-2xl shadow-sm p-6 text-center">
             <div className="bg-gray-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
               <Download className="h-8 w-8 text-gray-400" />
             </div>

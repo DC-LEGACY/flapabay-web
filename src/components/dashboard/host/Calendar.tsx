@@ -153,7 +153,7 @@ const HostCalendar = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl shadow-md p-4">
+        <div className="bg-white rounded-2xl shadow-md p-4">
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -181,7 +181,7 @@ const HostCalendar = () => {
           </Popover>
         </div>
 
-        <div className="bg-white rounded-xl shadow-md p-4 h-52">
+        <div className="bg-white rounded-2xl shadow-md p-4 h-52">
           <h2 className="text-lg font-semibold mb-2">Events on {date ? date.toLocaleDateString() : 'Selected Date'}</h2>
           <ul className="overflow-y-auto h-40">
             {events.filter(event => event.date && event.date.toLocaleDateString() === date?.toLocaleDateString()).length > 0 ? (

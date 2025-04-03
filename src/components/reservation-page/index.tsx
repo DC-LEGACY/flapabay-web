@@ -20,7 +20,7 @@ export default function ReservationPage() {
 
 
     <div className="flex items-center justify-center min-h-screen  px-4">
-      <div className="bg-white rounded-xl  flex flex-col md:flex-row p-6 w-full max-w-4xl">
+      <div className="bg-white rounded-2xl  flex flex-col md:flex-row p-6 w-full max-w-4xl">
         
         {/* Left Section */}
         <div className="md:w-1/2 bg-white rounded-lg overflow-hidden shadow-md">

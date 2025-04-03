@@ -22,7 +22,7 @@ const EmailConfirmationModal = ({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl w-full max-w-md p-6 relative"
+        className="bg-white rounded-2xl w-full max-w-md p-6 relative"
         onClick={(e) => e.stopPropagation()}
       >
         <div className=" flex space-x-28">

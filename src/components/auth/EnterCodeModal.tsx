@@ -49,7 +49,7 @@ const EnterCodeModal: React.FC<EnterCodeModalProps> = ({ onClose, email }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={onClose}>
-      <div className="bg-white rounded-xl shadow-lg w-full max-w-md relative z-60 p-6" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-white rounded-2xl shadow-lg w-full max-w-md relative z-60 p-6" onClick={(e) => e.stopPropagation()}>
         {showForgotPassword ? (
           <ForgotPassword onClose={() => setShowForgotPassword(false)} />
         ) : (

@@ -37,7 +37,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="bg-white  rounded-xl shadow-lg w-full h-full max-w-md z-60 p-6"
+        className="bg-white  rounded-2xl shadow-lg w-full h-full max-w-md z-60 p-6"
         onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside
       >
         <div className="flex items-center text-center space-x-20">

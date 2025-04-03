@@ -166,7 +166,7 @@ const HostReviews = () => {
       ) : (
         <div className="space-y-4">
           {filteredReviews.map(review => (
-            <div key={review.id} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+            <div key={review.id} className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow">
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="text-lg font-semibold">{review.author}</h3>

@@ -230,7 +230,9 @@ li {
     font-family: var(--title-font-family);
     font-weight: 600;
 }
-
+.bg-primary{
+    background-color: var(--color-primary);
+}
 /* All Type Of Footer Styles */
 .footer-style1 {
     background: var(--color-primary); //linear-gradient(30deg, var(--color-secondary) 3%, var(--color-primary) 100%);

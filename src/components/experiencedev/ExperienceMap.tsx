@@ -45,7 +45,7 @@ const ExperienceMap: React.FC<ExperienceMapProps> = ({
     >
       <h3 className="text-xl font-semibold mb-4">Meeting point</h3>
       
-      <div className="bg-gray-100 rounded-xl overflow-hidden h-[300px] relative group cursor-pointer">
+      <div className="bg-gray-100 rounded-2xl overflow-hidden h-[300px] relative group cursor-pointer">
         {/* Interactive Map */}
         <iframe 
           src={getMapEmbedUrl()} 

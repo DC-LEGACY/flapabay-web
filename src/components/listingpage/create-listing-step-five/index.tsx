@@ -77,7 +77,7 @@ const CreateListingStepFive = () => {
     <h2 className=" font-medium text-xl ml-auto mr-auto text-center">Where should guests meet you?</h2>
     <div className="w-full h-screen relative mt-[40px]">
       {/* Search Input */}
-      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 rounded-xl shadow-md z-10 w-96">
+      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 rounded-2xl shadow-md z-10 w-96">
         <input
           type="text"
           placeholder="Enter Address..."
@@ -116,7 +116,7 @@ const CreateListingStepFive = () => {
       {/* Modal for Address Confirmation */}
       {showModal && (
         <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20">
-          <div className="bg-white p-6 rounded-xl shadow-lg w-[400px]">
+          <div className="bg-white p-6 rounded-2xl shadow-lg w-[400px]">
             <h2 className="text-lg font-bold">Confirm Address</h2>
             
 
@@ -326,7 +326,7 @@ export default CreateListingStepFive;
 //     <h2 className=" font-medium text-xl ml-auto mr-auto text-center">Where should guests meet you?</h2>
 //     <div className="w-full h-screen relative">
 //       {/* Search Input */}
-//       <div className="absolute top-4 left-1/2 transform -translate-x-1/2 rounded-xl shadow-md z-10 w-96">
+//       <div className="absolute top-4 left-1/2 transform -translate-x-1/2 rounded-2xl shadow-md z-10 w-96">
 //         <input
 //           type="text"
 //           placeholder="Enter Address..."
@@ -365,7 +365,7 @@ export default CreateListingStepFive;
 //       {/* Modal for Address Confirmation */}
 //       {showModal && (
 //         <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20">
-//           <div className="bg-white p-6 rounded-xl shadow-lg w-[400px]">
+//           <div className="bg-white p-6 rounded-2xl shadow-lg w-[400px]">
 //             <h2 className="text-lg font-bold">Confirm Address</h2>
             
 

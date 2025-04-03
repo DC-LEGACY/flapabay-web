@@ -29,7 +29,7 @@ const About = () => {
       {/* End Mobile Nav  */}
 
       {/* Breadcrumb Sections */}
-      <section className="breadcumb-section2 p-0">
+      <section className="p-0 breadcumb-section2">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -79,7 +79,7 @@ const About = () => {
       {/* End Our About Area */}
 
       {/* About Banner */}
-      <section className="our-about pt-0">
+      <section className="pt-0 our-about">
         <div className="container">
           <div className="row" data-aos="fade-up" data-aos-delay="300">
             <div className="col-lg-12">
@@ -114,7 +114,7 @@ const About = () => {
       {/* Exclusive Agents */}
       <section className="pb90">
         <div className="container">
-          <div className="row  justify-content-center">
+          <div className="row justify-content-center">
             <div className="col-auto">
               <div
                 className="main-title"
@@ -143,8 +143,8 @@ const About = () => {
       {/* Exclusive Agents */}
 
       {/* Abut intro */}
-      <section className="pt30 pb-0">
-        <div className="cta-banner3 bgc-thm-light mx-auto maxw1600 pt100 pt60-lg pb90 pb60-lg bdrs24 position-relative overflow-hidden mx20-lg">
+      <section className="pb-0 pt30">
+        <div className="mx-auto overflow-hidden cta-banner3 bgc-thm-light maxw1600 pt100 pt60-lg pb90 pb60-lg bdrs24 position-relative mx20-lg">
           <div className="container">
             <div className="row">
               <div
@@ -177,11 +177,11 @@ const About = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-12" data-aos="fade-up">
-              <div className="main-title text-center">
+              <div className="text-center main-title">
                 <h6>Trusted by the world’s best</h6>
               </div>
             </div>
-            <div className="col-lg-12 text-center">
+            <div className="text-center col-lg-12">
               <div
                 className="dots_none nav_none"
                 data-aos="fade-up"
@@ -200,7 +200,7 @@ const About = () => {
       {/* Our CTA */}
 
       {/* Start Our Footer */}
-      <section className="footer-style1 pt60 pb-0">
+      <section className="pb-0 footer-style1 pt60">
         <Footer />
       </section>
       {/* End Our Footer */}

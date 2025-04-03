@@ -49,7 +49,7 @@ const GuestDashboard = () => {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Sidebar - Desktop */}
           <aside className="hidden lg:block w-64 shrink-0">
-            <div className="bg-[#ffc500] dark:bg-[#ffc500]/90 text-black rounded-xl shadow-sm p-4 sticky top-24">
+            <div className="bg-[#ffc500] dark:bg-[#ffc500]/90 text-black rounded-2xl shadow-sm p-4 sticky top-24">
               {/* Profile Section */}
               <div className="flex flex-col items-center mb-6 pb-6 border-b border-black/10">
                 <div className="h-20 w-20 rounded-full bg-white shadow-md flex items-center justify-center overflow-hidden">

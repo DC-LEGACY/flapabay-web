@@ -28,13 +28,13 @@ export default function ScrollToTop() {
     <>
       {isVisible && (
         <div
-          className="scrollToHome"
+          className="fixed bg-black text-white hover:bg-flapabay-yellow\ rounded-2xl scrollToHome"
           style={{ cursor: "pointer" }}
           onClick={scrollToTop}
         >
           <i className="fas fa-angle-up"></i>
         </div>
-      )}
+      )} 
     </>
   );
 }

@@ -10,8 +10,6 @@ import { modeAtom } from "../../../context/atom";
 import { useAtom } from "jotai";
 import { userAtom } from "../../../context/atom";
 
-
-
 const Header = () => {
   const [navbar, setNavbar] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);

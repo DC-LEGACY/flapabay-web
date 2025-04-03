@@ -70,21 +70,21 @@ const DefaultHeader = () => {
                   {/* <span className="d-none d-xl-block">Switch to hosting</span> */}
                   <Link
                   onClick={handleSwitch}
-                    className=" font-medium"
+                    className="font-medium "
                     to="/dashboard-home"
                     // to="/wizards"
                   >
                     {isHosting ? "Switch to Travelling" : "Switch to Hosting"}
                     {/* <i className="fal fa-arrow-right-long" /> */}
                   </Link>
-                  <Link
-                    className="ud-btn add-property menu-btn bdrs60 mx-2 mx-xl-4"
+                  <button
+                    className="mx-2 add-property rounded-2xl bg-flapabay-yellow mx-xl-4"
                     to="/dashboard-add-property"
                     // to="/wizards"
                   >
                     Add Property
                     <i className="fal fa-arrow-right-long" />
-                  </Link>
+                  </button>
                   <a
                     className="sidemenu-btn filter-btn-right"
                     href="#"
@@ -125,7 +125,7 @@ const DefaultHeader = () => {
           aria-labelledby="loginSignupModalLabel"
           aria-hidden="true"
         >
-          <div className="modal-dialog  modal-dialog-scrollable modal-dialog-centered">
+          <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered">
             <LoginSignupModal />
             {/* <Unsubscribe/> */}
           </div>

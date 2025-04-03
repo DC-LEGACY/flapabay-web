@@ -1,21 +1,21 @@
-import { Link } from "react-router-dom";
-import ContactMeta from "./ContactMeta";
 import AppWidget from "./AppWidget";
+import ContactMeta from "./ContactMeta";
+import Copyright from "./Copyright";
+import { Link } from "react-router-dom";
+import MenuWidget from "./MenuWidget";
 import Social from "./Social";
 import Subscribe from "./Subscribe";
-import MenuWidget from "./MenuWidget";
-import Copyright from "./Copyright";
 
 const Footer = () => {
   return (
     <>
-      <div className="container-fluid container-fluidest">
+    <div className="transition-all duration-300 ">
+       <div className="container-fluid container-fluidest ">
         <div className="row">
           <div className="col-lg-5">
-            <div className="footer-widget mb-4 mb-lg-5">
+            <div className="mb-4 footer-widget mb-lg-5">
               <Link className="footer-logo" to="/">
-                <div className="footer-logobg mb40">
-                  {" "}
+                <div className="bg-white footer-logobg rounded-2xl mb40">                 
                   <img className="" src="/images/footer-logo.svg" alt="" />
                 </div>
               </Link>
@@ -30,7 +30,7 @@ const Footer = () => {
           {/* End .col-lg-5 */}
 
           <div className="col-lg-7">
-            <div className="footer-widget mb-4 mb-lg-5">
+            <div className="mb-4 footer-widget mb-lg-5">
               <Subscribe />
               <div className="row justify-content-between">
                 <MenuWidget />
@@ -44,6 +44,8 @@ const Footer = () => {
 
       <Copyright />
       {/* End copyright */}
+    </div>
+     
     </>
   );
 };

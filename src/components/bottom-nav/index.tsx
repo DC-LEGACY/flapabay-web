@@ -1,30 +1,40 @@
-import { FiHeart, FiMap, FiMessageSquare, FiSearch, FiUser } from "react-icons/fi";
+import {
+  Calendar,
+  Home2,
+  HomeTrendUp,
+  Message,
+  ProfileCircle,
+} from "iconsax-react";
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const tabs = [
-  { name: "Search", icon: <FiSearch />, to: "/" },
-  { name: "Wishlist", icon: <FiHeart />, to: "/whishlist-page" },
-  { name: "Trips", icon: <FiMap />, to: "/trip-page" },
-  { name: "Messages", icon: <FiMessageSquare />, to: "/dashboard-message" },
-  { name: "Profile", icon: <FiUser />, to: "/account-page" },
+  { name: "Search", icon: <Home2 size="24" variant="Bold" />, to: "/" },
+  { name: "Wishlist", icon: <Calendar size="24" variant="Bold" />, to: "/whishlist-page" },
+  { name: "Trips", icon: <HomeTrendUp size="24" variant="Bold" />, to: "/trip-page" },
+  { name: "Messages", icon: <Message size="24" variant="Bold" />, to: "/dashboard-message" },
+  { name: "Profile", icon: <ProfileCircle size="24" variant="Bold" />, to: "/account-page" },
 ];
 
 export default function BottomNav() {
   const [activeTab, setActiveTab] = useState("Search");
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-white z-50 shadow-lg border-t flex justify-around py-2 md:hidden">
+    <div className="md:hidden lg:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[95%] bg-yellow-400 z-50 shadow-lg flex justify-around py-3 rounded-2xl shadow-sm">
       {tabs.map((tab) => (
-        <Link key={tab.name} to={tab.to} className="flex flex-col items-center">
+        <Link
+          key={tab.name}
+          to={tab.to}
+          className="flex flex-col items-center text-white"
+        >
           <button
             onClick={() => setActiveTab(tab.name)}
-            className={`flex flex-col items-center text-[12px] ${
-              activeTab === tab.name ? "text-[#ffc500] font-semibold" : "text-black"
+            className={`flex flex-col items-center text-[12px] transition-all duration-300 ease-in-out ${
+              activeTab === tab.name ? "text-black font-semibold" : "text-white opacity-80"
             }`}
           >
-            <span className="text-[16px]">{tab.icon}</span>
+            <span className="text-[24px] mb-1">{tab.icon}</span>
             {tab.name}
           </button>
         </Link>

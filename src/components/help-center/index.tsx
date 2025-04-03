@@ -27,15 +27,20 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  Book,
   Briefcase as BriefcaseIcon,
   Calendar as CalendarIcon,
+  Call,
   DocumentText,
   Global,
   I24Support,
+  Message,
+  MessageQuestion,
   Profile2User,
   ShieldTick,
+  Sms,
   Timer,
-  Warning2
+  Warning2,
 } from "iconsax-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { FiFileText, FiSearch } from "react-icons/fi";
@@ -647,7 +652,9 @@ export default function HelpPage() {
               <div className="lg:w-1/2">
                 <div className="flex items-center mb-4">
                   <Bot className="w-10 h-10 mr-3 text-flapabay-yellow" />
-                  <h2 className="text-3xl font-bold text-white">AI Assistant</h2>
+                  <h2 className="text-3xl font-bold text-white">
+                    AI Assistant
+                  </h2>
                 </div>
                 <p className="mb-6 text-lg text-gray-300">
                   Get instant answers to your questions with our AI-powered
@@ -703,7 +710,7 @@ export default function HelpPage() {
 
                 {isTyping && (
                   <div className="pt-4">
-                    <Progress value={progress}  className="h-1 py-2" />
+                    <Progress value={progress} className="h-1 py-2" />
                   </div>
                 )}
 
@@ -892,7 +899,11 @@ export default function HelpPage() {
                 className="p-6 bg-white border border-gray-100 shadow-sm rounded-2xl"
               >
                 <div className="flex items-center justify-center mb-4 rounded-full w-14 h-14 bg-flapabay-yellow/20">
-                  <Phone className="w-6 h-6 text-flapabay-yellow" />
+                  <Call
+                    variant="Outline"
+                    size="24"
+                    className="text-flapabay-yellow"
+                  />
                 </div>
                 <h3 className="mb-2 text-xl font-semibold">Call Us</h3>
                 <p className="mb-4 text-dark">
@@ -910,7 +921,11 @@ export default function HelpPage() {
                 className="p-6 bg-white border border-gray-100 shadow-sm rounded-2xl"
               >
                 <div className="flex items-center justify-center mb-4 rounded-full w-14 h-14 bg-flapabay-yellow/20">
-                  <Mail className="w-6 h-6 text-flapabay-yellow" />
+                  <Sms
+                    variant="Outline"
+                    size="24"
+                    className="text-flapabay-yellow"
+                  />
                 </div>
                 <h3 className="mb-2 text-xl font-semibold">Email Us</h3>
                 <p className="mb-4 text-dark">
@@ -930,13 +945,17 @@ export default function HelpPage() {
                 className="p-6 bg-white border border-gray-100 shadow-sm rounded-2xl"
               >
                 <div className="flex items-center justify-center mb-4 rounded-full w-14 h-14 bg-flapabay-yellow/20">
-                  <MessageSquare className="w-6 h-6 text-flapabay-yellow" />
+                  <Message
+                    variant="Outline"
+                    size="24"
+                    className="text-flapabay-yellow"
+                  />
                 </div>
                 <h3 className="mb-2 text-xl font-semibold">Live Chat</h3>
                 <p className="mb-4 text-dark">
                   Chat with our team in real-time for quick help
                 </p>
-                <Button className="font-bold text-white bg-flapabay-yellow hover:bg-flapabay-yellow/90">
+                <Button className="font-semibold text-white bg-flapabay-yellow hover:bg-flapabay-yellow/90">
                   Start Chat
                 </Button>
                 <p className="mt-2 text-sm text-gray-500">

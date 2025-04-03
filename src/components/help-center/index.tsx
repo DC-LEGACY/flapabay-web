@@ -656,7 +656,7 @@ export default function HelpPage() {
                     AI Assistant
                   </h2>
                 </div>
-                <p className="mb-6 text-lg text-gray-300">
+                <p className="pb-6 text-lg text-gray-300">
                   Get instant answers to your questions with our AI-powered
                   assistant. Ask anything about bookings, properties, payments,
                   or any other FlapaBay service.
@@ -747,7 +747,7 @@ export default function HelpPage() {
                 )}
               </div>
 
-              <div className="lg:w-1/2">
+              <div className="lg:w-1/2 sm:w-[100%]">
                 <div className="p-6 bg-gray-900 border border-gray-800 shadow-lg rounded-2xl">
                   <h3 className="mb-4 text-xl font-bold text-white">
                     Common Topics
@@ -815,9 +815,9 @@ export default function HelpPage() {
         {/* Video Tutorials Section */}
         <section className="py-16 bg-[#ffc500]">
           <div className="flapabay-container">
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between pb-8">
               <div>
-                <h2 className="mb-4 text-2xl font-bold text-black md:text-3xl">
+                <h2 className="pb-4 text-2xl font-bold text-black md:text-3xl">
                   Video Tutorials
                 </h2>
                 <p className="max-w-2xl text-gray-800">

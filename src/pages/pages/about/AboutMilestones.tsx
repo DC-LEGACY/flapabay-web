@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -37,11 +36,11 @@ const AboutMilestones = () => {
   ];
 
   return (
-    <section className="py-20 bg-black text-white">
+    <section className="py-20 text-white bg-black">
       <div className="flapabay-container">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Milestones & Achievements</h2>
-          <div className="w-16 h-1 bg-flapabay-yellow mx-auto mb-6"></div>
+        <div className="max-w-3xl mx-auto mb-16 text-center">
+          <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">Milestones & Achievements</h2>
+          
           <p className="text-lg text-gray-300">
             Our journey of growth and impact across the African continent
           </p>
@@ -62,15 +61,15 @@ const AboutMilestones = () => {
                 className={`flex flex-col md:flex-row ${index % 2 === 0 ? 'md:items-start' : 'md:flex-row-reverse md:items-start'}`}
               >
                 <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:text-right md:pr-12' : 'md:pl-12'}`}>
-                  <div className="bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-800">
-                    <div className="text-flapabay-yellow text-xl font-bold mb-2">{milestone.year}</div>
-                    <h3 className="text-xl font-bold mb-2 text-white">{milestone.title}</h3>
+                  <div className="p-6 bg-gray-900 border border-gray-800 rounded-lg shadow-sm">
+                    <div className="mb-2 text-xl font-bold text-flapabay-yellow">{milestone.year}</div>
+                    <h3 className="mb-2 text-xl font-bold text-white">{milestone.title}</h3>
                     <p className="text-gray-300">{milestone.description}</p>
                   </div>
                 </div>
                 
-                <div className="hidden md:flex items-center justify-center relative w-0">
-                  <div className="w-5 h-5 rounded-full bg-flapabay-yellow absolute left-1/2 transform -translate-x-1/2"></div>
+                <div className="relative items-center justify-center hidden w-0 md:flex">
+                  <div className="absolute w-5 h-5 transform -translate-x-1/2 rounded-full bg-flapabay-yellow left-1/2"></div>
                 </div>
                 
                 <div className="md:w-1/2"></div>

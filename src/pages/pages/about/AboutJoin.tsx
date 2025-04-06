@@ -1,71 +1,72 @@
+import { Briefcase, Home2, People } from "iconsax-react";
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { HomeIcon, Users, Briefcase } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const AboutJoin = () => {
+ 
   const options = [
     {
       title: "Become a Host",
       description: "Share your space, earn income, and help travelers experience Africa authentically.",
-      icon: <HomeIcon className="h-10 w-10 text-flapabay-yellow" />,
+      icon: <Home2 size="40" color="white"/>,
       link: "/host",
       buttonText: "Start Hosting"
     },
     {
       title: "Travel with Us",
       description: "Discover unique stays and experiences across Africa's most beautiful destinations.",
-      icon: <Users className="h-10 w-10 text-flapabay-yellow" />,
+      icon: <People size="40" color="white"/>,
       link: "/",
       buttonText: "Find Places"
     },
     {
       title: "Join Our Team",
       description: "Passionate about travel? Join our growing team and help shape the future of African hospitality.",
-      icon: <Briefcase className="h-10 w-10 text-flapabay-yellow" />,
+      icon: <Briefcase size="40" color="white"/>,
       link: "/careers",
       buttonText: "See Openings"
     }
   ];
-
+  
   return (
-    <section className="py-20 bg-flapabay-black text-white">
+    <section className="py-20 text-white bg-white">
       <div className="flapabay-container">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Join Our Community</h2>
-          <div className="w-16 h-1 bg-flapabay-yellow mx-auto mb-6"></div>
-          <p className="text-lg text-gray-300">
+        <div className="max-w-3xl mx-auto mb-16 text-center">
+          <h2 className="mb-6 text-3xl font-bold md:text-4xl">Join Our Community</h2>
+       
+          <p className="text-lg text-dark">
             There are many ways to be part of the FlapaBay journey. Whether you're hosting, traveling, or looking to join our team, we'd love to welcome you.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-3">
           {options.map((option, index) => (
             <motion.div
               key={index}
               whileHover={{ translateY: -10 }}
               transition={{ duration: 0.3 }}
-              className="bg-gray-900 rounded-lg p-8 text-center"
+              className="p-8 text-center rounded-lg bg-flapabay-yellow"
             >
               <div className="flex justify-center mb-6">
                 {option.icon}
               </div>
-              <h3 className="text-xl font-bold mb-3">{option.title}</h3>
-              <p className="text-gray-300 mb-6">{option.description}</p>
-              <Button asChild variant="default" className="w-full">
+              <h3 className="mb-3 text-xl font-bold text-white">{option.title}</h3>
+              <p className="mb-6 text-white">{option.description}</p>
+              <Button asChild variant="default" className="w-full bg-white">
                 <Link to={option.link}>{option.buttonText}</Link>
               </Button>
             </motion.div>
           ))}
         </div>
         
-        <div className="text-center mt-16">
-          <p className="text-lg text-gray-300 mb-6">
+        <div className="mt-16 text-center">
+          <p className="mb-6 text-lg text-dark">
             Have questions? We'd love to hear from you!
           </p>
-          <Button asChild variant="outline" className="border-flapabay-yellow text-flapabay-yellow hover:bg-flapabay-yellow hover:text-black">
+          <Button asChild variant="outline" className="border-flapabay-yellow bg-flapabay-yellow hover:bg-flapabay-yellow/100 hover:text-black">
             <Link to="/contact">Contact Us</Link>
           </Button>
         </div>

@@ -335,12 +335,12 @@ export default function HelpPage() {
     <>
       <Header />
       <MobileMenu />
-      
+
       <main className="items-center flex-1">
         {/* <div className="flex flex-col items-center pt-6 lg:pt-36"> */}
         {/* Hero Section */}
-        
-          <section className="px-6 py-20 pb-10 mx-auto max-w-screen-4xl lg:pt-36 md:pt-16 bg-flapabay-yellow">
+
+        <section className="px-6 py-20 pb-10 mx-auto max-w-screen-4xl lg:pt-36 md:pt-16 bg-flapabay-yellow">
           <div className="flapabay-container">
             <div className="max-w-4xl mx-auto text-center">
               <motion.h1
@@ -395,7 +395,7 @@ export default function HelpPage() {
         {/* Quick Links Section */}
         <section className="py-16 bg-black">
           <div className="flapabay-container">
-            <h2 className="pb-10 text-2xl font-bold text-center text-white md:text-3xl">
+            <h2 className="pb-12 text-3xl font-bold text-center text-white md:text-3xl">
               Quick Links
             </h2>
 
@@ -426,7 +426,7 @@ export default function HelpPage() {
         {/* Categories */}
         <section className="py-16 bg-[#ffc500]">
           <div className="flapabay-container">
-            <h2 className="pb-10 text-2xl font-bold text-center text-black md:text-3xl">
+            <h2 className="pb-12 text-3xl font-bold text-center text-black md:text-3xl">
               Browse by Category
             </h2>
 
@@ -552,7 +552,7 @@ export default function HelpPage() {
         {/* Popular Questions - Enhanced */}
         <section className="py-16 bg-white">
           <div className="flapabay-container">
-            <h2 className="pb-10 text-2xl font-bold text-center md:text-3xl">
+            <h2 className="pb-12 text-3xl font-bold text-center md:text-3xl">
               Popular Questions
             </h2>
 
@@ -594,7 +594,7 @@ export default function HelpPage() {
         {/* Support Highlights Section */}
         <section className="py-16 bg-[#ffc500]">
           <div className="flapabay-container">
-            <h2 className="mb-4 text-2xl font-bold text-center text-black md:text-3xl">
+            <h2 className="mb-4 text-3xl font-bold text-center text-black md:text-3xl">
               We're Here to Help
             </h2>
             <p className="max-w-2xl mx-auto mb-12 text-center text-gray-800">
@@ -818,7 +818,7 @@ export default function HelpPage() {
           <div className="flapabay-container">
             <div className="flex items-center justify-between pb-8">
               <div>
-                <h2 className="pb-4 text-2xl font-bold text-black md:text-3xl">
+                <h2 className="pb-4 text-3xl font-bold text-black md:text-3xl">
                   Video Tutorials
                 </h2>
                 <p className="max-w-2xl text-gray-800">
@@ -887,7 +887,7 @@ export default function HelpPage() {
         {/* Contact Options */}
         <section className="py-16 bg-gray-50">
           <div className="flapabay-container">
-            <h2 className="pb-10 text-2xl font-bold text-center md:text-3xl">
+            <h2 className="pb-12 text-3xl font-bold text-center md:text-3xl">
               Contact Options
             </h2>
 

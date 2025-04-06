@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -8,7 +7,7 @@ const AboutTeam = () => {
       name: "Mbolela Pule",
       role: "Founder & CEO",
       bio: "Visionary leader with a passion for African hospitality and connecting global travelers with authentic experiences.",
-      image: "/lovable-uploads/40f111f4-2fe2-4988-8952-4a9573620263.png"
+      image: "/images/about/40f111f4-2fe2-4988-8952-4a9573620263.png"
     },
     {
       name: "David Okafor",
@@ -45,15 +44,15 @@ const AboutTeam = () => {
   return (
     <section className="py-20 bg-flapabay-yellow">
       <div className="flapabay-container">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">Meet Our Team</h2>
-          <div className="w-16 h-1 bg-black mx-auto mb-6"></div>
+        <div className="max-w-3xl mx-auto mb-16 text-center">
+          <h2 className="mb-6 text-3xl font-bold text-black md:text-4xl">Meet Our Team</h2>
+        
           <p className="text-lg text-gray-800">
             The passionate individuals behind FlapaBay, working to connect you with unforgettable African experiences.
           </p>
         </div>
         
-        <div className="flex flex-nowrap overflow-x-auto gap-6 pb-8 px-4 -mx-4">
+        <div className="flex gap-6 px-4 pb-8 -mx-4 overflow-x-auto flex-nowrap">
           {team.map((member, index) => (
             <motion.div
               key={index}
@@ -70,12 +69,12 @@ const AboutTeam = () => {
                 <img 
                   src={member.image} 
                   alt={member.name} 
-                  className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+                  className="object-cover object-center w-full h-full transition-transform duration-500 hover:scale-105"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                <p className="text-flapabay-yellow font-medium mb-3">{member.role}</p>
+                <h3 className="mb-1 text-xl font-bold">{member.name}</h3>
+                <p className="mb-3 font-medium text-flapabay-yellow">{member.role}</p>
                 <p className="text-gray-700">{member.bio}</p>
               </div>
             </motion.div>

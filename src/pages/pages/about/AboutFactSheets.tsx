@@ -1,39 +1,54 @@
+import { Award, Home, Map, Star, TrendingUp, Users } from 'lucide-react';
+import {
+  Global,
+  Home2,
+  Medal,
+  People,
+  Star1,
+  TrendUp
+} from "iconsax-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, Users, Home, Map, Star, TrendingUp } from 'lucide-react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 const AboutFactSheets = () => {
   const stats = [
     { 
-      icon: <Users className="h-8 w-8 text-flapabay-yellow" />, 
+      icon: <People size="32" color="#FFD700"/>, 
       value: "500K+", 
       label: "Active Users" 
     },
     { 
-      icon: <Home className="h-8 w-8 text-flapabay-yellow" />, 
+      icon: <Home2 size="32" color="#FFD700"/>, 
       value: "5,000+", 
       label: "Listed Properties" 
     },
     { 
-      icon: <Map className="h-8 w-8 text-flapabay-yellow" />, 
+      icon: <Global size="32" color="#FFD700"/>, 
       value: "15", 
       label: "Countries" 
     },
     { 
-      icon: <Star className="h-8 w-8 text-flapabay-yellow" />, 
+      icon: <Star1 size="32" color="#FFD700"/>, 
       value: "4.8/5", 
       label: "Average Rating" 
     },
     { 
-      icon: <TrendingUp className="h-8 w-8 text-flapabay-yellow" />, 
+      icon: <TrendUp size="32" color="#FFD700"/>, 
       value: "200%", 
       label: "YoY Growth" 
     },
+       
     { 
-      icon: <Award className="h-8 w-8 text-flapabay-yellow" />, 
+      icon: <Map className="w-8 h-8 text-flapabay-yellow" />, 
+      value: "15", 
+      label: "Countries" 
+    },
+  
+    { 
+      icon: <Award className="w-8 h-8 text-flapabay-yellow" />, 
       value: "12", 
       label: "Industry Awards" 
     }
@@ -57,17 +72,17 @@ const AboutFactSheets = () => {
   ];
 
   return (
-    <section className="py-20 bg-flapabay-black text-white">
+    <section className="py-20 text-white bg-flapabay-black">
       <div className="flapabay-container">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Fact Sheet & Achievements</h2>
-          <div className="w-16 h-1 bg-flapabay-yellow mx-auto mb-6"></div>
+        <div className="max-w-3xl mx-auto mb-16 text-center">
+          <h2 className="mb-6 font-bold text-white text- md:text-4xl">Fact Sheet & Achievements</h2>
+
           <p className="text-lg text-gray-300">
             Our journey in numbers, awards, and key milestones that mark our growth in transforming African hospitality.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-16">
+        <div className="grid grid-cols-2 gap-4 mb-16 md:grid-cols-3 lg:grid-cols-6">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -75,25 +90,25 @@ const AboutFactSheets = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-gray-900 p-6 rounded-lg shadow-sm text-center hover:shadow-md transition-shadow"
+              className="p-6 text-center transition-shadow bg-gray-900 rounded-lg shadow-sm hover:shadow-md"
             >
               <div className="flex justify-center mb-3">
                 {stat.icon}
               </div>
-              <div className="text-3xl font-bold mb-1 text-white">{stat.value}</div>
-              <div className="text-gray-300 text-sm">{stat.label}</div>
+              <div className="mb-1 text-3xl font-bold text-white">{stat.value}</div>
+              <div className="text-sm text-gray-300">{stat.label}</div>
             </motion.div>
           ))}
         </div>
 
-        <Tabs defaultValue="recognition" className="mx-auto max-w-4xl">
+        <Tabs defaultValue="recognition" className="max-w-4xl mx-auto">
           <TabsList className="grid w-full grid-cols-2 bg-gray-900">
             <TabsTrigger value="recognition" className="data-[state=active]:bg-flapabay-yellow data-[state=active]:text-black">Awards & Recognition</TabsTrigger>
             <TabsTrigger value="milestones" className="data-[state=active]:bg-flapabay-yellow data-[state=active]:text-black">Key Milestones</TabsTrigger>
           </TabsList>
           
           <TabsContent value="recognition" className="mt-6">
-            <div className="bg-gray-900 rounded-lg shadow-sm overflow-hidden">
+            <div className="overflow-hidden bg-gray-900 rounded-lg shadow-sm">
               <Table>
                 <TableHeader className="bg-gray-800">
                   <TableRow>
@@ -116,7 +131,7 @@ const AboutFactSheets = () => {
           </TabsContent>
           
           <TabsContent value="milestones" className="mt-6">
-            <div className="bg-gray-900 rounded-lg shadow-sm overflow-hidden">
+            <div className="overflow-hidden bg-gray-900 rounded-lg shadow-sm">
               <Table>
                 <TableHeader className="bg-gray-800">
                   <TableRow>

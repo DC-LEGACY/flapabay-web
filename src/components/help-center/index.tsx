@@ -335,10 +335,12 @@ export default function HelpPage() {
     <>
       <Header />
       <MobileMenu />
+      
       <main className="items-center flex-1">
         {/* <div className="flex flex-col items-center pt-6 lg:pt-36"> */}
         {/* Hero Section */}
-        <section className="max-w-screen-xl px-6 py-20 pb-10 mx-auto lg:pt-36 md:pt-16 bg-flapabay-yellow">
+        
+          <section className="px-6 py-20 pb-10 mx-auto max-w-screen-4xl lg:pt-36 md:pt-16 bg-flapabay-yellow">
           <div className="flapabay-container">
             <div className="max-w-4xl mx-auto text-center">
               <motion.h1
@@ -390,7 +392,6 @@ export default function HelpPage() {
             </div>
           </div>
         </section>
-
         {/* Quick Links Section */}
         <section className="py-16 bg-black">
           <div className="flapabay-container">

@@ -1,13 +1,13 @@
-
-import React from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
-import { FileText, Download, ExternalLink, Calendar, Globe, Users, Award, ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, Award, Calendar, Download, ExternalLink, FileText, Globe, Mail, Users } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import DefaultHeader from "@/components/common/DefaultHeader";
+import Footer from "@/components/common/default-footer";
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const MediaRoom = () => {
   const fadeIn = {
@@ -21,7 +21,7 @@ const MediaRoom = () => {
   
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <DefaultHeader />
       
       <main className="flex-1 pt-20">
         {/* Hero Section */}

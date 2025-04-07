@@ -1,15 +1,15 @@
-import { useState } from "react";
-import Header from "../home/home-v1/Header";
-import MobileMenu from "../common/mobile-menu";
-import Hero from "../home/home-v1/hero";
-import PropertiesByCategory from "../home/home-v4/PropertiesByCategory";
-import PropertyByCitiesWrapper from "../home/home-v3/PropertyByCitiesWrapper";
-import { Link } from "react-router-dom";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import Footer from "../common/default-footer";
-import { FaRegHeart } from "react-icons/fa";
 import ExperienceContent from "../experience/ExperienceContent";
 import Experiences from "../experience/Experiences";
+import { FaRegHeart } from "react-icons/fa";
+import Footer from "@/components/common/default-footer";
+import Header from "@/components/common/DefaultHeader";
+import Hero from "../home/home-v1/hero";
+import { Link } from "react-router-dom";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import MobileMenu from "../common/mobile-menu";
+import PropertiesByCategory from "../home/home-v4/PropertiesByCategory";
+import PropertyByCitiesWrapper from "../home/home-v3/PropertyByCitiesWrapper";
+import { useState } from "react";
 
 const ExperiencePage = () => {
   const [activeTab, setActiveTab] = useState("All");

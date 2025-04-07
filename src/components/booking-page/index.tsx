@@ -1,34 +1,36 @@
-import { useLocation, useParams } from "react-router-dom";
-import MetaData from "../common/MetaData";
-import MobileMenu from "../common/mobile-menu";
-import PropertyHeader from "../property/property-single-style/common/PropertyHeader";
-import PropertyGallery from "../property/property-single-style/single-v1/PropertyGallery";
-import ProperytyDescriptions from "../property/property-single-style/common/ProperytyDescriptions";
-import PropertyDetails from "../property/property-single-style/common/PropertyDetails";
-import PropertyAddress from "../property/property-single-style/common/PropertyAddress";
-import PropertyFeaturesAminites from "../property/property-single-style/common/PropertyFeaturesAminites";
-import EnergyClass from "../property/property-single-style/common/EnergyClass";
-import FloorPlans from "../property/property-single-style/common/FloorPlans";
-import PropertyVideo from "../property/property-single-style/common/PropertyVideo";
-import VirtualTour360 from "../property/property-single-style/common/VirtualTour360";
-import PropertyNearby from "../property/property-single-style/common/PropertyNearby";
-import WalkScore from "../property/property-single-style/common/WalkScore";
-import MortgageCalculator from "../listing/grid-view/banner-search-v1/MortgageCalculator";
-import PropertyViews from "../property/property-single-style/common/property-view";
-import HomeValueChart from "../property/property-single-style/common/HomeValueChart";
-import InfoWithForm from "../property/property-single-style/common/more-info";
-import AllReviews from "../property/reviews";
-import ReviewBoxForm from "../property/ReviewBoxForm";
-import ScheduleTour from "../property/property-single-style/sidebar/ScheduleTour";
-import ContactWithAgent from "../property/property-single-style/sidebar/ContactWithAgent";
-import NearbySimilarProperty from "../property/property-single-style/common/NearbySimilarProperty";
-import Footer from "../common/default-footer";
-import OverView from "../property/property-single-style/common/OverView";
-import Header from "../home/home-v1/Header";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+
+import AllReviews from "../property/reviews";
+import ContactWithAgent from "../property/property-single-style/sidebar/ContactWithAgent";
+import EnergyClass from "../property/property-single-style/common/EnergyClass";
+import FloorPlans from "../property/property-single-style/common/FloorPlans";
+import Footer from "@/components/common/default-footer";
+import Header from "@/components/common/DefaultHeader";
+import HomeValueChart from "../property/property-single-style/common/HomeValueChart";
+import InfoWithForm from "../property/property-single-style/common/more-info";
+import MetaData from "../common/MetaData";
+import MobileMenu from "../common/mobile-menu";
 import ModalVideo from "react-modal-video";
+import MortgageCalculator from "../listing/grid-view/banner-search-v1/MortgageCalculator";
+import NearbySimilarProperty from "../property/property-single-style/common/NearbySimilarProperty";
+import OverView from "../property/property-single-style/common/OverView";
+import PropertyAddress from "../property/property-single-style/common/PropertyAddress";
+import PropertyDetails from "../property/property-single-style/common/PropertyDetails";
+import PropertyFeaturesAminites from "../property/property-single-style/common/PropertyFeaturesAminites";
+import PropertyGallery from "../property/property-single-style/single-v1/PropertyGallery";
+import PropertyHeader from "../property/property-single-style/common/PropertyHeader";
+import PropertyNearby from "../property/property-single-style/common/PropertyNearby";
+import PropertyVideo from "../property/property-single-style/common/PropertyVideo";
+import PropertyViews from "../property/property-single-style/common/property-view";
+import ProperytyDescriptions from "../property/property-single-style/common/ProperytyDescriptions";
+import ReviewBoxForm from "../property/ReviewBoxForm";
+import ScheduleTour from "../property/property-single-style/sidebar/ScheduleTour";
+import VirtualTour360 from "../property/property-single-style/common/VirtualTour360";
+import WalkScore from "../property/property-single-style/common/WalkScore";
 import axios from "axios";
+
 const metaInformation = {
   title:
     "Property Single V1 || Flapabay- Apartment Rental, Experiences and More!",

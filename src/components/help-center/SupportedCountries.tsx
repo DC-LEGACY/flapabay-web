@@ -1,12 +1,12 @@
-
-import React, { useState } from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
-import { Globe, Search, Check, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { Check, Clock, Globe, Search } from 'lucide-react';
+import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import DefaultHeader from "@/components/common/DefaultHeader";
+import Footer from "@/components/common/default-footer";
+import { Input } from '@/components/ui/input';
+import { motion } from 'framer-motion';
 
 const SupportedCountries = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -69,7 +69,7 @@ const SupportedCountries = () => {
   
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <DefaultHeader />
       
       <main className="flex-1 pt-20">
         {/* Hero Section */}

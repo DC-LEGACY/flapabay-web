@@ -1,26 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion, useAnimation } from "framer-motion";
-
 import {
-  MapPin,
   Calendar,
-  Users,
-  Filter,
-  Star,
-  Heart,
-  Search,
   ChevronLeft,
   ChevronRight,
+  Filter,
+  Heart,
+  MapPin,
+  Search,
+  Star,
+  Users,
 } from "lucide-react";
-import { Link } from "react-router-dom";
-
-import { useQuery } from "@tanstack/react-query";
+import React, { useEffect, useRef, useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/ui/tabs";
+import { motion, useAnimation } from "framer-motion";
+
 import { Button } from "@/ui/button";
-import PropertyCard from "../experiencedev/PropertyCard";
-import PropertiesByCategory from "../home/home-v4/PropertiesByCategory";
-import { useScreenSize } from "@/utilis/screenUtils";
 import Hero from "../home/home-v1/hero";
+import { Link } from "react-router-dom";
+import PropertiesByCategory from "../home/home-v4/PropertiesByCategory";
+import PropertyCard from "../experiencedev/PropertyCard";
+import { useQuery } from "@tanstack/react-query";
+import { useScreenSize } from "@/utilis/screenUtils";
 
 const fetchExperiences = async () => {
   await new Promise((resolve) => setTimeout(resolve, 300));
@@ -199,7 +198,7 @@ const Experiences = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* <Navbar /> */}
+      {/* <DefaultHeader /> */}
 
       <section className="home-banner-style1 p0">
         <div className="home-style1">

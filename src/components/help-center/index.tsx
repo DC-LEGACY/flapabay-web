@@ -49,9 +49,9 @@ import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import ExperienceHost from "./ExperienceHost";
-import Footer from "../common/default-footer";
+import Footer from "@/components/common/default-footer";
 import Guest from "./Guest";
-import Header from "../home/home-v1/Header";
+import Header from "@/components/common/DefaultHeader";
 import Host from "./Host";
 import { Input } from "@/components/ui/input";
 import MobileMenu from "../common/mobile-menu";

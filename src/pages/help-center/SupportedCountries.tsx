@@ -69,7 +69,7 @@ const SupportedCountries = () => {
   
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
+      <DefaultHeader />
       
       <main className="flex-1 pt-20">
         {/* Hero Section */}

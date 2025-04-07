@@ -1,15 +1,15 @@
-
-import React, { useState } from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
-import { Briefcase, Search, MapPin, Filter, ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Briefcase, Check, Filter, MapPin, Search } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from '@/components/ui/badge';
+import React, { useState } from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import DefaultHeader from "@/components/common/DefaultHeader";
+import Footer from "@/components/common/default-footer";
+import { Input } from '@/components/ui/input';
+import { motion } from 'framer-motion';
 
 const Careers = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -107,7 +107,7 @@ const Careers = () => {
   
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <DefaultHeader />
       
       <main className="flex-1 pt-20">
         {/* Hero Section */}

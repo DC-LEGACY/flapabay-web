@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Home,
-  Star,
   CreditCard,
   Heart,
+  Home,
   Shield,
+  Star,
 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import React, { useEffect, useState } from "react";
+
 import { Button } from "@/ui/button";
-import Header from "../home/home-v1/Header";
-import MobileMenu from "../common/mobile-menu";
 import Footer from "../common/default-footer";
+import Header from "@/components/common/DefaultHeader";
+import MobileMenu from "../common/mobile-menu";
+import { motion } from "framer-motion";
+import { useToast } from "@/hooks/use-toast";
 
 const BecomeHost = () => {
   // State for earnings calculator
@@ -96,7 +97,7 @@ const BecomeHost = () => {
       <MobileMenu />
 
       <div className="min-h-screen bg-gray-100">
-        {/* <Navbar /> */}
+        {/* <DefaultHeader /> */}
 
         {/* Hero Section */}
         <section className="relative h-[90vh] justify-center flex items-center">

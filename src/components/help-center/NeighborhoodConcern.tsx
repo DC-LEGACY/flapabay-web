@@ -4,8 +4,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import React, { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import Footer from "../common/default-footer";
-import Header from "../home/home-v1/Header";
+import Footer from "@/components/common/default-footer";
+import Header from "@/components/common/DefaultHeader";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import MobileMenu from "@/components/common/mobile-menu";

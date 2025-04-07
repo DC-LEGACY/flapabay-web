@@ -1,21 +1,21 @@
-
-import React from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
-import { FileText, Shield, Clock, Calendar, ArrowRight, AlertCircle, ChevronLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { AlertCircle, ArrowRight, Calendar, ChevronLeft, Clock, FileText, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import { Button } from '@/components/ui/button';
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const CancellationOptions = () => {
   const navigate = useNavigate();
   
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <DefaultHeader />
       
       <main className="flex-1 pt-20">
         {/* Hero Section */}

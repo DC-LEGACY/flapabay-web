@@ -97,7 +97,7 @@ const BecomeHost = () => {
       <MobileMenu />
 
       <div className="min-h-screen bg-gray-100">
-        {/* <Navbar /> */}
+        {/* <DefaultHeader /> */}
 
         {/* Hero Section */}
         <section

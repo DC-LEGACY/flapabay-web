@@ -1,14 +1,14 @@
-
-import React, { useState, useEffect, useRef } from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, FileQuestion, ArrowRight, ChevronDown, Bot, Sparkles, ThumbsUp, ThumbsDown } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight, Bot, ChevronDown, FileQuestion, Search, Sparkles, ThumbsDown, ThumbsUp } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import React, { useEffect, useRef, useState } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import { Button } from '@/components/ui/button';
+import DefaultHeader from "@/components/common/DefaultHeader";
+import Footer from "@/components/common/default-footer";
+import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
 
 const FAQs = () => {
@@ -229,7 +229,7 @@ const FAQs = () => {
   
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <DefaultHeader />
       
       <main className="flex-1 pt-20">
         {/* Hero Section */}

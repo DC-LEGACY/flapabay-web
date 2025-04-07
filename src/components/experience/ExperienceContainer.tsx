@@ -1,13 +1,12 @@
-
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { getExperienceById, getSimilarExperiences } from '@/datatwo/experiences';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeft } from 'lucide-react';
-import { getExperienceById, getSimilarExperiences } from '@/datatwo/experiences';
 import { Button } from '@/ui/button';
 import ExperienceContent from './ExperienceContent';
 import ExperienceGalleryModal from '../experiencedev/ExperienceGalleryModal';
+import { motion } from 'framer-motion';
 
 const ExperienceContainer = () => {
   const { id } = useParams<{ id: string }>();
@@ -59,7 +58,7 @@ const ExperienceContainer = () => {
   if (!experience) {
     return (
       <div className="min-h-screen flex flex-col">
-        {/* <Navbar /> */}
+        {/* <DefaultHeader /> */}
         <div className="flex-1 flex flex-col items-center justify-center p-8">
           <h1 className="text-3xl font-bold mb-4">Experience Not Found</h1>
           <p className="text-gray-600 mb-6">Sorry, the experience you're looking for doesn't exist or has been removed.</p>

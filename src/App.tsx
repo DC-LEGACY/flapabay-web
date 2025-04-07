@@ -21,12 +21,12 @@ import BlogV2 from "./pages/blogs/blog-list-v2";
 import BlogV3 from "./pages/blogs/blog-list-v3";
 import BookingPage from "./components/booking-page";
 import BottomNav from "./components/bottom-nav";
-import CancellationOptions from "./pages/help/CancellationOptions";
-import Careers from "./pages/help/Careers";
+import CancellationOptions from "@/pages/help-center/CancellationOptions";
+import Careers from "@/pages/help-center/Careers";
 import Compare from "./pages/pages/compare";
 import ConfirmAndPay from "./components/payment-page";
 import ConfirmationModal from "./components/auth/ConfirmationModal";
-import Contact from "./pages/pages/contact";
+import Contact from "@/pages/pages/contact";
 import CreateListing from "./components/listingpage/create-listing";
 import CreateListingComplete from "./components/listingpage/complete-listing";
 import CreateListingStepEight from "./components/listingpage/create-listing-step-eight";
@@ -65,8 +65,7 @@ import DashboardSavedSearch from "./pages/property/(dashboard)/dashboard-saved-s
 import Dashboardcalender from "./pages/property/(dashboard)/dashboard-calender";
 import DemoPage from "./components/experience-page/demo-page";
 import ExperiencePage from "./components/experiences";
-import FAQs from "./pages/help/FAQs";
-import Faq from "./pages/pages/faq";
+import FAQs from "@/pages/help-center/FAQs";
 import GridDefault from "./pages/listings/(grid-view)/grid-default";
 import GridFull1ColV1 from "./pages/listings/(grid-view)/grid-full-1-col-v1";
 import GridFull1ColV2 from "./pages/listings/(grid-view)/grid-full-1-col-v2";
@@ -87,12 +86,12 @@ import MapV1 from "./pages/listings/(map-style)/map-v1";
 import MapV2 from "./pages/listings/(map-style)/map-v2";
 import MapV3 from "./pages/listings/(map-style)/map-v3";
 import MapV4 from "./pages/listings/(map-style)/map-v4";
-import MediaRoom from "./pages/help/MediaRoom";
-import NeighborhoodConcern from "@/components/help-center/NeighborhoodConcern";
+import MediaRoom from "@/pages/help-center/MediaRoom";
+import NeighborhoodConcern from "@/pages/help-center/NeighborhoodConcern";
 import NewHostingJourneyPage from "./components/experience-page/first-step";
-import NotFound from "./pages/not-found";
-import PricingPlan from "./pages/pages/pricing";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
+import NotFound from "@/pages/not-found";
+import PricingPlan from "@/pages/pages/pricing";
+import PrivacyPolicy from "@/pages/help-center/PrivacyPolicy";
 import RecentlyViewed from "./components/wishlist-page-recently";
 import Register from "./pages/register";
 import ReservationPage from "./components/reservation-page";
@@ -112,7 +111,7 @@ import SingleV9 from "./pages/property/(single-style)/single-v9";
 import Step1 from "./components/listingpage/create-listing-step-two";
 import SubmitExperiencePage from "./components/experience-page/second-step-exp";
 import SupportedCountries from "@/pages/help-center/SupportedCountries";
-import TermsOfService from "./pages/TermsOfService";
+import TermsOfService from "@/pages/help-center/TermsOfService";
 import { ThemeProvider } from "./components/contexts/ThemeContext";
 import TripsPage from "./components/trip-page";
 import Unsubscribe from "./components/common/wizards-modal/Unsubscribe";
@@ -182,7 +181,25 @@ function App() {
                       path="/help/neighborhood"
                       element={<NeighborhoodConcern />}
                     />
-                     <Route path="/help/countries" element={<SupportedCountries />} />
+                    <Route
+                      path="/help/countries"
+                      element={<SupportedCountries />}
+                    />
+
+                    <Route
+                      path="/help/countries"
+                      element={<SupportedCountries />}
+                    />
+                    <Route path="/careers" element={<Careers />} />
+                    <Route path="/help/faqs" element={<FAQs />} />
+                    <Route
+                      path="/help/cancellation"
+                      element={<CancellationOptions />}
+                    />
+                    <Route path="/media" element={<MediaRoom />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/privacy" element={<PrivacyPolicy />} />
+                    <Route path="/terms" element={<TermsOfService />} />
                     <Route path="flapabay-your-home" element={<BecomeHost />} />
                     <Route path="host-dashboard" element={<HostDashboard />} />
                     <Route
@@ -322,8 +339,7 @@ function App() {
                     <Route path="about" element={<About />} />
                     <Route path="contact" element={<Contact />} />
                     <Route path="compare" element={<Compare />} />
-                    <Route path="pricing" element={<PricingPlan />} />
-                    <Route path="faq" element={<Faq />} />
+                    <Route path="pricing" element={<PricingPlan />} />                  
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />
                     <Route path="not-found" element={<NotFound />} />

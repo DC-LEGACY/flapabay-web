@@ -1,19 +1,31 @@
-import React from 'react';
-import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { 
-  List, BookOpen, Calendar, BarChart2, MapPin, Star, 
-  Settings, DollarSign, LogOut, HelpCircle, Bot, Briefcase, Bell, ChevronDown
-} from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import { Sun, Moon } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { useTheme } from '../contexts/ThemeContext';
-import { Button } from '@/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar';
+import {
+  BarChart2,
+  Bell,
+  BookOpen,
+  Bot,
+  Briefcase,
+  Calendar,
+  ChevronDown,
+  DollarSign,
+  HelpCircle,
+  List,
+  LogOut,
+  MapPin,
+  Settings,
+  Star
+} from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/ui/dropdown-menu';
+import { Moon, Sun } from 'lucide-react';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { Sheet, SheetContent, SheetTrigger } from '@/ui/sheet';
 
+import { Button } from '@/ui/button';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext';
+import { useToast } from '@/hooks/use-toast';
 
 const HostDashboard = () => {
   const navigate = useNavigate();
@@ -77,7 +89,7 @@ const HostDashboard = () => {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="flex items-center text-black hover:text-[#ffc500] hover:bg-white/20 p-2">
                     <Avatar className="h-8 w-8 border border-black/10">
-                      <AvatarImage src={user?.user_metadata?.avatar_url || "/lovable-uploads/f7a07ac8-b117-41da-861e-b7150c7ecbdc.png"} alt="Profile" />
+                      <AvatarImage src={user?.user_metadata?.avatar_url || "/images/f7a07ac8-b117-41da-861e-b7150c7ecbdc.png"} alt="Profile" />
                       <AvatarFallback className="bg-white text-black">
                         {user?.email?.charAt(0).toUpperCase() || "U"}
                       </AvatarFallback>
@@ -118,7 +130,7 @@ const HostDashboard = () => {
               <div className="flex flex-col items-center mb-6 pt-4 pb-6 border-b border-black/10">
                 <div className="h-20 w-20 rounded-full bg-white shadow-md flex items-center justify-center overflow-hidden">
                   <Avatar className="h-20 w-20 border-2 border-white">
-                    <AvatarImage src={user?.user_metadata?.avatar_url || "/lovable-uploads/f7a07ac8-b117-41da-861e-b7150c7ecbdc.png"} alt="Host" />
+                    <AvatarImage src={user?.user_metadata?.avatar_url || "/images/f7a07ac8-b117-41da-861e-b7150c7ecbdc.png"} alt="Host" />
                     <AvatarFallback className="bg-white text-black text-xl">
                       {user?.email?.charAt(0).toUpperCase() || "H"}
                     </AvatarFallback>
@@ -198,7 +210,7 @@ const HostDashboard = () => {
                   <div className="flex flex-col items-center mt-6 mb-6 pb-6 border-b border-black/10">
                     <div className="h-20 w-20 rounded-full bg-white shadow-md flex items-center justify-center overflow-hidden">
                       <Avatar className="h-20 w-20 border-2 border-white">
-                        <AvatarImage src={user?.user_metadata?.avatar_url || "/lovable-uploads/f7a07ac8-b117-41da-861e-b7150c7ecbdc.png"} alt="Host" />
+                        <AvatarImage src={user?.user_metadata?.avatar_url || "/images/f7a07ac8-b117-41da-861e-b7150c7ecbdc.png"} alt="Host" />
                         <AvatarFallback className="bg-white text-black text-xl">
                           {user?.email?.charAt(0).toUpperCase() || "H"}
                         </AvatarFallback>

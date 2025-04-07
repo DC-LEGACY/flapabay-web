@@ -1,12 +1,11 @@
+import { Card, CardContent } from '@/ui/card';
+import { DollarSign, Edit, Eye, MapPin, Plus, Trash2, Users } from 'lucide-react';
 
+import { Button } from '@/ui/button';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { motion } from 'framer-motion';
-
-import { MapPin, Users, DollarSign, Eye, Edit, Trash2, Plus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { Button } from '@/ui/button';
-import { Card, CardContent } from '@/ui/card';
-import { Link } from 'react-router-dom';
 
 // Mock data for listings
 const listings = [
@@ -14,7 +13,7 @@ const listings = [
     id: 1,
     title: 'Lagos Beach Villa',
     location: 'Lagos, Nigeria',
-    image: '/lovable-uploads/f77c0e1a-b334-40f9-bdae-c148d52c1407.png',
+    image: '/images/f77c0e1a-b334-40f9-bdae-c148d52c1407.png',
     price: 125,
     guests: 4,
     status: 'active'
@@ -23,7 +22,7 @@ const listings = [
     id: 2,
     title: 'Mountain View Apartment',
     location: 'Cape Town, South Africa',
-    image: '/lovable-uploads/952a1c77-e501-4b8c-a004-db3f13b7e443.png',
+    image: '/images/952a1c77-e501-4b8c-a004-db3f13b7e443.png',
     price: 89,
     guests: 2,
     status: 'active'
@@ -32,7 +31,7 @@ const listings = [
     id: 3,
     title: 'Serengeti Safari Lodge',
     location: 'Serengeti, Tanzania',
-    image: '/lovable-uploads/40f111f4-2fe2-4988-8952-4a9573620263.png',
+    image: '/images/40f111f4-2fe2-4988-8952-4a9573620263.png',
     price: 210,
     guests: 6,
     status: 'inactive'

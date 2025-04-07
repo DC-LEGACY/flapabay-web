@@ -1,17 +1,13 @@
-
-import React from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar';
+import { Bell, ChevronDown, Menu, User } from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/ui/dropdown-menu';
 import { Link, useNavigate } from 'react-router-dom';
-import { Menu, User, Bell, ChevronDown } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 
-
-
-import { Sun, Moon } from 'lucide-react';
+import { Button } from '@/ui/button';
+import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
-import { Button } from '@/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/ui/dropdown-menu';
-import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar';
-
 
 interface DashboardHeaderProps {
   userType: 'guest' | 'host';
@@ -42,7 +38,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
-              src="/lovable-uploads/f7a07ac8-b117-41da-861e-b7150c7ecbdc.png" 
+              src="/images/f7a07ac8-b117-41da-861e-b7150c7ecbdc.png" 
               alt="FlapaBay Logo" 
               className="w-16 h-16"
             />

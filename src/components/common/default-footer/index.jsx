@@ -9,7 +9,7 @@ import Subscribe from "./Subscribe";
 const Footer = () => {
   return (
     <>
-    <div className="transition-all duration-300 ">
+    <div className="transition-all duration-300 bg-flapabay-yellow ">
        <div className="container-fluid container-fluidest ">
         <div className="row">
           <div className="col-lg-5">

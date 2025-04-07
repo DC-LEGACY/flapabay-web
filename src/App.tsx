@@ -5,22 +5,24 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import About from "@/pages/pages/about";
-import AccountPage from "./components/account-page";
+import AccountPage from "@/components/account-page";
 import Agency from "./pages/property/(agents)/agency";
 import AgencySingle from "./pages/property/(agents)/agency-single";
 import AgentSingle from "./pages/property/(agents)/agent-single";
 import Agents from "./pages/property/(agents)/agents";
 import Aos from "aos";
-import { AuthProvider } from "./components/contexts/AuthContext";
+import { AuthProvider } from "@/components/contexts/AuthContext";
 import BannerSearchV1 from "./pages/listings/(grid-view)/banner-search-v1";
 import BannerSearchV2 from "./pages/listings/(grid-view)/banner-search-v2";
-import BecomeHost from "./components/experiences/BecomeHost";
+import BecomeHost from "@/pages/experiences/BecomeHost";
 import BlogSingle from "./pages/blogs/blogs";
 import BlogV1 from "./pages/blogs/blog-list-v1";
 import BlogV2 from "./pages/blogs/blog-list-v2";
 import BlogV3 from "./pages/blogs/blog-list-v3";
 import BookingPage from "./components/booking-page";
 import BottomNav from "./components/bottom-nav";
+import CancellationOptions from "./pages/help/CancellationOptions";
+import Careers from "./pages/help/Careers";
 import Compare from "./pages/pages/compare";
 import ConfirmAndPay from "./components/payment-page";
 import ConfirmationModal from "./components/auth/ConfirmationModal";
@@ -63,6 +65,7 @@ import DashboardSavedSearch from "./pages/property/(dashboard)/dashboard-saved-s
 import Dashboardcalender from "./pages/property/(dashboard)/dashboard-calender";
 import DemoPage from "./components/experience-page/demo-page";
 import ExperiencePage from "./components/experiences";
+import FAQs from "./pages/help/FAQs";
 import Faq from "./pages/pages/faq";
 import GridDefault from "./pages/listings/(grid-view)/grid-default";
 import GridFull1ColV1 from "./pages/listings/(grid-view)/grid-full-1-col-v1";
@@ -84,9 +87,12 @@ import MapV1 from "./pages/listings/(map-style)/map-v1";
 import MapV2 from "./pages/listings/(map-style)/map-v2";
 import MapV3 from "./pages/listings/(map-style)/map-v3";
 import MapV4 from "./pages/listings/(map-style)/map-v4";
+import MediaRoom from "./pages/help/MediaRoom";
+import NeighborhoodConcern from "@/components/help-center/NeighborhoodConcern";
 import NewHostingJourneyPage from "./components/experience-page/first-step";
 import NotFound from "./pages/not-found";
 import PricingPlan from "./pages/pages/pricing";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RecentlyViewed from "./components/wishlist-page-recently";
 import Register from "./pages/register";
 import ReservationPage from "./components/reservation-page";
@@ -105,6 +111,8 @@ import SingleV8 from "./pages/property/(single-style)/single-v8";
 import SingleV9 from "./pages/property/(single-style)/single-v9";
 import Step1 from "./components/listingpage/create-listing-step-two";
 import SubmitExperiencePage from "./components/experience-page/second-step-exp";
+import SupportedCountries from "@/pages/help-center/SupportedCountries";
+import TermsOfService from "./pages/TermsOfService";
 import { ThemeProvider } from "./components/contexts/ThemeContext";
 import TripsPage from "./components/trip-page";
 import Unsubscribe from "./components/common/wizards-modal/Unsubscribe";
@@ -112,6 +120,10 @@ import WishlistPage from "./components/wishlist-page";
 import { useEffect } from "react";
 import { useSetAtom } from "jotai";
 import { userAtom } from "./context/atom";
+
+// import NeighborhoodConcern from "./pages/help/NeighborhoodConcern";
+
+// import BecomeHost from "./pages/BecomeHost";
 
 // import Home_V2 from "./pages/homes/home-v2";
 // import Home_V3 from "./pages/homes/home-v3";
@@ -122,113 +134,6 @@ import { userAtom } from "./context/atom";
 // import Home_V8 from "./pages/homes/home-v8";
 // import Home_V9 from "./pages/homes/home-v9";
 // import Home_V10 from "./pages/homes/home-v10";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 if (typeof window !== "undefined") {
   import("bootstrap");
@@ -275,8 +180,9 @@ function App() {
                     <Route path="experiences" element={<ExperiencePage />} />
                     <Route
                       path="/help/neighborhood"
-                      element={<ExperiencePage />}
+                      element={<NeighborhoodConcern />}
                     />
+                     <Route path="/help/countries" element={<SupportedCountries />} />
                     <Route path="flapabay-your-home" element={<BecomeHost />} />
                     <Route path="host-dashboard" element={<HostDashboard />} />
                     <Route

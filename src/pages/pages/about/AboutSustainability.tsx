@@ -7,17 +7,17 @@ const AboutSustainability = () => {
     {
       title: "Eco-Friendly Properties",
       description: "We highlight and promote eco-friendly accommodations that use renewable energy, reduce waste, and conserve water.",
-      icon: <Leaf className="w-8 h-8 text-green-500" />
+      icon: <Leaf className="w-8 h-8 text-flapabay-yellow" />
     },
     {
       title: "Community Support",
       description: "A portion of every booking goes toward supporting local community projects and conservation efforts.",
-      icon: <Heart className="w-8 h-8 text-pink-500" />
+      icon: <Heart className="w-8 h-8 text-flapabay-yellow" />
     },
     {
       title: "Responsible Tourism",
       description: "We encourage travelers to respect local cultures, support local businesses, and minimize their environmental footprint.",
-      icon: <Award className="w-8 h-8 text-blue-500" />
+      icon: <Award className="w-8 h-8 text-flapabay-yellow" />
     }
   ];
 
@@ -39,7 +39,7 @@ const AboutSustainability = () => {
             
             <div className="space-y-6">
               {initiatives.map((initiative, index) => (
-                <div key={index} className="flex items-start p-4 rounded-lg bg-white/80">
+                <div key={index} className="flex items-start p-4 bg-white rounded-lg">
                   <div className="mt-1 mr-4">
                     {initiative.icon}
                   </div>

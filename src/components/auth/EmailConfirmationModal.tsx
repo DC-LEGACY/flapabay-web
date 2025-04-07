@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
+
 import close from "../../assets/close.png";
 
 const EmailConfirmationModal = ({
@@ -54,7 +55,7 @@ const EmailConfirmationModal = ({
               type="text"
               maxLength={1}
               value={digit}
-              className="w-12 h-12 border bg-white border-gray-300 rounded-md text-center text-lg"
+              className="w-12 h-12 border bg-white border-gray-300 rounded-2xl text-center text-lg"
               onChange={(e) => handleCodeChange(i, e)}
             />
           ))}

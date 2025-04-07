@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import left from "../../../assets/left.png";
+
 import ForgotPassword from "./ForgotPassword";
+import left from "../../../assets/left.png";
+
 interface EnterCodeModalProps {
   onClose: () => void;
 }
@@ -39,10 +41,10 @@ const EnterCodeModal: React.FC<EnterCodeModalProps> = ({ onClose }) => {
           <input
             type="text"
             placeholder="Password"
-            className="w-full border bg-white mt-6 border-gray-400 rounded-md py-2 px-3 mb-4"
+            className="w-full border bg-white mt-6 border-gray-400 rounded-2xl py-2 px-3 mb-4"
           />
           <button
-            className="w-full bg-[#ffc500] text-white font-semibold py-2 rounded-md"
+            className="w-full bg-[#ffc500] text-white font-semibold py-2 rounded-2xl"
             onClick={onClose}
           >
             Log in

@@ -1,6 +1,6 @@
-
-import React, { useState } from 'react';
 import { Heart, Star } from 'lucide-react';
+import React, { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -124,19 +124,19 @@ const PropertyCard: React.FC<PropertyProps> = ({
           </button>
           
           {isSuperhost && (
-            <div className="absolute top-3 left-3 px-2 py-1 rounded-md bg-white/80 backdrop-blur-sm text-xs font-medium text-gray-800 z-10">
+            <div className="absolute top-3 left-3 px-2 py-1 rounded-2xl bg-white/80 backdrop-blur-sm text-xs font-medium text-gray-800 z-10">
               Superhost
             </div>
           )}
 
           {instantBook && (
-            <div className="absolute top-3 left-3 px-2 py-1 rounded-md bg-[#FFC500]/90 backdrop-blur-sm text-xs font-medium text-black z-10">
+            <div className="absolute top-3 left-3 px-2 py-1 rounded-2xl bg-[#FFC500]/90 backdrop-blur-sm text-xs font-medium text-black z-10">
               Instant Book
             </div>
           )}
 
           {type !== 'stay' && date && (
-            <div className="absolute bottom-3 left-3 px-3 py-1.5 rounded-md bg-white/80 backdrop-blur-sm text-xs font-medium text-gray-800 z-10">
+            <div className="absolute bottom-3 left-3 px-3 py-1.5 rounded-2xl bg-white/80 backdrop-blur-sm text-xs font-medium text-gray-800 z-10">
               {date}
               {duration && ` · ${duration}`}
             </div>

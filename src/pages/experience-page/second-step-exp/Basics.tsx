@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import { FaChevronRight, FaPlus, FaTimes } from "react-icons/fa";
+import React, { useState } from "react";
 
 const languages = [
   "English", "Spanish", "French", "German", "Italian",
@@ -117,7 +117,7 @@ const Basic: React.FC = () => {
       {/* Language Modal (Closes on Outside Click) */}
       {showLanguageModal && (
         <div className="fixed inset-0 flex justify-center items-center  bg-opacity-30" onClick={closeModals}>
-          <div className="bg-white p-4 rounded-md shadow-lg max-w-sm w-full" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white p-4 rounded-2xl shadow-lg max-w-sm w-full" onClick={(e) => e.stopPropagation()}>
             <div className=" flex items-center justify-between">
             <h3 className="text-lg font-semibold">Select a Language</h3>
             <button className=" text-red-500" onClick={closeModals}>Close</button>
@@ -139,7 +139,7 @@ const Basic: React.FC = () => {
       {/* Additional Languages Modal (Closes on Outside Click) */}
       {showAdditionalLangModal && (
         <div className="fixed inset-0 flex justify-center items-center  bg-opacity-30" onClick={closeModals}>
-          <div className="bg-white p-4 rounded-md shadow-lg max-w-sm w-full" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white p-4 rounded-2xl shadow-lg max-w-sm w-full" onClick={(e) => e.stopPropagation()}>
             <div className=" flex items-center justify-between">
             <h3 className="text-lg font-semibold">Add Additional Languages</h3>
             <button className=" text-red-500" onClick={closeModals}>Close</button>

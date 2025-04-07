@@ -1,20 +1,25 @@
-
-import React, { useState } from 'react';
-import { Star, Search, Filter, Pencil, Calendar, MapPin } from 'lucide-react';
+import { Calendar, Filter, MapPin, Pencil, Search, Star } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Button } from '@/components/ui/button';
-import { 
-  Dialog, DialogContent, DialogDescription, DialogFooter, 
-  DialogHeader, DialogTitle, DialogTrigger 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
 } from '@/components/ui/dialog';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import React, { useState } from 'react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { format, subDays } from 'date-fns';
+
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { format, subDays } from 'date-fns';
 import { toast } from '@/hooks/use-toast';
 
 interface Review {
@@ -374,7 +379,7 @@ const GuestReviews = () => {
                 <img 
                   src={selectedProperty.image} 
                   alt={selectedProperty.name} 
-                  className="w-20 h-20 rounded-md object-cover" 
+                  className="w-20 h-20 rounded-2xl object-cover" 
                 />
                 <div>
                   <h3 className="font-medium">{selectedProperty.name}</h3>
@@ -491,7 +496,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
                 <img 
                   src={review.propertyImage} 
                   alt={review.propertyName} 
-                  className="w-16 h-16 rounded-md object-cover mr-3"
+                  className="w-16 h-16 rounded-2xl object-cover mr-3"
                 />
                 <div>
                   <div className="font-medium text-sm">{review.propertyName}</div>
@@ -539,7 +544,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
               </div>
               
               {review.hostResponse && (
-                <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
+                <div className="bg-gray-50 p-4 rounded-2xl border border-gray-200">
                   <div className="flex items-center mb-2">
                     <div className="w-8 h-8 rounded-full overflow-hidden mr-2">
                       <img 
@@ -566,7 +571,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
               <img 
                 src={review.propertyImage} 
                 alt={review.propertyName} 
-                className="w-20 h-20 rounded-md object-cover" 
+                className="w-20 h-20 rounded-2xl object-cover" 
               />
               <div>
                 <h3 className="font-medium">{review.propertyName}</h3>

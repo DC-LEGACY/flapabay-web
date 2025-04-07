@@ -1,8 +1,8 @@
-
+import { ExternalLink, Map, MapPin, Navigation } from 'lucide-react';
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { MapPin, Map, Navigation, ExternalLink } from 'lucide-react';
+
 import { Button } from '@/ui/button';
+import { motion } from 'framer-motion';
 
 interface ExperienceMapProps {
   coordinates: {
@@ -118,7 +118,7 @@ const ExperienceMap: React.FC<ExperienceMapProps> = ({
               href={getGoogleMapsLink()} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center text-sm font-medium text-[#FFC500] hover:text-[#e6b000] bg-white px-3 py-2 rounded-md shadow-sm"
+              className="inline-flex items-center text-sm font-medium text-[#FFC500] hover:text-[#e6b000] bg-white px-3 py-2 rounded-2xl shadow-sm"
             >
               <Navigation className="h-4 w-4 mr-1.5" />
               Get directions
@@ -128,7 +128,7 @@ const ExperienceMap: React.FC<ExperienceMapProps> = ({
               href={`https://www.google.com/maps/search/?api=1&query=${coordinates.lat},${coordinates.lng}`} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-800 bg-gray-100 px-3 py-2 rounded-md shadow-sm"
+              className="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-800 bg-gray-100 px-3 py-2 rounded-2xl shadow-sm"
             >
               <ExternalLink className="h-4 w-4 mr-1.5" />
               View larger map

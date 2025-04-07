@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import close from "../../../assets/left.png";
+
 import EmailConfirmationModal from "./EmailConfirmationModal";
+import close from "../../../assets/left.png";
 
 const FinishSignupModal = ({ onClose }: { onClose: () => void }) => {
   const [firstName, setFirstName] = useState("");
@@ -65,7 +66,7 @@ const FinishSignupModal = ({ onClose }: { onClose: () => void }) => {
             type="date"
             value={birthdate}
             onChange={(e) => setBirthdate(e.target.value)}
-            className="w-full border bg-white text-[15px] text-black border-gray-300 rounded-md p-2"
+            className="w-full border bg-white text-[15px] text-black border-gray-300 rounded-2xl p-2"
           />
         </div>
         <div className="mb-4">
@@ -74,7 +75,7 @@ const FinishSignupModal = ({ onClose }: { onClose: () => void }) => {
             type="email"
             value={email}
             readOnly
-            className="w-full border text-[15px] bg-white border-gray-300 rounded-md p-2"
+            className="w-full border text-[15px] bg-white border-gray-300 rounded-2xl p-2"
           />
         </div>
         <div className="mb-4">
@@ -83,13 +84,13 @@ const FinishSignupModal = ({ onClose }: { onClose: () => void }) => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full border bg-white text-[15px] border-gray-300 rounded-md p-2"
+            className="w-full border bg-white text-[15px] border-gray-300 rounded-2xl p-2"
             placeholder="Enter your password"
           />
         </div>
         <button
           onClick={handleEmailContinue}
-          className="w-full bg-[#ffc500] text-white py-2 rounded-md font-semibold"
+          className="w-full bg-[#ffc500] text-white py-2 rounded-2xl font-semibold"
         >
           Agree and continue
         </button>

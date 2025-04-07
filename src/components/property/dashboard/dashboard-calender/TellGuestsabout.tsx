@@ -1,7 +1,9 @@
-import { useState } from "react";
-import { FaCalendarAlt, FaSync, FaLink } from 'react-icons/fa';
+import { FaCalendarAlt, FaLink, FaSync } from 'react-icons/fa';
+import { FaCoins, FaPercentage, FaPlus, FaTag } from 'react-icons/fa';
+
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { FaPlus, FaPercentage, FaTag, FaCoins } from 'react-icons/fa';
+import { useState } from "react";
+
 const months = [
   "January", "February", "March", "April", "May", "June", 
   "July", "August", "September", "October", "November", "December"
@@ -191,15 +193,15 @@ const TellGuestsabout = () => {
             {/* Availability Settings */}
             <div className="pt-6">
               <h3 className="text-sm font-medium">Trip length</h3>
-              <div className="mt-2 border p-4 rounded-md">
+              <div className="mt-2 border p-4 rounded-2xl">
                 <p className="text-xs text-gray-500">Minimum nights</p>
                 <p className="text-2xl font-bold">1</p>
               </div>
-              <div className="mt-2 border p-4 rounded-md">
+              <div className="mt-2 border p-4 rounded-2xl">
                 <p className="text-xs text-gray-500">Maximum nights</p>
                 <p className="text-2xl font-bold">365</p>
               </div>
-              <div className="mt-2 flex cursor-pointer justify-between items-center border p-3 rounded-md">
+              <div className="mt-2 flex cursor-pointer justify-between items-center border p-3 rounded-2xl">
                 <p className="text-xs ">Custom trip to length</p>
                 <MdOutlineKeyboardArrowRight />
               </div>

@@ -26,7 +26,7 @@ const Identityverify: React.FC = () => {
         </div>
         <div className="px-4 mb-4 py-1 flex justify-center ">
           
-          <button className="bg-black border border-black pointer-events-auto text-white px-4 py-2 font-medium rounded-md w-full" >
+          <button className="bg-black border border-black pointer-events-auto text-white px-4 py-2 font-medium rounded-2xl w-full" >
             Done
           </button>
         </div>

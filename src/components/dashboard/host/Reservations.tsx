@@ -1,20 +1,32 @@
-import React, { useState } from 'react';
-import { 
-  BookOpen, Loader2, CheckCircle, XCircle, Search, ArrowUpDown,
-  Calendar, Users, MapPin, MessageSquare, Info, Filter, MoreHorizontal
+import {
+  ArrowUpDown,
+  BookOpen,
+  Calendar,
+  CheckCircle,
+  Filter,
+  Info,
+  Loader2,
+  MapPin,
+  MessageSquare,
+  MoreHorizontal,
+  Search,
+  Users,
+  XCircle
 } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar';
+import { Card, CardContent } from '@/ui/card';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/ui/dialog';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/ui/dropdown-menu';
+import React, { useState } from 'react';
+import { Tabs, TabsList, TabsTrigger } from '@/ui/tabs';
 import { format, parseISO } from 'date-fns';
+
+import { Badge } from '@/ui/badge';
+import { Button } from '@/ui/button';
+import { Input } from '@/ui/input';
+import { Textarea } from '@/ui/textarea';
 import { toast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
-import { Input } from '@/ui/input';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/ui/dropdown-menu';
-import { Button } from '@/ui/button';
-import { Tabs, TabsList, TabsTrigger } from '@/ui/tabs';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/ui/dialog';
-import { Textarea } from '@/ui/textarea';
-import { Card, CardContent } from '@/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar';
-import { Badge } from '@/ui/badge';
 
 interface Reservation {
   id: string;
@@ -318,7 +330,7 @@ const Reservations = () => {
           </DialogHeader>
           <div className="py-4">
             {selectedReservation && (
-              <div className="rounded-md bg-green-50 border border-green-100 p-4">
+              <div className="rounded-2xl bg-green-50 border border-green-100 p-4">
                 <p className="text-sm font-medium text-green-800">Reservation Details:</p>
                 <p className="text-sm mt-2">Check-in: {format(parseISO(selectedReservation.checkIn), 'PP')}</p>
                 <p className="text-sm">Check-out: {format(parseISO(selectedReservation.checkOut), 'PP')}</p>

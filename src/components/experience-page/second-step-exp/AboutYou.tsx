@@ -56,7 +56,7 @@ const AboutYou = () => {
           <textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}
-            className="w-full h-28 p-3 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-black"
+            className="w-full h-28 p-3 border border-gray-300 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-black"
             placeholder="Share the story behind your passion and knowledge."
           ></textarea>
           <p className="text-sm text-gray-500 mt-1">{150 - bio.length} more required</p>

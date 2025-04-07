@@ -1,10 +1,9 @@
+import { Heart, Share } from 'lucide-react';
 
-import React from 'react';
-import { Share, Heart } from 'lucide-react';
-import { Button } from '@/ui/button';
-import { motion } from 'framer-motion';
 import { Badge } from '@/ui/badge';
-
+import { Button } from '@/ui/button';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 interface ExperienceHeaderProps {
   title: string;
@@ -62,7 +61,7 @@ const ExperienceHeader: React.FC<ExperienceHeaderProps> = ({
         {isSuperhost && (
           <>
             <span className="text-gray-400">·</span>
-            <span className="px-2 py-1 text-xs font-medium border border-gray-300 rounded-md">
+            <span className="px-2 py-1 text-xs font-medium border border-gray-300 rounded-2xl">
               Superhost
             </span>
           </>

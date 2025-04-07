@@ -34,7 +34,7 @@ const ProvideDetails = () => {
         ].map((option) => (
           <label key={option} className="flex items-center space-x-3 cursor-pointer">
             <div
-              className={`w-5 py-2 h-5 border-2 rounded-md flex items-center justify-center ${
+              className={`w-5 py-2 h-5 border-2 rounded-2xl flex items-center justify-center ${
                 selectedOptions.includes(option) ? "bg-black border-black" : "border-gray-400"
               }`}
               onClick={() => toggleOption(option)}

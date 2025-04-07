@@ -48,7 +48,7 @@ const BringItems = () => {
               type="text"
               value={item}
               onChange={(e) => handleInputChange(index, e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-md mb-3"
+              className="w-full p-3 border border-gray-300 rounded-2xl mb-3"
               placeholder="Item"
             />
           ))}

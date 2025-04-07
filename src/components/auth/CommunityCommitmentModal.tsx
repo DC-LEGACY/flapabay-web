@@ -29,7 +29,7 @@ const CommunityCommitmentModal: React.FC<CommunityCommitmentModalProps> = ({ onC
           <div className="mt-6">
             <Link to={"/"}>
             <button
-              className="w-full bg-[#FFC500] text-white font-semibold py-2 rounded-md"
+              className="w-full bg-[#FFC500] text-white font-semibold py-2 rounded-2xl"
               onClick={onClose}
             >
               Agree and continue

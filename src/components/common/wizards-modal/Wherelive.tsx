@@ -25,7 +25,7 @@ const Wherelive: React.FC = () => {
         </div>
         <div className="px-4 py-3 flex justify-end gap-2 border-t">
           
-          <button className="bg-gray-950 pointer-events-auto text-white px-4 py-2 font-medium rounded-md" >
+          <button className="bg-gray-950 pointer-events-auto text-white px-4 py-2 font-medium rounded-2xl" >
             Save
           </button>
         </div>

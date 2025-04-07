@@ -1,24 +1,40 @@
-
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { 
-  Calendar, MapPin, Users, ArrowRight, Star, Loader2, CheckCircle,
-  Clock, Ban, AlertTriangle, BadgeCheck, XCircle, MessageSquare
+import {
+  AlertTriangle,
+  ArrowRight,
+  BadgeCheck,
+  Ban,
+  Calendar,
+  CheckCircle,
+  Clock,
+  Loader2,
+  MapPin,
+  MessageSquare,
+  Star,
+  Users,
+  XCircle
 } from 'lucide-react';
-import { 
-  Dialog, DialogContent, DialogDescription, DialogHeader, 
-  DialogTitle, DialogTrigger, DialogFooter 
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
 } from '@/components/ui/dialog';
-import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-import { toast } from '@/hooks/use-toast';
+import React, { useState } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { addDays, format } from 'date-fns';
+
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { motion } from 'framer-motion';
+import { toast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
-import { format, addDays } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
 interface Trip {
@@ -650,13 +666,13 @@ const TripCard: React.FC<TripCardProps> = ({
               <div className="text-sm font-semibold">${trip.price.toLocaleString()} total</div>
             )}
             {trip.status === 'rejected' && trip.rejectionReason && (
-              <div className="mt-2 p-2 bg-red-50 rounded-md text-sm text-red-600">
+              <div className="mt-2 p-2 bg-red-50 rounded-2xl text-sm text-red-600">
                 <p className="font-semibold">Rejection reason:</p>
                 <p>{trip.rejectionReason}</p>
               </div>
             )}
             {trip.status === 'checking_in' && trip.checkInCode && (
-              <div className="mt-2 p-2 bg-emerald-50 rounded-md text-sm text-emerald-600">
+              <div className="mt-2 p-2 bg-emerald-50 rounded-2xl text-sm text-emerald-600">
                 <p className="font-semibold">Check-in code:</p>
                 <p className="text-lg font-mono tracking-wider">{trip.checkInCode}</p>
               </div>

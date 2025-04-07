@@ -29,7 +29,7 @@ const WelcomeModal: React.FC<WelcomeModalProps> = ({ onClose }) => {
             <p className="text-gray-600 mt-2">
               Discover places to stay and unique experiences around the world.
             </p>
-            <button className="w-full bg-[#FFC500] text-white font-semibold py-2 rounded-md mt-4" onClick={handleContinue}>
+            <button className="w-full bg-[#FFC500] text-white font-semibold py-2 rounded-2xl mt-4" onClick={handleContinue}>
               Continue
             </button>
           </div>

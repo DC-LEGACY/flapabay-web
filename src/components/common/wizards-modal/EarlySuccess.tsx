@@ -23,13 +23,13 @@ const EarlySuccess: React.FC = () => {
         </div>
         <div className="px-4 py-1 flex justify-center ">
           
-          <button className="bg-black border border-black pointer-events-auto text-white px-4 py-2 font-medium rounded-md w-full" >
+          <button className="bg-black border border-black pointer-events-auto text-white px-4 py-2 font-medium rounded-2xl w-full" >
             Yes, Continue
           </button>
         </div>
         <div className="px-4 py-1 flex justify-center ">
           
-          <button className="bg-white pointer-events-auto text-black px-4 py-2 font-medium rounded-md w-full mb-2" >
+          <button className="bg-white pointer-events-auto text-black px-4 py-2 font-medium rounded-2xl w-full mb-2" >
             Maybe Later
           </button>
         </div>

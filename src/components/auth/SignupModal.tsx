@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import google from "../../assets/google.png";
+
+import ConfirmationModal from "./ConfirmationModal";
+import FinishSignupModal from "./FinishSignupModal.";
 import apple from "../../assets/apple-logo.png";
 import facebook from "../../assets/facebook.png";
+import google from "../../assets/google.png";
 import phone from "../../assets/smartphone.png";
-import FinishSignupModal from "./FinishSignupModal.";
-import ConfirmationModal from "./ConfirmationModal";
 
 // List of countries with phone codes
 const countries = [
@@ -161,7 +162,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
                 </label>
                 <select
                   style={{ outline: "none" }}
-                  className="bg-white block w-full rounded-md sm:text-sm h-10 pl-1"
+                  className="bg-white block w-full rounded-2xl sm:text-sm h-10 pl-1"
                   value={selectedCountryCode}
                   onChange={handleCountryCodeChange}
                 >
@@ -191,11 +192,11 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
             </div>
           ) : (
             <div>
-              <div className="border border-gray-400 rounded-md">
+              <div className="border border-gray-400 rounded-2xl">
                 <input
                   type="email"
                   placeholder="Email"
-                  className="w-full text-[16px] rounded-md p-[12px] sm:text-sm"
+                  className="w-full text-[16px] rounded-2xl p-[12px] sm:text-sm"
                   value={email}
                   onChange={handleEmailChange}
                 />
@@ -216,7 +217,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
             <button
               // onClick={handleContinue}
               onClick={handleContinue}
-              className=" mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-md"
+              className=" mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-2xl"
               disabled={loading}
             >
               Continue
@@ -224,7 +225,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
           ) : (
             <button
               onClick={handlePhoneContinue}
-              className="mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-md"
+              className="mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-2xl"
             >
               Continue with phone
             </button>
@@ -239,13 +240,13 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
 
           {/* Social login buttons */}
           <div className="space-y-2">
-            <button className="w-full border border-gray-600 rounded-md py-2 flex items-center space-x-0">
+            <button className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0">
               <img src={google} alt="Google" className="h-4 w-7 pl-3" />
               <span className="flex-1 text-center text-[16px]">
                 Continue with Google
               </span>
             </button>
-            <button className="w-full border border-gray-600 rounded-md py-2 flex items-center space-x-0">
+            <button className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0">
               <img src={apple} alt="Apple" className="h-4 w-7 pl-3" />
               <span className="flex-1 text-center text-[16px]">
                 Continue with Apple
@@ -253,7 +254,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
             </button>
             <button
               onClick={toggleMode}
-              className="w-full border border-gray-600 rounded-md py-2 flex items-center space-x-0"
+              className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0"
             >
               {isEmailMode ? (
                 <img src={phone} alt="Toggle Icon" className="h-4 w-7 pl-3" />
@@ -264,7 +265,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
                 {isEmailMode ? "Continue with phone" : "Continue with email"}
               </span>
             </button>
-            <button className="w-full border border-gray-600 rounded-md py-2 flex items-center space-x-0">
+            <button className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0">
               <img src={facebook} alt="Facebook" className="h-4 w-7 pl-3" />
               <span className="flex-1 text-center text-[16px]">
                 Continue with Facebook

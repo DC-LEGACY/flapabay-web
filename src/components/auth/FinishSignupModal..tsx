@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+
+import EmailConfirmationModal from "./EmailConfirmationModal";
 import axios from "axios";
 import close from "../../assets/left.png";
-import EmailConfirmationModal from "./EmailConfirmationModal";
 import { useAtom } from "jotai";
 import { userAtom } from "../../context/atom";
 
@@ -102,21 +103,21 @@ const FinishSignupModal = ({ onClose, email }: { onClose: () => void; email: str
         <div className="mb-4">
           <label className="block text-sm font-medium mb-2">Date of birth</label>
           <input type="date" value={birthdate} onChange={(e) => setBirthdate(e.target.value)}
-            className="w-full border bg-white text-[15px] text-black border-gray-300 rounded-md p-2" />
+            className="w-full border bg-white text-[15px] text-black border-gray-300 rounded-2xl p-2" />
           {errors.birthdate && <p className="text-red-500 text-sm">{errors.birthdate}</p>}
         </div>
 
         {/* Contact Info */}
         <div className="mb-4">
           <label className="block text-sm font-medium mb-2">Contact info</label>
-          <input type="email" placeholder="Email" value={email} readOnly className="w-full border text-[15px] bg-white border-gray-300 rounded-md p-2" />
+          <input type="email" placeholder="Email" value={email} readOnly className="w-full border text-[15px] bg-white border-gray-300 rounded-2xl p-2" />
         </div>
 
         {/* Phone Number */}
         <div className="mb-4">
           <label className="block text-sm font-medium mb-2">Phone Number</label>
           <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)}
-            className="w-full border text-[15px] bg-white border-gray-300 rounded-md p-2" placeholder="Enter your phone number" />
+            className="w-full border text-[15px] bg-white border-gray-300 rounded-2xl p-2" placeholder="Enter your phone number" />
           {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
         </div>
 
@@ -124,7 +125,7 @@ const FinishSignupModal = ({ onClose, email }: { onClose: () => void; email: str
         <div className="mb-4">
           <label className="block text-sm font-medium mb-2">Password</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
-            className="w-full border bg-white text-[15px] border-gray-300 rounded-md p-2" placeholder="Enter your password" />
+            className="w-full border bg-white text-[15px] border-gray-300 rounded-2xl p-2" placeholder="Enter your password" />
           {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
         </div>
 
@@ -133,7 +134,7 @@ const FinishSignupModal = ({ onClose, email }: { onClose: () => void; email: str
 
         {/* Signup Button */}
         <button onClick={handleSignup} disabled={loading}
-          className={`w-full py-2 rounded-md font-semibold ${loading ? "bg-gray-400" : "bg-[#ffc500] text-white"}`}>
+          className={`w-full py-2 rounded-2xl font-semibold ${loading ? "bg-gray-400" : "bg-[#ffc500] text-white"}`}>
           {loading ? "Signing up..." : "Agree and continue"}
         </button>
 

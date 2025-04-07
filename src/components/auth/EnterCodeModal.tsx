@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import left from "../../assets/left.png";
+
 import ForgotPassword from "./ForgotPassword";
 import axios from "axios";
+import left from "../../assets/left.png";
+import { useNavigate } from "react-router-dom";
 import { useSetAtom } from "jotai";
 import { userAtom } from "../../context/atom";
 
@@ -66,7 +67,7 @@ const EnterCodeModal: React.FC<EnterCodeModalProps> = ({ onClose, email }) => {
               <input
                 type="password"
                 placeholder="Password"
-                className="w-full border bg-white border-gray-400 rounded-md py-2 px-3"
+                className="w-full border bg-white border-gray-400 rounded-2xl py-2 px-3"
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
@@ -76,7 +77,7 @@ const EnterCodeModal: React.FC<EnterCodeModalProps> = ({ onClose, email }) => {
               {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
             </div>
 
-            <button className="w-full bg-[#ffc500] text-white font-semibold py-2 rounded-md mt-4" onClick={handleLogin}>
+            <button className="w-full bg-[#ffc500] text-white font-semibold py-2 rounded-2xl mt-4" onClick={handleLogin}>
               Log in
             </button>
 

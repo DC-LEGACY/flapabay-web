@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+
+import { CiSettings } from "react-icons/ci";
+import { FaChevronDown } from 'react-icons/fa';
+import { IoClose } from "react-icons/io5";
+import { IoDocumentOutline } from "react-icons/io5";
+import { Line } from "react-chartjs-2";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { MdPayments } from "react-icons/md";
+import { RiHomeHeartLine } from "react-icons/ri";
+
 // import {
 //   Chart as ChartJS,
 //   LineElement,
@@ -8,17 +18,17 @@ import React, { useState } from "react";
 //   Tooltip,
 //   CategoryScale,
 // } from "chart.js";
-import { Line } from "react-chartjs-2";
-import { CiSettings } from "react-icons/ci";
-import { IoClose } from "react-icons/io5";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import { MdPayments } from "react-icons/md";
-import { IoDocumentOutline } from "react-icons/io5";
-import { RiHomeHeartLine } from "react-icons/ri";
+
+
+
+
+
+
+
 // Register required components
 // ChartJS.register(LineElement, PointElement, LinearScale, Title, Tooltip, CategoryScale);
 
-import { FaChevronDown } from 'react-icons/fa';
+
 
 const cn = (...classes: string[]) => classes.filter(Boolean).join(' ');
 
@@ -157,10 +167,10 @@ const EarningsPage = () => {
         <div className="p-2  border border-red-400 text-red-700 rounded-lg">
           <h2 className="text-lg font-medium">Add a payout method</h2>
           <p>In order to get paid, you’ll need to let us know where to send your money.</p>
-          <button className="mt-3 px-4 py-2  text-black underline rounded-md hover:bg-blue-500">
+          <button className="mt-3 px-4 py-2  text-black underline rounded-2xl hover:bg-blue-500">
             Learn more
           </button>
-          <button className="mt-3 px-4 py-2  text-black border rounded-md hover:bg-gray-100">
+          <button className="mt-3 px-4 py-2  text-black border rounded-2xl hover:bg-gray-100">
             Set up payouts
           </button>
         </div>
@@ -258,7 +268,7 @@ const EarningsPage = () => {
                 <MdKeyboardArrowRight className="bg-slate-100 w-5 h-5 flex justify-center items-center rounded-full ml-[92px]" />
               </li>
             </ul>
-            <button className="mt-6 px-4 py-2 bg-gray-100 text-black rounded-md">
+            <button className="mt-6 px-4 py-2 bg-gray-100 text-black rounded-2xl">
               Give feedback
             </button>
           </div>

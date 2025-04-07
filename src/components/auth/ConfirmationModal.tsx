@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import left from "../../assets/left.png";
+
 import FinishSignupModal from "./FinishSignupModal.";
+import left from "../../assets/left.png";
+
 interface ConfirmationModalProps {
   phoneNumber: string; // Pass the phone number to display
   onClose: () => void;
@@ -56,7 +58,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
           <input
             type="text"
             maxLength={6} // Assume the code has 6 digits
-            className="text-center text-2xl border bg-white border-gray-400 rounded-md p-2 w-[50%] outline-none"
+            className="text-center text-2xl border bg-white border-gray-400 rounded-2xl p-2 w-[50%] outline-none"
             value={code}
             onChange={handleCodeChange}
             placeholder="- - - - - -"
@@ -73,7 +75,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
           </div>
           <button
             
-            className={`mt-4 w-[30%] font-semibold py-2 rounded-md ${
+            className={`mt-4 w-[30%] font-semibold py-2 rounded-2xl ${
               code.length === 6
                 ? "bg-[#ffc500] text-white"
                 : "bg-gray-300 text-gray-600"

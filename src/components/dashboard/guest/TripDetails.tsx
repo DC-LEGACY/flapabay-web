@@ -1,14 +1,14 @@
-
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
+import { ArrowLeft, Ban, Calendar, CheckCircle, Clock, Download, MapPin, MessageSquare, Printer, Share2, Star, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Calendar, Users, Clock, Star, CheckCircle, Ban, MessageSquare, ArrowLeft, Printer, Share2, Download } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/integrations/supabase/client';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import { format } from 'date-fns';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface TripDetailsProps {}
 
@@ -169,7 +169,7 @@ const TripDetails: React.FC<TripDetailsProps> = () => {
               </div>
             </CardHeader>
             <CardContent className="pt-0">
-              <div className="aspect-video rounded-md overflow-hidden mb-6">
+              <div className="aspect-video rounded-2xl overflow-hidden mb-6">
                 <img 
                   src={trip.image} 
                   alt={trip.title} 
@@ -178,7 +178,7 @@ const TripDetails: React.FC<TripDetailsProps> = () => {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-gray-50 p-4 rounded-md">
+                <div className="bg-gray-50 p-4 rounded-2xl">
                   <div className="text-sm text-gray-500 mb-1 flex items-center">
                     <Calendar className="h-4 w-4 mr-2" /> Check-in
                   </div>
@@ -186,7 +186,7 @@ const TripDetails: React.FC<TripDetailsProps> = () => {
                   <div className="text-sm">After 3:00 PM</div>
                 </div>
                 
-                <div className="bg-gray-50 p-4 rounded-md">
+                <div className="bg-gray-50 p-4 rounded-2xl">
                   <div className="text-sm text-gray-500 mb-1 flex items-center">
                     <Calendar className="h-4 w-4 mr-2" /> Check-out
                   </div>
@@ -194,7 +194,7 @@ const TripDetails: React.FC<TripDetailsProps> = () => {
                   <div className="text-sm">Before 11:00 AM</div>
                 </div>
                 
-                <div className="bg-gray-50 p-4 rounded-md">
+                <div className="bg-gray-50 p-4 rounded-2xl">
                   <div className="text-sm text-gray-500 mb-1 flex items-center">
                     <Users className="h-4 w-4 mr-2" /> Guests
                   </div>
@@ -204,7 +204,7 @@ const TripDetails: React.FC<TripDetailsProps> = () => {
               </div>
               
               {trip.checkInCode && (
-                <div className="mb-6 p-4 bg-green-50 border border-green-100 rounded-md">
+                <div className="mb-6 p-4 bg-green-50 border border-green-100 rounded-2xl">
                   <div className="font-semibold text-green-800 mb-2 flex items-center">
                     <CheckCircle className="h-5 w-5 mr-2" /> Check-in Code
                   </div>
@@ -246,7 +246,7 @@ const TripDetails: React.FC<TripDetailsProps> = () => {
                 
                 <div>
                   <h3 className="font-semibold text-lg mb-3">Host Information</h3>
-                  <div className="flex items-center p-4 bg-gray-50 rounded-md">
+                  <div className="flex items-center p-4 bg-gray-50 rounded-2xl">
                     <div className="w-12 h-12 rounded-full bg-gray-300 mr-4"></div>
                     <div>
                       <div className="font-medium">Michael Host</div>
@@ -364,7 +364,7 @@ const TripDetails: React.FC<TripDetailsProps> = () => {
               <CardTitle>Local Recommendations</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="rounded-md overflow-hidden">
+              <div className="rounded-2xl overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=300&q=80" 
                   alt="Local restaurant" 
@@ -377,7 +377,7 @@ const TripDetails: React.FC<TripDetailsProps> = () => {
                 </div>
               </div>
               
-              <div className="rounded-md overflow-hidden">
+              <div className="rounded-2xl overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1468581264429-2548ef9eb732?auto=format&fit=crop&w=300&q=80" 
                   alt="Local beach" 

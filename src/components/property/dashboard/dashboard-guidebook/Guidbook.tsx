@@ -1,11 +1,13 @@
-import { useState } from "react";
-import { GiBookshelf } from "react-icons/gi";
+import { FaChild, FaClipboardList, FaEye, FaHandHoldingHeart, FaLanguage, FaPiggyBank, FaSuitcaseRolling, FaWalking } from "react-icons/fa";
+
 import { BsLightbulb } from "react-icons/bs";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { FaPlus } from "react-icons/fa6";
-import { IoMdClose } from "react-icons/io";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { FaWalking, FaEye, FaHandHoldingHeart, FaPiggyBank, FaSuitcaseRolling, FaClipboardList, FaLanguage, FaChild } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa6";
+import { GiBookshelf } from "react-icons/gi";
+import { IoMdClose } from "react-icons/io";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { useState } from "react";
+
 const Guidebooks = () => {
   const [showModal, setShowModal] = useState(false);
   const [showListingsModal, setShowListingsModal] = useState(false);
@@ -252,7 +254,7 @@ const Guidebooks = () => {
                 >
                   <div className="flex">
                     <img
-                      className=" w-8 h-8 rounded-md"
+                      className=" w-8 h-8 rounded-2xl"
                       src="https://img.freepik.com/free-photo/young-woman-leaning-against-window_1157-1094.jpg?t=st=1738080552~exp=1738084152~hmac=8da86ecfea4fa53bab542ff014455fcce3331e3faf0e176f28e914d3dd72f07e&w=996"
                       alt=""
                     />
@@ -528,9 +530,9 @@ const Guidebooks = () => {
             {/* Place Info */}
             <div className="flex items-center mb-4">
               {uploadedImage ? (
-                <img src={uploadedImage} alt="Uploaded" className="w-20 h-20 rounded-md mr-3 object-cover" />
+                <img src={uploadedImage} alt="Uploaded" className="w-20 h-20 rounded-2xl mr-3 object-cover" />
               ) : (
-                <img src="https://via.placeholder.com/50" alt="Default" className="w-12 h-12 rounded-md mr-3" />
+                <img src="https://via.placeholder.com/50" alt="Default" className="w-12 h-12 rounded-2xl mr-3" />
               )}
               <div>
                 <h2 className="text-lg font-bold">{selectedPlace}</h2>

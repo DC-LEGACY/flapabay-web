@@ -16,7 +16,7 @@ const ExperienceName = () => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         maxLength={maxLength}
-        className="w-full p-3 border border-gray-300 rounded-md mt-4 text-xl font-semibold resize-none"
+        className="w-full p-3 border border-gray-300 rounded-2xl mt-4 text-xl font-semibold resize-none"
         placeholder="Enter your experience name"
         rows={2}
       />

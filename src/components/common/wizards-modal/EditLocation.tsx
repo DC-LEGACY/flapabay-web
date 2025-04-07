@@ -23,13 +23,13 @@ const EditLocation: React.FC = () => {
         </div>
         <div className="px-4 py-1 flex justify-center ">
           
-          <button className="bg-white border border-black pointer-events-auto text-black px-4 py-2 font-medium rounded-md w-full" >
+          <button className="bg-white border border-black pointer-events-auto text-black px-4 py-2 font-medium rounded-2xl w-full" >
             Update
           </button>
         </div>
         <div className="px-4 py-1 flex justify-center ">
           
-          <button className="bg-white border pointer-events-auto text-red-800 px-4 py-2 font-medium rounded-md w-full mb-2" >
+          <button className="bg-white border pointer-events-auto text-red-800 px-4 py-2 font-medium rounded-2xl w-full mb-2" >
             Remove
           </button>
         </div>

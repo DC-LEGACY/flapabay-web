@@ -21,13 +21,13 @@ const TellGuests: React.FC = () => {
         <p className="mb-6">Descibde the area that each camera monitor, such as backyard or pool.
         <span> </span><span className=" underline">  Learn more</span>
         </p>
-          <textarea className="p-2 mt-2 border border-black mb-2 w-full rounded-md pointer-events-auto" type="text" placeholder="" />
+          <textarea className="p-2 mt-2 border border-black mb-2 w-full rounded-2xl pointer-events-auto" type="text" placeholder="" />
           
           
         </div>
         <div className="px-4 py-3 flex justify-end gap-2 border-t">
           
-          <button className="bg-gray-950 pointer-events-auto text-white px-4 py-2 font-medium rounded-md" >
+          <button className="bg-gray-950 pointer-events-auto text-white px-4 py-2 font-medium rounded-2xl" >
             Continue
           </button>
         </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import left from "../../../assets/left.png";
+
 interface EnterCodeModalProps {
   onClose: () => void;
 }
@@ -31,10 +32,10 @@ const ForgotPassword: React.FC<EnterCodeModalProps> = ({ onClose }) => {
           <input
             type="email"
             placeholder="Email"
-            className="w-full border text-gray-900 text-[16px] bg-white mt-4 border-gray-400 rounded-md py-2 px-3 mb-4"
+            className="w-full border text-gray-900 text-[16px] bg-white mt-4 border-gray-400 rounded-2xl py-2 px-3 mb-4"
           />
           <button
-            className="w-full bg-[#ffc500] text-white font-semibold py-2 rounded-md"
+            className="w-full bg-[#ffc500] text-white font-semibold py-2 rounded-2xl"
             onClick={onClose}
           >
             Send reset link

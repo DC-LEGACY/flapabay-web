@@ -83,10 +83,10 @@ const CreateListingStepFive = () => {
           placeholder="Enter Address..."
           value={searchQuery}
           onChange={handleInputChange}
-          className="w-full p-3 border rounded-md focus:outline-none"
+          className="w-full p-3 border rounded-2xl focus:outline-none"
         />
         {suggestions.length > 0 && (
-          <ul className="bg-white border rounded-md mt-1 max-h-60 overflow-y-auto">
+          <ul className="bg-white border rounded-2xl mt-1 max-h-60 overflow-y-auto">
             {suggestions.map((place) => (
               <li
                 key={place.id}
@@ -126,28 +126,28 @@ const CreateListingStepFive = () => {
                 type="text"
                 value={selectedLocation.address}
                 onChange={(e) => setSelectedLocation({ ...selectedLocation, address: e.target.value })}
-                className="w-full p-2 border rounded-md focus:outline-none"
+                className="w-full p-2 border rounded-2xl focus:outline-none"
               />
             </div>
             <div className="mt-2">
               
-              <input type="text" placeholder="apt,suite(optional)" className="w-full p-2 border rounded-md focus:outline-none" />
+              <input type="text" placeholder="apt,suite(optional)" className="w-full p-2 border rounded-2xl focus:outline-none" />
             </div>
 
             <div className="mt-4 flex gap-2">
               <div className="w-1/2">
                 <label className="text-sm">City</label>
-                <input type="text" className="w-full p-2 border rounded-md focus:outline-none" />
+                <input type="text" className="w-full p-2 border rounded-2xl focus:outline-none" />
               </div>
               <div className="w-1/2">
                 <label className="text-sm">State</label>
-                <input type="text" className="w-full p-2 border rounded-md focus:outline-none" />
+                <input type="text" className="w-full p-2 border rounded-2xl focus:outline-none" />
               </div>
             </div>
 
             <div className="mt-4">
               <label className="text-sm">Country</label>
-              <select className="w-full p-2 border rounded-md">
+              <select className="w-full p-2 border rounded-2xl">
               <option value="PK">Pakistan - PK</option>
     <option value="US">United States - US</option>
     <option value="CA">Canada - CA</option>
@@ -202,7 +202,7 @@ const CreateListingStepFive = () => {
 
             <div className="mt-4">
               <label className="text-sm">Meeting point name (optional)</label>
-              <input type="text" className="w-full p-2 border rounded-md focus:outline-none" />
+              <input type="text" className="w-full p-2 border rounded-2xl focus:outline-none" />
             </div>
 
             <div className="mt-4 flex justify-between items-center">
@@ -332,10 +332,10 @@ export default CreateListingStepFive;
 //           placeholder="Enter Address..."
 //           value={searchQuery}
 //           onChange={handleInputChange}
-//           className="w-full p-3 border rounded-md focus:outline-none"
+//           className="w-full p-3 border rounded-2xl focus:outline-none"
 //         />
 //         {suggestions.length > 0 && (
-//           <ul className="bg-white border rounded-md mt-1 max-h-60 overflow-y-auto">
+//           <ul className="bg-white border rounded-2xl mt-1 max-h-60 overflow-y-auto">
 //             {suggestions.map((place) => (
 //               <li
 //                 key={place.id}
@@ -375,28 +375,28 @@ export default CreateListingStepFive;
 //                 type="text"
 //                 value={selectedLocation.address}
 //                 onChange={(e) => setSelectedLocation({ ...selectedLocation, address: e.target.value })}
-//                 className="w-full p-2 border rounded-md focus:outline-none"
+//                 className="w-full p-2 border rounded-2xl focus:outline-none"
 //               />
 //             </div>
 //             <div className="mt-2">
               
-//               <input type="text" placeholder="apt,suite(optional)" className="w-full p-2 border rounded-md focus:outline-none" />
+//               <input type="text" placeholder="apt,suite(optional)" className="w-full p-2 border rounded-2xl focus:outline-none" />
 //             </div>
 
 //             <div className="mt-4 flex gap-2">
 //               <div className="w-1/2">
 //                 <label className="text-sm">City</label>
-//                 <input type="text" className="w-full p-2 border rounded-md focus:outline-none" />
+//                 <input type="text" className="w-full p-2 border rounded-2xl focus:outline-none" />
 //               </div>
 //               <div className="w-1/2">
 //                 <label className="text-sm">State</label>
-//                 <input type="text" className="w-full p-2 border rounded-md focus:outline-none" />
+//                 <input type="text" className="w-full p-2 border rounded-2xl focus:outline-none" />
 //               </div>
 //             </div>
 
 //             <div className="mt-4">
 //               <label className="text-sm">Country</label>
-//               <select className="w-full p-2 border rounded-md">
+//               <select className="w-full p-2 border rounded-2xl">
 //               <option value="PK">Pakistan - PK</option>
 //     <option value="US">United States - US</option>
 //     <option value="CA">Canada - CA</option>
@@ -451,7 +451,7 @@ export default CreateListingStepFive;
 
 //             <div className="mt-4">
 //               <label className="text-sm">Meeting point name (optional)</label>
-//               <input type="text" className="w-full p-2 border rounded-md focus:outline-none" />
+//               <input type="text" className="w-full p-2 border rounded-2xl focus:outline-none" />
 //             </div>
 
 //             <div className="mt-4 flex justify-between items-center">

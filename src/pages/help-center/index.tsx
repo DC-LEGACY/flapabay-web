@@ -1115,7 +1115,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   }, []);
 
 //   return (
-//     <div className="p-4 bg-white rounded-md shadow">
+//     <div className="p-4 bg-white rounded-2xl shadow">
 //       <h2 className="mb-3 text-lg font-semibold">Available Icons</h2>
 
 //       {loading ? (
@@ -1195,7 +1195,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   }, []);
 
 //   return (
-//     <div className="p-4 bg-white rounded-md shadow">
+//     <div className="p-4 bg-white rounded-2xl shadow">
 //       <h2 className="mb-3 text-lg font-semibold">Categories</h2>
 
 //       {loading ? (
@@ -1209,7 +1209,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //       ) : (
 //         <div className="grid grid-cols-3 gap-4">
 //           {categories.map((category) => (
-//             <div key={category.id} className="p-3 bg-gray-100 rounded-md">
+//             <div key={category.id} className="p-3 bg-gray-100 rounded-2xl">
 //               <h3 className="font-semibold text-md">{category.name}</h3>
 //               <p className="text-sm text-dark">{category.description}</p>
 //             </div>
@@ -1270,7 +1270,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   }, []);
 
 //   return (
-//     <div className="p-4 bg-white rounded-md shadow">
+//     <div className="p-4 bg-white rounded-2xl shadow">
 //       <h2 className="mb-3 text-lg font-semibold">Bookings</h2>
 
 //       {loading ? (
@@ -1377,7 +1377,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   }, []);
 
 //   return (
-//     <div className="p-4 bg-white rounded-md shadow">
+//     <div className="p-4 bg-white rounded-2xl shadow">
 //       <h2 className="mb-3 text-lg font-semibold">Available Locations</h2>
 
 //       {loading ? (
@@ -1395,7 +1395,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //               <img
 //                 src={location.placeholder_img}
 //                 alt={location.name}
-//                 className="object-cover w-full h-40 rounded-md"
+//                 className="object-cover w-full h-40 rounded-2xl"
 //               />
 //               <h3 className="mt-2 text-lg font-bold">{location.name} ({location.code})</h3>
 //               <p className="mt-1 text-sm text-dark">{location.description}</p>
@@ -1458,7 +1458,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   };
 
 //   return (
-//     <div className="p-4 bg-white rounded-md shadow">
+//     <div className="p-4 bg-white rounded-2xl shadow">
 //       <h2 className="mb-3 text-lg font-semibold">Check Payment Status</h2>
 
 //       <div className="flex items-center gap-2">
@@ -1541,7 +1541,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   }, []);
 
 //   return (
-//     <div className="p-4 bg-white rounded-md shadow">
+//     <div className="p-4 bg-white rounded-2xl shadow">
 //       <h2 className="mb-3 text-lg font-semibold">Payout Options</h2>
 
 //       {loading ? (
@@ -1615,7 +1615,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   }, []);
 
 //   return (
-//     <div className="p-4 bg-white rounded-md shadow">
+//     <div className="p-4 bg-white rounded-2xl shadow">
 //       <h2 className="mb-3 text-lg font-semibold">User Payment Details</h2>
 
 //       {loading ? (

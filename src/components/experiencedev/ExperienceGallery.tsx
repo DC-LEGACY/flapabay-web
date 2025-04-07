@@ -1,9 +1,8 @@
-
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Expand, Grid3X3, Play } from 'lucide-react';
-import { Button } from '@/ui/button';
+import React, { useState } from 'react';
 
+import { Button } from '@/ui/button';
 
 interface ExperienceGalleryProps {
   images: string[];
@@ -97,7 +96,7 @@ const ExperienceGallery: React.FC<ExperienceGalleryProps> = ({
       </AnimatePresence>
       
       {/* Image counter */}
-      <div className="absolute bottom-4 left-4 bg-black/60 text-white px-2 py-1 rounded-md text-sm">
+      <div className="absolute bottom-4 left-4 bg-black/60 text-white px-2 py-1 rounded-2xl text-sm">
         {currentImageIndex + 1} / {images.length}
       </div>
       

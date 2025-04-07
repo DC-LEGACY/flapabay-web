@@ -122,7 +122,9 @@ const TermsOfService = () => {
         </section>
       </main>
       
-      <Footer />
+       <section className="pb-0 footer-style1 pt60">
+        <Footer />
+      </section>
     </div>
   );
 };

@@ -228,16 +228,16 @@ const FAQs = () => {
   };
   
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <DefaultHeader />
       
       <main className="flex-1 pt-20">
         {/* Hero Section */}
-        <section className="bg-flapabay-yellow py-16">
+        <section className="py-16 bg-flapabay-yellow">
           <div className="flapabay-container">
-            <div className="text-center max-w-3xl mx-auto">
+            <div className="max-w-3xl mx-auto text-center">
               <motion.h1 
-                className="text-3xl md:text-4xl font-bold mb-4 text-black"
+                className="pt-4 text-3xl font-bold text-black md:text-4xl"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -245,7 +245,7 @@ const FAQs = () => {
                 Frequently Asked Questions
               </motion.h1>
               <motion.p 
-                className="text-lg mb-8 text-gray-800"
+                className="pt-8 text-lg text-gray-800"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -259,11 +259,11 @@ const FAQs = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" />
+                <Search className="absolute text-gray-500 transform -translate-y-1/2 left-4 top-1/2" />
                 <Input 
                   type="text" 
                   placeholder="Search for answers..." 
-                  className="w-full py-6 pl-12 pr-4 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-black text-lg"
+                  className="w-full px-4 py-6 pl-12 pr-4 mx-4 text-lg rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-black"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -275,9 +275,9 @@ const FAQs = () => {
         {/* Popular Questions */}
         <section className="py-12 bg-white">
           <div className="flapabay-container">
-            <h2 className="text-2xl font-bold mb-8 text-center">Popular Questions</h2>
+            <h2 className="pt-8 text-2xl font-bold text-center">Popular Questions</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid max-w-5xl grid-cols-1 gap-6 mx-auto md:grid-cols-2 lg:grid-cols-3">
               {popularFaqs.map((faq, index) => (
                 <motion.div 
                   key={index}
@@ -289,15 +289,15 @@ const FAQs = () => {
                   className="cursor-pointer"
                   onClick={() => handlePopularFaqClick(faq.question, faq.categoryId)}
                 >
-                  <Card className="h-full shadow-sm hover:shadow-md transition-shadow border-l-4 border-l-flapabay-yellow">
+                  <Card className="h-full transition-shadow border-l-4 shadow-sm hover:shadow-md border-l-flapabay-yellow">
                     <CardContent className="p-5">
                       <div className="flex items-start">
-                        <FileQuestion className="text-flapabay-yellow h-5 w-5 mt-1 mr-3 flex-shrink-0" />
+                        <FileQuestion className="flex-shrink-0 w-5 h-5 mt-1 mr-3 text-flapabay-yellow" />
                         <div>
-                          <h3 className="font-medium mb-2">{faq.question}</h3>
-                          <div className="flex items-center text-flapabay-yellow text-sm">
+                          <h3 className="pt-2 font-medium">{faq.question}</h3>
+                          <div className="flex items-center text-sm text-flapabay-yellow">
                             <span>View answer</span>
-                            <ArrowRight className="ml-1 h-3 w-3" />
+                            <ArrowRight className="w-3 h-3 ml-1" />
                           </div>
                         </div>
                       </div>
@@ -313,7 +313,7 @@ const FAQs = () => {
         <section id="faq-section" className="py-16 bg-gray-50">
           <div className="flapabay-container">
             <Tabs defaultValue={activeCategory} value={activeCategory} onValueChange={setActiveCategory}>
-              <TabsList className="w-full flex justify-start overflow-x-auto mb-8 flex-nowrap">
+              <TabsList className="flex justify-start w-full pt-8 overflow-x-auto flex-nowrap">
                 {faqCategories.map((category) => (
                   <TabsTrigger key={category.id} value={category.id}>
                     {category.name}
@@ -330,7 +330,7 @@ const FAQs = () => {
                           .find(c => c.id === category.id)?.faqs
                           .map((faq, index) => (
                             <AccordionItem key={index} value={`faq-${category.id}-${index}`}>
-                              <AccordionTrigger className="text-left font-medium">
+                              <AccordionTrigger className="font-medium text-left">
                                 {faq.question}
                               </AccordionTrigger>
                               <AccordionContent className="text-gray-600">
@@ -340,7 +340,7 @@ const FAQs = () => {
                           ))}
                         
                         {filteredFaqs.find(c => c.id === category.id)?.faqs.length === 0 && (
-                          <div className="text-center py-8">
+                          <div className="py-8 text-center">
                             <p className="text-gray-500">No FAQs found matching "{searchTerm}"</p>
                             <Button 
                               variant="outline" 
@@ -361,22 +361,22 @@ const FAQs = () => {
         </section>
         
         {/* AI Assistant Section */}
-        <section className="py-16 bg-black text-white">
+        <section className="py-16 text-white bg-black">
           <div className="flapabay-container">
-            <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="flex flex-col items-center gap-12 lg:flex-row">
               <div className="lg:w-1/2">
-                <div className="flex items-center mb-6">
-                  <Bot className="h-10 w-10 text-flapabay-yellow mr-3" />
-                  <h2 className="text-3xl font-bold">AI FAQ Assistant</h2>
+                <div className="flex items-center pt-6">
+                  <Bot className="w-10 h-10 mr-3 text-flapabay-yellow" />
+                  <h2 className="text-3xl font-bold text-white">AI FAQ Assistant</h2>
                 </div>
-                <p className="text-lg text-gray-300 mb-8">
+                <p className="pt-8 text-lg text-gray-300">
                   Can't find what you're looking for? Our AI assistant can help answer your specific questions about FlapaBay.
                 </p>
                 
                 <form id="ai-form" onSubmit={handleAiSubmit} className="space-y-4">
                   <div className="relative">
                     <textarea
-                      className="w-full p-4 bg-gray-900 border border-gray-700 rounded-lg text-white resize-none focus:outline-none focus:ring-2 focus:ring-flapabay-yellow"
+                      className="w-full p-4 text-white bg-gray-900 border border-gray-700 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-flapabay-yellow"
                       placeholder="Ask me anything about FlapaBay..."
                       rows={3}
                       value={aiQuery}
@@ -385,7 +385,7 @@ const FAQs = () => {
                   </div>
                   <Button
                     type="submit"
-                    className="bg-flapabay-yellow text-black px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-all flex items-center"
+                    className="flex items-center px-6 py-3 font-medium text-black transition-all rounded-lg bg-flapabay-yellow hover:bg-opacity-90"
                     disabled={!aiQuery.trim() || isTyping}
                   >
                     {isTyping ? (
@@ -400,7 +400,7 @@ const FAQs = () => {
                     ) : (
                       <>
                         Get Answer
-                        <Sparkles className="ml-2 h-4 w-4" />
+                        <Sparkles className="w-4 h-4 ml-2" />
                       </>
                     )}
                   </Button>
@@ -419,19 +419,19 @@ const FAQs = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="mt-6 p-5 bg-gray-900 border border-gray-700 rounded-lg"
+                        className="p-5 mt-6 bg-gray-900 border border-gray-700 rounded-lg"
                       >
-                        <div className="flex items-center mb-3">
-                          <Bot className="h-5 w-5 text-flapabay-yellow mr-2" />
-                          <p className="font-medium text-sm text-gray-400">FlapaBay Assistant</p>
+                        <div className="flex items-center pt-3">
+                          <Bot className="w-5 h-5 mr-2 text-flapabay-yellow" />
+                          <p className="text-sm font-medium text-gray-400">FlapaBay Assistant</p>
                         </div>
                         <p className="text-gray-300 whitespace-pre-line">{aiResponse}</p>
                         <div className="flex items-center mt-4 text-sm text-gray-500">
                           <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-                            <ThumbsUp className="h-4 w-4 mr-1" /> Helpful
+                            <ThumbsUp className="w-4 h-4 mr-1" /> Helpful
                           </Button>
-                          <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white ml-4">
-                            <ThumbsDown className="h-4 w-4 mr-1" /> Not helpful
+                          <Button variant="ghost" size="sm" className="ml-4 text-gray-400 hover:text-white">
+                            <ThumbsDown className="w-4 h-4 mr-1" /> Not helpful
                           </Button>
                         </div>
                       </motion.div>
@@ -443,9 +443,9 @@ const FAQs = () => {
               <div className="lg:w-1/2">
                 <Card className="bg-gray-900 border-gray-800 shadow-lg">
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-4 text-white">Try asking about:</h3>
+                    <h3 className="pt-4 text-xl font-bold text-white">Try asking about:</h3>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                    <div className="grid grid-cols-1 gap-3 pt-6 md:grid-cols-2">
                       {[
                         "How do I cancel a reservation?",
                         "What is the refund policy?",
@@ -457,7 +457,7 @@ const FAQs = () => {
                         <Button
                           key={index}
                           variant="outline"
-                          className="justify-start text-left border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800"
+                          className="justify-start w-auto py-3 text-left text-white border-flapabay-yellow bg-flapabay-yellow hover:text-white hover:bg-gray-800"
                           onClick={() => handleQuickQuestionClick(question)}
                         >
                           {question}
@@ -465,9 +465,9 @@ const FAQs = () => {
                       ))}
                     </div>
                     
-                    <div className="bg-gray-800 p-4 rounded-lg">
-                      <h4 className="font-medium text-flapabay-yellow mb-2">Pro Tip</h4>
-                      <p className="text-gray-300 text-sm">
+                    <div className="p-4 bg-gray-800 rounded-lg">
+                      <h4 className="pt-2 font-medium text-flapabay-yellow">Pro Tip</h4>
+                      <p className="text-sm text-gray-300">
                         For the most accurate answers, be specific in your questions. Include details about what aspect of FlapaBay you're asking about.
                       </p>
                     </div>
@@ -481,17 +481,17 @@ const FAQs = () => {
         {/* Still Need Help Section */}
         <section className="py-16 bg-white">
           <div className="flapabay-container">
-            <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-2xl font-bold mb-4">Still Need Help?</h2>
-              <p className="text-gray-600 mb-8">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="pt-4 text-2xl font-bold">Still Need Help?</h2>
+              <p className="pt-8 text-gray-600">
                 Our support team is available 24/7 to assist you with any questions or issues
               </p>
               
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button className="bg-flapabay-yellow hover:bg-flapabay-yellow/90 text-black px-6 py-6 h-auto w-full sm:w-auto">
+              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <Button className="w-full h-auto px-6 py-6 text-black bg-flapabay-yellow hover:bg-flapabay-yellow/90 sm:w-auto">
                   Contact Support
                 </Button>
-                <Button variant="outline" className="px-6 py-6 h-auto w-full sm:w-auto">
+                <Button variant="outline" className="w-full h-auto px-6 py-6 sm:w-auto">
                   Visit Help Center
                 </Button>
               </div>
@@ -500,7 +500,9 @@ const FAQs = () => {
         </section>
       </main>
       
-      <Footer />
+       <section className="pb-0 footer-style1 pt60">
+        <Footer />
+      </section>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import DefaultHeader from "@/components/common/DefaultHeader";
+
 import Footer from "@/components/common/default-footer";
 import { Input } from '@/components/ui/input';
 import { motion } from 'framer-motion';
@@ -138,7 +138,7 @@ const Careers = () => {
                 className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4"
               >
                 <div className="relative w-full max-w-md">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+                  <SearchNormal className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
                   <Input 
                     type="text" 
                     placeholder="Search for jobs..." 
@@ -416,7 +416,9 @@ const Careers = () => {
         </section>
       </main>
       
-      <Footer />
+      <section className="pb-0 footer-style1 pt60">
+        <Footer />
+      </section>
     </div>
   );
 };

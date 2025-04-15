@@ -6,7 +6,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { Button } from '@/components/ui/button';
-import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
@@ -259,7 +258,7 @@ const FAQs = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" />
+                <SearchNormal className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" />
                 <Input 
                   type="text" 
                   placeholder="Search for answers..." 
@@ -376,7 +375,7 @@ const FAQs = () => {
                 <form id="ai-form" onSubmit={handleAiSubmit} className="space-y-4">
                   <div className="relative">
                     <textarea
-                      className="w-full p-4 bg-gray-900 border border-gray-700 rounded-lg text-white resize-none focus:outline-none focus:ring-2 focus:ring-flapabay-yellow"
+                      className="w-full p-4 bg-gray-900 border border-black rounded-lg text-white resize-none focus:outline-none focus:ring-2 focus:ring-flapabay-yellow"
                       placeholder="Ask me anything about FlapaBay..."
                       rows={3}
                       value={aiQuery}
@@ -419,7 +418,7 @@ const FAQs = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="mt-6 p-5 bg-gray-900 border border-gray-700 rounded-lg"
+                        className="mt-6 p-5 bg-gray-900 border border-black rounded-lg"
                       >
                         <div className="flex items-center mb-3">
                           <Bot className="h-5 w-5 text-flapabay-yellow mr-2" />
@@ -457,7 +456,7 @@ const FAQs = () => {
                         <Button
                           key={index}
                           variant="outline"
-                          className="justify-start text-left border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800"
+                          className="justify-start text-left border-black text-gray-300 hover:text-white hover:bg-gray-800"
                           onClick={() => handleQuickQuestionClick(question)}
                         >
                           {question}
@@ -500,7 +499,9 @@ const FAQs = () => {
         </section>
       </main>
       
-      <Footer />
+      <section className="pb-0 footer-style1 pt60">
+        <Footer />
+      </section>
     </div>
   );
 };

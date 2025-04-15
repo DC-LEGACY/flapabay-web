@@ -103,7 +103,7 @@ const MessageHostModal = ({ isOpen, onClose }) => {
             <IoClose size={24} />
           </button>
         </div>
-        <p className="text-sm text-gray-700 mb-4">
+        <p className="text-sm text-black mb-4">
           Share why you're traveling, who's coming with you, and what you love
           about the space.
         </p>
@@ -186,7 +186,7 @@ const ProfilePhotoModal = ({ isOpen, onClose }) => {
             </div>
           )}
         </div>
-        <p className="text-sm text-gray-700 mb-4">
+        <p className="text-sm text-black mb-4">
           Pick an image that shows your face. Hosts won’t be able to see your
           profile photo until your booking is confirmed.
         </p>
@@ -458,7 +458,7 @@ const ConfirmAndPay = ({ isOpen, onClose }) => {
             <img src="/images/logo.svg" alt="Header Logo" />
           </Link>
         </div>
-        <button className="text-gray-700 text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">
+        <button className="text-black text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">
           Exit
         </button>
       </header>
@@ -475,7 +475,7 @@ const ConfirmAndPay = ({ isOpen, onClose }) => {
         <div className="md:col-span-2 space-y-6">
           <div className="p-4 border rounded-lg shadow-sm flex items-center justify-between">
             <div>
-              <p className="text-gray-700 font-medium">This is a rare find.</p>
+              <p className="text-black font-medium">This is a rare find.</p>
               <p className="text-gray-500">
                 Candice's place is usually book.
               </p>
@@ -710,7 +710,7 @@ const ConfirmAndPay = ({ isOpen, onClose }) => {
           <div className="border-t my-4"></div>
 
           <h2 className="text-xl font-semibold">Price details</h2>
-          <div className="space-y-2 text-gray-700">
+          <div className="space-y-2 text-black">
             <div className="flex justify-between">
               <span>$166.64 AUD x 5 nights</span>
               <span>$833.20 AUD</span>

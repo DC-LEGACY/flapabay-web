@@ -1,11 +1,10 @@
+import { ArrowUpDown, Filter, Flag, MessageCircle, Search, Star, ThumbsUp } from 'lucide-react';
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Star, ThumbsUp, MessageCircle, Flag, Search, Filter, ArrowUpDown } from 'lucide-react';
-import { Button } from '@/ui/button';
-import { Input } from '@/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/select';
 
-
+import { Button } from '@/ui/button';
+import { Input } from '@/ui/input';
+import { motion } from 'framer-motion';
 
 const HostReviews = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -182,7 +181,7 @@ const HostReviews = () => {
                 </div>
               </div>
               
-              <div className="mt-4 text-gray-700">{review.comment}</div>
+              <div className="mt-4 text-black">{review.comment}</div>
               
               <div className="mt-4">
                 <span className="font-medium">Property:</span> {review.property}

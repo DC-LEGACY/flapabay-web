@@ -48,7 +48,7 @@ const NewHostingJourneyPage = () => {
           <h1 className="text-2xl font-bold pb-6">
             A new hosting journey starts here
           </h1>
-          <p className="text-lg text-gray-700 pb-4">
+          <p className="text-lg text-black pb-4">
             Submit your experience and it will be reviewed to make sure it meets
             the standards and requirements. Many factors go into whether an
             experience is approved. If your experience is approved, you'll be

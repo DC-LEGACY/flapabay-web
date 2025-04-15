@@ -16,16 +16,16 @@ const WhatWereLookingFor = () => {
       </div>
 
       {/* Description */}
-      <p className="text-gray-700 pt-6">
+      <p className="text-black pt-6">
         Experiences are the best way to access the local culture of a place—by
         participating in unique activities led by remarkable people.
       </p>
 
       {/* Requirements List */}
-      <p className="text-gray-700 mt-4">
+      <p className="text-black mt-4">
         Every experience must meet the standards and requirements which include:
       </p>
-      <ul className="list-disc list-inside mt-2 space-y-2 text-gray-700">
+      <ul className="list-disc list-inside mt-2 space-y-2 text-black">
         <li>A host’s unique insight and passion</li>
         <li>
           Thoughtfully designed activities a guest couldn’t do on their own

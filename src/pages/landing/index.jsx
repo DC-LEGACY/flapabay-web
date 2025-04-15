@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+
 import Cta from "@/components/home/home-v6/Cta";
-import Footer from "../../../components/common/default-footer";
-import Header from "../../../components/home/home-v1/Header";
-import Hero from "../../../components/home/home-v1/hero";
+import Footer from "@/components/common/default-footer";
+import Header from "@/components/common/Header";
+import Hero from "@/components/home/home-v1/hero";
 import MetaData from "@/components/common/MetaData";
-import MobileMenu from "../../../components/common/mobile-menu";
+import MobileMenu from "../../components/common/mobile-menu";
 import PropertiesByCategory from "@/components/home/home-v4/PropertiesByCategory";
 import PropertyByCitiesWrapper from "@/components/home/home-v3/PropertyByCitiesWrapper";
 import { useScreenSize } from "@/utilis/screenUtils";

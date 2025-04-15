@@ -1,12 +1,10 @@
+import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar';
+import { Card, CardContent } from '@/ui/card';
+import { Medal, MessageCircle, Star, User } from 'lucide-react';
 
+import { Button } from '@/ui/button';
 import React from 'react';
 import { motion } from 'framer-motion';
-
-import { MessageCircle, Medal, Star, User } from 'lucide-react';
-import { Button } from '@/ui/button';
-import { Card, CardContent } from '@/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar';
-
 
 interface ExperienceHostProps {
   host: {
@@ -97,7 +95,7 @@ const ExperienceHost: React.FC<ExperienceHostProps> = ({ host }) => {
                 )}
               </div>
               
-              <p className="text-sm text-gray-700 py-2 border-t border-gray-100 mt-3">
+              <p className="text-sm text-black py-2 border-t border-gray-100 mt-3">
                 {host.bio || "I'm passionate about sharing authentic local experiences with travelers from around the world! I've been hosting experiences for years and love helping visitors discover the hidden gems of this region."}
                 {host.languages && host.languages.length > 0 && (
                   <>

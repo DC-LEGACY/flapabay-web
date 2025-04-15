@@ -1,12 +1,10 @@
-
+import { AlertTriangle, ArrowDownIcon, ArrowUpIcon, CalendarDays, XCircle } from 'lucide-react';
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-
-import { ArrowDownIcon, ArrowUpIcon, XCircle, AlertTriangle, CalendarDays } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/tabs';
+
 import { Button } from '@/ui/button';
 import { Separator } from '@/ui/separator';
-
+import { motion } from 'framer-motion';
 
 interface ExperienceDescriptionProps {
   description: string;
@@ -63,7 +61,7 @@ const ExperienceDescription: React.FC<ExperienceDescriptionProps> = ({
                     <div className="bg-[#ffc500]/10 rounded-full p-2">
                       <span className="text-[#ffc500] text-xs font-medium">★</span>
                     </div>
-                    <span className="text-gray-700">{highlight}</span>
+                    <span className="text-black">{highlight}</span>
                   </div>
                 ))}
               </div>
@@ -80,7 +78,7 @@ const ExperienceDescription: React.FC<ExperienceDescriptionProps> = ({
                     <span className="bg-[#ffc500]/10 rounded-full min-w-6 h-6 flex items-center justify-center text-[#ffc500] font-medium">
                       {index + 1}
                     </span>
-                    <span className="text-gray-700">{item}</span>
+                    <span className="text-black">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -89,7 +87,7 @@ const ExperienceDescription: React.FC<ExperienceDescriptionProps> = ({
           
           <div className={`relative ${!isExpanded && 'max-h-40 overflow-hidden'}`}>
             <h3 className="text-lg font-semibold mb-3">About this experience</h3>
-            <p className="text-gray-700 whitespace-pre-line">
+            <p className="text-black whitespace-pre-line">
               {description}
             </p>
             
@@ -116,7 +114,7 @@ const ExperienceDescription: React.FC<ExperienceDescriptionProps> = ({
                   {requirements.map((req, index) => (
                     <li key={index} className="flex items-start gap-2">
                       <AlertTriangle className="h-5 w-5 text-amber-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">{req}</span>
+                      <span className="text-black">{req}</span>
                     </li>
                   ))}
                 </ul>
@@ -130,7 +128,7 @@ const ExperienceDescription: React.FC<ExperienceDescriptionProps> = ({
                   {bringingItems.map((item, index) => (
                     <li key={index} className="flex items-start gap-2">
                       <span className="text-[#ffc500] mr-1">•</span>
-                      <span className="text-gray-700">{item}</span>
+                      <span className="text-black">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -147,7 +145,7 @@ const ExperienceDescription: React.FC<ExperienceDescriptionProps> = ({
                 {houseRules.map((rule, index) => (
                   <li key={index} className="flex items-start gap-2">
                     <XCircle className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">{rule}</span>
+                    <span className="text-black">{rule}</span>
                   </li>
                 ))}
               </ul>
@@ -167,19 +165,19 @@ const ExperienceDescription: React.FC<ExperienceDescriptionProps> = ({
                 <h3 className="text-lg font-semibold">{cancellationPolicy.type} cancellation policy</h3>
               </div>
               
-              <p className="text-gray-700 mb-4">{cancellationPolicy.description}</p>
+              <p className="text-black mb-4">{cancellationPolicy.description}</p>
               
               {cancellationPolicy.fullRefundBefore && (
                 <div className="flex items-start gap-3 mb-2">
                   <span className="text-[#ffc500] font-medium">•</span>
-                  <p className="text-gray-700">Full refund if canceled {cancellationPolicy.fullRefundBefore} before the experience</p>
+                  <p className="text-black">Full refund if canceled {cancellationPolicy.fullRefundBefore} before the experience</p>
                 </div>
               )}
               
               {cancellationPolicy.partialRefundBefore && (
                 <div className="flex items-start gap-3 mb-2">
                   <span className="text-[#ffc500] font-medium">•</span>
-                  <p className="text-gray-700">Partial refund if canceled {cancellationPolicy.partialRefundBefore} before the experience</p>
+                  <p className="text-black">Partial refund if canceled {cancellationPolicy.partialRefundBefore} before the experience</p>
                 </div>
               )}
               

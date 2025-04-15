@@ -1,5 +1,6 @@
-import { useState } from "react";
 import { Plus, Upload } from "lucide-react";
+
+import { useState } from "react";
 
 const PhotoUpload = () => {
   const [photos, setPhotos] = useState<string[]>([]);
@@ -55,7 +56,7 @@ const PhotoUpload = () => {
         )}
       </div>
 
-      <div className="pt-6 text-sm text-gray-700">
+      <div className="pt-6 text-sm text-black">
         <p className="font-medium">Your photos must have:</p>
         <ul className="list-disc ml-5 mt-2 space-y-1">
           <li>A variety of details and angles, including photos of people in action</li>

@@ -1,13 +1,10 @@
-import Pagination from "@/components/blog/Pagination";
 import Blog from "@/components/blog/blog-list-v1/Blog";
 import BlogSidebar from "@/components/blog/sidebar";
-import DefaultHeader from "@/components/common/DefaultHeader";
-
 import Footer from "@/components/common/default-footer";
-import MobileMenu from "@/components/common/mobile-menu";
-
+import Header from "@/components/common/Header";
 import MetaData from "@/components/common/MetaData";
-import Header from "@/components/home/home-v1/Header";
+import MobileMenu from "@/components/common/mobile-menu";
+import Pagination from "@/components/blog/Pagination";
 
 const metaInformation = {
   title: "Blog List v1  || Flapabay- Apartment Rental, Experiences and More!",
@@ -44,15 +41,15 @@ const BlogV1 = () => {
       {/* End Breadcrumb Start */}
 
       {/* Blog Section Area */}
-      <section className="our-blog pt-0">
+      <section className="pt-0 our-blog">
         <div className="container">
           <div className="row" data-aos="fade-up" data-aos-delay="300">
             <div className="col-lg-8">
               <Blog />
               <div className="row">
-                <div className="mbp_pagination text-center">
+                <div className="text-center mbp_pagination">
                   <Pagination />
-                  <p className="mt10 pagination_page_count text-center">
+                  <p className="text-center mt10 pagination_page_count">
                     1 – 20 of 300+ property available
                   </p>
                 </div>
@@ -73,7 +70,7 @@ const BlogV1 = () => {
       {/* End Blog Section Area */}
 
       {/* Start Our Footer */}
-      <section className="footer-style1 pt60 pb-0">
+      <section className="pb-0 footer-style1 pt60">
         <Footer />
       </section>
       {/* End Our Footer */}

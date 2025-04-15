@@ -15,7 +15,7 @@ const Removelisting: React.FC = () => {
           
           
         </div>
-        <div className="p-4 text-gray-700">
+        <div className="p-4 text-black">
         <h2 className="text-lg font-semibold">Remove this listing?</h2>
           <p>
             This is permanent - You'll no longer be able to find or edit this listing. 

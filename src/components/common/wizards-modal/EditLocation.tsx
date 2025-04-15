@@ -16,7 +16,7 @@ const EditLocation: React.FC = () => {
         </div>
         {/* Content */}
         
-        <div className="px-4 text-gray-700">
+        <div className="px-4 text-black">
         <h2 className="text-lg font-semibold">Edit Location</h2>
           
         <p className="mb-6">What would you like to do?</p>

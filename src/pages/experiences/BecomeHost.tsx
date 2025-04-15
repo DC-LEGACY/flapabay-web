@@ -9,7 +9,6 @@ import {
 import React, { useEffect, useState } from "react";
 
 import { Button } from "@/ui/button";
-import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import { motion } from "framer-motion";
@@ -464,7 +463,7 @@ const BecomeHost = () => {
                       <p className="text-gray-600">{testimonial.location}</p>
                     </div>
                   </div>
-                  <p className="italic text-gray-700">"{testimonial.quote}"</p>
+                  <p className="italic text-black">"{testimonial.quote}"</p>
                   <div className="flex mt-4">
                     {[...Array(5)].map((_, i) => (
                       <Star1 key={i} size="20" color="#FFD700" variant="Bold" />

@@ -119,7 +119,7 @@ const PropertyCard: React.FC<PropertyProps> = ({
             aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
           >
             <Heart 
-              className={`w-4 h-4 ${isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-700'}`}
+              className={`w-4 h-4 ${isFavorite ? 'fill-red-500 text-red-500' : 'text-black'}`}
             />
           </button>
           
@@ -153,7 +153,7 @@ const PropertyCard: React.FC<PropertyProps> = ({
             </div>
           </div>
           
-          <h3 className="text-base font-medium text-gray-700 line-clamp-1">{title}</h3>
+          <h3 className="text-base font-medium text-black line-clamp-1">{title}</h3>
           
           {tags.length > 0 && (
             <div className="flex flex-wrap gap-1 my-1">

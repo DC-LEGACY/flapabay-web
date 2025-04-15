@@ -459,7 +459,7 @@ const BecomeHost = () => {
                       <p className="text-gray-600">{testimonial.location}</p>
                     </div>
                   </div>
-                  <p className="text-gray-700 italic">"{testimonial.quote}"</p>
+                  <p className="text-black italic">"{testimonial.quote}"</p>
                   <div className="mt-4 flex">
                     {[...Array(5)].map((_, i) => (
                       <Star

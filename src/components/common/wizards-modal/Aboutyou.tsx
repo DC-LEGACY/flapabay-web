@@ -16,7 +16,7 @@ const Aboutyou: React.FC = () => {
         </div>
         {/* Content */}
         
-        <div className="px-4 text-gray-700 pb-6">
+        <div className="px-4 text-black pb-6">
         <h2 className="text-lg font-semibold">About you</h2>
         <p className="mb-6">Tell us bit about yourself, so future hosts or guests can get to know you.</p>
           <textarea className="p-2 mt-2 border border-black mb-2 w-full rounded-2xl pointer-events-auto" type="text" placeholder="Hello I'm Fahad, from pakistan..." />

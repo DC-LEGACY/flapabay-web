@@ -48,16 +48,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import ExperienceHost from "./ExperienceHost";
-import Footer from "@/common/default-footer";
-import Guest from "./Guest";
+import ExperienceHost from "@/ExperienceHost";
+import Footer from "@/components/common/default-footer";
+import Guest from "@/Guest";
 import Header from "@/components/common/DefaultHeader";
-import Host from "./Host";
+import Host from "@/Host";
 import { Input } from "@/components/ui/input";
-import MobileMenu from "../common/mobile-menu";
+import MobileMenu from "@/components/common/mobile-menu";
 import { Progress } from "@/components/ui/progress";
 import { SearchNormal } from "iconsax-react";
-import TravelAdmin from "./TravelAdmin";
+import TravelAdmin from "@/TravelAdmin";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
@@ -368,10 +368,10 @@ export default function HelpPage() {
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                   onFocus={() => setShowSuggestions(true)}
-                  className="w-full px-4 py-3 border rounded-2xl shadow-md focus:outline-none focus:ring-2 focus:ring-[#FFC500]"
+                  className="w-full px-4 py-4 border rounded-2xl shadow-md focus:outline-none focus:ring-2 focus:ring-[#FFC500]"
                 />
-                <button className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#FFC500] text-white p-2 rounded-full">
-                  <SearchNormal size={18} />
+                <button className="ud-btn btn-thm p-2.5 right-3 search-tbn search-btn absolute top-1/2 transform -translate-y-1/2 bg-[#FFC500] text-white rounded-2xl">
+                  <SearchNormal color="white"/>
                 </button>
 
                 {showSuggestions && (
@@ -407,7 +407,7 @@ export default function HelpPage() {
                   className="cursor-pointer"
                   onClick={() => navigate(link.path)}
                 >
-                  <Card className="h-full text-white transition-colors bg-black border-gray-700 rounded-2 xl hover:border-flapabay-yellow">
+                  <Card className="h-full text-white transition-colors bg-black border-black rounded-2xl hover:border-flapabay-yellow">
                     <CardContent className="flex flex-col items-center p-4 text-center">
                       <div className="flex items-center justify-center w-12 h-12 mt-3 mb-3 rounded-full bg-flapabay-yellow/90">
                         <span className="text-black">{link.icon}</span>
@@ -670,7 +670,7 @@ export default function HelpPage() {
                 >
                   <div className="relative">
                     <textarea
-                      className="w-full p-4 text-white bg-gray-900 border border-gray-700 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-flapabay-yellow"
+                      className="w-full p-4 text-white bg-gray-900 border border-black rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-flapabay-yellow"
                       placeholder="Ask me anything about FlapaBay..."
                       rows={3}
                       value={aiQuestion}
@@ -719,7 +719,7 @@ export default function HelpPage() {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-5 pt-6 bg-gray-900 border border-gray-700 rounded-lg"
+                    className="p-5 pt-6 bg-gray-900 border border-black rounded-lg"
                   >
                     <div className="flex items-center mb-3">
                       <Bot className="w-5 h-5 mr-2 text-flapabay-yellow" />
@@ -783,7 +783,7 @@ export default function HelpPage() {
                       <motion.div
                         key={index}
                         whileHover={{ x: 5 }}
-                        className="flex items-center p-3 transition-colors bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700"
+                        className="flex items-center p-3 transition-colors bg-gray-800 rounded-lg cursor-pointer hover:bg-black"
                         onClick={() =>
                           setAiQuestion(
                             `Tell me about ${topic.title.toLowerCase()}`
@@ -1115,7 +1115,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   }, []);
 
 //   return (
-//     <div className="p-4 bg-white rounded-2xl shadow">
+//     <div className="p-4 bg-white shadow rounded-2xl">
 //       <h2 className="mb-3 text-lg font-semibold">Available Icons</h2>
 
 //       {loading ? (
@@ -1195,7 +1195,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   }, []);
 
 //   return (
-//     <div className="p-4 bg-white rounded-2xl shadow">
+//     <div className="p-4 bg-white shadow rounded-2xl">
 //       <h2 className="mb-3 text-lg font-semibold">Categories</h2>
 
 //       {loading ? (
@@ -1270,7 +1270,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   }, []);
 
 //   return (
-//     <div className="p-4 bg-white rounded-2xl shadow">
+//     <div className="p-4 bg-white shadow rounded-2xl">
 //       <h2 className="mb-3 text-lg font-semibold">Bookings</h2>
 
 //       {loading ? (
@@ -1377,7 +1377,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   }, []);
 
 //   return (
-//     <div className="p-4 bg-white rounded-2xl shadow">
+//     <div className="p-4 bg-white shadow rounded-2xl">
 //       <h2 className="mb-3 text-lg font-semibold">Available Locations</h2>
 
 //       {loading ? (
@@ -1458,7 +1458,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   };
 
 //   return (
-//     <div className="p-4 bg-white rounded-2xl shadow">
+//     <div className="p-4 bg-white shadow rounded-2xl">
 //       <h2 className="mb-3 text-lg font-semibold">Check Payment Status</h2>
 
 //       <div className="flex items-center gap-2">
@@ -1541,7 +1541,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   }, []);
 
 //   return (
-//     <div className="p-4 bg-white rounded-2xl shadow">
+//     <div className="p-4 bg-white shadow rounded-2xl">
 //       <h2 className="mb-3 text-lg font-semibold">Payout Options</h2>
 
 //       {loading ? (
@@ -1615,7 +1615,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 //   }, []);
 
 //   return (
-//     <div className="p-4 bg-white rounded-2xl shadow">
+//     <div className="p-4 bg-white shadow rounded-2xl">
 //       <h2 className="mb-3 text-lg font-semibold">User Payment Details</h2>
 
 //       {loading ? (

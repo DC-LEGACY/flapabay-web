@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import CurrencyModal from "./CurrencyModal";
+import CurrencyModal from "../home/home-v1/CurrencyModal";
 import { Link } from "react-router-dom";
 import LoginSignupModal from "@/components/common/login-signup-modal";
 import MainMenu from "@/components/common/MainMenu";
 import { RiGlobalLine } from "react-icons/ri";
 import SidebarPanel from "@/components/common/sidebar-panel";
-import { modeAtom } from "../../../context/atom";
+import { modeAtom } from "../../context/atom";
 import { useAtom } from "jotai";
-import { userAtom } from "../../../context/atom";
+import { userAtom } from "../../context/atom";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(true);

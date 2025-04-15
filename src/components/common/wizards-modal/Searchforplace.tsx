@@ -16,7 +16,7 @@ const Searchforplace: React.FC = () => {
         </div>
         {/* Content */}
         
-        <div className="px-4 text-gray-700 pb-40">
+        <div className="px-4 text-black pb-40">
         <h2 className="text-lg font-semibold">Search for a place</h2>
           
           <input className="p-2 mt-2 border mb-2 w-full rounded-full pointer-events-auto" type="text" placeholder="Find a place or address" />

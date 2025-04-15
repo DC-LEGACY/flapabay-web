@@ -16,7 +16,7 @@ const Feedbacksent: React.FC = () => {
         </div>
         {/* Content */}
         
-        <div className="px-4 text-gray-700 pb-6">
+        <div className="px-4 text-black pb-6">
         <h2 className="text-lg font-semibold text-center">Feedback Sent</h2>
         <p className="mb-6 text-center">Thank you for submitting product feedback. We share this with our appropriate team.</p>
          

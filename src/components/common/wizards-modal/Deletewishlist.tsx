@@ -15,7 +15,7 @@ const Deletewishlist: React.FC = () => {
           
           
         </div>
-        <div className="p-4 text-gray-700">
+        <div className="p-4 text-black">
         <h2 className="text-lg font-semibold text-center">Delete this wishlist?</h2>
           <p className=" text-center">
          "Private Room" will be permanentaly deleted. 

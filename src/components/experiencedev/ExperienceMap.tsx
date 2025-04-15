@@ -88,13 +88,13 @@ const ExperienceMap: React.FC<ExperienceMapProps> = ({
           {meetingPoint && (
             <div className="flex items-start gap-3 mb-3">
               <MapPin className="h-5 w-5 text-[#FFC500] mt-0.5 flex-shrink-0" />
-              <p className="text-gray-700">{meetingPoint}</p>
+              <p className="text-black">{meetingPoint}</p>
             </div>
           )}
           
           {meetingTime && (
             <div className="flex items-start gap-3 mb-3 pl-8">
-              <p className="text-gray-700 text-sm">
+              <p className="text-black text-sm">
                 <span className="font-medium">Meeting time:</span> {meetingTime}
               </p>
             </div>
@@ -105,7 +105,7 @@ const ExperienceMap: React.FC<ExperienceMapProps> = ({
               <p className="font-medium text-gray-800 mb-2">Getting there:</p>
               <ul className="space-y-2 pl-8">
                 {transportOptions.map((option, index) => (
-                  <li key={index} className="text-sm text-gray-700 flex items-start gap-2">
+                  <li key={index} className="text-sm text-black flex items-start gap-2">
                     <span className="text-[#FFC500] mr-1">•</span> {option}
                   </li>
                 ))}

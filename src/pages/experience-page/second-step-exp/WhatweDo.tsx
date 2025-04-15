@@ -122,7 +122,7 @@ const WhatWeDo: React.FC = () => {
     <div className="max-w-2xl mx-auto p-6">
       {/* Section Heading */}
       <h2 className="text-2xl font-semibold pb-2">What will you and your guests do?</h2>
-      <ul className="list-disc list-inside text-gray-700 mb-4">
+      <ul className="list-disc list-inside text-black mb-4">
         <li>Provide specific plans from start to finish, not multiple ideas or options</li>
         <li>Describe what makes your experience special—something that guests wouldn’t do on their own</li>
       </ul>
@@ -141,7 +141,7 @@ const WhatWeDo: React.FC = () => {
 
       {/* Duration Dropdown */}
       <h2 className="text-xl font-semibold pt-6 pb-2">How long is your experience?</h2>
-      <label className="block text-gray-700 text-sm font-medium mb-1">Duration</label>
+      <label className="block text-black text-sm font-medium mb-1">Duration</label>
       <select
         className="w-full border p-3 rounded-lg"
         value={duration}
@@ -238,7 +238,7 @@ const WhatWeDo: React.FC = () => {
                     checked={selectedSocialTopics.includes(topic)}
                     onChange={() => toggleSocialTopicSelection(topic)}
                   />
-                  <label htmlFor={topic} className="text-gray-700">
+                  <label htmlFor={topic} className="text-black">
                     {topic}
                   </label>
                 </div>
@@ -337,7 +337,7 @@ const WhatWeDo: React.FC = () => {
                     checked={selectedLocations.includes(option)}
                     onChange={() => toggleSelection(option)}
                   />
-                  <label htmlFor={option} className="text-gray-700">
+                  <label htmlFor={option} className="text-black">
                     {option}
                   </label>
                 </div>
@@ -401,7 +401,7 @@ const WhatWeDo: React.FC = () => {
                     checked={selectedGenres.includes(genre)}
                     onChange={() => toggleGenreSelection(genre)}
                   />
-                  <label htmlFor={genre} className="text-gray-700">
+                  <label htmlFor={genre} className="text-black">
                     {genre}
                   </label>
                 </div>

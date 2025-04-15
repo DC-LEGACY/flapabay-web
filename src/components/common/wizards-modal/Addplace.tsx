@@ -1,7 +1,8 @@
-import React from "react";
+import { IoBulbOutline } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
 import { IoMdBook } from "react-icons/io";
-import { IoBulbOutline } from "react-icons/io5";
+import React from "react";
+
 const Addplace: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center ">
@@ -18,7 +19,7 @@ const Addplace: React.FC = () => {
         </div>
         {/* Content */}
         
-        <div className="px-4 text-gray-700 pb-6">
+        <div className="px-4 text-black pb-6">
         <h2 className="text-lg font-semibold">What do you want to add?</h2>
           
           <div className=" flex w-full border rounded-lg p-2 mt-2 justify-between items-center">

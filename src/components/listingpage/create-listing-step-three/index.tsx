@@ -82,7 +82,7 @@ const CreateListingStepThree = () => {
                 onClick={() => setSelectedOption(option.label)} // Set selected option
               >
                 <div className="">{option.icon}</div> {/* Icon */}
-                <p className="text-gray-700">{option.label}</p> {/* Label */}
+                <p className="text-black">{option.label}</p> {/* Label */}
               </div>
             ))}
           </div>

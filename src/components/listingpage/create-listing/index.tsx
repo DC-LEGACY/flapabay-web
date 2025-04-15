@@ -17,7 +17,7 @@ const CreateListing = () => {
                       />
                     </Link>
         </div>
-        <button className="text-gray-700 text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">
+        <button className="text-black text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">
           Exit
         </button>
       </header>

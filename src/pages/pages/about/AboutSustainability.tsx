@@ -45,7 +45,7 @@ const AboutSustainability = () => {
                   </div>
                   <div>
                     <h3 className="mb-2 text-xl font-bold">{initiative.title}</h3>
-                    <p className="text-gray-700">{initiative.description}</p>
+                    <p className="text-black">{initiative.description}</p>
                   </div>
                 </div>
               ))}

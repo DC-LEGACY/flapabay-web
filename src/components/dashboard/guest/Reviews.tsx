@@ -267,7 +267,7 @@ const GuestReviews = () => {
       
       <div className="mb-6 flex flex-col md:flex-row gap-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <SearchNormal className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           <Input
             placeholder="Search reviews..."
             className="pl-10"
@@ -534,7 +534,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
             <div className="md:w-3/4">
               <div className="mb-6">
                 <div className="text-lg font-semibold mb-2">Your Review</div>
-                <p className="text-gray-700">
+                <p className="text-black">
                   {review.comment || (
                     <span className="text-gray-400 italic">
                       {review.status === 'draft' ? "Draft review - no content yet" : "No review content"}
@@ -560,7 +560,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
                       </div>
                     </div>
                   </div>
-                  <p className="text-gray-700">{review.hostResponse}</p>
+                  <p className="text-black">{review.hostResponse}</p>
                 </div>
               )}
             </div>

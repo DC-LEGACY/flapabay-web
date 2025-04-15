@@ -50,7 +50,7 @@ const NeighborhoodConcern = () => {
           <div className="flapabay-container">
             <div className="max-w-3xl mx-auto">
               <motion.h1
-                className="mb-4 text-3xl font-bold text-white md:text-4xl"
+                className="pb-4 text-3xl font-bold text-white md:text-4xl"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -58,7 +58,7 @@ const NeighborhoodConcern = () => {
                 Report a Neighborhood Concern
               </motion.h1>
               <motion.p
-                className="mb-0 text-lg text-white"
+                className="pb-0 text-lg text-white"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -76,7 +76,7 @@ const NeighborhoodConcern = () => {
               <div className="lg:col-span-2">
                 <Card className="border-gray-200 shadow-sm">
                   <CardContent className="p-6">
-                    <h2 className="mb-6 text-xl font-semibold">
+                    <h2 className="pb-6 text-xl font-semibold">
                       Submit Your Concern
                     </h2>
 
@@ -93,7 +93,7 @@ const NeighborhoodConcern = () => {
                           <Input
                             id="location"
                             placeholder="Street address of the property"
-                            className="pl-10"
+                            className="px-10"
                             value={location}
                             onChange={(e) => setLocation(e.target.value)}
                             required
@@ -102,7 +102,7 @@ const NeighborhoodConcern = () => {
                       </div>
 
                       <div>
-                        <Label className="block mb-3 text-base">
+                        <Label className="block pb-3 text-base">
                           Type of Concern
                         </Label>
                         <RadioGroup
@@ -147,7 +147,7 @@ const NeighborhoodConcern = () => {
 
                       <Button
                         type="submit"
-                        className="text-black bg-flapabay-yellow hover:bg-flapabay-yellow/90"
+                        className="text-white bg-flapabay-yellow hover:bg-flapabay-yellow/90"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? "Submitting..." : "Submit Report"}
@@ -160,7 +160,7 @@ const NeighborhoodConcern = () => {
               <div>
                 <Card className="h-full border-gray-200 shadow-sm">
                   <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
+                    <div className="flex items-center pb-4">
                       <AlertCircle className="mr-2 text-flapabay-yellow" />
                       <h2 className="text-xl font-semibold">
                         What Happens Next?
@@ -184,13 +184,13 @@ const NeighborhoodConcern = () => {
                     </ul>
 
                     <div className="pt-6 mt-6 border-t border-gray-200">
-                      <p className="mb-2 font-medium">
+                      <p className="pb-2 font-medium">
                         Need immediate assistance?
                       </p>
-                      <p className="mb-4 text-gray-600">
+                      <p className="pb-4 text-gray-600">
                         For urgent matters requiring immediate attention:
                       </p>
-                      <Button variant="outline" className="w-full mb-2">
+                      <Button variant="outline" className="w-full pb-2">
                         Call Support: (305) 555-0123
                       </Button>
                     </div>
@@ -203,7 +203,7 @@ const NeighborhoodConcern = () => {
 
         <section className="py-16 bg-gray-50">
           <div className="flapabay-container">
-            <h2 className="mb-8 text-2xl font-bold text-center">
+            <h2 className="pb-8 text-2xl font-bold text-center">
               Frequently Asked Questions
             </h2>
 
@@ -228,7 +228,7 @@ const NeighborhoodConcern = () => {
               ].map((faq, index) => (
                 <Card key={index} className="border-gray-200">
                   <CardContent className="p-4">
-                    <h3 className="mb-2 text-lg font-semibold">{faq.q}</h3>
+                    <h3 className="pb-2 text-lg font-semibold">{faq.q}</h3>
                     <p className="text-gray-600">{faq.a}</p>
                   </CardContent>
                 </Card>

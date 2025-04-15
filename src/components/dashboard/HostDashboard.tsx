@@ -197,7 +197,7 @@ const HostDashboard = () => {
           </aside>
           
           {/* Sidebar - Mobile */}
-          <div className="lg:hidden sticky top-0 z-30 bg-white dark:bg-gray-800 border-b dark:border-gray-700 mb-4">
+          <div className="lg:hidden sticky top-0 z-30 bg-white dark:bg-gray-800 border-b dark:border-black mb-4">
             <div className="flex overflow-x-auto py-3 gap-2 px-1 no-scrollbar">
               <Sheet>
                 <SheetTrigger asChild>
@@ -335,7 +335,7 @@ const NavPill = ({ to, label }: { to: string; label: string }) => (
     to={to}
     className={({ isActive }) => 
       `flex-shrink-0 px-4 py-1.5 text-sm font-medium rounded-full ${
-        isActive ? 'bg-[#ffc500]/10 text-black dark:text-black' : 'border dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700'
+        isActive ? 'bg-[#ffc500]/10 text-black dark:text-black' : 'border dark:border-black hover:bg-gray-100 dark:hover:bg-black'
       }`
     }
   >

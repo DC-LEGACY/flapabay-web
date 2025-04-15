@@ -192,11 +192,11 @@ const CancellationOptions = () => {
                 </div>
                 
                 <div className="space-y-4">
-                  <p className="text-gray-700">
+                  <p className="text-black">
                     The refund amount you'll receive depends on several factors:
                   </p>
                   
-                  <ul className="list-disc pl-5 space-y-2 text-gray-700">
+                  <ul className="list-disc pl-5 space-y-2 text-black">
                     <li>The property's cancellation policy (Flexible, Moderate, or Strict)</li>
                     <li>How far in advance you're cancelling before check-in</li>
                     <li>Whether you're within the 24-hour grace period after booking</li>

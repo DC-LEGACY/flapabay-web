@@ -15,7 +15,7 @@ const Addnote: React.FC = () => {
           <h2 className="text-lg font-semibold text-center ml-12">Add Note</h2>
           
         </div>
-        <div className="p-0 text-gray-700  mt-3 mb-3  w-[85%] ml-auto mr-auto ">
+        <div className="p-0 text-black  mt-3 mb-3  w-[85%] ml-auto mr-auto ">
             
           <textarea name="happy holiday " cols={3} rows={3} className=" pointer-events-auto p-2" id=""></textarea>
         </div>

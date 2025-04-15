@@ -1,13 +1,14 @@
-import AdvanceFilterModal from "@/components/common/advance-filter";
-import HeroContent from "./HeroContent";
-import FilterWithProperties from "@/components/home/home-v5/filter-with-property";
-import PropertiesByCities from "@/components/home/home-v4/PropertiesByCities";
-import { Home } from "iconsax-react";
+import "swiper/css/bundle";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import AdvanceFilterModal from "@/components/common/advance-filter";
+import FilterWithProperties from "@/components/home/home-v5/filter-with-property";
+import HeroContent from "./HeroContent";
+import { Home } from "iconsax-react";
 import { Link } from "react-router-dom";
 import { Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css/bundle";
+import PropertiesByCities from "@/components/home/home-v4/PropertiesByCities";
 
 const Hero = () => {
   return (
@@ -34,9 +35,7 @@ const Hero = () => {
       {/* <!-- Advance Feature Modal End --> */}
     </>
 
-    // <div>
-    //   hello
-    // </div>
+    
   );
 };
 

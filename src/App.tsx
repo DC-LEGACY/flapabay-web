@@ -15,6 +15,7 @@ import { AuthProvider } from "@/components/contexts/AuthContext";
 import BannerSearchV1 from "./pages/listings/(grid-view)/banner-search-v1";
 import BannerSearchV2 from "./pages/listings/(grid-view)/banner-search-v2";
 import BecomeHost from "@/pages/experiences/BecomeHost";
+import Blog from "@/pages/Blog";
 import BlogSingle from "./pages/blogs/blogs";
 import BlogV1 from "./pages/blogs/blog-list-v1";
 import BlogV2 from "./pages/blogs/blog-list-v2";
@@ -73,7 +74,7 @@ import GridFull2Col from "./pages/listings/(grid-view)/grid-full-2-col";
 import GridFull3Col from "./pages/listings/(grid-view)/grid-full-3-col";
 import GridFull4Col from "./pages/listings/(grid-view)/grid-full-4-col";
 import HeaderMapStyle from "./pages/listings/(map-style)/header-map-style";
-import HelpPage from "./components/help-center";
+import HelpPage from "@/pages/help-center";
 import HostDashboard from "./components/dashboard/HostDashboard";
 import Invoice from "./pages/pages/invoice";
 import ListV1 from "./pages/listings/(list-view)/list-v1";
@@ -167,15 +168,7 @@ function App() {
                 <Routes>
                   <Route path="/">
                     <Route index element={<Mainpage />} />
-                    {/* <Route path="home-v2" element={<Home_V2 />} />
-              <Route path="home-v3" element={<Home_V3 />} />
-              <Route path="home-v4" element={<Home_V4 />} />
-              <Route path="home-v5" element={<Home_V5 />} />
-              <Route path="home-v6" element={<Home_V6 />} />
-              <Route path="home-v7" element={<Home_V7 />} />
-              <Route path="home-v8" element={<Home_V8 />} />
-              <Route path="home-v9" element={<Home_V9 />} />
-              <Route path="home-v10" element={<Home_V10 />} /> */}
+
                     <Route path="experiences" element={<ExperiencePage />} />
                     <Route
                       path="/help/neighborhood"
@@ -186,16 +179,12 @@ function App() {
                       element={<SupportedCountries />}
                     />
 
-                    <Route
-                      path="/help/countries"
+                    <Route path="/help/countries"
                       element={<SupportedCountries />}
                     />
                     <Route path="/careers" element={<Careers />} />
                     <Route path="/help/faqs" element={<FAQs />} />
-                    <Route
-                      path="/help/cancellation"
-                      element={<CancellationOptions />}
-                    />
+                    <Route path="/help/cancellation" element={<CancellationOptions />} />
                     <Route path="/media" element={<MediaRoom />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/privacy" element={<PrivacyPolicy />} />
@@ -330,16 +319,15 @@ function App() {
                       element={<AgencySingle />}
                     />
                     <Route path="agent-single/:id" element={<AgentSingle />} />
-
+                    <Route path="/blog" element={<Blog />} />
                     <Route path="blog-list-v1" element={<BlogV1 />} />
                     <Route path="blog-list-v2" element={<BlogV2 />} />
                     <Route path="blog-list-v3" element={<BlogV3 />} />
                     <Route path="blogs/:id" element={<BlogSingle />} />
 
                     <Route path="about" element={<About />} />
-                    <Route path="contact" element={<Contact />} />
                     <Route path="compare" element={<Compare />} />
-                    <Route path="pricing" element={<PricingPlan />} />                  
+                    <Route path="pricing" element={<PricingPlan />} />
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />
                     <Route path="not-found" element={<NotFound />} />

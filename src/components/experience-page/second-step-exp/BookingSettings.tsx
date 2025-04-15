@@ -20,7 +20,7 @@ const BookingSettings = () => {
       </p>
 
       <div className="pt-6">
-        <label className="block text-gray-700 font-medium">
+        <label className="block text-black font-medium">
           Cutoff time for additional guests
         </label>
         <select
@@ -38,7 +38,7 @@ const BookingSettings = () => {
       </div>
 
       <div className="pt-6">
-        <label className="block text-gray-700 font-medium">
+        <label className="block text-black font-medium">
           Cutoff time for your first guest
         </label>
         <select

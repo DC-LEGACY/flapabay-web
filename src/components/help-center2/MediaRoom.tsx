@@ -4,7 +4,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -158,7 +157,7 @@ const MediaRoom = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="overflow-hidden border-gray-800 bg-gray-900 hover:shadow-md hover:shadow-gray-700 transition-shadow">
+                  <Card className="overflow-hidden border-gray-800 bg-gray-900 hover:shadow-md hover:shadow-black transition-shadow">
                     <CardContent className="p-0">
                       <div className="flex flex-col md:flex-row">
                         <div className="md:w-32 bg-gray-800 p-4 flex flex-col items-center justify-center text-center">
@@ -416,7 +415,7 @@ const MediaRoom = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="h-full border-gray-800 bg-gray-900 hover:shadow-md hover:shadow-gray-700 transition-shadow overflow-hidden">
+                  <Card className="h-full border-gray-800 bg-gray-900 hover:shadow-md hover:shadow-black transition-shadow overflow-hidden">
                     <div className="h-48 overflow-hidden">
                       <img 
                         src={article.image} 
@@ -491,7 +490,9 @@ const MediaRoom = () => {
         </section>
       </main>
       
-      <Footer />
+      <section className="pb-0 footer-style1 pt60">
+        <Footer />
+      </section>
     </div>
   );
 };

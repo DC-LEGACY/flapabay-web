@@ -1,11 +1,9 @@
-
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-
-import { Star, User } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar';
-import { Button } from '@/ui/button';
+import React, { useState } from 'react';
+import { Star, User } from 'lucide-react';
 
+import { Button } from '@/ui/button';
+import { motion } from 'framer-motion';
 
 interface Review {
   id: number;
@@ -69,7 +67,7 @@ const ExperienceReviews: React.FC<ExperienceReviewsProps> = ({
                 />
               ))}
             </div>
-            <p className="text-gray-700">{review.comment}</p>
+            <p className="text-black">{review.comment}</p>
           </motion.div>
         ))}
       </div>

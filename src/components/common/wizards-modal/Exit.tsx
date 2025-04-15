@@ -16,7 +16,7 @@ const Exit: React.FC = () => {
         </div>
         {/* Content */}
         
-        <div className="px-4 text-gray-700">
+        <div className="px-4 text-black">
         <h2 className="text-lg font-semibold">Are you sure you want to exit?</h2>
           <p className="mb-6">If you exit now, Your info not be saved.</p>
           

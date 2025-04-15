@@ -1,7 +1,7 @@
+import { Check, X } from 'lucide-react';
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Check, X } from 'lucide-react';
 
 interface ExperienceIncludesProps {
   included: string[];
@@ -31,7 +31,7 @@ const ExperienceIncludes: React.FC<ExperienceIncludesProps> = ({
                   <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center">
                     <Check className="h-4 w-4 text-green-600" />
                   </div>
-                  <span className="text-gray-700">{item}</span>
+                  <span className="text-black">{item}</span>
                 </li>
               ))}
             </ul>
@@ -47,7 +47,7 @@ const ExperienceIncludes: React.FC<ExperienceIncludesProps> = ({
                   <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center">
                     <X className="h-4 w-4 text-red-600" />
                   </div>
-                  <span className="text-gray-700">{item}</span>
+                  <span className="text-black">{item}</span>
                 </li>
               ))}
             </ul>

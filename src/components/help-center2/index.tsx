@@ -407,7 +407,7 @@ export default function HelpPage() {
                   className="cursor-pointer"
                   onClick={() => navigate(link.path)}
                 >
-                  <Card className="h-full text-white transition-colors bg-black border-gray-700 rounded-2 xl hover:border-flapabay-yellow">
+                  <Card className="h-full text-white transition-colors bg-black border-black rounded-2xl hover:border-flapabay-yellow">
                     <CardContent className="flex flex-col items-center p-4 text-center">
                       <div className="flex items-center justify-center w-12 h-12 mt-3 mb-3 rounded-full bg-flapabay-yellow/90">
                         <span className="text-black">{link.icon}</span>
@@ -670,7 +670,7 @@ export default function HelpPage() {
                 >
                   <div className="relative">
                     <textarea
-                      className="w-full p-4 text-white bg-gray-900 border border-gray-700 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-flapabay-yellow"
+                      className="w-full p-4 text-white bg-gray-900 border border-black rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-flapabay-yellow"
                       placeholder="Ask me anything about FlapaBay..."
                       rows={3}
                       value={aiQuestion}
@@ -719,7 +719,7 @@ export default function HelpPage() {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-5 pt-6 bg-gray-900 border border-gray-700 rounded-lg"
+                    className="p-5 pt-6 bg-gray-900 border border-black rounded-lg"
                   >
                     <div className="flex items-center mb-3">
                       <Bot className="w-5 h-5 mr-2 text-flapabay-yellow" />
@@ -783,7 +783,7 @@ export default function HelpPage() {
                       <motion.div
                         key={index}
                         whileHover={{ x: 5 }}
-                        className="flex items-center p-3 transition-colors bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700"
+                        className="flex items-center p-3 transition-colors bg-gray-800 rounded-lg cursor-pointer hover:bg-black"
                         onClick={() =>
                           setAiQuestion(
                             `Tell me about ${topic.title.toLowerCase()}`

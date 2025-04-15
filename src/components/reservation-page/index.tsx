@@ -12,7 +12,7 @@ export default function ReservationPage() {
           </Link>
         </div>
         <Link to={"/payment-page"}>
-        <button className="text-gray-700 text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">
+        <button className="text-black text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">
           Exit
         </button>
         </Link>
@@ -40,7 +40,7 @@ export default function ReservationPage() {
               Guesthouse in Kecamatan Sidemen
             </h2>
             <p className="text-gray-500 text-sm">Jan 1 – 6, 2025</p>
-            <div className="mt-2 text-gray-700 text-sm">
+            <div className="mt-2 text-black text-sm">
               <p>1 guest</p>
               <p className="font-semibold">$107.21 total</p>
             </div>

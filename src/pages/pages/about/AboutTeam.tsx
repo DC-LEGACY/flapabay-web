@@ -75,7 +75,7 @@ const AboutTeam = () => {
               <div className="p-6">
                 <h3 className="mb-1 text-xl font-bold">{member.name}</h3>
                 <p className="mb-3 font-medium text-flapabay-yellow">{member.role}</p>
-                <p className="text-gray-700">{member.bio}</p>
+                <p className="text-black">{member.bio}</p>
               </div>
             </motion.div>
           ))}

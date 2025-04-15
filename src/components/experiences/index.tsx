@@ -77,31 +77,7 @@ const ExperiencePage = () => {
         </div>
       </section> */}
 
-
-
-
-
-
-
-
-
-<Experiences/>
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
-
+      <Experiences />
 
       <section className="pb-0   footer-style1 pt60">
         <Footer />

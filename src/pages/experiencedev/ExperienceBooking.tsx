@@ -1,16 +1,14 @@
-
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-
-import { addDays, format, isAfter, isBefore, parseISO, startOfTomorrow } from 'date-fns';
 import { ArrowRight, Calendar as CalendarIcon, Check, Clock, Star, Users } from 'lucide-react';
-
-import { toast } from '@/hooks/use-toast';
-import { Card } from '@/ui/card';
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
+import React, { useState } from 'react';
+import { addDays, format, isAfter, isBefore, parseISO, startOfTomorrow } from 'date-fns';
+
+import { Badge } from '@/ui/badge';
 import { Button } from '@/ui/button';
 import { Calendar } from '@/ui/calendar';
-import { Badge } from '@/ui/badge';
+import { Card } from '@/ui/card';
+import { motion } from 'framer-motion';
+import { toast } from '@/hooks/use-toast';
 
 interface ExperienceBookingProps {
   price: number;
@@ -179,7 +177,7 @@ const ExperienceBooking: React.FC<ExperienceBookingProps> = ({
             />
             {selectedDate && (
               <div className="px-4 py-3 border-t border-gray-100 bg-gray-50 text-center">
-                <p className="text-sm font-medium text-gray-700">
+                <p className="text-sm font-medium text-black">
                   Available on {format(selectedDate, 'EEEE, MMM d')}
                 </p>
                 <Button 

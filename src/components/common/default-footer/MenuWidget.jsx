@@ -6,25 +6,25 @@ const MenuWidget = () => {
     {
       title: "Company",
       links: [
-        { label: "About Us", href: "about" },
-        { label: "Blog", href: "blog" },
-        { label: "Media Room", href: "media" },
-        { label: "Contact Us", href: "contact" },
+        { label: "About Us", href: "/about" },
+        { label: "Blog", href: "/blog" },
+        { label: "Media Room", href: "/media" },
+        { label: "Contact Us", href: "/contact" },
       ],
     },
     {
       title: "Quick Links",
       links: [
-        { label: "Terms of Use", href: "terms" },
-        { label: "Privacy Policy", href: "privacy" },
-        { label: "Careers", href: "careers" },
+        { label: "Terms of Use", href: "/terms" },
+        { label: "Privacy Policy", href: "/privacy" },
+        { label: "Careers", href: "/careers" },
         { label: "FAQs", href: "/help/faqs" },
       ],
     },
     {
       title: "Support",
       links: [
-        { label: "Help Center", href: "help-center" },
+        { label: "Help Center", href: "/help-center" },
         { label: "Cancellation options", href: "/help/cancellation" },
         { label: "Report Neighbourhood Concern", href: "/help/neighborhood" },
         { label: "Supported Countries", href: "/help/countries" },

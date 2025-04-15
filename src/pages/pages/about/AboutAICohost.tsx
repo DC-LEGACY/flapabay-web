@@ -1,7 +1,7 @@
+import { BadgeCheck, BarChart, Bot, Clock, MessageSquare, Shield } from 'lucide-react';
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Bot, MessageSquare, BarChart, Clock, Shield, BadgeCheck } from 'lucide-react';
 
 const AboutAICohost = () => {
   const features = [
@@ -106,7 +106,7 @@ const AboutAICohost = () => {
                 </div>
                 
                 <div className="flex items-center gap-2 mt-4">
-                  <input type="text" placeholder="Ask your AI assistant..." className="w-full p-2 border border-gray-700 bg-gray-800 text-white rounded-lg text-sm" disabled />
+                  <input type="text" placeholder="Ask your AI assistant..." className="w-full p-2 border border-black bg-gray-800 text-white rounded-lg text-sm" disabled />
                   <button className="bg-flapabay-yellow text-black p-2 rounded-lg" disabled>
                     <MessageSquare className="h-5 w-5" />
                   </button>

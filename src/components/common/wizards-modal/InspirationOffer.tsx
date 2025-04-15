@@ -16,7 +16,7 @@ const InspirationOffer: React.FC = () => {
         </div>
         {/* Content */}
         
-        <div className="p-4 text-gray-700">
+        <div className="p-4 text-black">
         <h2 className="text-lg font-semibold">Inspiration and offers</h2>
           <p className="mb-6">Inspiring stays, experiences, and deals.</p>
           {/* Email Toggle */}

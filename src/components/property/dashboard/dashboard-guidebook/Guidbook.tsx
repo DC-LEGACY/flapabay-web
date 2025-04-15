@@ -471,7 +471,7 @@ const Guidebooks = () => {
             </button>
             <button
             className={`px-4 py-2 rounded-lg transition ${
-              isFormComplete ? "bg-black text-white" : "bg-gray-300 text-gray-700 cursor-not-allowed"
+              isFormComplete ? "bg-black text-white" : "bg-gray-300 text-black cursor-not-allowed"
             }`}
             disabled={!isFormComplete}
           >
@@ -610,7 +610,7 @@ const Guidebooks = () => {
               </button>
               <button
                 className={`px-4 py-2 rounded-lg transition ${
-                  tip && selectedCategory1 ? "bg-black text-white" : "bg-gray-300 text-gray-700 cursor-not-allowed"
+                  tip && selectedCategory1 ? "bg-black text-white" : "bg-gray-300 text-black cursor-not-allowed"
                 }`}
                 disabled={!tip || !selectedCategory1}
               >

@@ -13,12 +13,12 @@ const HeroContent = () => {
   const tabs = [
     { id: "Experiences", label: "Experiences" },
     { id: "rent", label: "Rent" },
-    { id: "sold", label: "" },
+   
   ];
 
   return (
-    // <div className="advance-search-tab mt70 mt30-md mx-auto animate-up-3">
-    //   <ul className="nav nav-tabs p-0 m-0">
+    // <div className="mx-auto advance-search-tab mt70 mt30-md animate-up-3">
+    //   <ul className="p-0 m-0 nav nav-tabs">
     //     {tabs.map((tab) => (
     //       <li className="nav-item" key={tab.id}>
     //         <button
@@ -57,7 +57,7 @@ const HeroContent = () => {
     //             {/* End .col-md-8 */}
 
     //             <div className="col-md-4 col-lg-3">
-    //               <div className="d-flex align-items-center justify-content-start justify-content-md-center mt-3 mt-md-0">
+    //               <div className="mt-3 d-flex align-items-center justify-content-start justify-content-md-center mt-md-0">
     //                 <button
     //                   className="advance-search-btn"
     //                   type="button"

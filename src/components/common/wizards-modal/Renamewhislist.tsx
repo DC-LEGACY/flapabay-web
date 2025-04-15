@@ -15,7 +15,7 @@ const Renamewishlist: React.FC = () => {
           <h2 className="text-lg font-semibold text-center ml-12">Rename Wishlist?</h2>
           
         </div>
-        <div className="p-0 text-gray-700  mt-3 mb-3  w-[85%] ml-auto mr-auto ">
+        <div className="p-0 text-black  mt-3 mb-3  w-[85%] ml-auto mr-auto ">
             
           <input  className="pointer-events-auto w-full outline-none border rounded-lg p-3" type="Dream Holiday" placeholder="Dream Holiday!"/>
         </div>

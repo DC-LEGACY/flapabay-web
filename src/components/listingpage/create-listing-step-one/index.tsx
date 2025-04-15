@@ -17,7 +17,7 @@ const CreateListingSteps = () => {
                       />
                     </Link>
         </div>
-        <button className="text-gray-700 text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">
+        <button className="text-black text-sm flex items-center border border-gray-100 rounded-full px-3 py-2">
           Exit
         </button>
       </header>
@@ -32,21 +32,21 @@ const CreateListingSteps = () => {
               <h2 className="text-lg font-semibold">1 Tell us about your place</h2>
               <p className="text-gray-600">Share some basic info, like where it is and how many guests can stay.</p>
             </div>
-            <FaBed className="text-3xl text-gray-700" />
+            <FaBed className="text-3xl text-black" />
           </div>
           <div className="flex justify-between items-center border-b pb-4">
             <div>
               <h2 className="text-lg font-semibold">2 Make it stand out</h2>
               <p className="text-gray-600">Add 5 or more photos plus a title and description—we’ll help you out.</p>
             </div>
-            <FaImages className="text-3xl text-gray-700" />
+            <FaImages className="text-3xl text-black" />
           </div>
           <div className="flex justify-between items-center">
             <div>
               <h2 className="text-lg font-semibold">3 Finish up and publish</h2>
               <p className="text-gray-600">Choose a starting price, verify a few details, then publish your listing.</p>
             </div>
-            <FaCheckCircle className="text-3xl text-gray-700" />
+            <FaCheckCircle className="text-3xl text-black" />
           </div>
         </div>
       </div>

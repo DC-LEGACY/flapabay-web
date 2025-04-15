@@ -15,7 +15,7 @@ const UnsubscribeModal: React.FC = () => {
           <h2 className="text-lg font-semibold text-center ml-32">Are you sure?</h2>
           
         </div>
-        <div className="p-4 text-gray-700">
+        <div className="p-4 text-black">
           <p>
             You'll be unsubscribing from all marketing emails from Airbnb. This
             includes recommendations, travel inspiration and deals, things to

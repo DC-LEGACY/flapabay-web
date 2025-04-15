@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import DashboardHeader from "../common/DashboardHeader";
+import { Link } from "react-router-dom";
 import MobileMenu from "../common/mobile-menu";
+import { useState } from "react";
 
 export default function TripsPage() {
   // Dummy trip data (replace with real API data)
@@ -54,8 +54,8 @@ export default function TripsPage() {
               <div className="p-6 flex-1">
                 <h3 className="text-lg font-semibold">{trips[0].title}</h3>
                 <p className="text-gray-500">{trips[0].date}</p>
-                <p className="text-gray-700 mt-2">{trips[0].host}</p>
-                <p className="text-gray-700">{trips[0].location}</p>
+                <p className="text-black mt-2">{trips[0].host}</p>
+                <p className="text-black">{trips[0].location}</p>
               </div>
               {/* Right Section (Image) */}
               <div className="w-1/3 relative">

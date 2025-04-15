@@ -16,7 +16,7 @@ const TellGuests: React.FC = () => {
         </div>
         {/* Content */}
         
-        <div className="px-4 text-gray-700 pb-6">
+        <div className="px-4 text-black pb-6">
         <h2 className="text-lg font-semibold">Tell guests about your exterior security cameras</h2>
         <p className="mb-6">Descibde the area that each camera monitor, such as backyard or pool.
         <span> </span><span className=" underline">  Learn more</span>

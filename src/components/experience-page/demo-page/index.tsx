@@ -136,7 +136,7 @@ const DemoPage = () => {
               <h2 className="text-4xl font-bold">
                 Create an activity, your way
               </h2>
-              <p className="text-xl text-gray-700 pt-6 ">
+              <p className="text-xl text-black pt-6 ">
                 Food tour by bike, light photography at night, tapas on a boat,
                 or yoga (with goats). Create and curate a unique activity people
                 want to join.
@@ -155,7 +155,7 @@ const DemoPage = () => {
               <h2 className="text-4xl font-bold">
                 Do what you love (and get paid)
               </h2>
-              <p className="text-xl text-gray-700 pt-6 ">
+              <p className="text-xl text-black pt-6 ">
                 Scout for street art or surf at sunset, turn your passion into
                 profit. Earn money without it feeling like a job.
                 <br />
@@ -191,7 +191,7 @@ const DemoPage = () => {
               <h2 className="text-4xl font-bold">
                 Create an activity, your way
               </h2>
-              <p className="text-xl text-gray-700 pt-6 ">
+              <p className="text-xl text-black pt-6 ">
                 Food tour by bike, light photography at night, tapas on a boat,
                 or yoga (with goats). Create and curate a unique activity people
                 want to join.
@@ -208,7 +208,7 @@ const DemoPage = () => {
           {/* Heading and Description */}
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold pb-4">Show what you know</h2>
-            <p className="text-xl text-gray-700 max-w-2xl mx-auto">
+            <p className="text-xl text-black max-w-2xl mx-auto">
               There are experiences of every kind, like cooking, crafting,
               kayaking, and more. There's no limit to what you can do. Explore
               these featured categories.
@@ -225,7 +225,7 @@ const DemoPage = () => {
                 className="w-full h-auto rounded-lg"
               />
               <h3 className="text-xl font-bold mb-2 pt-6">Culture & History</h3>
-              <p className="text-gray-700">
+              <p className="text-black">
                 Share the story behind famous landmarks in your city.
               </p>
             </div>
@@ -238,7 +238,7 @@ const DemoPage = () => {
                 className="w-full h-auto rounded-lg"
               />
               <h3 className="text-xl font-bold mb-2 pt-6">Food & Drink</h3>
-              <p className="text-gray-700">
+              <p className="text-black">
                 Host a food tour, cooking class, dining experience, and more.
               </p>
             </div>
@@ -251,7 +251,7 @@ const DemoPage = () => {
                 className="w-full h-auto rounded-lg"
               />
               <h3 className="text-xl font-bold mb-2 pt-6">Nature & Outdoor</h3>
-              <p className="text-gray-700">
+              <p className="text-black">
                 Lead nature hikes, water sports, mountain activities, and more.
               </p>
             </div>
@@ -268,7 +268,7 @@ const DemoPage = () => {
             <h2 className="text-4xl font-bold mb-4">
               We’ve got your back, every step of the way
             </h2>
-            <p className="text-xl text-gray-700 max-w-2xl mx-auto">
+            <p className="text-xl text-black max-w-2xl mx-auto">
               Resources like articles and insights dedicated to your hosting
               needs, 24/7 customer support for you and your guests, exposure for
               your experiences, and much more, to help you grow your business.
@@ -279,7 +279,7 @@ const DemoPage = () => {
           <div className="mb-16 xl:flex items-center bg-gray-50 p-5">
             <div className="flex flex-col">
               <h3 className="text-xl font-bold mb-6">Tools tailored to you</h3>
-              <p className="text-medium text-gray-700 pb-8">
+              <p className="text-medium text-black pb-8">
                 A dashboard to give you insights. Feedback on how to improve
                 visibility to guests from all over the world through search and
                 filters, seamless payments, and much more.
@@ -293,7 +293,7 @@ const DemoPage = () => {
                 <FaTable className="text-4xl text-[#ffc500] mx-auto mb-4" />{" "}
                 {/* React Icon */}
                 <h4 className="text-2xl font-bold pb-2">Task</h4>
-                <p className="text-gray-700">
+                <p className="text-black">
                   Manage your bookings and schedules efficiently.
                 </p>
               </div>
@@ -303,7 +303,7 @@ const DemoPage = () => {
                 <FaCalendarAlt className="text-4xl text-[#ffc500] mx-auto mb-4" />{" "}
                 {/* React Icon */}
                 <h4 className="text-2xl font-bold pb-2">Scheduling</h4>
-                <p className="text-gray-700">
+                <p className="text-black">
                   Easily schedule and manage your experiences.
                 </p>
               </div>
@@ -313,7 +313,7 @@ const DemoPage = () => {
                 <FaCreditCard className="text-4xl text-[#ffc500] mx-auto mb-4" />{" "}
                 {/* React Icon */}
                 <h4 className="text-2xl font-bold pb-2">Payments</h4>
-                <p className="text-gray-700">
+                <p className="text-black">
                   Seamless payment processing for your bookings.
                 </p>
               </div>
@@ -323,7 +323,7 @@ const DemoPage = () => {
                 <FaChartLine className="text-4xl text-[#ffc500] mx-auto mb-4" />{" "}
                 {/* React Icon */}
                 <h4 className="text-2xl font-bold pb-2">Insights</h4>
-                <p className="text-gray-700">
+                <p className="text-black">
                   Get valuable insights to grow your business.
                 </p>
               </div>
@@ -340,7 +340,7 @@ const DemoPage = () => {
               <h3 className="text-xl font-bold mb-4">for Hosts</h3>
             </div>
             <div className=" w-1/2">
-              <p className="text-xl text-gray-700 pb-6">
+              <p className="text-xl text-black pb-6">
                 Alicover for Hosts covers Experiences, too. Alicover for Hosts
                 includes $1M in Experiences liability insurance in the rare
                 event a guest gets hurt during an Airbnb Experience. Always
@@ -371,7 +371,7 @@ const DemoPage = () => {
               <h3 className="text-xl font-bold pb-2">
                 Learn our quality standards
               </h3>
-              <p className="text-lg text-gray-700">
+              <p className="text-lg text-black">
                 Make sure your experience meets our best for expertise, insider
                 access, and connection.
               </p>
@@ -381,7 +381,7 @@ const DemoPage = () => {
             <div className="text-center bg-slate-50 pb-2">
               <div className="text-4xl font-bold text-[#ffc500] pb-4">2</div>
               <h3 className="text-xl font-bold pb-2">Submit your experience</h3>
-              <p className="text-lg text-gray-700">
+              <p className="text-lg text-black">
                 Share a description and high-quality photos of what you have in
                 mind to show what your experience would be like.
               </p>
@@ -391,7 +391,7 @@ const DemoPage = () => {
             <div className="text-center bg-slate-50 pb-2">
               <div className="text-4xl font-bold text-[#ffc500] pb-4">3</div>
               <h3 className="text-xl font-bold pb-2">Start hosting</h3>
-              <p className="text-lg text-gray-700">
+              <p className="text-lg text-black">
                 Your experience will be reviewed and if it is approved, you can
                 add dates to your calendar and start welcoming guests.
               </p>
@@ -426,7 +426,7 @@ const DemoPage = () => {
             {faqs.slice(0, showAllFAQs ? faqs.length : 3).map((faq, index) => (
               <div key={index} className="pb-4 pt-4 border-b">
                 <h3 className="text-xl font-bold mb-2">{faq.question}</h3>
-                <p className="text-lg text-gray-700">{faq.answer}</p>
+                <p className="text-lg text-black">{faq.answer}</p>
               </div>
             ))}
 

@@ -1,12 +1,11 @@
-
-import React, { useState } from 'react';
-import { Bot, MessageSquare, Calendar, BarChart2, Star, AlertCircle } from 'lucide-react';
-
-import { useToast } from '@/hooks/use-toast';
-import { Switch } from '@/ui/switch';
-import { Label } from '@/ui/label';
+import { AlertCircle, BarChart2, Bot, Calendar, MessageSquare, Star } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/ui/card';
+import React, { useState } from 'react';
+
 import { Button } from '@/ui/button';
+import { Label } from '@/ui/label';
+import { Switch } from '@/ui/switch';
+import { useToast } from '@/hooks/use-toast';
 
 interface AICohostProps {
   isEnabled: boolean;
@@ -208,7 +207,7 @@ const AICohost: React.FC<AICohostProps> = ({ isEnabled, onToggle }) => {
                 <Card 
                   key={feature.id} 
                   className={`transition-colors ${
-                    isFeatureEnabled ? 'border-flapabay-yellow' : 'border-gray-200 dark:border-gray-700'
+                    isFeatureEnabled ? 'border-flapabay-yellow' : 'border-gray-200 dark:border-black'
                   }`}
                 >
                   <CardHeader>

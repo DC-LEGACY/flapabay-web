@@ -3,7 +3,7 @@ import { Check, Clock, Globe, Search } from 'lucide-react';
 import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import DefaultHeader from "@/components/common/DefaultHeader";
+
 import Footer from "@/components/common/default-footer";
 import { Input } from '@/components/ui/input';
 import { motion } from 'framer-motion';
@@ -102,7 +102,7 @@ const SupportedCountries = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" />
+                <SearchNormal className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" />
                 <Input 
                   type="text" 
                   placeholder="Search for a country..." 
@@ -282,7 +282,9 @@ const SupportedCountries = () => {
         </section>
       </main>
       
-      <Footer />
+      <section className="pb-0 footer-style1 pt60">
+        <Footer />
+      </section>
     </div>
   );
 };

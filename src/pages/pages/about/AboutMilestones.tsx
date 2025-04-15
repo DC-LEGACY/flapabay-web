@@ -48,7 +48,7 @@ const AboutMilestones = () => {
         
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-700 hidden md:block"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-black hidden md:block"></div>
           
           <div className="space-y-12">
             {milestones.map((milestone, index) => (

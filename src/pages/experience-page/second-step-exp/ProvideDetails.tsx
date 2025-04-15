@@ -43,7 +43,7 @@ const ProvideDetails = () => {
                 <div className="w-2.5 py-2 h-2.5 bg-white rounded-sm"></div>
               )}
             </div>
-            <span className="text-gray-700">{option}</span>
+            <span className="text-black">{option}</span>
           </label>
         ))}
       </div>

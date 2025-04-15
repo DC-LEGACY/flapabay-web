@@ -1,14 +1,14 @@
 import {
-  Calendar,
-  ChevronLeft,
-  ChevronRight,
+  Calendar1,
+  ArrowLeft,
+  ArrowRight2,
   Filter,
   Heart,
-  MapPin,
-  Search,
+  Map,
+  Search2,
   Star,
   Users,
-} from "lucide-react";
+} from "iconsax-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/ui/tabs";
 import { motion, useAnimation } from "framer-motion";
@@ -354,7 +354,7 @@ const Experiences = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2xl:grid-cols-4 gap-8">
             {celebrityExperiences.map((experience, index) => (
               <motion.div
                 key={experience.id}

@@ -15,7 +15,7 @@ const AboutMission = () => {
       <div className="flapabay-container">
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h2 className="pb-6 text-3xl font-bold md:text-4xl">Our Mission & Vision</h2>
-          <p className="text-lg text-gray-700">
+          <p className="text-lg text-black">
             We're on a mission to transform how people experience Africa, by connecting travelers with authentic stays and experiences while empowering local hosts and communities.
           </p>
         </div>
@@ -26,7 +26,7 @@ const AboutMission = () => {
               <Home2 className="w-7 h-7 text-flapabay-black" />
             </div>
             <h3 className="mb-4 text-xl font-bold">Empowering Hosts</h3>
-            <p className="text-gray-700">
+            <p className="text-black">
               We provide local hosts with the tools, support and platform to showcase their unique properties and build sustainable businesses.
             </p>
           </div>
@@ -36,7 +36,7 @@ const AboutMission = () => {
               <People className="w-7 h-7 text-flapabay-black" />
             </div>
             <h3 className="mb-4 text-xl font-bold">Accessible Travel</h3>
-            <p className="text-gray-700">
+            <p className="text-black">
               We're committed to making travel more accessible and inclusive, offering a diverse range of accommodations for every budget and preference.
             </p>
           </div>
@@ -46,7 +46,7 @@ const AboutMission = () => {
               <Global className="w-7 h-7 text-flapabay-black" />
             </div>
             <h3 className="mb-4 text-xl font-bold">Authentic Experiences</h3>
-            <p className="text-gray-700">
+            <p className="text-black">
               We curate genuine African experiences that foster cultural exchange and create lasting connections between travelers and local communities.
             </p>
           </div>

@@ -39,7 +39,7 @@ const SingleV10 = () => {
     <>
     <MetaData meta={metaInformation} />
       {/* Main Header Nav */}
-      <DefaultHeader />
+      <Header />
       {/* End Main Header Nav */}
 
       {/* Mobile Nav  */}

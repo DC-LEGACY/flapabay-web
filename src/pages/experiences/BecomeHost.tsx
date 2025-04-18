@@ -13,6 +13,7 @@ import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
+import Header from "@/components/common/DefaultHeader";
 
 const BecomeHost = () => {
   // State for earnings calculator
@@ -92,7 +93,7 @@ const BecomeHost = () => {
 
   return (
     <>
-      <DefaultHeader />
+      <Header />
       <MobileMenu />
 
       <div className="min-h-screen bg-gray-100">
@@ -119,7 +120,7 @@ const BecomeHost = () => {
               transition={{ duration: 0.8 }}
               className="max-w-2xl text-white"
             >
-              <h1 className="pt-12 pb-6 text-5xl font-bold text-center text-white md:text-6xl">
+              <h1 className="pt-12 sm:pt-10 pb-6 text-5xl font-bold text-center text-white md:text-6xl">
                 Share your space,
                 <br />
                 earn extra income

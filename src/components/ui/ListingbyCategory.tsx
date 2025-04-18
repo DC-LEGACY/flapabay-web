@@ -106,13 +106,13 @@ const ListingbyCategory = ({ categories }) => {
               >
                 <div
                   className={`w-14 h-14 rounded-full flex items-center justify-center mb-2 transition-colors ${
-                    isSelected ? "bg-yellow-100" : "bg-yellow-400/10"
+                    isSelected ? "bg-flapabay-yellow" : "bg-yellow-400/10"
                   }`}
                 >
                   {category.icon && (
                     <category.icon
                       size={28}
-                      color={isSelected ? "#ffffff" : "#ffc500"}
+                      color={isSelected ? "#fff" : "#ffc500"}
                       variant="TwoTone"
                     />
                   )}

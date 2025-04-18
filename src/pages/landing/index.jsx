@@ -1,10 +1,10 @@
-// import categories from "@/data/propertyByCategory"
+import categories from "@/data/propertyByCategory"
 import Cta from "@/components/home/home-v6/Cta";
 import Footer from "@/components/common/default-footer";
 import Header from "@/components/common/DefaultHeader";
 import Hero from "@/components/home/home-v1/hero";
 import MetaData from "@/components/common/MetaData";
-import MobileMenu from "../../components/common/mobile-menu";
+import MobileMenu from "@/components/common/mobile-menu";
 import ListingbyCategory from "@/components/ui/ListingbyCategory";
 import PropertyByCitiesWrapper from "@/components/home/home-v3/PropertyByCitiesWrapper";
 import { useScreenSize } from "@/utilis/screenUtils";
@@ -29,128 +29,7 @@ const metaInformation = {
 
 const Home_V1 = () => {
   const isMobile = useScreenSize();
-  const categories = [
-    {
-      id: 1,
-      name: "Trending",
-      icon: ChartCircle,
-      propertyCount: 12,
-    },
-    {
-      id: 2,
-      name: "Arts & Culture",
-      icon: Courthouse,
-      propertyCount: 12,
-    },
-    {
-      id: 3,
-      name: "Food & Drink",
-      icon: BagHappy,
-      propertyCount: 12,
-    },
-    {
-      id: 4,
-      name: "Nature",
-      icon: Tree,
-      propertyCount: 12,
-    },
-    {
-      id: 5,
-      name: "Sports",
-      icon: Wind,
-      propertyCount: 12,
-    },
-    {
-      id: 6,
-      name: "Nightlife",
-      icon: Building,
-      propertyCount: 12,
-    },
-    {
-      id: 7,
-      name: "Wellness",
-      icon: SafeHome,
-      propertyCount: 12,
-    },
-    {
-      id: 8,
-      name: "Tours",
-      icon: People,
-      propertyCount: 12,
-    },
-    {
-      id: 9,
-      name: "Classes",
-      icon: Book,
-      propertyCount: 12,
-    },
-    {
-      id: 10,
-      name: "African",
-      icon: BagHappy,
-      propertyCount: 12,
-    },
-    {
-      id: 11,
-      name: "Celebrity",
-      icon: Icon,
-      propertyCount: 12,
-    },
-    {
-      id: 12,
-      name: "Seasonal",
-      icon: Tree,
-      propertyCount: 12,
-    },
-    {
-      id: 13,
-      name: "Adventure",
-      icon: Wind,
-      propertyCount: 12,
-    },
-    {
-      id: 14,
-      name: "Photography",
-      icon: Icon,
-      propertyCount: 12,
-    },
-    {
-      id: 15,
-      name: "Music",
-      icon: ChartCircle,
-      propertyCount: 12,
-    },
-    {
-      id: 16,
-      name: "Cooking",
-      icon: BagHappy,
-      propertyCount: 12,
-    },
-    {
-      id: 17,
-      name: "Crafts",
-      icon: Icon,
-      propertyCount: 12,
-    },
-    {
-      id: 18,
-      name: "Local",
-      icon: People,
-      propertyCount: 12,
-    },
-    {
-      id: 19,
-      name: "Water",
-      icon: Wind,
-      propertyCount: 12,
-    },
-    {
-      id: 20,
-      name: "Virtual",
-      icon: Icon,
-      propertyCount: 12,
-    },
-  ];
+
   return (
     <>
       <MetaData meta={metaInformation} />

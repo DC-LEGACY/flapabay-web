@@ -118,13 +118,8 @@ const mobileMenus = [
     subMenu: [
       { path: "/about", label: "About" },
       { path: "/contact", label: "Contact" },
-      { path: "/compare", label: "Compate" },
-      { path: "/pricing", label: "Pricing" },
       { path: "/faq", label: "Faq" },
-      { path: "/login", label: "Login" },
-      { path: "/register", label: "Register" },
-      { path: "/404", label: "404" },
-      { path: "/invoice", label: "Invoice" },
+      
     ],
   },
 ];

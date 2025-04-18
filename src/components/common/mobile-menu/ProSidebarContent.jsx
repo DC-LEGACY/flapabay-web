@@ -1,67 +1,41 @@
-import mobileMenuItems from "../../../data/mobileMenuItems";
-import { isParentActive } from "../../../utilis/isMenuActive";
-import {useLocation } from "react-router-dom";
+import { Menu, MenuItem, Sidebar, SubMenu } from "react-pro-sidebar";
+
 import { Link } from "react-router-dom";
-
-import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-
+import { isParentActive } from "../../../utilis/isMenuActive";
+import mobileMenuItems from "../../../data/mobileMenuItems";
+import {useLocation} from "react-router-dom";
 
 const ProSidebarContent = () => {
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
 
-
+  const menuItems = [
+    { label: "Explore", path: "/" },
+    { label: "Experiences", path: "/experiences" },
+    { label: "Help Center", path: "/help-center" },
+    { label: "Dashboard", path: "/dashboard-home" },
+    { label: "Contact", path: "/contact" },
+  ];
 
   return (
     <Sidebar width="100%" backgroundColor="#fff" className="my-custom-class">
       <Menu>
-        {mobileMenuItems.map((item, index) => (
-          <SubMenu
+        {menuItems.map((item, index) => (
+          <MenuItem
             key={index}
-            className={isParentActive(item.subMenu, pathname) ? "active" : ""}
-            label={item.label}
+            component={
+              <Link
+                to={item.path}
+                className={item.path === pathname ? "active" : ""}
+              />
+            }
           >
-            {item.subMenu.map((subItem, subIndex) =>
-              subItem.subMenu ? (
-                <SubMenu
-                  key={subIndex}
-                  label={subItem.label}
-                  className={
-                    isParentActive(subItem.subMenu, pathname) ? "active" : ""
-                  }
-                >
-                  {subItem.subMenu.map((nestedItem, nestedIndex) => (
-                    <MenuItem
-                      key={nestedIndex}
-                      component={
-                        <Link
-                          className={nestedItem.path == pathname ? "active" : ""}
-                          to={nestedItem.path}
-                        />
-                      }
-                    >
-                      {nestedItem.label}
-                    </MenuItem>
-                  ))}
-                </SubMenu>
-              ) : (
-                <MenuItem
-                  key={subIndex}
-                  component={
-                    <Link
-                      className={subItem.path == pathname ? "active" : ""}
-                      to={subItem.path}
-                    />
-                  }
-                >
-                  {subItem.label}
-                </MenuItem>
-              )
-            )}
-          </SubMenu>
+            {item.label}
+          </MenuItem>
         ))}
       </Menu>
     </Sidebar>
   );
 };
+
 
 export default ProSidebarContent;

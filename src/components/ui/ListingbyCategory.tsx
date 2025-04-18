@@ -1,8 +1,12 @@
 import { useScreenSize } from "@/utilis/screenUtils";
 import { Link } from "react-router-dom";
-import { Navigation } from 'swiper/modules';
+import { Navigation, Mousewheel } from 'swiper/modules';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
+import {FilterEdit}  from "iconsax-react";
+
+import React, { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const ListingbyCategory = ({ categories }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -38,7 +42,7 @@ const ListingbyCategory = ({ categories }) => {
   }, [categories]);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full max-w-full items-center justify-center">
       {/* Navigation buttons */}
 
       {/* Navigation buttons */}
@@ -66,8 +70,8 @@ const ListingbyCategory = ({ categories }) => {
           >
             <i className="far fa-chevron-right" />
           </Button>
-          <Button variant="outline" className="text-sm font-medium shadow">
-            Filters
+          <Button variant="outline" size="icon" className="text-sm font-medium shadow">
+          <FilterEdit size={15} color="#000000" />
           </Button>
         </div>
       </div>
@@ -78,16 +82,17 @@ const ListingbyCategory = ({ categories }) => {
       {/* Swiper */}
       <Swiper
         ref={swiperRef}
-        spaceBetween={15}
-        modules={[Navigation]}
+        spaceBetween={8}
+        modules={[Navigation, Mousewheel]}
         slidesPerView={1}
+        spaceBetween={8}
         breakpoints={{
           300: { slidesPerView: 4 },
           768: { slidesPerView: 6 },
           1024: { slidesPerView: 10 },
           1200: { slidesPerView: 12 },
         }}
-        className="!overflow-visible pt-0 sm:gap-0"
+        className="!overflow-visible text-white pt-0 sm:gap-0"
       >
         {categories.map((category) => {
           const isSelected = selectedCategory === category.name;
@@ -101,12 +106,12 @@ const ListingbyCategory = ({ categories }) => {
               >
                 <div
                   className={`w-14 h-14 rounded-full flex items-center justify-center mb-2 transition-colors ${
-                    isSelected ? "bg-yellow-400" : "bg-yellow-400/10"
+                    isSelected ? "bg-yellow-100" : "bg-yellow-400/10"
                   }`}
                 >
                   {category.icon && (
                     <category.icon
-                      size={25}
+                      size={28}
                       color={isSelected ? "#ffffff" : "#ffc500"}
                       variant="TwoTone"
                     />

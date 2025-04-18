@@ -101,7 +101,7 @@ const PropertyCard: React.FC<PropertyProps> = ({
       whileHover={{ y: -5 }}
     >
       <Link to={linkPath} className="block">
-        <div className="relative overflow-hidden rounded-[30px] shadow-lg">
+        <div className="relative overflow-hidden rounded-2xl w shadow-sm">
           <div className="aspect-[1/1] overflow-hidden">
             <img
               src={allImages[currentImageIndex]}
@@ -112,7 +112,7 @@ const PropertyCard: React.FC<PropertyProps> = ({
               onLoad={() => setIsLoaded(true)}
             />
           </div>
-          
+
           <button
             className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center transition-transform duration-200 hover:scale-110 z-10"
             onClick={handleFavoriteClick}
@@ -122,7 +122,7 @@ const PropertyCard: React.FC<PropertyProps> = ({
               className={`w-4 h-4 ${isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-700'}`}
             />
           </button>
-          
+
           {isSuperhost && (
             <div className="absolute top-3 left-3 px-2 py-1 rounded-md bg-white/80 backdrop-blur-sm text-xs font-medium text-gray-800 z-10">
               Superhost

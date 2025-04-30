@@ -16,10 +16,6 @@ import BannerSearchV1 from "./pages/listings/(grid-view)/banner-search-v1";
 import BannerSearchV2 from "./pages/listings/(grid-view)/banner-search-v2";
 import BecomeHost from "@/pages/experiences/BecomeHost";
 import Blog from "@/pages/Blog";
-import BlogSingle from "./pages/blogs/blogs";
-import BlogV1 from "./pages/blogs/blog-list-v1";
-import BlogV2 from "./pages/blogs/blog-list-v2";
-import BlogV3 from "./pages/blogs/blog-list-v3";
 import BookingPage from "./components/booking-page";
 import BottomNav from "./components/bottom-nav";
 import CancellationOptions from "@/pages/help-center/CancellationOptions";
@@ -120,8 +116,6 @@ import WishlistPage from "./components/wishlist-page";
 import { useEffect } from "react";
 import { useSetAtom } from "jotai";
 import { userAtom } from "./context/atom";
-
-
 
 if (typeof window !== "undefined") {
   import("bootstrap");
@@ -308,10 +302,7 @@ function App() {
                     />
                     <Route path="agent-single/:id" element={<AgentSingle />} />
                     <Route path="/blog" element={<Blog />} />
-                    <Route path="blog-list-v1" element={<BlogV1 />} />
-                    <Route path="blog-list-v2" element={<BlogV2 />} />
-                    <Route path="blog-list-v3" element={<BlogV3 />} />
-                    <Route path="blogs/:id" element={<BlogSingle />} />
+                    
 
                     <Route path="about" element={<About />} />
                     <Route path="compare" element={<Compare />} />

@@ -15,7 +15,7 @@ import { AuthProvider } from "@/components/contexts/AuthContext";
 import BannerSearchV1 from "./pages/listings/(grid-view)/banner-search-v1";
 import BannerSearchV2 from "./pages/listings/(grid-view)/banner-search-v2";
 import BecomeHost from "@/pages/experiences/BecomeHost";
-import Blog from "@/pages/Blog";
+import Blog from "@/pages/bloglog";
 import BookingPage from "./components/booking-page";
 import BottomNav from "./components/bottom-nav";
 import CancellationOptions from "@/pages/help-center/CancellationOptions";
@@ -87,7 +87,6 @@ import MediaRoom from "@/pages/help-center/MediaRoom";
 import NeighborhoodConcern from "@/pages/help-center/NeighborhoodConcern";
 import NewHostingJourneyPage from "./components/experience-page/first-step";
 import NotFound from "@/pages/not-found";
-import PricingPlan from "@/pages/pages/pricing";
 import PrivacyPolicy from "@/pages/help-center/PrivacyPolicy";
 import RecentlyViewed from "./components/wishlist-page-recently";
 import Register from "./pages/register";
@@ -305,8 +304,6 @@ function App() {
                     
 
                     <Route path="about" element={<About />} />
-                    <Route path="compare" element={<Compare />} />
-                    <Route path="pricing" element={<PricingPlan />} />
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />
                     <Route path="not-found" element={<NotFound />} />

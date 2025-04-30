@@ -5,14 +5,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
-  AlertCircle,
+  ArrowLeft,
   ArrowRight,
   Calendar,
-  ChevronLeft,
   Clock,
-  FileText,
+  File,
   Shield,
-} from "lucide-react";
+  Warning2,
+} from "iconsax-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -35,13 +35,13 @@ const CancellationOptions = () => {
         {/* Hero Section */}
         <section className="px-6 py-20 pb-10 lg:pt-36 md:pt-16 bg-flapabay-yellow">
           <div className="flapabay-container">
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-3xl py-3 px-auto">
               <Button
                 variant="ghost"
-                className="p-0 mr-4 hover:bg-transparent"
-                onClick={() => navigate("/help")}
+                className="p-2  bg-flapabay-black mr-4 hover:bg-transparent"
+                onClick={() => navigate("/help-center")}
               >
-                <ChevronLeft className="w-5 h-5 mr-1 text-white" />
+                <ArrowLeft className="w-5 h-5 mr-1 text-white" />
                 <span className="text-white">Back to Help Center</span>
               </Button>
             </div>
@@ -216,7 +216,7 @@ const CancellationOptions = () => {
 
               <div className="p-6 bg-white border border-gray-200 rounded-xl">
                 <div className="flex items-center pb-4">
-                  <AlertCircle className="w-5 h-5 mr-2 text-flapabay-yellow" />
+                  <Warning2 className="w-5 h-5 mr-2 text-flapabay-yellow" />
                   <h3 className="text-lg font-semibold">Important Notes</h3>
                 </div>
 
@@ -240,7 +240,7 @@ const CancellationOptions = () => {
                     <li>Any extenuating circumstances that may apply</li>
                   </ul>
 
-                  <div className="p-4 mt-4 border border-yellow-200 rounded-lg bg-yellow-50">
+                  <div className="p-4 pt-4 border border-yellow-200 rounded-lg bg-yellow-50">
                     <p className="text-sm text-yellow-800">
                       <strong>Note:</strong> Service fees are typically
                       non-refundable unless you cancel within the 24-hour grace
@@ -341,7 +341,7 @@ const CancellationOptions = () => {
                           Police reports or insurance claims for property damage
                         </li>
                       </ul>
-                      <p className="mt-3 text-sm">
+                      <p className="pt-3 text-sm">
                         All documentation must be official, dated, and clearly
                         show the names of affected parties and relevant dates.
                       </p>

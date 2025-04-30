@@ -88,7 +88,7 @@ const GuestDashboard = () => {
                   {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
                 </button>
                 
-                <NavLinkItem to="/help" icon={<HelpCircle />} label="Help Center" />
+                <NavLinkItem to="/help-center" icon={<HelpCircle />} label="Help Center" />
                 <NavLinkItem to="/settings" icon={<Settings />} label="Account Settings" />
                 
                 <button 
@@ -152,7 +152,7 @@ const GuestDashboard = () => {
                         {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
                       </button>
                       
-                      <NavLinkItem to="/help" icon={<HelpCircle />} label="Help Center" />
+                      <NavLinkItem to="/help-center" icon={<HelpCircle />} label="Help Center" />
                       <NavLinkItem to="/settings" icon={<Settings />} label="Account Settings" />
                       
                       <button 

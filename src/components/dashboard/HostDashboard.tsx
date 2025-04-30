@@ -170,7 +170,7 @@ const HostDashboard = () => {
                 </button>
                 
                 <NavLink
-                  to="/help"
+                  to="/help-center"
                   className={({ isActive }) => 
                     `flex items-center px-4 py-2.5 text-sm font-medium rounded-lg ${
                       isActive ? 'bg-black/10 text-black' : 'hover:bg-black/5'
@@ -261,7 +261,7 @@ const HostDashboard = () => {
                       </button>
                       
                       <NavLink
-                        to="/help"
+                        to="/help-center"
                         className={({ isActive }) => 
                           `flex items-center px-4 py-2.5 text-sm font-medium rounded-lg ${
                             isActive ? 'bg-black/10 text-black' : 'hover:bg-black/5'

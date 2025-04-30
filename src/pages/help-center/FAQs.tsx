@@ -553,7 +553,7 @@ const FAQs = () => {
                         <Button
                           key={index}
                           variant="outline"
-                          className="justify-start w-auto py-3 text-left text-white border-flapabay-yellow bg-flapabay-yellow hover:text-white hover:bg-gray-800"
+                          className="justify-start text-auto w-auto py-3 text-left text-white border-flapabay-yellow bg-flapabay-yellow hover:text-white hover:bg-gray-800"
                           onClick={() => handleQuickQuestionClick(question)}
                         >
                           {question}

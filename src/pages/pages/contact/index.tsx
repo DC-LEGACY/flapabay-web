@@ -142,10 +142,10 @@ const Contact = () => {
                   viewport={{ once: true }}
                   className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow"
                 >
-                  <div className="bg-flapabay-yellow/10 w-12 h-12 rounded-full flex items-center justify-center pb-4">
+                  <div className="bg-flapabay-yellow/10 w-12 h-12 rounded-full flex items-center justify-center mb-2">
                     <div className="text-flapabay-yellow">{info.icon}</div>
                   </div>
-                  <h3 className="text-xl font-bold pb-3">{info.title}</h3>
+                  <h3 className="text-xl font-bold pb-3 pt-2">{info.title}</h3>
                   <div className="space-y-1">
                     {info.details.map((detail, i) => (
                       <p key={i} className="text-gray-600">

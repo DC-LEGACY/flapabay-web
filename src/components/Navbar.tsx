@@ -48,7 +48,7 @@ const Navbar = () => {
               Experiences
             </Link>
             <Link 
-              to="/help" 
+              to="/help-center" 
               className="text-black hover:text-[#ffc500] transition-colors duration-200"
             >
               Help Center
@@ -119,7 +119,7 @@ const Navbar = () => {
                 Experiences
               </Link>
               <Link 
-                to="/help" 
+                to="/help-center" 
                 className="text-black hover:text-[#ffc500] transition-colors duration-200 text-lg" 
                 onClick={() => setIsMobileMenuOpen(false)}
               >

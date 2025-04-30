@@ -72,7 +72,7 @@ const Header = () => {
                     </Link>
                   </div>
                   {/* End Logo */}
-                  <MainMenu />
+                  <MainMenu className="md:hidden" />
                   {/* End Main Menu */}
                 </div>
               </div>

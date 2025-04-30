@@ -121,19 +121,7 @@ import { useEffect } from "react";
 import { useSetAtom } from "jotai";
 import { userAtom } from "./context/atom";
 
-// import NeighborhoodConcern from "./pages/help/NeighborhoodConcern";
 
-// import BecomeHost from "./pages/BecomeHost";
-
-// import Home_V2 from "./pages/homes/home-v2";
-// import Home_V3 from "./pages/homes/home-v3";
-// import Home_V4 from "./pages/homes/home-v4";
-// import Home_V5 from "./pages/homes/home-v5";
-// import Home_V6 from "./pages/homes/home-v6";
-// import Home_V7 from "./pages/homes/home-v7";
-// import Home_V8 from "./pages/homes/home-v8";
-// import Home_V9 from "./pages/homes/home-v9";
-// import Home_V10 from "./pages/homes/home-v10";
 
 if (typeof window !== "undefined") {
   import("bootstrap");
@@ -310,7 +298,7 @@ function App() {
                     />
                     <Route path="account-page" element={<AccountPage />} />
                     <Route path="payment-page" element={<ConfirmAndPay />} />
-                    <Route path="help-center" element={<HelpPage />} />
+                    <Route path="/help-center" element={<HelpPage />} />
 
                     <Route path="agents" element={<Agents />} />
                     <Route path="agency" element={<Agency />} />

@@ -407,7 +407,7 @@ export default function HelpPage() {
                   className="cursor-pointer"
                   onClick={() => navigate(link.path)}
                 >
-                  <Card className="h-full text-white transition-colors bg-black border-black rounded-2xl hover:border-flapabay-yellow">
+                  <Card className="h-full text-white transition-colors bg-black border-flapabay-white rounded-2xl hover:border-flapabay-yellow">
                     <CardContent className="flex flex-col items-center p-4 text-center">
                       <div className="flex items-center justify-center w-12 h-12 mt-3 mb-3 rounded-full bg-flapabay-yellow/90">
                         <span className="text-black">{link.icon}</span>

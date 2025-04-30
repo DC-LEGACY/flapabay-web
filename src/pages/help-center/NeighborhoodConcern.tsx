@@ -167,7 +167,7 @@ const NeighborhoodConcern = () => {
                       </h2>
                     </div>
 
-                    <ul className="space-y-4">
+                    <ul className="space-y-4 pb-2">
                       {[
                         "We'll review your report within 24 hours",
                         "Our team will contact the property owner or host",
@@ -190,7 +190,7 @@ const NeighborhoodConcern = () => {
                       <p className="pb-4 text-gray-600">
                         For urgent matters requiring immediate attention:
                       </p>
-                      <Button variant="outline" className="w-full pb-2">
+                      <Button variant="outline" className="w-full">
                         Call Support: (305) 555-0123
                       </Button>
                     </div>
@@ -207,7 +207,7 @@ const NeighborhoodConcern = () => {
               Frequently Asked Questions
             </h2>
 
-            <div className="grid max-w-4xl grid-cols-1 gap-6 mx-auto md:grid-cols-2">
+            <div className="grid max-w-4xl grid-cols-1 gap-6 px-auto md:grid-cols-2">
               {[
                 {
                   q: "When should I report a neighborhood concern?",

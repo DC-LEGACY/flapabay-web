@@ -5,6 +5,7 @@ import AboutJoin from "../about/AboutJoin";
 import AboutMilestones from "../about/AboutMilestones";
 import AboutMission from "../about/AboutMission";
 import AboutStory from "../about/AboutStory";
+import Header from "@/components/common/DefaultHeader";
 import AboutSustainability from "../about/AboutSustainability";
 import AboutTeam from "../about/AboutTeam";
 import AboutValues from "../about/AboutValues";

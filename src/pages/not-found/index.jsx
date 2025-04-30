@@ -1,7 +1,7 @@
-import DefaultHeader from "@/components/common/DefaultHeader";
+import Header from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
-
+import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import React from "react";
 
@@ -58,9 +58,10 @@ const NotFound = () => {
                   search again <br className="d-none d-lg-block" /> or use the
                   go to.
                 </p>
-                <Link to="/" className="ud-btn btn-dark">
-                  Go Back To Homepages
-                  <i className="fal fa-arrow-right-long" />
+                
+                <Link to="/"><Button className="bg-flapabay-black text-white"> Go Back To Homepages <i className="fal fa-arrow-right-long" /></Button>
+                 
+                  
                 </Link>
               </div>
             </div>

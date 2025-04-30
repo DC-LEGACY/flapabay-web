@@ -50,7 +50,7 @@ const Footer = () => {
                 <Link to="/experiences" className="text-gray-400 hover:text-flapabay-yellow transition-colors">Experiences</Link>
               </li>
               <li>
-                <Link to="/help" className="text-gray-400 hover:text-flapabay-yellow transition-colors">Help Center</Link>
+                <Link to="/help-center" className="text-gray-400 hover:text-flapabay-yellow transition-colors">Help Center</Link>
               </li>
               <li>
                 <Link to="/blog" className="text-gray-400 hover:text-flapabay-yellow transition-colors">Blog</Link>
@@ -136,7 +136,7 @@ const Footer = () => {
           <div className="flex space-x-6 text-sm">
             <Link to="/terms" className="text-gray-500 hover:text-white transition-colors">Terms & Conditions</Link>
             <Link to="/privacy" className="text-gray-500 hover:text-white transition-colors">Privacy Policy</Link>
-            <Link to="/help" className="text-gray-500 hover:text-white transition-colors">Help Center</Link>
+            <Link to="/help-center" className="text-gray-500 hover:text-white transition-colors">Help Center</Link>
           </div>
         </div>
       </div>

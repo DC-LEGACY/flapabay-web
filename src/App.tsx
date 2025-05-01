@@ -15,7 +15,7 @@ import { AuthProvider } from "@/components/contexts/AuthContext";
 import BannerSearchV1 from "./pages/listings/(grid-view)/banner-search-v1";
 import BannerSearchV2 from "./pages/listings/(grid-view)/banner-search-v2";
 import BecomeHost from "@/pages/experiences/BecomeHost";
-import Blog from "@/pages/bloglog";
+import Blog from "@/pages/blog";
 import BookingPage from "./components/booking-page";
 import BottomNav from "./components/bottom-nav";
 import CancellationOptions from "@/pages/help-center/CancellationOptions";

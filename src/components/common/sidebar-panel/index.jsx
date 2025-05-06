@@ -19,7 +19,7 @@ const SidebarPanel = () => {
 
       <div className="hsidebar-content">
         <div className="hiddenbar_navbar_content">
-          <div className="hiddenbar_navbar_menu">
+          <div className="pl-8 hiddenbar_navbar_menu justify-center">
             <MenuItems />
           </div>
           {/* End .hiddenbar_navbar_menu */}

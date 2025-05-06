@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -66,7 +65,7 @@ const NewsletterSubscription = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="h-12" disabled={isSubmitting}>
+            <Button type="submit" className="h-12 bg-flapabay-yellow" disabled={isSubmitting}>
               {isSubmitting ? 'Subscribing...' : 'Subscribe'}
             </Button>
           </form>

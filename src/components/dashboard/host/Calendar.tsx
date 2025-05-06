@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Edit, Trash, Plus, X, Users, DollarSign, Clock, PenSquare } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { Button } from '@/ui/button';
-import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
-import { Calendar } from '@/ui/calendar';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/ui/dialog';
-import { Input } from '@/ui/input';
-import { Textarea } from '@/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Calendar } from '@/components/ui/calendar';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 
 

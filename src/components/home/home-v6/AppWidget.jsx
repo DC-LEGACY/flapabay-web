@@ -3,13 +3,13 @@ import React from "react";
 const AppWidget = () => {
   const appList = [
     {
-      icon: "fab fa-apple mr-2 fz30 text-dark",
+      icon: "fab fa-apple",
       text: "Download on the",
       title: "Apple Store",
       link: "#",
     },
     {
-      icon: "fab fa-google-play mr-2 fz30 text-dark",
+      icon: "fab fa-google-play",
       text: "Get it on",
       title: "Google Play",
       link: "#",
@@ -17,26 +17,22 @@ const AppWidget = () => {
   ];
 
   return (
-    <div className="app-widget at-home6">
-      <div className="row d-flex align-items-center">
-        {appList.map((app, index) => (
-          <div className="col-auto" key={index}>
-            <a href={app.link} target="_blank" rel="noopener noreferrer">
-              <div className="mb-1 app-info light-style d-flex align-items-center">
-                <div className="flex-shrink-0 text-dark">
-                  <i className={app.icon} />
-                </div>
-                <div className="flex-grow-1">
-                  <p className="app-text fz13 mb0">{app.text}</p>
-                  <h6 className="mb-2 text-dark app-title fz15">
-                    {app.title}
-                  </h6>
-                </div>
-              </div>
-            </a>
+    <div className="flex flex-wrap items-center gap-4">
+      {appList.map((app, index) => (
+        <a
+          key={index}
+          href={app.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center bg-white text-black px-4 py-2 rounded-lg shadow hover:shadow-lg transition"
+        >
+          <i className={`${app.icon} text-2xl mr-3`} />
+          <div>
+            <p className="text-xs leading-tight">{app.text}</p>
+            <h6 className="text-sm font-semibold">{app.title}</h6>
           </div>
-        ))}
-      </div>
+        </a>
+      ))}
     </div>
   );
 };

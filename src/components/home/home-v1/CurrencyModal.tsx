@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
 import { atom, useAtom } from "jotai";
-import { userAtom } from "../../../context/atom";
+import { userAtom } from "@/store/atom";
 import { useSetAtom } from "jotai";
-import { translationsAtom } from "../../../context/atom";
-import { data } from "react-router-dom";
+import { translationsAtom } from "@/store/atom";
+// import { data } from "react-router-dom"; Remove data import since it's not exported from react-router-dom
 
 
 

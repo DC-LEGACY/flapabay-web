@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
-import LoginSignupModal from "@/components/common/login-signup-modal";
+import LoginSignupModal from "@/components/auth/login-signup-modal";
 import MainMenu from "@/components/common/MainMenu";
 import SidebarPanel from "@/components/common/sidebar-panel";
 

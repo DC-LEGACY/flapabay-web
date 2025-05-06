@@ -1,82 +1,76 @@
-import Header from "@/components/common/DefaultHeader";
-import Footer from "@/components/common/default-footer";
-import MobileMenu from "@/components/common/mobile-menu";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import React from "react";
-
-
-import MetaData from "@/components/common/MetaData";
-
-const metaInformation = {
-  title: "Not-Found  || Flapabay- Apartment Rental, Experiences and More!",
-};
+import { motion } from "framer-motion";
 
 const NotFound = () => {
   return (
-    <>
-    <MetaData meta={metaInformation} />
-      {/* Main Header Nav */}
-      <Header />
-      {/* End Main Header Nav */}
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full lg:w-1/2"
+        >
+          <img
+            className="w-full h-auto object-cover"
+            src="/images/icon/error-page-img.svg"
+            alt="404 Error Illustration"
+          />
+        </motion.div>
 
-      {/* Mobile Nav  */}
-      <MobileMenu />
-      {/* End Mobile Nav  */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="w-full lg:w-1/2 text-center lg:text-left"
+        >
+          <motion.div
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-8xl font-bold mb-4"
+          >
+            <span className="text-flapabay-primary text-4xl">40</span>
+            <span className="text-gray-800 text-4xl">4</span>
+          </motion.div>
 
-      {/* Error/404 Section Area */}
-      <section className="our-error">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-xl-6" data-aos="fade-left">
-              <div className="animate_content text-center text-xl-start">
-                <div className="animate_thumb">
-                  <img
-                  
-                    className="w-100 h-100 cover"
-                    src="/images/icon/error-page-img.svg"
-                    alt="error-page-img"
-                  />
-                </div>
-              </div>
-            </div>
-            {/* End .col-6 */}
+          <motion.h2
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="text-3xl font-bold text-gray-800 mb-4"
+          >
+            Oops! It looks like you&apos;re lost.
+          </motion.h2>
 
-            <div
-              className="col-xl-5 offset-xl-1 wow fadeInLeft"
-              data-aos="fade-right"
-            >
-              <div className="error_page_content mt80 mt50-lg text-center text-xl-start">
-                <div className="erro_code">
-                  <span className="text-thm">40</span>4
-                </div>
-                <div className="h2 error_title">
-                  Oops! It looks like you&apos;re lost.
-                </div>
-                <p className="text fz15 mb20">
-                  The page you&apos;re looking for isn&apos;t available. Try to
-                  search again <br className="d-none d-lg-block" /> or use the
-                  go to.
-                </p>
-                
-                <Link to="/"><Button className="bg-flapabay-black text-white"> Go Back To Homepages <i className="fal fa-arrow-right-long" /></Button>
-                 
-                  
-                </Link>
-              </div>
-            </div>
-            {/* End .col-6 */}
-          </div>
-        </div>
-      </section>
-      {/* End Error/404 Section Area */}
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="text-gray-600 mb-8"
+          >
+            The page you&apos;re looking for isn&apos;t available. Try to search again or use the go to.
+          </motion.p>
 
-      {/* Start Our Footer */}
-      <section className="footer-style1 pt60 pb-0">
-        <Footer />
-      </section>
-      {/* End Our Footer */}
-    </>
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1 }}
+          >
+            <Link to="/">
+              <Button className="py-3 bg-flapabay-black text-white hover:bg-flapabay-primary transition-colors">
+                Go Back To Homepage
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 inline-block" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </Button>
+            </Link>
+          </motion.div>
+        </motion.div>
+      </div>
+    </div>
   );
 };
 

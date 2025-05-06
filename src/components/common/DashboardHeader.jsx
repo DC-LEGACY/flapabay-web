@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import SidebarPanel from "@/components/common/sidebar-panel";
-import { modeAtom } from "../../context/atom";
+import { modeAtom } from "@/store/atom";
 import { useAtom } from "jotai";
 
 // import MainMenu from "@/components/common/MainMenu";

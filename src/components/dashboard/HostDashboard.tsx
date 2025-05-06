@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   BarChart2,
   Bell,
@@ -15,12 +15,12 @@ import {
   Settings,
   Star
 } from 'lucide-react';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Moon, Sun } from 'lucide-react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { Sheet, SheetContent, SheetTrigger } from '@/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
-import { Button } from '@/ui/button';
+import { Button } from "@/components/ui/primitives/button";
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';

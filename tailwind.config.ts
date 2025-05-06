@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -88,6 +87,13 @@ export default {
 					from: { height: 'var(--radix-accordion-content-height)' },
 					to: { height: '0' },
 				},
+				'dots': {
+					'0%': { content: '""' },
+					'25%': { content: '"."' },
+					'50%': { content: '".."' },
+					'75%': { content: '"..."' },
+					'100%': { content: '""' },
+				},
 				'fade-in': {
 					'0%': { opacity: '0' },
 					'100%': { opacity: '1' },
@@ -116,10 +122,15 @@ export default {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-5px)' },
 				},
+				bounce: {
+					'0%, 100%': { transform: 'translateY(0)', opacity: '0.7' },
+					'50%': { transform: 'translateY(-20px)', opacity: '0.4' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
+				'dots': 'dots 1.5s infinite',
 				'fade-in': 'fade-in 0.3s ease-out',
 				'fade-out': 'fade-out 0.3s ease-out',
 				'slide-up': 'slide-up 0.4s ease-out',
@@ -127,6 +138,7 @@ export default {
 				'slide-left': 'slide-left 0.4s ease-out',
 				'scale-in': 'scale-in 0.3s ease-out',
 				'float': 'float 3s ease-in-out infinite',
+				bounce: 'bounce 1s ease-in-out infinite',
 			},
 			transitionTimingFunction: {
 				'bounce-in': 'cubic-bezier(0.17, 0.67, 0.83, 0.67)',

@@ -1,7 +1,7 @@
-import { Card, CardContent } from '@/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { DollarSign, Edit, Eye, MapPin, Plus, Trash2, Users } from 'lucide-react';
 
-import { Button } from '@/ui/button';
+import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { motion } from 'framer-motion';

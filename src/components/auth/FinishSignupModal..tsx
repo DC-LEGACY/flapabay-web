@@ -4,7 +4,7 @@ import EmailConfirmationModal from "./EmailConfirmationModal";
 import axios from "axios";
 import close from "../../assets/left.png";
 import { useAtom } from "jotai";
-import { userAtom } from "../../context/atom";
+import { userAtom } from "@/store/atom";
 
 const FinishSignupModal = ({ onClose, email }: { onClose: () => void; email: string }) => {
   const [firstName, setFirstName] = useState("");

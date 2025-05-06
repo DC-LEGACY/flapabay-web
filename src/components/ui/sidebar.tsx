@@ -6,7 +6,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
+} from "@/components/ui/feedback/tooltip"
 import { VariantProps, cva } from "class-variance-authority"
 
 import { Button } from "@/components/ui/button"

@@ -3,7 +3,7 @@ import { getExperienceById, getSimilarExperiences } from '@/datatwo/experiences'
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeft } from 'lucide-react';
-import { Button } from '@/ui/button';
+import { Button } from '@/components/ui/button';
 import ExperienceContent from './ExperienceContent';
 import ExperienceGalleryModal from '../experiencedev/ExperienceGalleryModal';
 import { motion } from 'framer-motion';

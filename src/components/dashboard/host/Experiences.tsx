@@ -3,7 +3,7 @@ import React from 'react';
 import { MapPin, Plus, Star, Calendar, Users, Heart } from 'lucide-react';
 
 import { motion } from 'framer-motion';
-import { Button } from '@/ui/button';
+import { Button } from '@/components/ui/button';
 import EmptyState from '@/components/dashboardtwo/EmptyState';
 import { Link } from 'react-router-dom';
 

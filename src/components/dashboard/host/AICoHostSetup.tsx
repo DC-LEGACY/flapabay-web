@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 
 import { Sparkles, Settings, Info } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { Button } from '@/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/tabs';
-import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import AICohost from '@/components/dashboardtwo/AICohost';
 
 const AICoHostSetup = () => {

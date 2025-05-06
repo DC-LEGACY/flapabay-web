@@ -1,5 +1,5 @@
-import ExperienceContent from "@/pages/experience/ExperienceContent";
-import Experiences from "@/pages/experience/Experiences";
+import ExperienceContent from "@/pages/website/experiences/ExperienceContent";
+import Experiences from "@/pages/website/experiences/Experiences";
 import { FaRegHeart } from "react-icons/fa";
 import Footer from "@/components/common/default-footer";
 import Header from "@/components/common/DefaultHeader";
@@ -55,8 +55,6 @@ const ExperiencePage = () => {
 
   return (
     <>
-      <Header />
-      <MobileMenu />
       {/* <section className="home-banner-style1 p0">
         <div className="home-style1">
           <div className="container-fluid container-fluidest">
@@ -76,10 +74,6 @@ const ExperiencePage = () => {
       </section> */}
 
       <Experiences />
-
-      <section className="pb-0   footer-style1 pt60">
-        <Footer />
-      </section>
     </>
   );
 };

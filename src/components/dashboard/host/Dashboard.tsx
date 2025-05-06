@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Home, Users, DollarSign, Calendar, ArrowRight, MessageSquare, BarChart2, Bot } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
-import { Alert, AlertDescription, AlertTitle } from '@/ui/alert';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/card';
-import { Button } from '@/ui/button';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 const mockData = [
   { name: 'Jan', revenue: 2400, bookings: 5 },

@@ -2,13 +2,26 @@ import { useScreenSize } from "@/utilis/screenUtils";
 import { Link } from "react-router-dom";
 import { Navigation, Mousewheel } from 'swiper/modules';
 import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from 'swiper';
 import "swiper/css/bundle";
-import {FilterEdit}  from "iconsax-react";
-
+import { FilterEdit } from "iconsax-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
+interface Category {
+  id: number;
+  name: string;
+  icon: React.ElementType;
+  propertyCount: number;
+}
 
-const ListingbyCategory = ({ categories }) => {
+interface ListingbyCategoryProps {
+  categories: Category[];
+}
+
+
+const ListingbyCategory = ({ categories }: ListingbyCategoryProps) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
@@ -17,7 +30,7 @@ const ListingbyCategory = ({ categories }) => {
   const nextRef = useRef(null);
   const swiperRef = useRef(null);
 
-  const handleCategoryClick = (categoryName) => {
+  const handleCategoryClick = (categoryName: string) => {
     setSelectedCategory(categoryName);
   };
 
@@ -41,6 +54,14 @@ const ListingbyCategory = ({ categories }) => {
     }
   }, [categories]);
 
+  console.log(categories);
+  const isMobile = useScreenSize();
+  const location = useLocation();
+
+  const isIndexPage = location.pathname === "/";
+
+    
+
   return (
     <div className="relative w-full max-w-full items-center justify-center">
       {/* Navigation buttons */}
@@ -52,9 +73,8 @@ const ListingbyCategory = ({ categories }) => {
             ref={prevRef}
             variant="default"
             size="icon"
-            className={`bg-flapabay-yellow text-white shadow  transition-opacity duration-200 ${
-              atStart ? "opacity-0 cursor-default" : "opacity-100"
-            }`}
+            className={`bg-flapabay-yellow text-white shadow  transition-opacity duration-200 ${atStart ? "opacity-0 cursor-default" : "opacity-100"
+              }`}
           >
             <i className="far fa-chevron-left" />
           </Button>
@@ -64,14 +84,13 @@ const ListingbyCategory = ({ categories }) => {
             ref={nextRef}
             variant="default"
             size="icon"
-            className={`bg-flapabay-yellow text-white shadow  transition-opacity duration-200 ${
-              atEnd ? "opacity-0 cursor-default" : "opacity-100"
-            }`}
+            className={`bg-flapabay-yellow text-white shadow  transition-opacity duration-200 ${atEnd ? "opacity-0 cursor-default" : "opacity-100"
+              }`}
           >
             <i className="far fa-chevron-right" />
           </Button>
           <Button variant="outline" size="icon" className="text-sm font-medium shadow">
-          <FilterEdit size={15} color="#000000" />
+            <FilterEdit size={15} color="#000000" />
           </Button>
         </div>
       </div>
@@ -85,7 +104,6 @@ const ListingbyCategory = ({ categories }) => {
         spaceBetween={8}
         modules={[Navigation, Mousewheel]}
         slidesPerView={1}
-        spaceBetween={8}
         breakpoints={{
           300: { slidesPerView: 4 },
           768: { slidesPerView: 6 },
@@ -96,31 +114,34 @@ const ListingbyCategory = ({ categories }) => {
       >
         {categories.map((category) => {
           const isSelected = selectedCategory === category.name;
+
+          // Determine conditional styles
+          const iconBgColor =
+            isMobile && isIndexPage ? "bg-white" : isSelected ? "bg-flapabay-yellow" : "bg-yellow-400/10";
+          const iconColor =
+            isMobile && isIndexPage ? "#ffc500" : isSelected ? "#fff" : "#ffc500";
+          const textColor =
+            isMobile && isIndexPage ? "text-white" : "text-black";
+
           return (
             <SwiperSlide key={category.id}>
               <div
-                className={`flex flex-col items-center cursor-pointer transition-transform duration-300 ${
-                  isSelected ? "scale-70" : "scale-90"
-                }`}
+                className={`flex flex-col items-center cursor-pointer transition-transform duration-300 ${isSelected ? "scale-70" : "scale-90"}`}
                 onClick={() => handleCategoryClick(category.name)}
               >
                 <div
-                  className={`w-14 h-14 rounded-full flex items-center justify-center mb-2 transition-colors ${
-                    isSelected ? "bg-flapabay-yellow" : "bg-yellow-400/10"
-                  }`}
+                  className={`w-14 h-14 rounded-full flex items-center justify-center mb-2 transition-colors ${iconBgColor}`}
                 >
                   {category.icon && (
                     <category.icon
                       size={28}
-                      color={isSelected ? "#fff" : "#ffc500"}
+                      color={iconColor}
                       variant="TwoTone"
                     />
                   )}
                 </div>
                 <p
-                  className={`text-sm text-[13px] ${
-                    isSelected ? "font-semibold" : "font-[500]"
-                  }`}
+                  className={`text-sm text-[13px] ${isSelected ? "font-semibold" : "font-[500]"} ${textColor}`}
                 >
                   {category.name}
                 </p>

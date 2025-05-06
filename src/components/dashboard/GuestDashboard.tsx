@@ -1,10 +1,10 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Briefcase, Heart, HelpCircle, LogOut, MessageSquare, Settings, Star, User } from 'lucide-react';
 import { Moon, Sun } from 'lucide-react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { Sheet, SheetContent, SheetTrigger } from '@/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
-import { Button } from '@/ui/button';
+import { Button } from '@/components/ui/button';
 import DashboardHeader from '../common/DashboardHeader';
 import React from 'react';
 import { motion } from 'framer-motion';

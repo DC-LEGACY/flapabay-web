@@ -1,9 +1,9 @@
 import { ArrowUpDown, Filter, Flag, MessageCircle, Search, Star, ThumbsUp } from 'lucide-react';
 import React, { useState } from 'react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
-import { Button } from '@/ui/button';
-import { Input } from '@/ui/input';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { motion } from 'framer-motion';
 
 const HostReviews = () => {

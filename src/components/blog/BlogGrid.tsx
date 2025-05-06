@@ -1,5 +1,5 @@
 import { Calendar, Clock } from 'iconsax-react';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardFooter } from '@/components/ui/layout/card';
 
 import { Link } from 'react-router-dom';
 import React from 'react';

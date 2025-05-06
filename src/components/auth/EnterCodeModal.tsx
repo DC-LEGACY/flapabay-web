@@ -5,7 +5,7 @@ import axios from "axios";
 import left from "../../assets/left.png";
 import { useNavigate } from "react-router-dom";
 import { useSetAtom } from "jotai";
-import { userAtom } from "../../context/atom";
+import { userAtom } from "@/store/atom";
 
 interface EnterCodeModalProps {
   onClose: () => void;

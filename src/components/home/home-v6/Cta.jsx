@@ -1,36 +1,45 @@
-import AppWidget from "./AppWidget";
 import React from "react";
+import AppWidget from "./AppWidget";
+import { useScreenSize } from "@/utilis/screenUtils";
+
 
 const Cta = () => {
+  const isMobile = useScreenSize();
   return (
-    <section className="pt-10 col-12 our-cta3 pb100 pt60-md pb60-md">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-6 col-xl-6 d-none d-xl-block">
+    <section className="pt-10 pb-24 md:pt-16 md:pb-16 bg-flapabay-black">
+      <div className="container  mx-auto px-4">
+        <div className="flex pt-16  flex-col xl:flex-row items-center">
+          {/* Image */}
+          {!isMobile && (
+          <div className="xl:block  xl:w-1/2">
             <div className="cta-img">
               <img
-               
                 src="/images/about/mobile-img-1.png"
                 alt="mobile"
+                className="w-full h-auto"
               />
             </div>
           </div>
-          {/* End col-lg-5 */}
-
-          <div className="ml-2 col-lg-6 col-xl-5 offset-xl-1">
+          )}
+          {/* Text Content */}
+          <div className="w-full xl:w-1/2 xl:pl-16 mt-8 xl:mt-0">
             <div className="cta-style5">
-            <h1 className="text-white cta-title downloadme">Discover & Connect Download the <t className="text-primary">App</t></h1>
-            
-              <span className="app-tag mb25">Live like a local!</span>              
-              <p className="text-white cta-text mb60">
-              Book your next stay or experience on the go with the FlapaBay App. Browse and book unique accommodations to stay in, whether you're traveling by plane, road or anywhere else.
+              <h1 className="text-white text-4xl font-bold mb-4">
+                Discover & Connect <br />
+                Download the <span className="text-primary">App</span>
+              </h1>
+              <span className="text-sm text-gray-300 uppercase tracking-widest mb-4 inline-block">
+                Live like a local!
+              </span>
+              <p className={`text-white ${isMobile ? 'w-full' : 'w-1/2'} text-base pb-8`}>
+                Book your next stay or experience on the go with the FlapaBay App.
+                Browse and book unique accommodations to stay in, whether you're
+                traveling by plane, road or anywhere else.
               </p>
               <AppWidget />
             </div>
           </div>
-          {/* End col-lg-7 */}
         </div>
-        {/* End .row */}
       </div>
     </section>
   );

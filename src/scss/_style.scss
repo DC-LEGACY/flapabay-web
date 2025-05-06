@@ -3371,6 +3371,13 @@ li {
     // padding: ;
     // height: 580px;
 }
+@media (max-width: 991.98px) {
+    .home-banner-style1 .home-style1 {
+        
+        padding-top: 0rem !important;
+       
+    }
+}
 @media (max-width: 767px) {
     .home-banner-style1 {
         padding: 60px 0 !important;

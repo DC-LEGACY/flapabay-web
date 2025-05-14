@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import ConfirmationModal from "./ConfirmationModal";
+import ConfirmationModal from "./verify/ConfirmationModal";
 
-import FinishSignupModal from "./FinishSignupModal.";
+import FinishSignupModal from "./complete-registration/FinishSignupModal.";
 import { Button } from "@/components/ui/button";
 import apple from "../../assets/apple-logo.png";
 import facebook from "../../assets/facebook.png";
 import google from "../../assets/google.png";
 import phone from "../../assets/smartphone.png";
 import { Sms, Mobile } from "iconsax-react";
-
+import { useAuth } from "@/contexts/AuthContext";
 // List of countries with phone codes
 const countries = [
   { name: "Afghanistan", code: "+93" },
@@ -216,6 +216,10 @@ interface SignupModalProps {
 }
 
 const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
+  const { signInWithGoogle, authLoading, error: authError } = useAuth();
+  const handleGoogleSignIn = () => {
+    signInWithGoogle();
+  };
   const modalRef = useRef<HTMLDivElement>(null);
 
   // Close modal when clicking outside
@@ -242,7 +246,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [isEmailMode, setIsEmailMode] = useState(false);
   const [showFinishModal, setShowFinishModal] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [error, setError] = useState("");
   const handleContinue = () => {
@@ -271,7 +275,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
   }
   if (showConfirmationModal) {
     return (
-      <FinishSignupModal onClose={() => setShowConfirmationModal(false)} />
+      <FinishSignupModal onClose={() => setShowConfirmationModal(false)} email = {email} />
     );
   }
   // Handle country code change
@@ -366,7 +370,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
               // onClick={handleContinue}
               onClick={handleContinue}
               className=" mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-2xl"
-              disabled={loading}
+              disabled={isLoading}
             >
               Continue
             </Button>
@@ -388,7 +392,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
 
           {/* Social login buttons */}
           <div className="space-y-2">
-            <Button variant="ghost" className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0">
+            <Button onClick={handleGoogleSignIn} variant="ghost" className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0">
               <img src={google} alt="Google" className="h-4 w-7 pl-3" />
               <span className="flex-1 text-center text-[16px]">
                 Continue with Google

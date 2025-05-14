@@ -755,7 +755,7 @@ li {
     padding-top: 60px;
     padding-bottom: 40px;
     position: fixed;
-    width: 300px;
+    width: 260px;
 }
 .dashboard__sidebar::-webkit-scrollbar {
     height: 4px;
@@ -775,7 +775,7 @@ li {
 
 .dashboard__main {
     margin-top: 87px;
-    padding-left: 300px;
+    padding-left: 250px;
     width: 100%;
 }
 @media (max-width: 991.98px) {
@@ -8100,7 +8100,7 @@ li.mm-listitem:focus {
     background-color: transparent;
     color: #ffffff;
     border-color: transparent;
-    border-bottom: 2px solid #ffffff;
+    // border-bottom: 2px solid #ffffff;
 }
 .advance-style2 .tab-content {
     background-color: #ffffff;
@@ -8341,8 +8341,8 @@ li.mm-listitem:focus {
 .navtab-style2 .nav-link:hover,
 .navtab-style2 .nav-link.active {
     border-color: transparent;
-    border-bottom: 2px solid var(--headings-color);
-    color: #181a20;
+    // border-bottom: 2px solid var(--headings-color);
+    // color: #181a20;
 }
 
 .navtab-style2 .nav-tabs {
@@ -8357,8 +8357,8 @@ li.mm-listitem:focus {
 .navtab-style2 .nav-link:focus,
 .navtab-style2 .nav-link.active {
     border: none;
-    border-bottom: 2px solid var(--color-dark);
-    color: var(--color-dark);
+    // border-bottom: 2px solid var(--color-dark);
+    // color: var(--color-dark);
 }
 
 .dark-light-navtab {

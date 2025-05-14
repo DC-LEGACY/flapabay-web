@@ -247,7 +247,7 @@ const BookingPage = () => {
         return;
       }
 
-      const apiUrl = `http://localhost/flapabay-engine-main/api/v1/properties/${propertyId}/reviews`;
+      const apiUrl = `https://localhost:8000/api/v1/properties/${propertyId}/reviews`;
       // console.log("Fetching reviews from:", apiUrl);
 
       try {

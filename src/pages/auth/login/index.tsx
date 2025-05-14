@@ -1,48 +1,51 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
+
 import { FcGoogle } from 'react-icons/fc';
+import { motion } from 'framer-motion';
+import MetaData from "@/components/common/MetaData";
+import LoginModal from "@/components/auth/LoginModal";
+
+const metaInformation = {
+  title: "Login || Flapabay- Apartment Rental, Experiences and More!",
+};
 
 const LoginPage: React.FC = () => {
-  const { signInWithGoogle, loading, error } = useAuth();
+ 
   const navigate = useNavigate();
 
-  const handleGoogleSignIn = async () => {
-    try {
-      await signInWithGoogle();
-      navigate('/dashboard'); // Redirect to dashboard after successful login
-    } catch (err) {
-      console.error('Login failed:', err);
-    }
+ 
+
+  const handleClose = () => {
+    navigate('/'); // Navigate to home page when modal is closed
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
-          </h2>
-        </div>
-        
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-            <span className="block sm:inline">{error}</span>
-          </div>
-        )}
-
-        <div className="mt-8 space-y-6">
-          <button
-            onClick={handleGoogleSignIn}
-            disabled={loading}
-            className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+    <>
+      <MetaData meta={metaInformation} />
+      <section className="min-h-screen px-4">
+        <div className="max-w-6xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center"
           >
-            <FcGoogle className="h-5 w-5 mr-2" />
-            {loading ? 'Signing in...' : 'Sign in with Google'}
-          </button>
+            <div className="w-full max-w-xl">
+              <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
+                <div className="text-center mb-10">
+                  <h2 className="text-3xl font-bold mb-2">Sign in to your account</h2>
+                  <p className="text-gray-60 mb-4">
+                    Sign in with this account across the following sites.
+                  </p>
+                </div>
+                <LoginModal onClose={handleClose} />  
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 

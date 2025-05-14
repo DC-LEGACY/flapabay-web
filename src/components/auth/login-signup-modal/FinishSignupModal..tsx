@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import EmailConfirmationModal from "./EmailConfirmationModal";
-import close from "../../../assets/left.png";
+import close from "@/assets/left.png";
 
 const FinishSignupModal = ({ onClose }: { onClose: () => void }) => {
   const [firstName, setFirstName] = useState("");

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import close from "../../../assets/close.png";
+import close from "@/assets/close.png";
 
 const EmailConfirmationModal = ({
   email,

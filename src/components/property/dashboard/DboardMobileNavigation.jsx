@@ -1,19 +1,40 @@
-import { Link } from "react-router-dom";
-import { modeAtom } from "../../../context/atom";
+import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 import { useAtom } from "jotai";
-import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { modeAtom } from "@/store/atom";
 
 const DboardMobileNavigation = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { pathname } = useLocation();
-const [isHosting] = useAtom(modeAtom);
+  const { signOut } = useAuth();
+  const { toast } = useToast();
+  const navigate = useNavigate();
+  const [isHosting] = useAtom(modeAtom);
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      toast({
+        title: "Logged out successfully",
+        description: "You have been logged out of your account.",
+      });
+      navigate('/');
+    } catch (error) {
+      toast({
+        title: "Logout failed",
+        description: "Failed to log out. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
   const sidebarItems = [
     {
-      
       items: [
         {
-          href: "/dashboard-home",
+          href: "/dashboard",
           icon: "flaticon-discovery",
           text: "Today",
         },
@@ -23,58 +44,33 @@ const [isHosting] = useAtom(modeAtom);
           text: "Messages",
         },
         {
-          // href: "/dashboard-my-properties",
-          href: "/dashboard-calender",
+          href: "/dashboard-my-properties",
           icon: "flaticon-home",
-          text: "Calender",
+          text: "My Properties",
         },
         {
-          // href: "/dashboard-my-favourites",
-          href: "/dashboard-my-favourites",
-          icon: "flaticon-like",
-          text: "Reservation",
-        },
-        {
-          // href: "/dashboard-saved-search",
-          href: "/dashboard-saved-search",
-          icon: "flaticon-search-2",
-          text: "Listing",
-        },
-        {
-          // href: "/dashboard-add-property",
-          href: "/dashboard-earnings",
-          icon: "flaticon-new-tab",
-          text: "Earnings",
-        },
-        {
-          // href: "/dashboard-reviews",
-          href: "/dashboard-reviews",
-          icon: "flaticon-review",
-          text: "Insights",
-        },
-        {
-          // href: "/dashboard-add-property",
-          href: "/dashboard-add-property",
-          icon: "flaticon-new-tab",
-          text: "Create new listings",
-        },
-        {
-          href: "/dashboard-guidebook",
-          // href: "/dashboard-my-package",
+          href: "/dashboard-my-package",
           icon: "flaticon-protection",
-          text: "Guidbooks",
+          text: "My Package",
         },
-       
-        
         {
-          href: "/login",
+          href: "/dashboard-my-profile",
+          icon: "flaticon-user",
+          text: "My Profile",
+        },
+        {
+          href: "/account-page",
+          icon: "flaticon-user",
+          text: "Account",
+        },
+        {
+          onClick: handleLogout,
           icon: "flaticon-logout",
           text: "Logout",
         },
       ],
     },
   ];
-
 
   const travellingSidebarItems = [
     {
@@ -85,7 +81,17 @@ const [isHosting] = useAtom(modeAtom);
           text: "Messages",
         },
         {
-          href: "/login",
+          href: "/dashboard-my-profile",
+          icon: "flaticon-user",
+          text: "My Profile",
+        },
+        {
+          href: "/account-page",
+          icon: "flaticon-user",
+          text: "Account",
+        },
+        {
+          onClick: handleLogout,
           icon: "flaticon-logout",
           text: "Logout",
         },
@@ -94,9 +100,7 @@ const [isHosting] = useAtom(modeAtom);
   ];
 
   const currentSidebarItems = isHosting ? sidebarItems : travellingSidebarItems;
-  const getActiveClass = (href) => {
-    return pathname === href ? "-is-active" : "";
-  };
+
   return (
     <div className="dashboard_navigationbar d-block d-lg-none">
       <div className="dropdown">
@@ -106,31 +110,33 @@ const [isHosting] = useAtom(modeAtom);
         >
           <i className="fa fa-bars pr10" /> Dashboard Navigation
         </button>
-        <ul className={`dropdown-content ${isDropdownOpen ? "show" : ""}`}>
+        <div className={`dropdown-content ${isDropdownOpen ? "show" : ""}`}>
           {currentSidebarItems.map((section, sectionIndex) => (
             <div key={sectionIndex}>
-              {/* Assuming section.title exists, else this can be removed */}
-              <p
-                className={`fz15 fw400 ff-heading mt30 pl30 ${
-                  sectionIndex === 0 ? "mt-0" : "mt30"
-                }`}
-              >
-                {section.title}
-              </p>
               {section.items.map((item, itemIndex) => (
-                <div key={itemIndex} className="sidebar_list_item">
-                  <Link
-                    to={item.href}
-                    className={`items-center ${getActiveClass(item.href)}`} // Apply active class based on current path
+                item.onClick ? (
+                  <button
+                    key={itemIndex}
+                    className={`dropdown-item ${pathname === item.href ? "-is-active" : ""}`}
+                    onClick={item.onClick}
                   >
-                    <i className={`${item.icon} mr15`} />
+                    <i className={`${item.icon} mr10`} />
+                    {item.text}
+                  </button>
+                ) : (
+                  <Link
+                    key={itemIndex}
+                    className={`dropdown-item ${pathname === item.href ? "-is-active" : ""}`}
+                    to={item.href}
+                  >
+                    <i className={`${item.icon} mr10`} />
                     {item.text}
                   </Link>
-                </div>
+                )
               ))}
             </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );

@@ -21,14 +21,13 @@ const DashboardLayoutWrapper = () => (
 
 // Route component mapping
 const getRouteComponent = (key: string) => {
-  const components: Record<string, React.LazyExoticComponent<() => JSX.Element>> = {
+  const components: Record<string, React.LazyExoticComponent<React.FC>> = {
     // Auth Pages
-    login: lazy(() => import('@/pages/auth/login')),
+    login: lazy(() => import('@/pages/auth/login/')),
     register: lazy(() => import('@/pages/auth/register')),
 
     // Dashboard Pages
     dashboardHome: lazy(() => import('@/pages/(dashboard)/dashboard-home')),
-    
     dashboardMyProfile: lazy(() => import('@/pages/(dashboard)/dashboard-my-profile')),
     dashboardMyProperties: lazy(() => import('@/pages/(dashboard)/dashboard-my-properties')),
     dashboardAddProperty: lazy(() => import('@/pages/(dashboard)/dashboard-add-property')),
@@ -98,7 +97,7 @@ export function AppRoutes() {
     <Suspense fallback={<Preloader />}>
       <Routes>
         {/* Public Website Routes including Auth */}
-        <Route element={<WebsiteLayout />}>
+        <Route element={<WebsiteLayoutWrapper />}>
           {websiteRoutes.map((route) => (
             <Route 
               key={route.key} 
@@ -115,7 +114,7 @@ export function AppRoutes() {
         </Route>
 
         {/* Dashboard Routes */}
-        <Route element={<AuthGuard><DashboardLayout /></AuthGuard>}>
+        <Route element={<DashboardLayoutWrapper />}>
           <Route path="/dashboard">
             <Route index element={React.createElement(getRouteComponent('dashboardHome'))} />
             <Route path="my-profile" element={React.createElement(getRouteComponent('dashboardMyProfile'))} />

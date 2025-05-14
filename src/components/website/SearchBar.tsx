@@ -22,7 +22,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center gap-2 rounded-full border border-gray-200 p-2 bg-white">
+    <div className="z-0 flex flex-col md:flex-row items-center gap-2 rounded-full border border-gray-200 p-2 bg-white">
       {/* Search Location */}
       <div className="w-full md:flex-1 px-4">
         <Input 

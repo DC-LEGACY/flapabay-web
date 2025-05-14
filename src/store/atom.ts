@@ -1,3 +1,6 @@
+// DEPRECATED: Use modular store files (authStore.ts, bookingStore.ts, modalStore.ts, languageStore.ts) instead.
+// This file is kept for reference during migration and will be removed.
+
 import { atom } from "jotai";
 
 // Atom to hold the "mode" (Hosting or Travelling)
@@ -9,20 +12,19 @@ export const guestAtom = atom({
     pets: 0,
   });
 
+interface User {
+  id: string;
+  email: string;
+  name: string;
+  picture?: string;
+}
 
+// Initialize user from localStorage if available
+const storedUser = typeof window !== "undefined" ? localStorage.getItem("user_data") : null;
+const initialUser = storedUser ? JSON.parse(storedUser) : null;
 
-  export const authAtom = atom(null); // null means not logged in
-  
-  export const isModalOpenAtom = atom(false);
+export const userAtom = atom<User | null>(initialUser);
+export const isAuthenticatedAtom = atom((get) => !!get(userAtom));
 
-
-
-  interface User {
-    fname: string;
-    email: string;
-  }
-  
-  const storedUser = typeof window !== "undefined" ? localStorage.getItem("user") : null;
-  
-  export const userAtom = atom<User | null>(storedUser ? JSON.parse(storedUser) : null);
-  export const translationsAtom = atom({});
+export const isModalOpenAtom = atom(false);
+export const translationsAtom = atom({});

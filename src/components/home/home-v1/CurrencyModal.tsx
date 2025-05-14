@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
 import { atom, useAtom } from "jotai";
-import { userAtom } from "@/store/atom";
+import { userAtom } from "@/store/authStore";
 import { useSetAtom } from "jotai";
-import { translationsAtom } from "@/store/atom";
+import { translationsAtom } from "@/store/languageStore";
 // import { data } from "react-router-dom"; Remove data import since it's not exported from react-router-dom
 
 
@@ -16,14 +16,14 @@ const loadingAtom = atom(false);
 const errorAtom = atom<string | null>(null);
 
 const API_URL =
-  "http://localhost/flapabay-engine-main/api/v1/get-supported-currencies";
+  "https://localhost:8000/api/v1/get-supported-currencies";
 const API_LANGUAGES =
-  "http://localhost/flapabay-engine-main/api/v1/supported-lang";
+  "https://localhost:8000/api/v1/supported-lang";
 const API_SET_CURRENCY =
-  "http://localhost/flapabay-engine-main/api/v1/set-user-currency";
+  "https://localhost:8000/api/v1/set-user-currency";
 const API_SET_LANGUAGE =
-  "http://localhost/flapabay-engine-main/api/v1/supported-lang";
-  const API_TRANSLATIONS = "http://localhost/flapabay-engine-main/api/v1/translations";
+  "https://localhost:8000/api/v1/supported-lang";
+  const API_TRANSLATIONS = "https://localhost:8000/api/v1/translations";
 
 interface Currency {
   code: string;

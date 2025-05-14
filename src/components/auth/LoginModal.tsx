@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-
-import ConfirmationModal from "./ConfirmationModal";
-import EnterCodeModal from "./EnterCodeModal";
+import { useAuth } from '@/contexts/AuthContext';
+import ConfirmationModal from "./verify/ConfirmationModal";
+import EnterCodeModal from "./verify/EnterCodeModal";
 import { Link } from "react-router-dom";
-import apple from "../../assets/apple-logo.png";
+import apple from "@/assets/apple-logo.png";
 import axios from "axios";
-import close from "../../assets/close.png";
-import facebook from "../../assets/facebook.png";
-import google from "../../assets/google.png";
+import close from "@/assets/close.png";
+import facebook from "@/assets/facebook.png";
+import google from "@/assets/google.png";
 import { Input } from "@/components/ui/input";
 import { Mobile, Sms } from "iconsax-react";
+import { Button } from "@/components/ui/button";
 // List of countries with phone codes
 const countries = [
   { name: "Afghanistan", code: "+93" },
@@ -217,7 +218,10 @@ interface LoginModalProps {
 
 const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   const modalRef = useRef<HTMLDivElement>(null);
-
+  const { signInWithGoogle, loading, error } = useAuth();
+  const handleGoogleSignIn = () => {
+    signInWithGoogle();
+  };
   // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -383,19 +387,19 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
           </p>
 
           {isEmailMode ? (
-            <button
+            <Button
               onClick={handleEmailContinue}
               className=" mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-2xl"
             >
               Continue
-            </button>
+              </Button>
           ) : (
-            <button
+            <Button
               onClick={handlePhoneContinue}
               className="mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-2xl"
             >
               Continue with phone
-            </button>
+            </Button>
           )}
 
           {/* Divider */}
@@ -407,19 +411,14 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
 
           {/* Social login buttons */}
           <div className="space-y-2">
-            <button className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0">
+            <Button onClick={handleGoogleSignIn} variant="ghost" className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0">
               <img src={google} alt="Google" className="h-4 w-7 pl-3" />
               <span className="flex-1 text-center text-[16px]">
                 Continue with Google
               </span>
-            </button>
-            <button className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0">
-              <img src={apple} alt="Apple" className="h-4 w-7 pl-3" />
-              <span className="flex-1 text-center text-[16px]">
-                Continue with Apple
-              </span>
-            </button>
-            <button
+            </Button>
+            
+            <Button variant="ghost"
               onClick={toggleMode}
               className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0"
             >
@@ -437,13 +436,13 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
               <span className="flex-1 text-center text-[16px]">
                 {isEmailMode ? "Continue with phone" : "Continue with email"}
               </span>
-            </button>
-            <button className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0">
+            </Button>
+            <Button variant="ghost" className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0">
               <img src={facebook} alt="Facebook" className="h-4 w-7 pl-3" />
               <span className="flex-1 text-center text-[16px]">
                 Continue with Facebook
               </span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

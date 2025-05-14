@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import Footer from "@/components/common/default-footer";
-import Header from "@/components/common/DefaultHeader";
-import MobileMenu from "@/components/common/mobile-menu";
+import Footer from "@/components/common/default-footer/";
+import DefaultHeader from "@/components/common/DefaultHeader";
+import MobileMenu from "@/components/common/mobile-menu/";
 import BottomNav from '@/components/bottom-nav/bottom-mobile-menu';
 
 import { useBottomNav } from '@/contexts/BottomNavContext';
@@ -25,7 +25,7 @@ const WebsiteLayout = () => {
     <>
 
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <DefaultHeader />
       <MobileMenu />
       {showBottomNav && <BottomNav />}
       

@@ -16,7 +16,7 @@ const FeaturedListings = ({ cities }) => {
 
       try {
         const response = await axios.get(
-          "http://localhost/flapabay-engine-main/api/v1/properties",
+          "https://localhost:8000/api/v1/properties",
           {
             headers: {
               Authorization: `Bearer ${token}`,

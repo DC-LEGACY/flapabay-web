@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import ForgotPassword from "./ForgotPassword";
-import left from "../../../assets/left.png";
+import ForgotPassword from "@/components/auth/ForgotPassword";
+import left from "@/assets/left.png";
 
 interface EnterCodeModalProps {
   onClose: () => void;

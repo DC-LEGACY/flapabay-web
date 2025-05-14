@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-
-import left from "../../../assets/left.png";
+import left from "@/assets/left.png";
 
 interface ConfirmationModalProps {
   phoneNumber: string; // Pass the phone number to display

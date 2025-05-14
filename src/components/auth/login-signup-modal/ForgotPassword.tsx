@@ -1,5 +1,5 @@
 import React from "react";
-import left from "../../../assets/left.png";
+import left from "@/assets/left.png";
 
 interface EnterCodeModalProps {
   onClose: () => void;

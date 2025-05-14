@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
-import ProfilePhotoModal from "./ProfilePhotoModal"; // Import the next modal
+import ProfilePhotoModal from "./complete-registration/ProfilePhotoModal"; // Import the next modal
 
 interface WelcomeModalProps {
   onClose: () => void;

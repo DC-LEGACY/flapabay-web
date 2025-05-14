@@ -1080,7 +1080,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 
 //       try {
 //         const response = await axios.get(
-//           "http://localhost/flapabay-engine-main/api/v1/icons",
+//           "https://localhost:8000/api/v1/icons",
 //           {
 //             headers: {
 //               Authorization: `Bearer ${token}`,
@@ -1155,7 +1155,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 
 //       try {
 //         const response = await axios.get(
-//           "http://localhost/flapabay-engine-main/api/v1/categories",
+//           "https://localhost:8000/api/v1/categories",
 //           {
 //             headers: {
 //               Authorization: `Bearer ${token}`,
@@ -1230,7 +1230,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 
 //       try {
 //         const response = await axios.get(
-//           "http://localhost/flapabay-engine-main/api/v1/bookings",
+//           "https://localhost:8000/api/v1/bookings",
 //           {
 //             headers: {
 //               Authorization: `Bearer ${token}`,
@@ -1341,7 +1341,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 
 //       try {
 //         const response = await axios.get(
-//           "http://localhost/flapabay-engine-main/api/v1/locations",
+//           "https://localhost:8000/api/v1/locations",
 //           {
 //             headers: {
 //               Authorization: `Bearer ${token}`,
@@ -1425,7 +1425,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 
 //     try {
 //       const response = await axios.post(
-//         "http://localhost/flapabay-engine-main/api/v1/payments/status",
+//         "https://localhost:8000/api/v1/payments/status",
 //         { payment_id: parseInt(paymentId) },
 //         {
 //           headers: {
@@ -1506,7 +1506,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 
 //       try {
 //         const response = await axios.get(
-//           "http://localhost/flapabay-engine-main/api/v1/payments/payout-options",
+//           "https://localhost:8000/api/v1/payments/payout-options",
 //           {
 //             headers: {
 //               Authorization: `Bearer ${token}`,
@@ -1580,7 +1580,7 @@ const Umbrella = ({ className }: { className?: string }) => (
 
 //       try {
 //         const response = await axios.get(
-//           `http://localhost/flapabay-engine-main/api/v1/payments/user-payment-details`,
+//           `https://localhost:8000/api/v1/payments/user-payment-details`,
 //           {
 //             headers: { Authorization: `Bearer ${token}` },
 //           }

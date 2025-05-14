@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 
 const LoginSignupModal = () => {
   return (
-    <div className="max-w-6xl mx-auto modal-content rounded-2xl">
+    <div className="max-w-6xl mx-auto modal-content rounded-2xl z-50">
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalToggleLabel">
+        <h5 className="font-bold text-lg modal-title" id="exampleModalToggleLabel">
           Welcome to Flapabay
         </h5>
         <Button
@@ -26,7 +26,7 @@ const LoginSignupModal = () => {
             <nav>
               <div className="nav nav-tabs mb20" id="nav-tab" role="tablist">
                 <button
-                  className="nav-link active fw600"
+                  className="mr-4 nav-link active fw600"
                   id="nav-home-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#nav-home"
@@ -35,7 +35,7 @@ const LoginSignupModal = () => {
                   aria-controls="nav-home"
                   aria-selected="true"
                 >
-                  Log in or sign up
+                  Log in 
                 </button>
                 <button
                   className="nav-link fw600"

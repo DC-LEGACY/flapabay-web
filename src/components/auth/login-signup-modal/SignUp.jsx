@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { FcGoogle } from "react-icons/fc";
 
 const SignUp = () => {
+  const { signInWithGoogle, loading, error } = useAuth();
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle();
+  };
+
   return (
     <form className="form-style1">
       <div className="mb25">
@@ -17,13 +25,19 @@ const SignUp = () => {
       <div className="mb20">
         <label className="form-label fw600 dark-color">Password</label>
         <input
-          type="text"
+          type="password"
           className="form-control"
           placeholder="Enter Password"
           required
         />
       </div>
       {/* End Password */}
+
+      {error && (
+        <div className="alert alert-danger mb20" role="alert">
+          {error}
+        </div>
+      )}
 
       <div className="d-grid mb20">
         <button className="ud-btn btn-thm" type="submit">
@@ -36,8 +50,13 @@ const SignUp = () => {
       </div>
 
       <div className="d-grid mb10">
-        <button className="ud-btn btn-white" type="button">
-          <i className="fab fa-google" /> Continue Google
+        <button 
+          className="ud-btn btn-white" 
+          type="button"
+          onClick={handleGoogleSignIn}
+          disabled={loading}
+        >
+          <FcGoogle className="mr-2" /> {loading ? 'Signing in...' : 'Continue with Google'}
         </button>
       </div>
       <div className="d-grid mb10">

@@ -52,7 +52,7 @@ const Hero = () => {
             {/* Search Form Card */}
             <div className="bg-white rounded-3xl p-8 shadow-sm">
               {/* Tabs Navigation */}
-              <Tabs defaultValue="explore" className="w-full">
+              <Tabs defaultValue="explore" className="w-full z-0">
                 <TabsList className="grid w-full max-w-[400px] grid-cols-2 mb-6 bg-gray-100 p-1 rounded-lg">
                   <TabsTrigger value="explore" className="text-base font-medium rounded-md">Explore</TabsTrigger>
                   <TabsTrigger value="experiences" className="text-base font-medium rounded-md">Experiences</TabsTrigger>
@@ -60,7 +60,7 @@ const Hero = () => {
                 
                 <TabsContent value="explore">
                   {/* Search Form */}
-                  <div className="w-full">
+                  <div className="w-full z-0">
                     <h2 className="text-xl font-semibold mb-4">Where to?</h2>
                     <SearchBar />
                   </div>

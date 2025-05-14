@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Menu, X, User, Search } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { ProfileButton } from '@/components/auth/ProfileButton';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -69,13 +69,7 @@ const Navbar = () => {
             >
               <Search className="w-5 h-5" />
             </button>
-            <Link 
-              to="/login" 
-              className="flex items-center space-x-2 py-2 px-4 rounded-lg border border-flapabay-yellow text-black hover:text-[#ffc500] hover:bg-flapabay-yellow/10 transition-colors duration-200"
-            >
-              <User className="w-4 h-4" />
-              <span>Login</span>
-            </Link>
+            <ProfileButton />
             <Link 
               to="/host" 
               className="primary-button"
@@ -85,8 +79,8 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden p-2 text-black hover:text-[#ffc500] transition-colors duration-200 focus:outline-none"
+          <button
+            className="md:hidden p-2 rounded-lg text-black hover:text-[#ffc500] transition-colors duration-200"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
@@ -100,56 +94,46 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div 
-            className="fixed inset-x-0 top-[73px] bg-white shadow-md md:hidden z-40"
-          >
-            <nav className="flex flex-col p-5 space-y-4">
+          <div className="md:hidden mt-4 py-4 border-t border-gray-200">
+            <nav className="flex flex-col space-y-4">
               <Link 
                 to="/" 
-                className="text-black hover:text-[#ffc500] transition-colors duration-200 text-lg" 
-                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-black hover:text-[#ffc500] transition-colors duration-200"
+                onClick={toggleMobileMenu}
               >
                 Home
               </Link>
               <Link 
                 to="/experiences" 
-                className="text-black hover:text-[#ffc500] transition-colors duration-200 text-lg" 
-                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-black hover:text-[#ffc500] transition-colors duration-200"
+                onClick={toggleMobileMenu}
               >
                 Experiences
               </Link>
               <Link 
                 to="/help-center" 
-                className="text-black hover:text-[#ffc500] transition-colors duration-200 text-lg" 
-                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-black hover:text-[#ffc500] transition-colors duration-200"
+                onClick={toggleMobileMenu}
               >
                 Help Center
               </Link>
               <Link 
                 to="/about" 
-                className="text-black hover:text-[#ffc500] transition-colors duration-200 text-lg" 
-                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-black hover:text-[#ffc500] transition-colors duration-200"
+                onClick={toggleMobileMenu}
               >
                 About
               </Link>
-              
-              <div className="pt-4 border-t border-gray-100 flex flex-col space-y-4">
-                <Link 
-                  to="/login" 
-                  className="flex items-center justify-center space-x-2 py-3 border border-flapabay-yellow text-black hover:text-[#ffc500] rounded-lg hover:bg-flapabay-yellow/10 transition-colors duration-200"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <User className="w-5 h-5" />
-                  <span>Login / Register</span>
-                </Link>
-                <Link 
-                  to="/host" 
-                  className="primary-button text-center py-3"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  FlapaBay Your Home
-                </Link>
+              <div className="pt-4 border-t border-gray-200">
+                <ProfileButton />
               </div>
+              <Link 
+                to="/host" 
+                className="primary-button w-full text-center"
+                onClick={toggleMobileMenu}
+              >
+                FlapaBay Your Home
+              </Link>
             </nav>
           </div>
         )}

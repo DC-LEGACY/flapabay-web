@@ -567,11 +567,11 @@ const FilterContent = () => {
 
   return (
     <div className="mx-auto advance-style4 at-home10 mt-100 mt50-lg mb10 animate-up-2">
-      <ul className="p-0 m-0 nav nav-tabs">
+      <ul className="pr-6 m-0 nav nav-tabs flex flex-row justify-start">
         {tabs.map((tab) => (
-          <li className="nav-item" key={tab.id}>
+          <li className="nav-item flex-1  text-center" key={tab.id}>
             <button
-              className={`nav-link ${activeTab === tab.id ? "active" : ""}`}
+              className={`nav-link text-left w-full ${activeTab === tab.id ? "active" : ""}`}
               onClick={() => handleTabClick(tab.id)}
             >
               {tab.label}

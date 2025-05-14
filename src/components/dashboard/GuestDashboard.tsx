@@ -72,7 +72,7 @@ const GuestDashboard = () => {
               </div>
               
               <nav className="space-y-1">
-                <NavLinkItem to="/dashboard/guest/dashboard" icon={<Briefcase />} label="Dashboard" />
+                <NavLinkItem to="/dashboard/guest/dashboard" icon={<Briefcase />} label="Dashboards" />
                 <NavLinkItem to="/dashboard/guest/trips" icon={<Briefcase />} label="Trips" />
                 <NavLinkItem to="/dashboard/guest/wishlist" icon={<Heart />} label="Wishlist" />
                 <NavLinkItem to="/dashboard/guest/reviews" icon={<Star />} label="Reviews" />

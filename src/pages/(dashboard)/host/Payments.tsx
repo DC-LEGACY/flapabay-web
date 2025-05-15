@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -7,13 +6,13 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import Dashboard from "@/components/dashboard/Dashboard";
 import { DollarSign, AlertCircle, Check, Download } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { PayoutMethods } from "@/components/payments/PayoutMethods";
 import { WithdrawFunds } from "@/components/payments/WithdrawFunds";
 import { PaymentHistory } from "@/components/payments/PaymentHistory";
 import { getExchangeRates } from "@/lib/countries";
+import { usePage } from "@/contexts/PageContext";
 
 // Monthly earnings data
 const monthlyEarnings = [
@@ -50,6 +49,13 @@ const pendingEarnings = [
 ];
 
 const Payments = () => {
+  const { setPageTitle, setPageSubtitle } = usePage();
+
+  useEffect(() => {
+    setPageTitle("Payments & Payouts");
+    setPageSubtitle("Manage your earnings and payout methods");
+  }, [setPageTitle, setPageSubtitle]);
+
   const [availableBalance, setAvailableBalance] = useState(3580);
   const [showEarningsReport, setShowEarningsReport] = useState(false);
   const [showPendingDetails, setShowPendingDetails] = useState(false);
@@ -110,32 +116,7 @@ const Payments = () => {
   };
 
   return (
-    <Dashboard>
-      <div className="mb-6 flex flex-col space-y-2 sm:flex-row sm:justify-between sm:space-y-0">
-        <div>
-          <h2 className="text-3xl font-bold">Payments & Payouts</h2>
-          <p className="text-muted-foreground">Manage your earnings and payout methods</p>
-        </div>
-        
-        <div className="flex items-center gap-2 rounded-lg border bg-white p-2 shadow-sm">
-          <div className="text-sm font-medium">Exchange rates:</div>
-          <select 
-            className="h-8 rounded-md border-none bg-transparent text-sm focus:outline-none focus:ring-0"
-            value={selectedCurrency.currency}
-            onChange={(e) => handleChangeCurrency(e.target.value)}
-          >
-            {exchangeRates.map((rate) => (
-              <option key={rate.currency} value={rate.currency}>
-                {rate.currency} ({rate.symbol})
-              </option>
-            ))}
-          </select>
-          <div className="text-xs text-muted-foreground">
-            1 USD = {selectedCurrency.currency !== "USD" ? `${selectedCurrency.rate} ${selectedCurrency.currency}` : "1 USD"}
-          </div>
-        </div>
-      </div>
-      
+    <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <Card className="bg-gradient-to-br from-amber-50 to-amber-100 border-amber-200 shadow-lg hover:shadow-xl transition-shadow">
           <CardHeader>
@@ -425,7 +406,7 @@ const Payments = () => {
           </div>
         </SheetContent>
       </Sheet>
-    </Dashboard>
+    </>
   );
 };
 

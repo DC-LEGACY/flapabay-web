@@ -27,11 +27,7 @@ const DashboardLayout = () => {
           <SidebarDashboard />
           <div className="dashboard__main pl0-md">
             <div className="dashboard__content property-page bgc-f7">
-              <div className="row pb40 d-block d-lg-none">
-                <div className="col-lg-12">
-                  <DboardMobileNavigation />
-                </div>
-              </div>
+             
 
               <div className="row align-items-center pb40">
                 <div className="col-lg-12">

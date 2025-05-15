@@ -1,5 +1,5 @@
-
-import Dashboard from "@/components/dashboard/Dashboard";
+import { useEffect } from "react";
+import { usePage } from "@/contexts/PageContext";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -49,28 +49,15 @@ const insights = [
 ];
 
 const Earnings = () => {
+  const { setPageTitle, setPageSubtitle } = usePage();
+
+  useEffect(() => {
+    setPageTitle("Earnings Analytics");
+    setPageSubtitle("Review your income and performance metrics");
+  }, [setPageTitle, setPageSubtitle]);
+
   return (
-    <Dashboard>
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-3xl font-bold">Earnings Analytics</h2>
-        <div className="flex space-x-2">
-          <Select defaultValue="year">
-            <SelectTrigger className="w-[150px]">
-              <SelectValue placeholder="Select period" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="week">This Week</SelectItem>
-              <SelectItem value="month">This Month</SelectItem>
-              <SelectItem value="year">This Year</SelectItem>
-              <SelectItem value="all">All Time</SelectItem>
-            </SelectContent>
-          </Select>
-          <Button variant="outline">
-            <Download className="mr-2 h-4 w-4" /> Export
-          </Button>
-        </div>
-      </div>
-      
+    <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {insights.map((insight, index) => (
           <Card key={index}>
@@ -225,7 +212,7 @@ const Earnings = () => {
           </ResponsiveContainer>
         </CardContent>
       </Card>
-    </Dashboard>
+    </>
   );
 };
 

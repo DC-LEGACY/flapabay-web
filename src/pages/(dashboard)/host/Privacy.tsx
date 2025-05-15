@@ -1,5 +1,5 @@
-
-import Dashboard from "@/components/dashboard/Dashboard";
+import { useEffect } from "react";
+import { usePage } from "@/contexts/PageContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -7,18 +7,16 @@ import { ArrowLeft, Eye, Lock, Share2, UserPlus } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 
 const Privacy = () => {
-  return (
-    <Dashboard>
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="flex items-center mb-6">
-          <Link to="/account" className="mr-4">
-            <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-          </Link>
-          <h1 className="text-3xl font-bold">Privacy & Sharing</h1>
-        </div>
+  const { setPageTitle, setPageSubtitle } = usePage();
 
+  useEffect(() => {
+    setPageTitle("Privacy & Sharing");
+    setPageSubtitle("Control your information, sharing settings, and connected services");
+  }, [setPageTitle, setPageSubtitle]);
+
+  return (
+    <>
+      <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="space-y-8">
           <Card>
             <CardHeader>
@@ -157,7 +155,7 @@ const Privacy = () => {
           </Card>
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

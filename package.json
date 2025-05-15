@@ -42,6 +42,7 @@
     "date-fns": "^4.1.0",
     "framer-motion": "^12.4.7",
     "iconsax-react": "^0.0.8",
+    "input-otp": "^1.4.2",
     "install": "^0.13.0",
     "jotai": "^2.11.3",
     "lucide-react": "^0.475.0",

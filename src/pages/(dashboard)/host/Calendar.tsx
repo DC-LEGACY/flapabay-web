@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { usePage } from "@/contexts/PageContext";
-import { Calendar as CalendarComponent } from "@/components/ui/calendar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Calendar as CalendarComponent } from "@/components/dashboard/host/ui/calendar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/dashboard/host/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/dashboard/host/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/dashboard/host/ui/select";
+import { Button } from "@/components/dashboard/host/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/dashboard/host/ui/dialog";
+import { Input } from "@/components/dashboard/host/ui/input";
+import { Switch } from "@/components/dashboard/host/ui/switch";
+import { Label } from "@/components/dashboard/host/ui/label";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/dashboard/host/ui/form";
+import { Alert, AlertDescription, AlertTitle } from "@/components/dashboard/host/ui/alert";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,6 +23,7 @@ import {
   Clock,
   Link,
   AlertCircle,
+  Calendar as CalendarLucide,
   Home,
   MapPin,
   Clock10,
@@ -205,7 +206,7 @@ const Calendar = () => {
   const handleDateClick = (day: Date) => {
     let rangeToEdit: Date[] = [];
     
-    if (selectedDateRange.from && selectedDateRange.to) {
+    if (selectedDateRange && selectedDateRange.from && selectedDateRange.to) {
       const startDate = selectedDateRange.from;
       const endDate = selectedDateRange.to;
       const daysDiff = differenceInDays(endDate, startDate);
@@ -213,7 +214,7 @@ const Calendar = () => {
       for (let i = 0; i <= daysDiff; i++) {
         rangeToEdit.push(addDays(startDate, i));
       }
-    } else if (selectedDateRange.from) {
+    } else if (selectedDateRange && selectedDateRange.from) {
       rangeToEdit = [selectedDateRange.from];
     }
     
@@ -302,17 +303,15 @@ const Calendar = () => {
   };
 
   const isDaySelected = (day: Date) => {
-    if (selectedDateRange.from && selectedDateRange.to) {
+    if (selectedDateRange && selectedDateRange.from && selectedDateRange.to) {
       const fromDate = selectedDateRange.from;
       const toDate = selectedDateRange.to;
-      if (fromDate && toDate) {
-        return isWithinInterval(day, { 
-          start: fromDate, 
-          end: toDate 
-        });
-      }
+      return isWithinInterval(day, { 
+        start: fromDate, 
+        end: toDate 
+      });
     }
-    return selectedDateRange.from && isSameDay(day, selectedDateRange.from);
+    return selectedDateRange?.from && isSameDay(day, selectedDateRange.from);
   };
 
   const handleRangeSelect = (range: DateRange | undefined) => {
@@ -329,7 +328,7 @@ const Calendar = () => {
       }
       
       setSelectedDates(datesInRange);
-    } else if (range.from) {
+    } else if (range && range.from) {
       setSelectedDates([range.from]);
     } else {
       setSelectedDates([]);
@@ -391,408 +390,380 @@ const Calendar = () => {
 
   return (
     <>
-      <div className="container mx-auto p-4">
-        <Tabs defaultValue="calendar" className="space-y-4">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <TabsList>
-              <TabsTrigger value="calendar">Calendar</TabsTrigger>
-              <TabsTrigger value="rules">Rules</TabsTrigger>
-              <TabsTrigger value="sync">Sync</TabsTrigger>
-            </TabsList>
-            <div className="flex items-center gap-2">
-              <Button 
-                onClick={() => setShowRuleDialog(true)}
-                className="bg-[#ffc500] text-black hover:bg-amber-500"
-              >
-                <Plus className="mr-2 h-4 w-4" /> Add Rule
-              </Button>
+      <Card className="shadow-lg border-[#ffc500]/20 mb-8">
+        <CardHeader className="pb-3">
+          <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+            <CardTitle>Availability Calendar</CardTitle>
+            <div className="flex space-x-2">
+              <Select value={selectedListing} onValueChange={setSelectedListing}>
+                <SelectTrigger className="w-[200px]">
+                  <SelectValue placeholder="Select a listing" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Listings & Experiences</SelectItem>
+                  {listings.map(listing => (
+                    <SelectItem key={listing.id} value={listing.id.toString()}>
+                      {listing.name} ({listing.type === 'listing' ? 'Accommodation' : 'Experience'})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <Tabs value={activeView} onValueChange={setActiveView} className="w-[180px]">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="month">Month</TabsTrigger>
+                  <TabsTrigger value="week">Week</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          {activeListing && (
+            <Alert className="mb-4 bg-amber-50 border-amber-200">
+              <AlertCircle className="h-4 w-4 text-amber-600" />
+              <AlertTitle>Pricing Information</AlertTitle>
+              <AlertDescription>
+                <div className="flex items-center justify-between">
+                  <span>Standard weekday rate: ${activeListing.pricing.weekday}</span>
+                  <span>Weekend rate: ${activeListing.pricing.weekend}</span>
+                </div>
+              </AlertDescription>
+            </Alert>
+          )}
+
+          <Alert className="mb-4 bg-amber-50 border-amber-200">
+            <AlertCircle className="h-4 w-4 text-amber-600" />
+            <AlertTitle>Calendar Sync Status</AlertTitle>
+            <AlertDescription>
+              <div className="flex flex-col gap-1">
+                <div className="flex justify-between">
+                  <span>Airbnb: {syncStatus.airbnb.lastSync}</span>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={() => syncSpecificCalendar('airbnb')}
+                    disabled={syncStatus.airbnb.syncing}
+                  >
+                    {syncStatus.airbnb.syncing ? (
+                      <RefreshCw className="h-4 w-4 mr-1 animate-spin" />
+                    ) : (
+                      <RefreshCw className="h-4 w-4 mr-1" />
+                    )}
+                    Sync
+                  </Button>
+                </div>
+                <div className="flex justify-between">
+                  <span>VRBO: {syncStatus.vrbo.lastSync}</span>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={() => syncSpecificCalendar('vrbo')}
+                    disabled={syncStatus.vrbo.syncing}
+                  >
+                    {syncStatus.vrbo.syncing ? (
+                      <RefreshCw className="h-4 w-4 mr-1 animate-spin" />
+                    ) : (
+                      <RefreshCw className="h-4 w-4 mr-1" />
+                    )}
+                    Sync
+                  </Button>
+                </div>
+              </div>
+            </AlertDescription>
+          </Alert>
+
+          <div className="relative mt-1 rounded-md">
+            <Tabs value={activeView} className="w-full">
+              <TabsContent value="month" className="mt-0">
+                <div className="overflow-x-auto pb-4">
+                  <div className="w-full min-w-[900px]">
+                    <CalendarComponent 
+                      mode="range"
+                      selected={selectedDateRange}
+                      onSelect={handleRangeSelect}
+                      className="rounded-md border shadow p-4 w-full pointer-events-auto"
+                      components={{
+                        Day: ({ day: dayObject, ...otherProps }) => {
+                          const date = dayObject.date;
+                          const status = getDayStatus(date);
+                          const isSelected = isDaySelected(date);
+                          const price = getDayPrice(date);
+                          const isRangeStart = selectedDateRange?.from && isSameDay(date, selectedDateRange.from);
+                          const isRangeEnd = selectedDateRange?.to && isSameDay(date, selectedDateRange.to); 
+                          
+                          return (
+                            <div
+                              className={cn(
+                                "relative h-16 w-16 md:h-20 md:w-20 p-0 cursor-pointer hover:bg-accent rounded-md flex flex-col items-center justify-center mx-1.5",
+                                isSelected && "bg-[#ffc500]/20 ring-2 ring-[#ffc500]",
+                                isRangeStart && "rounded-l-md",
+                                isRangeEnd && "rounded-r-md",
+                                status === "blocked" && "bg-red-100",
+                                status === "booked" && "bg-blue-100",
+                                status === "available" && "bg-green-100",
+                                isWeekend(date) && status === "available" && "bg-green-200"
+                              )}
+                              {...otherProps}
+                            >
+                              <time dateTime={format(date, 'yyyy-MM-dd')} className="text-lg">
+                                {format(date, 'd')}
+                              </time>
+                              {price && activeListing && (
+                                <div className="text-xs text-slate-700 font-medium mt-1">
+                                  ${price}
+                                </div>
+                              )}
+                              {status !== "available" && (
+                                <div className={cn(
+                                  "absolute bottom-0.5 left-1/2 transform -translate-x-1/2 h-1 w-1 rounded-full",
+                                  status === "blocked" && "bg-red-500",
+                                  status === "booked" && "bg-blue-500"
+                                )} />
+                              )}
+                            </div>
+                          );
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+              </TabsContent>
+              <TabsContent value="week" className="mt-0">
+                <div className="flex items-center justify-between mb-2">
+                  <Button variant="outline" size="sm" onClick={goToPreviousWeek} className="flex items-center">
+                    <ChevronLeft className="h-4 w-4 mr-1" /> Previous Week
+                  </Button>
+                  <span className="text-sm font-medium">
+                    {format(currentWeekStart, 'MMM d')} - {format(addDays(currentWeekStart, 6), 'MMM d, yyyy')}
+                  </span>
+                  <Button variant="outline" size="sm" onClick={goToNextWeek} className="flex items-center">
+                    Next Week <ChevronRight className="h-4 w-4 ml-1" />
+                  </Button>
+                </div>
+                <div className="grid grid-cols-7 gap-2">
+                  {Array.from({ length: 7 }).map((_, index) => {
+                    const day = addDays(currentWeekStart, index);
+                    const dayPrice = getDayPrice(day);
+                    return (
+                      <div key={index} className="space-y-1">
+                        <div className="text-center font-medium">
+                          {format(day, 'EEE')}
+                        </div>
+                        <div className="text-center text-sm text-muted-foreground">
+                          {format(day, 'd MMM')}
+                        </div>
+                        <div 
+                          className={cn(
+                            "h-32 rounded-md border p-2 cursor-pointer hover:bg-accent",
+                            getDayStatus(day) === "blocked" && "bg-red-100",
+                            getDayStatus(day) === "booked" && "bg-blue-100",
+                            getDayStatus(day) === "available" && isWeekend(day) && "bg-green-200",
+                            getDayStatus(day) === "available" && !isWeekend(day) && "bg-green-100",
+                            isDaySelected(day) && "ring-2 ring-[#ffc500] bg-[#ffc500]/20"
+                          )}
+                          onClick={() => {
+                            setSelectedDateRange({
+                              from: day,
+                              to: undefined
+                            });
+                            setSelectedDates([day]);
+                          }}
+                        >
+                          <div className="text-xs">9:00 AM - 5:00 PM</div>
+                          {dayPrice && activeListing && (
+                            <div className="mt-2 text-center">
+                              <span className="font-medium">${dayPrice}</span>
+                              <span className="text-xs text-muted-foreground block">
+                                {isWeekend(day) ? 'Weekend rate' : 'Weekday rate'}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+
+          <div className="mt-6 flex flex-col md:flex-row md:items-center justify-between space-y-3 md:space-y-0">
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-1">
+                <div className="h-3 w-3 rounded-full bg-green-100"></div>
+                <span className="text-sm">Available</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <div className="h-3 w-3 rounded-full bg-green-200"></div>
+                <span className="text-sm">Weekend</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <div className="h-3 w-3 rounded-full bg-red-100"></div>
+                <span className="text-sm">Blocked</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <div className="h-3 w-3 rounded-full bg-blue-100"></div>
+                <span className="text-sm">Booked</span>
+              </div>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              {selectedDates.length > 0 && activeListing && (
+                <div className="text-sm mr-2">
+                  <span className="font-medium">
+                    {selectedDates.length} {selectedDates.length === 1 ? 'night' : 'nights'}:
+                  </span>
+                  <span className="ml-1 text-green-600 font-bold">${calculateTotalPrice()}</span>
+                </div>
+              )}
               <Button 
                 variant="outline" 
-                onClick={() => setShowSyncDialog(true)}
-                className="border-[#ffc500] text-[#ffc500] hover:bg-[#ffc500]/10"
+                size="sm" 
+                onClick={clearSelection}
+                disabled={selectedDates.length === 0}
               >
-                <RefreshCw className="mr-2 h-4 w-4" /> Sync Calendar
+                Clear Selection
+              </Button>
+              <Button 
+                size="sm"
+                className="bg-[#ffc500] text-black hover:bg-amber-500"
+                onClick={() => setShowDateEditDialog(true)}
+                disabled={selectedDates.length === 0}
+              >
+                Edit Selected ({selectedDates.length})
               </Button>
             </div>
           </div>
-          <TabsContent value="calendar">
-            <Card className="shadow-lg border-[#ffc500]/20 mb-8">
-              <CardHeader className="pb-3">
-                <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
-                  <CardTitle>Availability Calendar</CardTitle>
-                  <div className="flex space-x-2">
-                    <Select value={selectedListing} onValueChange={setSelectedListing}>
-                      <SelectTrigger className="w-[200px]">
-                        <SelectValue placeholder="Select a listing" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All Listings & Experiences</SelectItem>
-                        {listings.map(listing => (
-                          <SelectItem key={listing.id} value={listing.id.toString()}>
-                            {listing.name} ({listing.type === 'listing' ? 'Accommodation' : 'Experience'})
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+        </CardContent>
+      </Card>
 
-                    <Tabs value={activeView} onValueChange={setActiveView} className="w-[180px]">
-                      <TabsList className="grid w-full grid-cols-2">
-                        <TabsTrigger value="month">Month</TabsTrigger>
-                        <TabsTrigger value="week">Week</TabsTrigger>
-                      </TabsList>
-                    </Tabs>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <Card className="shadow-lg border-[#ffc500]/20">
+          <CardHeader>
+            <CardTitle className="text-lg">Current Rules</CardTitle>
+            <CardDescription>Your availability rules</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="rounded-md border p-3 shadow-sm hover:shadow transition-shadow">
+              <div className="flex items-center justify-between">
+                <h4 className="font-medium">Weekend Pricing</h4>
+                <div className="flex space-x-1">
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="h-7 w-7"
+                    onClick={() => handleEditRule("Weekend Pricing")}
+                  >
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+                  <Button variant="ghost" size="icon" className="h-7 w-7 text-red-500">
+                    <Trash className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground">Min stay: 2 nights, Fri-Sun</p>
+            </div>
+
+            <div className="rounded-md border p-3 shadow-sm hover:shadow transition-shadow">
+              <div className="flex items-center justify-between">
+                <h4 className="font-medium">Weekday Availability</h4>
+                <div className="flex space-x-1">
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="h-7 w-7"
+                    onClick={() => handleEditRule("Weekday Availability")}
+                  >
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+                  <Button variant="ghost" size="icon" className="h-7 w-7 text-red-500">
+                    <Trash className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground">9:00 AM - 5:00 PM, Mon-Thu</p>
+            </div>
+
+            <Button 
+              variant="outline" 
+              className="w-full border-[#ffc500] text-[#ffc500] hover:bg-[#ffc500]/10"
+              onClick={() => setShowRuleDialog(true)}
+            >
+              <Plus className="mr-2 h-4 w-4" /> Add New Rule
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Card className="shadow-lg border-[#ffc500]/20">
+          <CardHeader>
+            <CardTitle className="text-lg">Connected Calendars</CardTitle>
+            <CardDescription>External calendar sync</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="rounded-md border p-3 shadow-sm hover:shadow transition-shadow">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <div className="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 mr-2">
+                    <Home className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium">Airbnb</h4>
+                    <p className="text-xs text-muted-foreground">Last synced: {syncStatus.airbnb.lastSync}</p>
                   </div>
                 </div>
-              </CardHeader>
-              <CardContent>
-                {activeListing && (
-                  <Alert className="mb-4 bg-amber-50 border-amber-200">
-                    <AlertCircle className="h-4 w-4 text-amber-600" />
-                    <AlertTitle>Pricing Information</AlertTitle>
-                    <AlertDescription>
-                      <div className="flex items-center justify-between">
-                        <span>Standard weekday rate: ${activeListing.pricing.weekday}</span>
-                        <span>Weekend rate: ${activeListing.pricing.weekend}</span>
-                      </div>
-                    </AlertDescription>
-                  </Alert>
-                )}
-
-                <Alert className="mb-4 bg-amber-50 border-amber-200">
-                  <AlertCircle className="h-4 w-4 text-amber-600" />
-                  <AlertTitle>Calendar Sync Status</AlertTitle>
-                  <AlertDescription>
-                    <div className="flex flex-col gap-1">
-                      <div className="flex justify-between">
-                        <span>Airbnb: {syncStatus.airbnb.lastSync}</span>
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          onClick={() => syncSpecificCalendar('airbnb')}
-                          disabled={syncStatus.airbnb.syncing}
-                        >
-                          {syncStatus.airbnb.syncing ? (
-                            <RefreshCw className="h-4 w-4 mr-1 animate-spin" />
-                          ) : (
-                            <RefreshCw className="h-4 w-4 mr-1" />
-                          )}
-                          Sync
-                        </Button>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>VRBO: {syncStatus.vrbo.lastSync}</span>
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          onClick={() => syncSpecificCalendar('vrbo')}
-                          disabled={syncStatus.vrbo.syncing}
-                        >
-                          {syncStatus.vrbo.syncing ? (
-                            <RefreshCw className="h-4 w-4 mr-1 animate-spin" />
-                          ) : (
-                            <RefreshCw className="h-4 w-4 mr-1" />
-                          )}
-                          Sync
-                        </Button>
-                      </div>
-                    </div>
-                  </AlertDescription>
-                </Alert>
-
-                <div className="relative mt-1 rounded-md">
-                  <Tabs value={activeView} className="w-full">
-                    <TabsContent value="month" className="mt-0">
-                      <div className="overflow-x-auto pb-4">
-                        <div className="w-full min-w-[900px]">
-                          <CalendarComponent 
-                            mode="range"
-                            selected={selectedDateRange}
-                            onSelect={handleRangeSelect}
-                            className="rounded-md border shadow p-4 w-full pointer-events-auto"
-                            components={{
-                              Day: ({ day: dayObject, ...otherProps }) => {
-                                const date = dayObject.date;
-                                const status = getDayStatus(date);
-                                const isSelected = isDaySelected(date);
-                                const price = getDayPrice(date);
-                                const isRangeStart = selectedDateRange.from && isSameDay(date, selectedDateRange.from);
-                                const isRangeEnd = selectedDateRange.to && isSameDay(date, selectedDateRange.to); 
-                                
-                                return (
-                                  <div
-                                    className={cn(
-                                      "relative h-16 w-16 md:h-20 md:w-20 p-0 cursor-pointer hover:bg-accent rounded-md flex flex-col items-center justify-center mx-1.5",
-                                      isSelected && "bg-[#ffc500]/20 ring-2 ring-[#ffc500]",
-                                      isRangeStart && "rounded-l-md",
-                                      isRangeEnd && "rounded-r-md",
-                                      status === "blocked" && "bg-red-100",
-                                      status === "booked" && "bg-blue-100",
-                                      status === "available" && "bg-green-100",
-                                      isWeekend(date) && status === "available" && "bg-green-200"
-                                    )}
-                                    {...otherProps}
-                                  >
-                                    <time dateTime={format(date, 'yyyy-MM-dd')} className="text-lg">
-                                      {format(date, 'd')}
-                                    </time>
-                                    {price && activeListing && (
-                                      <div className="text-xs text-slate-700 font-medium mt-1">
-                                        ${price}
-                                      </div>
-                                    )}
-                                    {status !== "available" && (
-                                      <div className={cn(
-                                        "absolute bottom-0.5 left-1/2 transform -translate-x-1/2 h-1 w-1 rounded-full",
-                                        status === "blocked" && "bg-red-500",
-                                        status === "booked" && "bg-blue-500"
-                                      )} />
-                                    )}
-                                  </div>
-                                );
-                              }
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </TabsContent>
-                    <TabsContent value="week" className="mt-0">
-                      <div className="flex items-center justify-between mb-2">
-                        <Button variant="outline" size="sm" onClick={goToPreviousWeek} className="flex items-center">
-                          <ChevronLeft className="h-4 w-4 mr-1" /> Previous Week
-                        </Button>
-                        <span className="text-sm font-medium">
-                          {format(currentWeekStart, 'MMM d')} - {format(addDays(currentWeekStart, 6), 'MMM d, yyyy')}
-                        </span>
-                        <Button variant="outline" size="sm" onClick={goToNextWeek} className="flex items-center">
-                          Next Week <ChevronRight className="h-4 w-4 ml-1" />
-                        </Button>
-                      </div>
-                      <div className="grid grid-cols-7 gap-2">
-                        {Array.from({ length: 7 }).map((_, index) => {
-                          const day = addDays(currentWeekStart, index);
-                          const dayPrice = getDayPrice(day);
-                          return (
-                            <div key={index} className="space-y-1">
-                              <div className="text-center font-medium">
-                                {format(day, 'EEE')}
-                              </div>
-                              <div className="text-center text-sm text-muted-foreground">
-                                {format(day, 'd MMM')}
-                              </div>
-                              <div 
-                                className={cn(
-                                  "h-32 rounded-md border p-2 cursor-pointer hover:bg-accent",
-                                  getDayStatus(day) === "blocked" && "bg-red-100",
-                                  getDayStatus(day) === "booked" && "bg-blue-100",
-                                  getDayStatus(day) === "available" && isWeekend(day) && "bg-green-200",
-                                  getDayStatus(day) === "available" && !isWeekend(day) && "bg-green-100",
-                                  isDaySelected(day) && "ring-2 ring-[#ffc500] bg-[#ffc500]/20"
-                                )}
-                                onClick={() => {
-                                  setSelectedDateRange({
-                                    from: day,
-                                    to: undefined
-                                  });
-                                  setSelectedDates([day]);
-                                }}
-                              >
-                                <div className="text-xs">9:00 AM - 5:00 PM</div>
-                                {dayPrice && activeListing && (
-                                  <div className="mt-2 text-center">
-                                    <span className="font-medium">${dayPrice}</span>
-                                    <span className="text-xs text-muted-foreground block">
-                                      {isWeekend(day) ? 'Weekend rate' : 'Weekday rate'}
-                                    </span>
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </TabsContent>
-                  </Tabs>
-                </div>
-
-                <div className="mt-6 flex flex-col md:flex-row md:items-center justify-between space-y-3 md:space-y-0">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-1">
-                      <div className="h-3 w-3 rounded-full bg-green-100"></div>
-                      <span className="text-sm">Available</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <div className="h-3 w-3 rounded-full bg-green-200"></div>
-                      <span className="text-sm">Weekend</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <div className="h-3 w-3 rounded-full bg-red-100"></div>
-                      <span className="text-sm">Blocked</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <div className="h-3 w-3 rounded-full bg-blue-100"></div>
-                      <span className="text-sm">Booked</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center space-x-2">
-                    {selectedDates.length > 0 && activeListing && (
-                      <div className="text-sm mr-2">
-                        <span className="font-medium">
-                          {selectedDates.length} {selectedDates.length === 1 ? 'night' : 'nights'}:
-                        </span>
-                        <span className="ml-1 text-green-600 font-bold">${calculateTotalPrice()}</span>
-                      </div>
-                    )}
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      onClick={clearSelection}
-                      disabled={selectedDates.length === 0}
-                    >
-                      Clear Selection
-                    </Button>
-                    <Button 
-                      size="sm"
-                      className="bg-[#ffc500] text-black hover:bg-amber-500"
-                      onClick={() => setShowDateEditDialog(true)}
-                      disabled={selectedDates.length === 0}
-                    >
-                      Edit Selected ({selectedDates.length})
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-          <TabsContent value="rules">
-            <Card className="shadow-lg border-[#ffc500]/20">
-              <CardHeader>
-                <CardTitle className="text-lg">Current Rules</CardTitle>
-                <CardDescription>Your availability rules</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="rounded-md border p-3 shadow-sm hover:shadow transition-shadow">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-medium">Weekend Pricing</h4>
-                    <div className="flex space-x-1">
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="h-7 w-7"
-                        onClick={() => handleEditRule("Weekend Pricing")}
-                      >
-                        <Pencil className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="icon" className="h-7 w-7 text-red-500">
-                        <Trash className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground">Min stay: 2 nights, Fri-Sun</p>
-                </div>
-
-                <div className="rounded-md border p-3 shadow-sm hover:shadow transition-shadow">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-medium">Weekday Availability</h4>
-                    <div className="flex space-x-1">
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="h-7 w-7"
-                        onClick={() => handleEditRule("Weekday Availability")}
-                      >
-                        <Pencil className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="icon" className="h-7 w-7 text-red-500">
-                        <Trash className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground">9:00 AM - 5:00 PM, Mon-Thu</p>
-                </div>
-
                 <Button 
-                  variant="outline" 
-                  className="w-full border-[#ffc500] text-[#ffc500] hover:bg-[#ffc500]/10"
-                  onClick={() => setShowRuleDialog(true)}
+                  variant="ghost" 
+                  size="sm"
+                  onClick={() => syncSpecificCalendar('airbnb')}
+                  disabled={syncStatus.airbnb.syncing}
                 >
-                  <Plus className="mr-2 h-4 w-4" /> Add New Rule
+                  {syncStatus.airbnb.syncing ? (
+                    <RefreshCw className="h-4 w-4 mr-1 animate-spin" />
+                  ) : (
+                    <RefreshCw className="h-4 w-4 mr-1" />
+                  )}
+                  Sync
                 </Button>
-              </CardContent>
-            </Card>
-          </TabsContent>
-          <TabsContent value="sync">
-            <Card className="shadow-lg border-[#ffc500]/20">
-              <CardHeader>
-                <CardTitle className="text-lg">Connected Calendars</CardTitle>
-                <CardDescription>External calendar sync</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="rounded-md border p-3 shadow-sm hover:shadow transition-shadow">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 mr-2">
-                        <Home className="h-4 w-4" />
-                      </div>
-                      <div>
-                        <h4 className="font-medium">Airbnb</h4>
-                        <p className="text-xs text-muted-foreground">Last synced: {syncStatus.airbnb.lastSync}</p>
-                      </div>
-                    </div>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => syncSpecificCalendar('airbnb')}
-                      disabled={syncStatus.airbnb.syncing}
-                    >
-                      {syncStatus.airbnb.syncing ? (
-                        <RefreshCw className="h-4 w-4 mr-1 animate-spin" />
-                      ) : (
-                        <RefreshCw className="h-4 w-4 mr-1" />
-                      )}
-                      Sync
-                    </Button>
+              </div>
+            </div>
+
+            <div className="rounded-md border p-3 shadow-sm hover:shadow transition-shadow">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-2">
+                    <CalendarRange className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium">VRBO</h4>
+                    <p className="text-xs text-muted-foreground">Last synced: {syncStatus.vrbo.lastSync}</p>
                   </div>
                 </div>
-
-                <div className="rounded-md border p-3 shadow-sm hover:shadow transition-shadow">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-2">
-                        <CalendarRange className="h-4 w-4" />
-                      </div>
-                      <div>
-                        <h4 className="font-medium">VRBO</h4>
-                        <p className="text-xs text-muted-foreground">Last synced: {syncStatus.vrbo.lastSync}</p>
-                      </div>
-                    </div>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => syncSpecificCalendar('vrbo')}
-                      disabled={syncStatus.vrbo.syncing}
-                    >
-                      {syncStatus.vrbo.syncing ? (
-                        <RefreshCw className="h-4 w-4 mr-1 animate-spin" />
-                      ) : (
-                        <RefreshCw className="h-4 w-4 mr-1" />
-                      )}
-                      Sync
-                    </Button>
-                  </div>
-                </div>
-
                 <Button 
-                  variant="outline" 
-                  className="w-full border-[#ffc500] text-[#ffc500] hover:bg-[#ffc500]/10"
-                  onClick={() => setShowSyncDialog(true)}
+                  variant="ghost" 
+                  size="sm"
+                  onClick={() => syncSpecificCalendar('vrbo')}
+                  disabled={syncStatus.vrbo.syncing}
                 >
-                  <Link className="mr-2 h-4 w-4" /> Connect Calendar
+                  {syncStatus.vrbo.syncing ? (
+                    <RefreshCw className="h-4 w-4 mr-1 animate-spin" />
+                  ) : (
+                    <RefreshCw className="h-4 w-4 mr-1" />
+                  )}
+                  Sync
                 </Button>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+              </div>
+            </div>
+
+            <Button 
+              variant="outline" 
+              className="w-full border-[#ffc500] text-[#ffc500] hover:bg-[#ffc500]/10"
+              onClick={() => setShowSyncDialog(true)}
+            >
+              <Link className="mr-2 h-4 w-4" /> Connect Calendar
+            </Button>
+          </CardContent>
+        </Card>
       </div>
 
       <Dialog open={showDateEditDialog} onOpenChange={setShowDateEditDialog}>
@@ -803,8 +774,8 @@ const Calendar = () => {
               {selectedDates.length} {selectedDates.length === 1 ? 'date' : 'dates'} selected. 
               {selectedDates.length > 0 && (
                 <span className="block mt-1">
-                  {selectedDateRange.from && format(selectedDateRange.from, 'MMM d, yyyy')} 
-                  {selectedDateRange.to && ` - ${format(selectedDateRange.to, 'MMM d, yyyy')}`}
+                  {selectedDateRange?.from && format(selectedDateRange.from, 'MMM d, yyyy')}
+                  {selectedDateRange?.to && ` - ${format(selectedDateRange.to, 'MMM d, yyyy')}`}
                 </span>
               )}
               {activeListing && selectedDates.length > 0 && (

@@ -1,6 +1,5 @@
-
-import { useState } from "react";
-import Dashboard from "@/components/dashboard/Dashboard";
+import { useState, useEffect } from "react";
+import { usePage } from "@/contexts/PageContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
@@ -13,6 +12,13 @@ import { Link } from "react-router-dom";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 
 const LoginSecurity = () => {
+  const { setPageTitle, setPageSubtitle } = usePage();
+
+  useEffect(() => {
+    setPageTitle("Login & Security");
+    setPageSubtitle("Manage your password, two-factor authentication, and active sessions");
+  }, [setPageTitle, setPageSubtitle]);
+
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -61,17 +67,8 @@ const LoginSecurity = () => {
   };
 
   return (
-    <Dashboard>
+    <>
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="flex items-center mb-6">
-          <Link to="/account" className="mr-4">
-            <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-          </Link>
-          <h1 className="text-3xl font-bold">Login & Security</h1>
-        </div>
-
         <div className="space-y-8">
           {/* Password Section */}
           <Card>
@@ -276,7 +273,7 @@ const LoginSecurity = () => {
           </Card>
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

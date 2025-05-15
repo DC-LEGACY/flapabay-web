@@ -1,7 +1,6 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePage } from "@/contexts/PageContext";
 import { useNavigate } from "react-router-dom";
-import Dashboard from "@/components/dashboard/Dashboard";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -178,7 +177,14 @@ const categoryIcons: Record<string, React.ReactNode> = {
 };
 
 const Experiences = () => {
+  const { setPageTitle, setPageSubtitle } = usePage();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setPageTitle("Your Experiences");
+    setPageSubtitle("Manage your tours, classes, and activities");
+  }, [setPageTitle, setPageSubtitle]);
+
   const [activeTab, setActiveTab] = useState("all");
   const [showNewExperienceDialog, setShowNewExperienceDialog] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -223,17 +229,7 @@ const Experiences = () => {
   };
 
   return (
-    <Dashboard>
-      <div className="mb-6 flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
-        <div>
-          <h2 className="text-3xl font-bold">Your Experiences</h2>
-          <p className="text-muted-foreground">Manage your tours, classes, and activities</p>
-        </div>
-        <Button className="bg-[#ffc500] text-black hover:bg-amber-500" onClick={() => setShowNewExperienceDialog(true)}>
-          <Plus className="mr-2 h-4 w-4" /> Add New Experience
-        </Button>
-      </div>
-
+    <>
       <Card className="shadow-lg border-[#ffc500]/20">
         <CardHeader className="pb-3">
           <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
@@ -532,7 +528,7 @@ const Experiences = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </Dashboard>
+    </>
   );
 };
 

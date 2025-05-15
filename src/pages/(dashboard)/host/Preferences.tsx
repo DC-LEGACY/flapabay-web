@@ -1,5 +1,5 @@
-
-import Dashboard from "@/components/dashboard/Dashboard";
+import { useEffect } from "react";
+import { usePage } from "@/contexts/PageContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -9,18 +9,16 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 
 const Preferences = () => {
-  return (
-    <Dashboard>
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="flex items-center mb-6">
-          <Link to="/account" className="mr-4">
-            <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-          </Link>
-          <h1 className="text-3xl font-bold">Global Preferences</h1>
-        </div>
+  const { setPageTitle, setPageSubtitle } = usePage();
 
+  useEffect(() => {
+    setPageTitle("Global Preferences");
+    setPageSubtitle("Customize your language, currency, and time settings");
+  }, [setPageTitle, setPageSubtitle]);
+
+  return (
+    <>
+      <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="space-y-8">
           <Card>
             <CardHeader>
@@ -152,7 +150,7 @@ const Preferences = () => {
           </Card>
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

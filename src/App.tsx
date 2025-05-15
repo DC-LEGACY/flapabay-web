@@ -9,6 +9,7 @@ import { BottomNavProvider } from '@/contexts/BottomNavContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { PageProvider } from '@/contexts/PageContext';
 import "aos/dist/aos.css";
 import "@/scss/main.scss";
 
@@ -61,11 +62,13 @@ function App() {
       <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
         <AuthProvider>
           <BottomNavProvider>
-            <Toaster />
-            {/* <Sonner /> */}
-            <BrowserRouter>
-              <AppRoutes />
-            </BrowserRouter>
+            <PageProvider>
+              <Toaster />
+              {/* <Sonner /> */}
+              <BrowserRouter>
+                <AppRoutes />
+              </BrowserRouter>
+            </PageProvider>
           </BottomNavProvider>
         </AuthProvider>
       </GoogleOAuthProvider>

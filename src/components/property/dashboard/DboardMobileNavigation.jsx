@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import { useAtom } from "jotai";
-import { modeAtom } from "@/store/atom";
+import { userAtom } from "@/store/authStore";
 
 const DboardMobileNavigation = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -11,7 +11,8 @@ const DboardMobileNavigation = () => {
   const { signOut } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
-  const [isHosting] = useAtom(modeAtom);
+  const [user] = useAtom(userAtom);
+  const isHosting = user?.role === 'host';
 
   const handleLogout = async () => {
     try {
@@ -34,32 +35,27 @@ const DboardMobileNavigation = () => {
     {
       items: [
         {
-          href: "/dashboard",
+          href: "/dashboard/host",
           icon: "flaticon-discovery",
           text: "Today",
         },
         {
-          href: "/dashboard-message",
+          href: "/dashboard/guest/messages",
           icon: "flaticon-chat-1",
           text: "Messages",
         },
         {
-          href: "/dashboard-my-properties",
+          href: "/dashboard/host/listings",
           icon: "flaticon-home",
           text: "My Properties",
         },
         {
-          href: "/dashboard-my-package",
-          icon: "flaticon-protection",
-          text: "My Package",
-        },
-        {
-          href: "/dashboard-my-profile",
+          href: "/dashboard/host/profile",
           icon: "flaticon-user",
           text: "My Profile",
         },
         {
-          href: "/account-page",
+          href: "/dashboard/host/account",
           icon: "flaticon-user",
           text: "Account",
         },
@@ -76,19 +72,14 @@ const DboardMobileNavigation = () => {
     {
       items: [
         {
-          href: "/dashboard-message",
+          href: "/dashboard/guest/messages",
           icon: "flaticon-chat-1",
           text: "Messages",
         },
         {
-          href: "/dashboard-my-profile",
+          href: "/dashboard/guest/profile",
           icon: "flaticon-user",
           text: "My Profile",
-        },
-        {
-          href: "/account-page",
-          icon: "flaticon-user",
-          text: "Account",
         },
         {
           onClick: handleLogout,

@@ -8,86 +8,56 @@ import { useAuth } from "@/contexts/AuthContext";
 const SidebarDashboard = () => {
   const { pathname } = useLocation();
   const [user] = useAtom(userAtom);
-  const { switchRole } = useAuth();
+  const { signOut, updateUserRole } = useAuth();
   const isHosting = user?.role === 'host';
 
   const sidebarItems = [
     {
       items: [
         {
-          href: "/dashboard",
+          href: "/dashboard/host",
           icon: "flaticon-discovery",
           text: "Today",
         },
         {
-          href: "/dashboard-message",
+          href: "/dashboard/guest/messages",
           icon: "flaticon-chat-1",
           text: "Messages",
         },
         {
-          href: "/dashboard-calender",
+          href: "/dashboard/host/calendar",
           icon: "flaticon-home",
-          text: "Calender",
+          text: "Calendar",
         },
         {
-          href: "/dashboard-my-favourites",
-          icon: "flaticon-like",
-          text: "Reservation",
-        },
-        {
-          href: "/dashboard-host-Experiences",
+          href: "/dashboard/host/experiences",
           icon: "flaticon-like",
           text: "Experiences",
         },
         {
-          href: "/dashboard-saved-search",
+          href: "/dashboard/host/listings",
           icon: "flaticon-search-2",
           text: "Listing",
         },
         {
-          href: "/dashboard-earnings",
+          href: "/dashboard/host/earnings",
           icon: "flaticon-new-tab",
           text: "Earnings",
         },
         {
-          href: "/dashboard-reviews",
+          href: "/dashboard/host/profile",
           icon: "flaticon-review",
-          text: "Insights",
+          text: "Profile",
         },
         {
-          href: "/dashboard-host-reviews",
-          icon: "flaticon-review",
-          text: "Reviews",
-        },
-        {
-          href: "/dashboard-host-aihost",
-          icon: "flaticon-review",
-          text: "AIHOST",
-        },
-        {
-          href: "/create-listing",
+          href: "/dashboard/add-property",
           icon: "flaticon-new-tab",
           text: "Create new listings",
-        },
-        {
-          href: "/dashboard-guidebook",
-          icon: "flaticon-protection",
-          text: "Guidbooks",
-        },
-        {
-          href: "/dashboard-experience",
-          icon: "flaticon-protection",
-          text: "Host an experience",
         },
         {
           href: "/help-center",
           icon: "flaticon-protection",
           text: "Help Center",
-        },
-        {
-          href: "/login",
-          icon: "flaticon-logout",
-          text: "Logout",
         },
       ],
     },
@@ -102,60 +72,52 @@ const SidebarDashboard = () => {
           text: "Explore",
         },
         {
-          href: "/dashboard-home",
+          href: "/dashboard/guest",
           icon: "flaticon-discovery",
           text: "Today",
         },
         {
-          href: "/whishlist-page",
+          href: "/dashboard/guest/wishlist",
           icon: "flaticon-home-1",
           text: "Wishlist",
         },
         {
-          href: "/dashboard-host-reviews",
+          href: "/dashboard/guest/reviews",
           icon: "flaticon-review",
           text: "Reviews",
         },
         {
-          href: "/whishlist-page",
+          href: "/dashboard/guest/trips",
           icon: "flaticon-home-1",
           text: "Trips",
         },
         {
-          href: "/dashboard-message",
+          href: "/dashboard/guest/messages",
           icon: "flaticon-chat-1",
           text: "Messages",
-        },
-        {
-          href: "/dashboard-experience",
-          icon: "flaticon-protection",
-          text: "Host an experience",
         },
         {
           href: "/help-center",
           icon: "flaticon-protection",
           text: "Help Center",
         },
-        {
-          href: "/login",
-          icon: "flaticon-logout",
-          text: "Logout",
-        },
       ],
     },
   ];
 
-  const currentSidebarItems = isHosting ? sidebarItems : travellingSidebarItems;
+  let currentItemsToRender = isHosting ? sidebarItems[0].items : travellingSidebarItems[0].items;
+  
+  currentItemsToRender = currentItemsToRender.filter(item => item.text !== "Logout");
 
   const getActiveClass = (href) => {
-    if (!isHosting && href === "/dashboard-message") {
-      return "-is-active"; // Automatically set as active when in Travelling mode
+    if (!isHosting && href === "/dashboard/guest/messages") {
+      return "-is-active";
     }
-    return pathname === href ? "-is-active" : ""; // Set as active based on pathname
+    return pathname === href ? "-is-active" : "";
   };
 
   return (
-    <div className="dashboard__sidebar d-none d-lg-block">
+    <div className="dashboard__sidebar Z-100 d-none d-lg-block">
       <div className="container">
         <div className="col-12 col-lg-auto">
           <div className="pb-5 text-center right-4 w-30 text-lg-center d-flex align-items-center">
@@ -164,35 +126,40 @@ const SidebarDashboard = () => {
                 <img className="w-full h-full" src="/images/icon-alt.svg" alt="Header Logo" />
               </Link>
             </div>
-            {/* End Logo */}
           </div>
         </div>
       </div>
       <div className="dashboard_sidebar_list">
-        {currentSidebarItems.map((section, sectionIndex) => (
-          <div key={sectionIndex}>
-            <p
-              className={`fz15 fw400 ff-heading ${
-                sectionIndex === 0 ? "mt-0" : "mt30"
-              }`}
-            >
-              {section.title}
-            </p>
-            {section.items.map((item, itemIndex) => (
+        <div>
+            {currentItemsToRender.map((item, itemIndex) => (
               <div key={itemIndex} className="sidebar_list_item">
                 <Link
-                  to={item.href} // Path to navigate to
-                  className={`items-center ${getActiveClass(item.href)}`} // Get the active class
+                  to={item.href}
+                  className={`items-center ${getActiveClass(item.href)}`}
                 >
                   <i className={`${item.icon} mr15`} />
                   {item.text}
                 </Link>
               </div>
             ))}
-          </div>
-        ))}
+            <div className="sidebar_list_item">
+              <button
+                onClick={async () => await signOut()}
+                className="items-center"
+              >
+                <i className="flaticon-logout mr15" />
+                Logout
+              </button>
+            </div>
+        </div>
       </div>
-      <button onClick={switchRole} className="font-medium">
+      <button 
+        onClick={async () => {
+          const newRole = user?.role === 'guest' ? 'host' : 'guest';
+          await updateUserRole(newRole);
+        }}
+        className="font-medium py-2 px-4 my-4 mx-auto block border rounded hover:bg-gray-100 active:bg-gray-200"
+      >
         Switch to {user?.role === 'guest' ? 'Hosting' : 'Travelling'}
       </button>
     </div>

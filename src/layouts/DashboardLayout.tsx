@@ -1,30 +1,61 @@
-import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { TooltipProvider } from '@/components/ui/feedback/tooltip';
+import DashboardHeader from '@/components/common/DashboardHeader';
+import SidebarDashboard from '@/components/property/dashboard/SidebarDashboard';
+import DboardMobileNavigation from '@/components/property/dashboard/DboardMobileNavigation';
+import MetaData from '@/components/common/MetaData';
+import MobileMenu from '@/components/common/MobileMenu';
+import Footer from '@/components/common/Footer';
+import { usePage } from '@/contexts/PageContext';
 
-import BottomNav from '@/components/bottom-nav/bottom-mobile-menu';
-
-import { useBottomNav } from '@/contexts/BottomNavContext';
-import { useScreenSize } from '@/utilis/screenUtils';
+const defaultMetaInformation = {
+  title: "Dashboard - Flapabay",
+  description: "User dashboard"
+};
 
 const DashboardLayout = () => {
-  const { setShowBottomNav, showBottomNav } = useBottomNav(); 
-  useEffect(() => {
-    // Show BottomNav on the landing page
-    setShowBottomNav(true);
-    // Cleanup: hide BottomNav when leaving the page 
-    return () => setShowBottomNav(false);
-  }, [setShowBottomNav]);
-  const isMobile = useScreenSize();
+  const { pageTitle, pageSubtitle } = usePage();
 
   return (
     <>
-    {showBottomNav && <BottomNav />}
-    <TooltipProvider>
-      <Outlet />
-    </TooltipProvider>
+      <MetaData meta={{...defaultMetaInformation, title: `${pageTitle} - Flapabay` }} />
+      <DashboardHeader />
+      <MobileMenu />
+
+      <div className="dashboard_content_wrapper">
+        <div className="dashboard dashboard_wrapper pr30 pr0-md">
+          <SidebarDashboard />
+          <div className="dashboard__main pl0-md">
+            <div className="dashboard__content property-page bgc-f7">
+              <div className="row pb40 d-block d-lg-none">
+                <div className="col-lg-12">
+                  <DboardMobileNavigation />
+                </div>
+              </div>
+
+              <div className="row align-items-center pb40">
+                <div className="col-lg-12">
+                  <div className="dashboard_title_area">
+                    <h2>{pageTitle}</h2>
+                    <p className="text">{pageSubtitle}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-xl-12">
+                  <TooltipProvider>
+                    <Outlet />
+                  </TooltipProvider>
+                </div>
+              </div>
+            </div>
+            <Footer />
+          </div>
+        </div>
+      </div>
     </>
   );
 };
 
-export default DashboardLayout; 
+export default DashboardLayout;

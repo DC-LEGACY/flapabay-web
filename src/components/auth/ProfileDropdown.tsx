@@ -21,20 +21,48 @@ interface ProfileDropdownProps {
   onClose: () => void;
 }
 
-const menuItems = [
-  { label: 'Dashboard', to: '/dashboard', icon: <Home2 size={20} /> },
-  { label: 'Messages', to: '/dashboard-message', icon: <Message size={20} /> },
-  { label: 'Trips', to: '/trip-page', icon: <Calendar size={20} /> },
-  { label: 'Wishlists', to: '/whishlist-page', icon: <Heart size={20} /> },
-  { label: 'Create new listings', to: '/create-listing', icon: <AddSquare size={20} /> },
-  { label: 'Host an experience', to: '/dashboard-experience', icon: <Profile2User size={20} /> },
-  { label: 'My Profile', to: '/dashboard-my-profile', icon: <User size={20} /> },
-  { label: 'Account', to: '/account-page', icon: <Setting2 size={20} /> },
-];
+// Define an interface for the menu items
+interface MenuItem {
+  label: string;
+  to: string;
+  icon: React.ReactNode;
+}
 
 const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, onClose }) => {
   const [user] = useAtom(userAtom);
   const { signOut } = useAuth();
+
+  const getMenuItems = (): MenuItem[] => {
+    const role = user?.role;
+    let items: MenuItem[] = [];
+
+    if (role === 'host') {
+      items = [
+        { label: 'Dashboard', to: '/dashboard/host', icon: <Home2 size={20} /> },
+        { label: 'Messages', to: '/dashboard/guest/messages', icon: <Message size={20} /> },
+        { label: 'Calendar', to: '/dashboard/host/calendar', icon: <Calendar size={20} /> },
+        { label: 'Listings', to: '/dashboard/host/listings', icon: <AddSquare size={20} /> },
+        { label: 'Experiences', to: '/dashboard/host/experiences', icon: <Profile2User size={20} /> },
+        { label: 'Profile', to: '/dashboard/host/profile', icon: <User size={20} /> },
+        { label: 'Account Settings', to: '/dashboard/host/account', icon: <Setting2 size={20} /> },
+      ];
+    } else if (role === 'guest') {
+      items = [
+        { label: 'Dashboard', to: '/dashboard/guest', icon: <Home2 size={20} /> },
+        { label: 'Messages', to: '/dashboard/guest/messages', icon: <Message size={20} /> },
+        { label: 'Trips', to: '/dashboard/guest/trips', icon: <Calendar size={20} /> },
+        { label: 'Wishlist', to: '/dashboard/guest/wishlist', icon: <Heart size={20} /> },
+        { label: 'Profile', to: '/dashboard/guest/profile', icon: <User size={20} /> },
+      ];
+    } else {
+      items = [
+        // e.g., { label: 'Home', to: '/', icon: <Home2 size={20} /> }
+      ]; 
+    }
+    return items;
+  };
+
+  const currentMenuItems = getMenuItems();
 
   useEffect(() => {
     if (open) {
@@ -85,7 +113,7 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, onClose }) => {
           </button>
         </div>
         <div className="flex flex-col divide-y divide-gray-100">
-          {menuItems.map((item) => (
+          {currentMenuItems.map((item) => (
             <Link
               key={item.to}
               to={item.to}

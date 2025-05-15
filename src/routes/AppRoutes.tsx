@@ -26,24 +26,40 @@ const getRouteComponent = (key: string) => {
     login: lazy(() => import('@/pages/auth/login/')),
     register: lazy(() => import('@/pages/auth/register')),
 
-    // Dashboard Pages
-    dashboardHome: lazy(() => import('@/pages/(dashboard)/dashboard-home')),
-    dashboardMyProfile: lazy(() => import('@/pages/(dashboard)/dashboard-my-profile')),
-    dashboardMyProperties: lazy(() => import('@/pages/(dashboard)/dashboard-my-properties')),
-    dashboardAddProperty: lazy(() => import('@/pages/(dashboard)/dashboard-add-property')),
-    dashboardMyPackage: lazy(() => import('@/pages/(dashboard)/dashboard-my-package')),
-    dashboardMessage: lazy(() => import('@/pages/(dashboard)/dashboard-message')),
-    dashboardGuidebook: lazy(() => import('@/pages/(dashboard)/dashboard-guidebook')),
-    dashboardMyFavourites: lazy(() => import('@/pages/(dashboard)/dashboard-my-favourites')),
-    dashboardReviews: lazy(() => import('@/pages/(dashboard)/dashboard-reviews')),
-    dashboardSavedSearch: lazy(() => import('@/pages/(dashboard)/dashboard-saved-search')),
-    dashboardHostReviews: lazy(() => import('@/pages/(dashboard)/Dashboard-host-reviews')),
-    dashboardHostExperiences: lazy(() => import('@/pages/(dashboard)/dashboard-host-experiences')),
-    dashboardEarnings: lazy(() => import('@/pages/(dashboard)/dashboard-earnings')),
-    dashboardCalender: lazy(() => import('@/pages/(dashboard)/dashboard-calender')),
-    dashboardAIHost: lazy(() => import('@/pages/(dashboard)/dashboard-aihost')),
-    cancellationOptions: lazy(() => import('@/pages/website/help-center/CancellationOptions')),
+    // Guest Dashboard Pages
+    guestDashboard: lazy(() => import('@/pages/(dashboard)/guest/Dashboard')),
+    guestMessages: lazy(() => import('@/pages/(dashboard)/guest/Messages')),
+    guestProfile: lazy(() => import('@/pages/(dashboard)/guest/Profile')),
+    guestReviews: lazy(() => import('@/pages/(dashboard)/guest/Reviews')),
+    guestTripDetails: lazy(() => import('@/pages/(dashboard)/guest/TripDetails')),
+    guestTrips: lazy(() => import('@/pages/(dashboard)/guest/Trips')),
+    guestWishlist: lazy(() => import('@/pages/(dashboard)/guest/Wishlist')),
+
+    // Host Dashboard Pages
+    hostDashboard: lazy(() => import('@/pages/(dashboard)/host/Index')), // Assuming Index.tsx is the main host dashboard
+    hostAccount: lazy(() => import('@/pages/(dashboard)/host/Account')),
+    hostCalendar: lazy(() => import('@/pages/(dashboard)/host/Calendar')),
+    hostEarnings: lazy(() => import('@/pages/(dashboard)/host/Earnings')),
+    hostExperiences: lazy(() => import('@/pages/(dashboard)/host/Experiences')),
+    hostListings: lazy(() => import('@/pages/(dashboard)/host/Listings')),
+    hostLoginSecurity: lazy(() => import('@/pages/(dashboard)/host/LoginSecurity')),
+    hostNotifications: lazy(() => import('@/pages/(dashboard)/host/Notifications')),
+    hostPayments: lazy(() => import('@/pages/(dashboard)/host/Payments')),
+    hostPreferences: lazy(() => import('@/pages/(dashboard)/host/Preferences')),
+    hostPrivacy: lazy(() => import('@/pages/(dashboard)/host/Privacy')),
+    hostProfile: lazy(() => import('@/pages/(dashboard)/host/Profile')),
+    hostPublicGuestProfile: lazy(() => import('@/pages/(dashboard)/host/PublicGuestProfile')),
+    hostPublicHostProfile: lazy(() => import('@/pages/(dashboard)/host/PublicHostProfile')),
+    hostReferrals: lazy(() => import('@/pages/(dashboard)/host/Referrals')),
+    hostSettings: lazy(() => import('@/pages/(dashboard)/host/Settings')),
+    hostTaxes: lazy(() => import('@/pages/(dashboard)/host/Taxes')),
+    hostTravelWork: lazy(() => import('@/pages/(dashboard)/host/TravelWork')),
+    
+    // Common Dashboard Pages
+    dashboardAddProperty: lazy(() => import('@/pages/(dashboard)/dashboard-add-property')), // Assuming this contains an index.tsx or similar default export
+
     // Help Center Pages
+    cancellationOptions: lazy(() => import('@/pages/website/help-center/CancellationOptions')),
     faqs: lazy(() => import('@/pages/website/help-center/FAQs')),
     neighborhoodConcern: lazy(() => import('@/pages/website/help-center/NeighborhoodConcern')),
     privacyPolicy: lazy(() => import('@/pages/website/help-center/PrivacyPolicy')),
@@ -114,12 +130,44 @@ export function AppRoutes() {
         </Route>
 
         {/* Dashboard Routes */}
-        <Route element={<DashboardLayoutWrapper />}>
-          <Route path="/dashboard">
-            <Route index element={React.createElement(getRouteComponent('dashboardHome'))} />
-            <Route path="my-profile" element={React.createElement(getRouteComponent('dashboardMyProfile'))} />
+        <Route path="/dashboard" element={<DashboardLayoutWrapper />}>
+          {/* Guest Routes */}
+          <Route path="guest">
+            <Route index element={React.createElement(getRouteComponent('guestDashboard'))} />
+            <Route path="messages" element={React.createElement(getRouteComponent('guestMessages'))} />
+            <Route path="profile" element={React.createElement(getRouteComponent('guestProfile'))} />
+            <Route path="reviews" element={React.createElement(getRouteComponent('guestReviews'))} />
+            <Route path="trips" element={React.createElement(getRouteComponent('guestTrips'))} />
+            <Route path="trips/:tripId" element={React.createElement(getRouteComponent('guestTripDetails'))} />
+            <Route path="wishlist" element={React.createElement(getRouteComponent('guestWishlist'))} />
+          </Route>
+
+          {/* Host Routes */}
+          <Route path="host">
+            <Route index element={React.createElement(getRouteComponent('hostDashboard'))} />
+            <Route path="account" element={React.createElement(getRouteComponent('hostAccount'))} />
+            <Route path="calendar" element={React.createElement(getRouteComponent('hostCalendar'))} />
+            <Route path="earnings" element={React.createElement(getRouteComponent('hostEarnings'))} />
+            <Route path="experiences" element={React.createElement(getRouteComponent('hostExperiences'))} />
+            <Route path="listings" element={React.createElement(getRouteComponent('hostListings'))} />
+            <Route path="login-security" element={React.createElement(getRouteComponent('hostLoginSecurity'))} />
+            <Route path="notifications" element={React.createElement(getRouteComponent('hostNotifications'))} />
+            <Route path="payments" element={React.createElement(getRouteComponent('hostPayments'))} />
+            <Route path="preferences" element={React.createElement(getRouteComponent('hostPreferences'))} />
+            <Route path="privacy" element={React.createElement(getRouteComponent('hostPrivacy'))} />
+            <Route path="profile" element={React.createElement(getRouteComponent('hostProfile'))} />
+            <Route path="public-guest-profile/:guestId" element={React.createElement(getRouteComponent('hostPublicGuestProfile'))} />
+            <Route path="public-host-profile/:hostId" element={React.createElement(getRouteComponent('hostPublicHostProfile'))} />
+            <Route path="referrals" element={React.createElement(getRouteComponent('hostReferrals'))} />
+            <Route path="settings" element={React.createElement(getRouteComponent('hostSettings'))} />
+            <Route path="taxes" element={React.createElement(getRouteComponent('hostTaxes'))} />
+            <Route path="travel-work" element={React.createElement(getRouteComponent('hostTravelWork'))} />
+          </Route>
+          
+          {/* Common Dashboard Routes */}
+          <Route path="add-property" element={React.createElement(getRouteComponent('dashboardAddProperty'))} />
+          {/* <Route path="my-profile" element={React.createElement(getRouteComponent('dashboardMyProfile'))} />
             <Route path="my-properties" element={React.createElement(getRouteComponent('dashboardMyProperties'))} />
-            <Route path="add-property" element={React.createElement(getRouteComponent('dashboardAddProperty'))} />
             <Route path="my-package" element={React.createElement(getRouteComponent('dashboardMyPackage'))} />
             <Route path="message" element={React.createElement(getRouteComponent('dashboardMessage'))} />
             <Route path="guidebook" element={React.createElement(getRouteComponent('dashboardGuidebook'))} />
@@ -130,8 +178,7 @@ export function AppRoutes() {
             <Route path="host-experiences" element={React.createElement(getRouteComponent('dashboardHostExperiences'))} />
             <Route path="earnings" element={React.createElement(getRouteComponent('dashboardEarnings'))} />
             <Route path="calender" element={React.createElement(getRouteComponent('dashboardCalender'))} />
-            <Route path="aihost" element={React.createElement(getRouteComponent('dashboardAIHost'))} />
-          </Route>
+            <Route path="aihost" element={React.createElement(getRouteComponent('dashboardAIHost'))} /> */}
         </Route>
 
         {/* Catch all route */}

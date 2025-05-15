@@ -12,9 +12,11 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import { useAtom } from 'jotai';
 import { userAtom } from '@/store/authStore';
+import { useAuth } from '@/contexts/AuthContext';
 
 const BottomNav = () => {
-  const { showBottomNav, switchRole } = useBottomNav();
+  const { showBottomNav } = useBottomNav();
+  const { updateUserRole } = useAuth();
   const [user] = useAtom(userAtom);
   const location = useLocation();
 
@@ -48,21 +50,21 @@ const BottomNav = () => {
     if (user.role === 'host') {
       // Host mode
       return [
-        { name: "Today", icon: <Home2 size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard" },
-        { name: "Messages", icon: <Message size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard-message" },
-        { name: "Calendar", icon: <Calendar size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard-calender" },
-        { name: "Listings", icon: <Briefcase size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard-saved-search" },
-        { name: "Profile", icon: <ProfileCircle size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard-my-profile" },
+        { name: "Today", icon: <Home2 size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard/host" },
+        { name: "Messages", icon: <Message size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard/guest/messages" },
+        { name: "Calendar", icon: <Calendar size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard/host/calendar" },
+        { name: "Listings", icon: <Briefcase size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard/host/listings" },
+        { name: "Profile", icon: <ProfileCircle size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard/host/profile" },
       ];
     }
 
     // Guest mode
     return [
       { name: "Search", icon: <Home2 size="24" variant="Outline" strokeWidth={2} />, to: "/" },
-      { name: "Wishlist", icon: <Heart size="24" variant="Outline" strokeWidth={2} />, to: "/whishlist-page" },
-      { name: "Trips", icon: <HomeTrendUp size="24" variant="Outline" strokeWidth={2} />, to: "/trip-page" },
-      { name: "Messages", icon: <Message size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard-message" },
-      { name: "Profile", icon: <ProfileCircle size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard-my-profile" },
+      { name: "Wishlist", icon: <Heart size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard/guest/wishlist" },
+      { name: "Trips", icon: <HomeTrendUp size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard/guest/trips" },
+      { name: "Messages", icon: <Message size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard/guest/messages" },
+      { name: "Profile", icon: <ProfileCircle size="24" variant="Outline" strokeWidth={2} />, to: "/dashboard/guest/profile" },
     ];
   };
 
@@ -87,10 +89,18 @@ const BottomNav = () => {
             </Link>
           );
         })}
-        <button onClick={switchRole} className="font-medium text-sm bg-flapabay-black text-white rounded-2xl px-3 py-2 flex items-center gap-2">
-          <ArrowSwapHorizontal className="w-4 h-4 text-white" />
-          <span>{user?.role === 'host' ? 'Travelling' : 'Hosting'}</span>
-        </button>
+        {user && (
+          <button 
+            onClick={async () => {
+              const newRole = user?.role === 'host' ? 'guest' : 'host';
+              await updateUserRole(newRole);
+            }}
+            className="font-medium text-sm bg-flapabay-black text-white rounded-2xl px-3 py-2 flex items-center gap-2"
+          >
+            <ArrowSwapHorizontal className="w-4 h-4 text-white" />
+            <span>{user?.role === 'host' ? 'Travelling' : 'Hosting'}</span>
+          </button>
+        )}
       </div>
     </div>
   );

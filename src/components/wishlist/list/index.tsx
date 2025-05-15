@@ -1,12 +1,7 @@
-import DashboardHeader from "../common/DashboardHeader";
 import { Link } from "react-router-dom";
-import MobileMenu from "../common/mobile-menu";
 
 export default function WishlistPage() {
     return (
-        <>
-        <DashboardHeader/>
-        <MobileMenu />
       <div className="max-w-3xl px-2 mx-auto sm:mt-2 md:mt-2 lg:mt-28">
         <h1 className="text-3xl font-bold">Wishlists</h1>
         
@@ -44,7 +39,6 @@ export default function WishlistPage() {
           </div>
         </div>
       </div>
-      </>
     );
   }
   

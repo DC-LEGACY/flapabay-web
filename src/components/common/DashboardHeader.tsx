@@ -124,7 +124,7 @@ const DashboardHeader: React.FC = () => {
 
   return (
     <>
-      <header className="header-nav nav-homepage-style light-header position-fixed menu-home4 main-menu">
+      <header className="z-0 header-nav nav-homepage-style light-header position-fixed menu-home4 main-menu">
 
         <nav className="relative">
           <div className="container container-fluid pr30 pr15-xs pl30 posr menu_bdrt1 mx-auto px-4 py-2">

@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowDown, ArrowUp, Activity, DollarSign, Calendar, Home as HomeIcon } from "lucide-react";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { usePage } from '@/contexts/PageContext';
+import { DayPicker } from "@/components/ui/calendar";
 
 const earningsData = [
   { month: 'Jan', earnings: 1200 },

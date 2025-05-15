@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { usePage } from "@/contexts/PageContext";
-import { Calendar as CalendarComponent } from "@/components/dashboard/host/ui/calendar";
+import CalendarComponent from "@/components/dashboard/host/ui/calendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/dashboard/host/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/dashboard/host/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/dashboard/host/ui/select";
@@ -16,7 +15,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { format, addDays, startOfWeek, endOfWeek, addMonths, isSameDay, isWithinInterval, isWeekend, parseISO, isBefore, isAfter, differenceInDays } from "date-fns";
-import type { DateRange } from "react-day-picker";
 import {
   Calendar as CalendarIcon,
   BarChart,
@@ -41,7 +39,7 @@ import {
   ChevronLeft,
   ChevronRight
 } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/dashboard/host/ui/popover";
 import { cn } from "@/lib/utils";
 
 const availabilityRuleSchema = z.object({
@@ -138,16 +136,12 @@ const syncSources = [
 ];
 
 const Calendar = () => {
-  const { setPageTitle, setPageSubtitle } = usePage();
-
-  useEffect(() => {
-    setPageTitle("Host Calendar");
-    setPageSubtitle("Manage your availability and bookings");
-  }, [setPageTitle, setPageSubtitle]);
-
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [selectedDates, setSelectedDates] = useState<Date[]>([]);
-  const [selectedDateRange, setSelectedDateRange] = useState<DateRange | undefined>({ from: undefined, to: undefined });
+  const [selectedDateRange, setSelectedDateRange] = useState<{
+    from: Date | undefined;
+    to: Date | undefined;
+  }>({ from: undefined, to: undefined });
   const [activeView, setActiveView] = useState("month");
   const [selectedListing, setSelectedListing] = useState<string | undefined>();
   const [showDateEditDialog, setShowDateEditDialog] = useState(false);
@@ -206,7 +200,7 @@ const Calendar = () => {
   const handleDateClick = (day: Date) => {
     let rangeToEdit: Date[] = [];
     
-    if (selectedDateRange && selectedDateRange.from && selectedDateRange.to) {
+    if (selectedDateRange.from && selectedDateRange.to) {
       const startDate = selectedDateRange.from;
       const endDate = selectedDateRange.to;
       const daysDiff = differenceInDays(endDate, startDate);
@@ -214,7 +208,7 @@ const Calendar = () => {
       for (let i = 0; i <= daysDiff; i++) {
         rangeToEdit.push(addDays(startDate, i));
       }
-    } else if (selectedDateRange && selectedDateRange.from) {
+    } else if (selectedDateRange.from) {
       rangeToEdit = [selectedDateRange.from];
     }
     
@@ -303,21 +297,19 @@ const Calendar = () => {
   };
 
   const isDaySelected = (day: Date) => {
-    if (selectedDateRange && selectedDateRange.from && selectedDateRange.to) {
-      const fromDate = selectedDateRange.from;
-      const toDate = selectedDateRange.to;
+    if (selectedDateRange.from && selectedDateRange.to) {
       return isWithinInterval(day, { 
-        start: fromDate, 
-        end: toDate 
+        start: selectedDateRange.from, 
+        end: selectedDateRange.to 
       });
     }
-    return selectedDateRange?.from && isSameDay(day, selectedDateRange.from);
+    return selectedDateRange.from && isSameDay(day, selectedDateRange.from);
   };
 
-  const handleRangeSelect = (range: DateRange | undefined) => {
-    setSelectedDateRange(range || { from: undefined, to: undefined });
+  const handleRangeSelect = (range: { from: Date | undefined; to: Date | undefined }) => {
+    setSelectedDateRange(range);
     
-    if (range && range.from && range.to) {
+    if (range.from && range.to) {
       const startDate = range.from;
       const endDate = range.to;
       const daysDiff = differenceInDays(endDate, startDate);
@@ -328,7 +320,7 @@ const Calendar = () => {
       }
       
       setSelectedDates(datesInRange);
-    } else if (range && range.from) {
+    } else if (range.from) {
       setSelectedDates([range.from]);
     } else {
       setSelectedDates([]);
@@ -388,8 +380,31 @@ const Calendar = () => {
     toast.success(`Editing ${ruleName} rule`);
   };
 
+
   return (
     <>
+         <div className="mb-6 flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+        <div>
+          <h2 className="text-3xl font-bold">Calendar Management</h2>
+          <p className="text-muted-foreground">Manage your availability for listings and experiences</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button 
+            onClick={() => setShowRuleDialog(true)}
+            className="bg-[#ffc500] text-black hover:bg-amber-500"
+          >
+            <Plus className="mr-2 h-4 w-4" /> Add Rule
+          </Button>
+          <Button 
+            variant="outline" 
+            onClick={() => setShowSyncDialog(true)}
+            className="border-[#ffc500] text-[#ffc500] hover:bg-[#ffc500]/10"
+          >
+            <RefreshCw className="mr-2 h-4 w-4" /> Sync Calendar
+          </Button>
+        </div>
+      </div>
+
       <Card className="shadow-lg border-[#ffc500]/20 mb-8">
         <CardHeader className="pb-3">
           <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
@@ -483,46 +498,52 @@ const Calendar = () => {
                       selected={selectedDateRange}
                       onSelect={handleRangeSelect}
                       className="rounded-md border shadow p-4 w-full pointer-events-auto"
-                      components={{
-                        Day: ({ day: dayObject, ...otherProps }) => {
-                          const date = dayObject.date;
-                          const status = getDayStatus(date);
-                          const isSelected = isDaySelected(date);
-                          const price = getDayPrice(date);
-                          const isRangeStart = selectedDateRange?.from && isSameDay(date, selectedDateRange.from);
-                          const isRangeEnd = selectedDateRange?.to && isSameDay(date, selectedDateRange.to); 
-                          
-                          return (
-                            <div
-                              className={cn(
-                                "relative h-16 w-16 md:h-20 md:w-20 p-0 cursor-pointer hover:bg-accent rounded-md flex flex-col items-center justify-center mx-1.5",
-                                isSelected && "bg-[#ffc500]/20 ring-2 ring-[#ffc500]",
-                                isRangeStart && "rounded-l-md",
-                                isRangeEnd && "rounded-r-md",
-                                status === "blocked" && "bg-red-100",
-                                status === "booked" && "bg-blue-100",
-                                status === "available" && "bg-green-100",
-                                isWeekend(date) && status === "available" && "bg-green-200"
-                              )}
-                              {...otherProps}
-                            >
-                              <time dateTime={format(date, 'yyyy-MM-dd')} className="text-lg">
-                                {format(date, 'd')}
-                              </time>
-                              {price && activeListing && (
-                                <div className="text-xs text-slate-700 font-medium mt-1">
-                                  ${price}
-                                </div>
-                              )}
-                              {status !== "available" && (
-                                <div className={cn(
-                                  "absolute bottom-0.5 left-1/2 transform -translate-x-1/2 h-1 w-1 rounded-full",
-                                  status === "blocked" && "bg-red-500",
-                                  status === "booked" && "bg-blue-500"
-                                )} />
-                              )}
-                            </div>
-                          );
+                      render={{
+                        day: (day) => {
+                          if (!day || typeof day === 'string' || !(day instanceof Date)) {
+                            return null;
+                          }
+                          try {
+                            const status = getDayStatus(day);
+                            const isSelected = isDaySelected(day);
+                            const price = getDayPrice(day);
+                            const isRangeStart = selectedDateRange.from && isSameDay(day, selectedDateRange.from);
+                            const isRangeEnd = selectedDateRange.to && isSameDay(day, selectedDateRange.to); 
+                            
+                            return (
+                              <div
+                                className={cn(
+                                  "relative h-16 w-16 md:h-20 md:w-20 p-0 cursor-pointer hover:bg-accent rounded-md flex flex-col items-center justify-center mx-1.5",
+                                  isSelected && "bg-[#ffc500]/20 ring-2 ring-[#ffc500]",
+                                  isRangeStart && "rounded-l-md",
+                                  isRangeEnd && "rounded-r-md",
+                                  status === "blocked" && "bg-red-100",
+                                  status === "booked" && "bg-blue-100",
+                                  status === "available" && "bg-green-100",
+                                  isWeekend(day) && status === "available" && "bg-green-200"
+                                )}
+                              >
+                                <time dateTime={format(day, 'yyyy-MM-dd')} className="text-lg">
+                                  {format(day, 'd')}
+                                </time>
+                                {price && activeListing && (
+                                  <div className="text-xs text-slate-700 font-medium mt-1">
+                                    ${price}
+                                  </div>
+                                )}
+                                {status !== "available" && (
+                                  <div className={cn(
+                                    "absolute bottom-0.5 left-1/2 transform -translate-x-1/2 h-1 w-1 rounded-full",
+                                    status === "blocked" && "bg-red-500",
+                                    status === "booked" && "bg-blue-500"
+                                  )} />
+                                )}
+                              </div>
+                            );
+                          } catch (error) {
+                            console.error('Error rendering day:', error);
+                            return null;
+                          }
                         }
                       }}
                     />
@@ -774,8 +795,8 @@ const Calendar = () => {
               {selectedDates.length} {selectedDates.length === 1 ? 'date' : 'dates'} selected. 
               {selectedDates.length > 0 && (
                 <span className="block mt-1">
-                  {selectedDateRange?.from && format(selectedDateRange.from, 'MMM d, yyyy')}
-                  {selectedDateRange?.to && ` - ${format(selectedDateRange.to, 'MMM d, yyyy')}`}
+                  {selectedDateRange.from && format(selectedDateRange.from, 'MMM d, yyyy')} 
+                  {selectedDateRange.to && ` - ${format(selectedDateRange.to, 'MMM d, yyyy')}`}
                 </span>
               )}
               {activeListing && selectedDates.length > 0 && (

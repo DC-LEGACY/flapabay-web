@@ -41,7 +41,8 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, onClose }) => {
         { label: 'Dashboard', to: '/dashboard/host', icon: <Home2 size={20} /> },
         { label: 'Messages', to: '/dashboard/guest/messages', icon: <Message size={20} /> },
         { label: 'Calendar', to: '/dashboard/host/calendar', icon: <Calendar size={20} /> },
-        { label: 'Listings', to: '/dashboard/host/listings', icon: <AddSquare size={20} /> },
+        
+        { label: 'Add a Listings', to: '/flapabay-your-home', icon: <AddSquare size={20} /> },
         { label: 'Experiences', to: '/dashboard/host/experiences', icon: <Profile2User size={20} /> },
         { label: 'Profile', to: '/dashboard/host/profile', icon: <User size={20} /> },
         { label: 'Account Settings', to: '/dashboard/host/account', icon: <Setting2 size={20} /> },
@@ -49,9 +50,11 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, onClose }) => {
     } else if (role === 'guest') {
       items = [
         { label: 'Dashboard', to: '/dashboard/guest', icon: <Home2 size={20} /> },
+        
         { label: 'Messages', to: '/dashboard/guest/messages', icon: <Message size={20} /> },
         { label: 'Trips', to: '/dashboard/guest/trips', icon: <Calendar size={20} /> },
         { label: 'Wishlist', to: '/dashboard/guest/wishlist', icon: <Heart size={20} /> },
+        { label: 'Become a Host', to: '/flapabay-your-home', icon: <AddSquare size={20} /> },
         { label: 'Profile', to: '/dashboard/guest/profile', icon: <User size={20} /> },
       ];
     } else {

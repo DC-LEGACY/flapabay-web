@@ -8,9 +8,9 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { DollarSign, AlertCircle, Check, Download } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { PayoutMethods } from "@/components/payments/PayoutMethods";
-import { WithdrawFunds } from "@/components/payments/WithdrawFunds";
-import { PaymentHistory } from "@/components/payments/PaymentHistory";
+import { PayoutMethods } from "@/components/dashboard/host/payments/PayoutMethods";
+import { WithdrawFunds } from "@/components/dashboard/host/payments/WithdrawFunds";
+import { PaymentHistory } from "@/components/dashboard/host/payments/PaymentHistory";
 import { getExchangeRates } from "@/lib/countries";
 import { usePage } from "@/contexts/PageContext";
 

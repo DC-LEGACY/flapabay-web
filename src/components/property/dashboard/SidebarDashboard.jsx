@@ -17,47 +17,53 @@ const SidebarDashboard = () => {
       items: [
         {
           href: "/dashboard/host",
-          icon: "flaticon-discovery",
+          icon: Home2,
           text: "Today",
         },
+       
         {
           href: "/dashboard/host/messages",
-          icon: "flaticon-chat-1",
+          icon: Message,
           text: "Messages",
         },
         {
           href: "/dashboard/host/calendar",
-          icon: "flaticon-home",
+          icon: Calendar,
           text: "Calendar",
         },
         {
           href: "/dashboard/host/experiences",
-          icon: "flaticon-like",
+          icon: Like1,
           text: "Experiences",
         },
         {
           href: "/dashboard/host/listings",
-          icon: "flaticon-search-2",
+          icon: SearchNormal1,
           text: "Listing",
         },
         {
           href: "/dashboard/host/earnings",
-          icon: "flaticon-new-tab",
+          icon: Chart,
           text: "Earnings",
         },
         {
+          href: "/dashboard/host/payments",
+          icon: Chart,
+          text: "Payments",
+        },
+        {
           href: "/dashboard/host/profile",
-          icon: "flaticon-review",
+          icon: Profile2User,
           text: "Profile",
         },
         {
           href: "/dashboard/add-property",
-          icon: "flaticon-new-tab",
+          icon: AddSquare,
           text: "Create new listings",
         },
         {
           href: "/help-center",
-          icon: "flaticon-protection",
+          icon: InfoCircle,
           text: "Help Center",
         },
       ],
@@ -69,37 +75,37 @@ const SidebarDashboard = () => {
       items: [
         {
           href: "/",
-          icon: "flaticon-home-1",
+          icon: Home,
           text: "Explore",
         },
         {
           href: "/dashboard/guest",
-          icon: "flaticon-discovery",
+          icon: Home2,
           text: "Today",
         },
         {
           href: "/dashboard/guest/wishlist",
-          icon: "flaticon-home-1",
+          icon: Heart,
           text: "Wishlist",
         },
         {
           href: "/dashboard/guest/reviews",
-          icon: "flaticon-review",
+          icon: Like1,
           text: "Reviews",
         },
         {
           href: "/dashboard/guest/trips",
-          icon: "flaticon-home-1",
+          icon: Home,
           text: "Trips",
         },
         {
           href: "/dashboard/guest/messages",
-          icon: "flaticon-chat-1",
+          icon: MessageText1,
           text: "Messages",
         },
         {
           href: "/help-center",
-          icon: "flaticon-protection",
+          icon: InfoCircle,
           text: "Help Center",
         },
       ],
@@ -132,23 +138,26 @@ const SidebarDashboard = () => {
       </div>
       <div className="dashboard_sidebar_list">
         <div>
-            {currentItemsToRender.map((item, itemIndex) => (
-              <div key={itemIndex} className="sidebar_list_item">
-                <Link
-                  to={item.href}
-                  className={`items-center ${getActiveClass(item.href)}`}
-                >
-                  <i className={`${item.icon} mr15`} />
-                  {item.text}
-                </Link>
-              </div>
-            ))}
+            {currentItemsToRender.map((item, itemIndex) => {
+              const IconComponent = item.icon;
+              return (
+                <div key={itemIndex} className="sidebar_list_item">
+                  <Link
+                    to={item.href}
+                    className={`items-center ${getActiveClass(item.href)}`}
+                  >
+                    <IconComponent className="mr15" size={24} />
+                    {item.text}
+                  </Link>
+                </div>
+              );
+            })}
             <div className="sidebar_list_item">
               <Link
                 onClick={async () => await signOut()}
                 className="items-center"
               >
-                <i className="flaticon-logout mr15" />
+                <Logout className="mr15" size={24} />
                 Logout
               </Link>
             </div>
@@ -160,7 +169,7 @@ const SidebarDashboard = () => {
           const newRole = user?.role === 'host' ? 'guest' : 'host';
           await updateUserRole(newRole);
         }}
-        className="font-medium bg-flapabay-black text-white border-3 rounded-2xl my-4 mx-auto block w-full border-flapabay-yellow border px-4 py-4 flex items-center gap-2 relative"
+        className="fixed bottom-8 font-medium bg-flapabay-black text-white border-3 rounded-2xl mx-auto block w-full border-flapabay-yellow border px-4 py-4 flex items-center gap-2 relative"
       >
         <ArrowSwapHorizontal size={30} className="w-8 h-8 text-white" />
         <span>{user?.role === 'host' ? 'Hosting' : 'Travelling'}</span>

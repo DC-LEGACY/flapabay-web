@@ -5,11 +5,11 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 import { Button } from '@/components/ui/button';
-import DashboardHeader from '../common/DashboardHeader';
+import DashboardHeader from '@/components/common/dashboard/DashboardHeader';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useAuth } from '../contexts/AuthContext';
-import { useTheme } from '../contexts/ThemeContext';
+import { useAuth } from '@/contexts/AuthContext';
+import { useTheme } from '@/contexts/ThemeContext';
 import { useToast } from '@/hooks/use-toast';
 
 const GuestDashboard = () => {

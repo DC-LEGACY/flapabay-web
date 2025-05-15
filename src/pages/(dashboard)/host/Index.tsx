@@ -1,10 +1,10 @@
-
-import Dashboard from "@/components/dashboard/Dashboard";
+import React, { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowDown, ArrowUp, Activity, DollarSign, Calendar, Home as HomeIcon } from "lucide-react";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import { usePage } from '@/contexts/PageContext';
 
 const earningsData = [
   { month: 'Jan', earnings: 1200 },
@@ -27,10 +27,15 @@ const bookingsData = [
 ];
 
 const Index = () => {
+  const { setPageTitle, setPageSubtitle } = usePage();
+
+  useEffect(() => {
+    setPageTitle("Host Overview");
+    setPageSubtitle("Welcome to your host dashboard");
+  }, [setPageTitle, setPageSubtitle]);
+
   return (
-    <Dashboard>
-      <h2 className="text-3xl font-bold mb-6">Dashboard Overview</h2>
-      
+    <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -128,7 +133,7 @@ const Index = () => {
           </Card>
         </TabsContent>
       </Tabs>
-    </Dashboard>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
-
+import { useEffect } from "react";
+import { usePage } from "@/contexts/PageContext";
 import { Link } from "react-router-dom";
-import Dashboard from "@/components/dashboard/Dashboard";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { 
@@ -16,21 +16,17 @@ import {
 } from "lucide-react";
 
 const Account = () => {
+  const { setPageTitle, setPageSubtitle } = usePage();
+  const user = { name: "Mbolela Pule", email: "mbolepule4@gmail.com" }; // Mock user data
+
+  useEffect(() => {
+    setPageTitle("Account Settings");
+    setPageSubtitle(`Manage your account, ${user.name}, ${user.email}`);
+  }, [setPageTitle, setPageSubtitle, user.name, user.email]);
+
   return (
-    <Dashboard>
+    <>
       <div className="space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold">Account</h1>
-            <p className="text-muted-foreground">
-              Mbolela Pule, mbolepule4@gmail.com
-            </p>
-          </div>
-          <Link to="/profile">
-            <Button variant="outline">Go to profile</Button>
-          </Link>
-        </div>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Personal Info */}
           <Link to="/profile">
@@ -204,7 +200,7 @@ const Account = () => {
           </Link>
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

@@ -40,7 +40,7 @@ const DboardMobileNavigation = () => {
           text: "Today",
         },
         {
-          href: "/dashboard/guest/messages",
+          href: "/dashboard/host/messages",
           icon: "flaticon-chat-1",
           text: "Messages",
         },

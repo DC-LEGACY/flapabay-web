@@ -7,10 +7,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
-import { ProfileWizard } from "@/components/profile/ProfileWizard";
-import { VerificationWizard } from "@/components/profile/VerificationWizard";
+import { ProfileWizard } from "@/components/dashboard/host/profile/ProfileWizard";
+import { VerificationWizard } from "@/components/dashboard/host/profile/VerificationWizard";
 import { toast } from "sonner";
-import { useMediaQuery } from "@/hooks/use-media-query";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { BookOpen, Briefcase, Camera, Check, Clock, Edit, Globe, GraduationCap, Heart, Home, LightbulbIcon, MapPin, Dog, Pencil, BadgeCheck } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -19,7 +19,7 @@ const Profile = () => {
   const [showVerificationWizard, setShowVerificationWizard] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [accountType, setAccountType] = useState<"Guest" | "Host">("Guest");
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useIsMobile();
   
   const [profileInfo, setProfileInfo] = useState({
     name: "Mbolela",
@@ -57,7 +57,7 @@ const Profile = () => {
   };
 
   return (
-    <Dashboard>
+    <>
       {showProfileWizard ? (
         <ProfileWizard 
           accountType={accountType} 
@@ -448,7 +448,7 @@ const Profile = () => {
           </div>
         </div>
       )}
-    </Dashboard>
+    </>
   );
 };
 

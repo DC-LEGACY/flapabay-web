@@ -1,6 +1,4 @@
-
-import { useState } from "react";
-import Dashboard from "@/components/dashboard/Dashboard";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
@@ -10,8 +8,16 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, FileText, Upload, X, Check, Calendar, Flag } from "lucide-react";
 import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { usePage } from '@/contexts/PageContext';
 
 const Taxes = () => {
+  const { setPageTitle, setPageSubtitle } = usePage();
+
+  useEffect(() => {
+    setPageTitle("Taxes");
+    setPageSubtitle("Manage your tax documents and information");
+  }, [setPageTitle, setPageSubtitle]);
+
   const [taxFile, setTaxFile] = useState<File | null>(null);
   const [isEditingResidence, setIsEditingResidence] = useState(false);
   const [isEditingTaxID, setIsEditingTaxID] = useState(false);
@@ -71,7 +77,7 @@ const Taxes = () => {
   ];
 
   return (
-    <Dashboard>
+    <>
       <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="flex items-center mb-6">
           <Link to="/account" className="mr-4">
@@ -79,7 +85,6 @@ const Taxes = () => {
               <ArrowLeft className="h-5 w-5" />
             </Button>
           </Link>
-          <h1 className="text-3xl font-bold">Taxes</h1>
         </div>
 
         <div className="space-y-8">
@@ -369,7 +374,7 @@ const Taxes = () => {
           </Card>
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

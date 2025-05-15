@@ -1,5 +1,4 @@
-
-import Dashboard from "@/components/dashboard/Dashboard";
+import React, { useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -7,8 +6,16 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
+import { usePage } from '@/contexts/PageContext';
 
 const Settings = () => {
+  const { setPageTitle, setPageSubtitle } = usePage();
+
+  useEffect(() => {
+    setPageTitle("Settings");
+    setPageSubtitle("Manage your dashboard and notification preferences");
+  }, [setPageTitle, setPageSubtitle]);
+
   const handleSaveNotifications = () => {
     toast.success("Notification preferences saved!");
   };
@@ -18,9 +25,7 @@ const Settings = () => {
   };
 
   return (
-    <Dashboard>
-      <h2 className="text-3xl font-bold mb-6">Settings</h2>
-      
+    <>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
           <Card>
@@ -255,7 +260,7 @@ const Settings = () => {
           </Card>
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

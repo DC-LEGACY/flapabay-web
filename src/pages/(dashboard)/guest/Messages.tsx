@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -9,7 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { CalendarRange, MapPin, Users, Clock, MessageSquare, Send, Loader2, Smile, ImagePlus, Video, AudioLines, Paperclip, Plus, X, CheckCircle } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/integrations/supabase/client';
+import { mockSupabaseDataOperations, mockAuthService } from "@/components/integrations/supabase/client";
 
 interface Message {
   id: string;
@@ -33,7 +32,7 @@ const Messages: React.FC = () => {
   const fetchMessages = async (conversationId: string) => {
     setMessageLoading(true);
     try {
-      const { data, error } = await supabase
+      const { data, error } = await mockSupabaseDataOperations
         .from('messages')
         .select('*')
         .eq('conversation_id', conversationId)
@@ -62,7 +61,7 @@ const Messages: React.FC = () => {
     if (!newMessage.trim() || !activeConversationId || !user) return;
     
     try {
-      const { data, error } = await supabase
+      const { data, error } = await mockSupabaseDataOperations
         .from('messages')
         .insert({
           conversation_id: activeConversationId,
@@ -79,7 +78,7 @@ const Messages: React.FC = () => {
       fetchMessages(activeConversationId);
       
       // Update last message timestamp in conversations table
-      await supabase
+      await mockSupabaseDataOperations
         .from('conversations')
         .update({ last_message_at: new Date().toISOString() })
         .eq('id', activeConversationId);
@@ -94,11 +93,16 @@ const Messages: React.FC = () => {
       try {
         setLoading(true);
         
-        const { data: userData } = await supabase.auth.getUser();
-        if (!userData?.user) return;
+        const { data: userData, error: authError } = await mockAuthService.getUser();
+        if (authError || !userData?.user) {
+          console.error("Error fetching user for conversations or user not found", authError);
+          setError('Could not fetch user details for conversations.');
+          setLoading(false);
+          return;
+        }
         
         // Fetch conversations without trying to join the host directly
-        const { data, error } = await supabase
+        const { data, error } = await mockSupabaseDataOperations
           .from('conversations')
           .select(`
             id,
@@ -113,7 +117,7 @@ const Messages: React.FC = () => {
         // Fetch hosts and properties separately to avoid relationship issues
         const formattedConversations = await Promise.all(data.map(async (conv) => {
           // Get host info
-          const { data: hostData, error: hostError } = await supabase
+          const { data: hostData, error: hostError } = await mockSupabaseDataOperations
             .from('users')
             .select('id, first_name, last_name, avatar_url')
             .eq('id', conv.host_id)
@@ -144,7 +148,7 @@ const Messages: React.FC = () => {
           };
           
           // Fetch property linked to this conversation
-          const { data: propertyData, error: propertyError } = await supabase
+          const { data: propertyData, error: propertyError } = await mockSupabaseDataOperations
             .from('listings')
             .select('id, title, location, photos')
             .eq('host_id', conv.host_id)
@@ -182,6 +186,9 @@ const Messages: React.FC = () => {
     fetchConversations();
     
     // Set up real-time subscription for new messages
+    // TODO: Implement real-time functionality with a future WebSocket/REST API solution.
+    // The supabase.channel subscription is commented out as it's not supported by the current mock.
+    /*
     const subscription = supabase
       .channel('messages')
       .on('postgres_changes', 
@@ -200,6 +207,7 @@ const Messages: React.FC = () => {
     return () => {
       subscription.unsubscribe();
     };
+    */
   }, [activeConversationId, user]);
   
   const handleConversationClick = (conversationId: string) => {

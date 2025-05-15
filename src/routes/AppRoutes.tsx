@@ -150,6 +150,7 @@ export function AppRoutes() {
             <Route path="earnings" element={React.createElement(getRouteComponent('hostEarnings'))} />
             <Route path="experiences" element={React.createElement(getRouteComponent('hostExperiences'))} />
             <Route path="listings" element={React.createElement(getRouteComponent('hostListings'))} />
+            <Route path="messages" element={React.createElement(getRouteComponent('guestMessages'))} />
             <Route path="login-security" element={React.createElement(getRouteComponent('hostLoginSecurity'))} />
             <Route path="notifications" element={React.createElement(getRouteComponent('hostNotifications'))} />
             <Route path="payments" element={React.createElement(getRouteComponent('hostPayments'))} />

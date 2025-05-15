@@ -1,5 +1,4 @@
-
-import Dashboard from "@/components/dashboard/Dashboard";
+import React, { useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,10 +7,18 @@ import { Switch } from "@/components/ui/switch";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Briefcase, Building, Mail, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import { usePage } from '@/contexts/PageContext';
 
 const TravelWork = () => {
+  const { setPageTitle, setPageSubtitle } = usePage();
+
+  useEffect(() => {
+    setPageTitle("Travel for Work");
+    setPageSubtitle("Manage your business travel settings");
+  }, [setPageTitle, setPageSubtitle]);
+
   return (
-    <Dashboard>
+    <>
       <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="flex items-center mb-6">
           <Link to="/account" className="mr-4">
@@ -19,7 +26,6 @@ const TravelWork = () => {
               <ArrowLeft className="h-5 w-5" />
             </Button>
           </Link>
-          <h1 className="text-3xl font-bold">Travel for Work</h1>
         </div>
 
         <div className="space-y-8">
@@ -151,7 +157,7 @@ const TravelWork = () => {
           </Card>
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

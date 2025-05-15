@@ -4,6 +4,7 @@ import { useAtom } from "jotai";
 import { userAtom } from "@/store/authStore";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { Home2, Message, Calendar, Like1, SearchNormal1, Chart, Profile2User, AddSquare, InfoCircle, Home, Heart, MessageText1, Logout, ArrowSwapHorizontal } from 'iconsax-react';
 
 const SidebarDashboard = () => {
   const { pathname } = useLocation();
@@ -20,7 +21,7 @@ const SidebarDashboard = () => {
           text: "Today",
         },
         {
-          href: "/dashboard/guest/messages",
+          href: "/dashboard/host/messages",
           icon: "flaticon-chat-1",
           text: "Messages",
         },
@@ -143,24 +144,27 @@ const SidebarDashboard = () => {
               </div>
             ))}
             <div className="sidebar_list_item">
-              <button
+              <Link
                 onClick={async () => await signOut()}
                 className="items-center"
               >
                 <i className="flaticon-logout mr15" />
                 Logout
-              </button>
+              </Link>
             </div>
+            
         </div>
       </div>
       <button 
         onClick={async () => {
-          const newRole = user?.role === 'guest' ? 'host' : 'guest';
+          const newRole = user?.role === 'host' ? 'guest' : 'host';
           await updateUserRole(newRole);
         }}
-        className="font-medium py-2 px-4 my-4 mx-auto block border rounded hover:bg-gray-100 active:bg-gray-200"
+        className="font-medium bg-flapabay-black text-white border-3 rounded-2xl my-4 mx-auto block w-full border-flapabay-yellow border px-4 py-4 flex items-center gap-2 relative"
       >
-        Switch to {user?.role === 'guest' ? 'Hosting' : 'Travelling'}
+        <ArrowSwapHorizontal size={30} className="w-8 h-8 text-white" />
+        <span>{user?.role === 'host' ? 'Hosting' : 'Travelling'}</span>
+        <div className={`absolute w-3 h-3 rounded-full animate-pulse ${user?.role === 'host' ? 'bg-yellow-400' : 'bg-green-500'} right-4 top-1/2 transform -translate-y-1/2`} />
       </button>
     </div>
   );

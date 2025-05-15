@@ -6,7 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Calendar, Users, Clock, Star, CheckCircle, Ban, MessageSquare, ArrowLeft, Printer, Share2, Download } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/integrations/supabase/client';
+import { mockSupabaseDataOperations } from "@/components/integrations/supabase/client";
 import { format } from 'date-fns';
 
 interface TripDetailsProps {}
@@ -54,7 +54,7 @@ const TripDetails: React.FC<TripDetailsProps> = () => {
       try {
         setLoading(true);
         
-        const { data, error } = await supabase
+        const { data, error } = await mockSupabaseDataOperations
           .from('trips')
           .select(`
             *,
@@ -103,13 +103,13 @@ const TripDetails: React.FC<TripDetailsProps> = () => {
   };
   
   const handleMessageHost = async () => {
-    if (!trip?.hostId) return;
+    if (!trip?.hostId || !user) return;
     
     try {
-      const { data, error } = await supabase
+      const { data, error } = await mockSupabaseDataOperations
         .from('conversations')
         .select('id')
-        .eq('guest_id', user?.id)
+        .eq('guest_id', user.id)
         .eq('host_id', trip.hostId)
         .eq('property_id', trip.propertyId)
         .single();

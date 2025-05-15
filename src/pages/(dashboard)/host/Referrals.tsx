@@ -1,5 +1,5 @@
-
-import Dashboard from "@/components/dashboard/Dashboard";
+import { useEffect } from "react";
+import { usePage } from "@/contexts/PageContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,6 +8,13 @@ import { ArrowLeft, Copy, Gift, Share2, Users } from "lucide-react";
 import { toast } from "sonner";
 
 const Referrals = () => {
+  const { setPageTitle, setPageSubtitle } = usePage();
+
+  useEffect(() => {
+    setPageTitle("Referral Credit & Coupon");
+    setPageSubtitle("Invite friends and manage your coupons");
+  }, [setPageTitle, setPageSubtitle]);
+
   const copyReferralLink = () => {
     navigator.clipboard.writeText("https://hosthaven.com/refer/mbolela123")
       .then(() => toast.success("Referral link copied to clipboard!"))
@@ -15,17 +22,8 @@ const Referrals = () => {
   };
 
   return (
-    <Dashboard>
+    <>
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="flex items-center mb-6">
-          <Link to="/account" className="mr-4">
-            <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-          </Link>
-          <h1 className="text-3xl font-bold">Referral Credit & Coupon</h1>
-        </div>
-
         <div className="space-y-8">
           <Card>
             <CardHeader>
@@ -176,7 +174,7 @@ const Referrals = () => {
           </Card>
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 };
 

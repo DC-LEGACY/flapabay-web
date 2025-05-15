@@ -12,7 +12,7 @@ const hostMenuItems: MenuItem[] = [
   { id: 1, title: "Host Dashboard", to: "/dashboard/host" },
   { id: 2, title: "My Listings", to: "/dashboard/host/listings" },
   { id: 3, title: "Reservations", to: "/dashboard/host/calendar" },
-  { id: 4, title: "Messages", to: "/dashboard/guest/messages" },
+  { id: 4, title: "Messages", to: "/dashboard/host/messages" },
 ];
 
 const guestMenuItems: MenuItem[] = [

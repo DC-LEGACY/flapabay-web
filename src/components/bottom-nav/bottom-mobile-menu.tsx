@@ -16,7 +16,7 @@ import { useAuth } from '@/contexts/AuthContext';
 
 const BottomNav = () => {
   const { showBottomNav } = useBottomNav();
-  const { updateUserRole } = useAuth();
+  const { switchRole } = useAuth();
   const [user] = useAtom(userAtom);
   const location = useLocation();
 
@@ -91,10 +91,7 @@ const BottomNav = () => {
         })}
         {user && (
           <button 
-            onClick={async () => {
-              const newRole = user?.role === 'host' ? 'guest' : 'host';
-              await updateUserRole(newRole);
-            }}
+            onClick={switchRole}
             className="font-medium text-sm bg-flapabay-black text-white rounded-2xl px-3 py-2 flex items-center gap-2"
           >
             <ArrowSwapHorizontal className="w-4 h-4 text-white" />

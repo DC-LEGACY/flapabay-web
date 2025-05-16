@@ -6,10 +6,21 @@ import { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import ProfileDropdown from './ProfileDropdown';
 
-const getInitials = (email: string) => {
-  // Get the part before @ and take first two characters
-  const username = email.split('@')[0];
-  return username.slice(0, 2).toUpperCase();
+const getInitials = (user: any) => {
+  // Try to use name first, else email
+  if (user?.user_metadata?.name) {
+    return user.user_metadata.name
+      .split(' ')
+      .map((n: string) => n[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  }
+  if (user?.email) {
+    const username = user.email.split('@')[0];
+    return username.slice(0, 2).toUpperCase();
+  }
+  return '';
 };
 
 export const ProfileButton = () => {
@@ -43,6 +54,9 @@ export const ProfileButton = () => {
     );
   }
 
+  const profileImg = user.user_metadata?.picture;
+  const altText = user.user_metadata?.name || user.email || 'Profile';
+
   return (
     <div className="relative" ref={buttonRef}>
       <button
@@ -51,11 +65,11 @@ export const ProfileButton = () => {
         aria-label="Open profile menu"
       >
         <Avatar className="h-9 w-9">
-          {user.picture ? (
-            <AvatarImage src={user.picture} alt={user.name} />
+          {profileImg ? (
+            <AvatarImage src={profileImg} alt={altText} />
           ) : (
             <AvatarFallback className="bg-[#ffc500] text-white">
-              {getInitials(user.email)}
+              {getInitials(user)}
             </AvatarFallback>
           )}
         </Avatar>

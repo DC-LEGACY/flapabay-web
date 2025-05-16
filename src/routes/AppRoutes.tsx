@@ -7,6 +7,8 @@ import WebsiteLayout from '@/layouts/WebsiteLayout';
 import NotFound from '@/pages/not-found';
 import { websiteRoutes } from '@/routes/websiteRoutes';
 import Preloader from '@/components/common/Preloader';
+import { useAuth } from '@/contexts/AuthContext';
+import { Navigate } from 'react-router-dom';
 
 // Layout components
 const WebsiteLayoutWrapper = () => (
@@ -108,6 +110,24 @@ const getRouteComponent = (key: string) => {
   return components[key] || NotFound;
 };
 
+function DashboardRedirect() {
+  const { user, loading } = useAuth();
+  if (loading) return <Preloader />;
+  if (user) {
+    if (user.role === 'host') {
+      return <Navigate to="/dashboard/host" replace />;
+    } else if (user.role === 'guest' || !user.role) {
+      // Default to guest if role is missing or unknown
+      return <Navigate to="/dashboard/guest" replace />;
+    } else {
+      // Fallback: treat as guest
+      return <Navigate to="/dashboard/guest" replace />;
+    }
+  }
+  // Not logged in
+  return <Navigate to="/auth/login" replace />;
+}
+
 export function AppRoutes() {
   return (
     <Suspense fallback={<Preloader />}>
@@ -131,6 +151,7 @@ export function AppRoutes() {
 
         {/* Dashboard Routes */}
         <Route path="/dashboard" element={<DashboardLayoutWrapper />}>
+          <Route index element={<DashboardRedirect />} />
           {/* Guest Routes */}
           <Route path="guest">
             <Route index element={React.createElement(getRouteComponent('guestDashboard'))} />

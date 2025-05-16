@@ -15,6 +15,7 @@ import {
   Logout,
   CloseCircle
 } from "iconsax-react";
+import { createPortal } from 'react-dom';
 
 interface ProfileDropdownProps {
   open: boolean;
@@ -80,16 +81,17 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, onClose }) => {
 
   if (!open) return null;
 
-  return (
+  // Dropdown content
+  const dropdownContent = (
     <>
       {/* Overlay for mobile to close dropdown */}
       <div
-        className="fixed inset-0 z-[9999] !important md:hidden bg-black/30"
+        className="fixed inset-0 z-[99999] !important md:hidden bg-black/30"
         onClick={onClose}
       />
       <div
         className={
-          `z-[9999] !important ${
+          `z-[99999] !important ${
             // Mobile: fixed top, full width; Desktop: absolute left with negative margin
             'md:absolute right-0 md:mt-16 md:w-64 md:rounded-xl md:shadow-lg md:border md:bg-white' +
             ' fixed top-0 right-0 w-full md:static bg-white' +
@@ -104,7 +106,7 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, onClose }) => {
       >
         <div className="px-4 py-4 border-b border-gray-100 md:rounded-t-xl flex justify-between items-center">
           <div>
-            <div className="font-medium text-black text-base md:text-sm">{user?.name}</div>
+            <div className="font-medium text-black text-base md:text-sm">{user?.user_metadata?.name}</div>
             <div className="text-xs  text-gray-500 break-all">{user?.email}</div>
           </div>
           <button
@@ -138,6 +140,9 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, onClose }) => {
       </div>
     </>
   );
+
+  // Use portal for mobile (always for simplicity)
+  return createPortal(dropdownContent, document.body);
 };
 
 export default ProfileDropdown; 

@@ -1,14 +1,26 @@
-import { Link } from "react-router-dom";
-import MetaData from "@/components/common/MetaData";
 import React from "react";
+import { Link, Navigate } from "react-router-dom";
+import MetaData from "@/components/common/MetaData";
 import SignupModal from "@/components/auth/SignupModal";
 import { motion } from "framer-motion";
+import { useAuth } from '@/contexts/AuthContext';
+import Preloader from '@/components/common/Preloader';
 
 const metaInformation = {
   title: "Register  || Flapabay- Apartment Rental, Experiences and More!",
 };
 
 const Register = () => {
+  const { user, loading } = useAuth();
+  if (loading) return <Preloader />;
+  if (user) {
+    if (user.role === 'host') {
+      return <Navigate to="/dashboard/host" replace />;
+    } else {
+      // Default to guest if role is missing or unknown
+      return <Navigate to="/dashboard/guest" replace />;
+    }
+  }
   return (
     <>
       <MetaData meta={metaInformation} />

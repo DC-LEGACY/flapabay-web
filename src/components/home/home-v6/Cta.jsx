@@ -11,7 +11,7 @@ const Cta = () => {
         <div className="flex pt-16  flex-col xl:flex-row items-center">
           {/* Image */}
           {!isMobile && (
-          <div className="xl:block  xl:w-1/2">
+          <div className="xl:w-1/2">
             <div className="cta-img">
               <img
                 src="/images/about/mobile-img-1.png"

@@ -1,12 +1,18 @@
 import { Outlet } from 'react-router-dom';
+import React, { useEffect } from 'react';
+
 import { TooltipProvider } from '@/components/ui/feedback/tooltip';
 import DashboardHeader from '@/components/common/DashboardHeader';
 import SidebarDashboard from '@/components/property/dashboard/SidebarDashboard';
-import DboardMobileNavigation from '@/components/property/dashboard/DboardMobileNavigation';
 import MetaData from '@/components/common/MetaData';
 import MobileMenu from '@/components/common/MobileMenu';
 import Footer from '@/components/common/Footer';
 import { usePage } from '@/contexts/PageContext';
+import BottomNav from '@/components/bottom-nav/bottom-mobile-menu';
+
+
+import { useBottomNav } from '@/contexts/BottomNavContext';
+import { useScreenSize } from '@/utilis/screenUtils';
 
 const defaultMetaInformation = {
   title: "Dashboard - Flapabay",
@@ -14,6 +20,16 @@ const defaultMetaInformation = {
 };
 
 const DashboardLayout = () => {
+  const { setShowBottomNav, showBottomNav } = useBottomNav();
+
+  useEffect(() => {
+    // Show BottomNav on the landing page
+    setShowBottomNav(true);
+    // Cleanup: hide BottomNav when leaving the page 
+    return () => setShowBottomNav(false);
+  }, [setShowBottomNav]);
+  
+
   const { pageTitle, pageSubtitle } = usePage();
 
   return (
@@ -52,6 +68,7 @@ const DashboardLayout = () => {
           </div>
         </div>
       </div>
+      <BottomNav />
     </>
   );
 };

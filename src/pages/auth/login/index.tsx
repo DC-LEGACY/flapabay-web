@@ -1,5 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
 
 import { FcGoogle } from 'react-icons/fc';
 import { motion } from 'framer-motion';
@@ -11,10 +12,18 @@ const metaInformation = {
 };
 
 const LoginPage: React.FC = () => {
- 
   const navigate = useNavigate();
+  const { user, loading } = useAuth();
 
- 
+  if (loading) return null; // or a spinner
+  if (user) {
+    if (user.role === 'host') {
+      return <Navigate to="/dashboard/host" replace />;
+    } else {
+      // Default to guest if role is missing or unknown
+      return <Navigate to="/dashboard/guest" replace />;
+    }
+  }
 
   const handleClose = () => {
     navigate('/'); // Navigate to home page when modal is closed

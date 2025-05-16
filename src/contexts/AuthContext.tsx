@@ -3,14 +3,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import { useAtom } from 'jotai';
 import { userAtom } from '@/store/authStore';
 import { useToast } from '@/hooks/use-toast';
-
-interface User {
-  id: string;
-  email: string;
-  name: string;
-  picture?: string;
-  role?: 'guest' | 'host';
-}
+import type { User } from '@/services/authService';
 
 interface AuthContextType {
   user: User | null;
@@ -31,17 +24,32 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Initialize user from localStorage on mount
   useEffect(() => {
-    const storedUser = localStorage.getItem('user_data');
+    setLoading(true);
+    const storedUser = localStorage.getItem('flapabay_user_session');
     if (storedUser) {
       try {
-        const userData = JSON.parse(storedUser);
-        console.log('Initializing user from localStorage:', userData);
+        let userData = JSON.parse(storedUser);
+        // Map to the User interface from authService
+        userData = {
+          id: userData.id || '',
+          app_metadata: userData.app_metadata || {},
+          user_metadata: userData.user_metadata || { name: userData.user_metadata?.name, picture: userData.user_metadata?.picture },
+          aud: userData.aud || 'authenticated',
+          email: typeof userData.email === 'string' ? userData.email : '',
+          role: userData.role || 'guest',
+          created_at: userData.created_at || new Date().toISOString(),
+          // Add any other required fields with sensible defaults
+        };
         setUser(userData);
       } catch (err) {
         console.error('Failed to parse stored user data:', err);
-        localStorage.removeItem('user_data');
+        localStorage.removeItem('flapabay_user_session');
+        setUser(null);
       }
+    } else {
+      setUser(null);
     }
+    setLoading(false);
   }, [setUser]);
 
   const login = useGoogleLogin({
@@ -59,17 +67,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
         const userData: User = {
           id: userInfo.sub,
-          email: userInfo.email,
-          name: userInfo.name,
-          picture: userInfo.picture,
+          app_metadata: {},
+          user_metadata: { name: userInfo.name, picture: userInfo.picture },
+          aud: 'authenticated',
+          email: typeof userInfo.email === 'string' ? userInfo.email : '',
           role: 'guest', // Default role for new users
+          created_at: new Date().toISOString(),
         };
 
         console.log('Storing user data:', userData);
 
         // Store token and user data
         localStorage.setItem('auth_token', response.access_token);
-        localStorage.setItem('user_data', JSON.stringify(userData));
+        localStorage.setItem('flapabay_user_session', JSON.stringify(userData));
 
         setUser(userData);
         
@@ -104,7 +114,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setLoading(true);
       localStorage.removeItem('auth_token');
-      localStorage.removeItem('user_data');
+      localStorage.removeItem('flapabay_user_session');
       setUser(null);
       toast({
         title: "Signed out",
@@ -126,9 +136,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const switchRole = () => {
     if (user) {
       const newRole = user.role === 'guest' ? 'host' : 'guest';
-      const updatedUser = { ...user, role: newRole };
+      const updatedUser = {
+        ...user,
+        role: newRole,
+        app_metadata: user.app_metadata || {},
+        user_metadata: user.user_metadata || {},
+        aud: user.aud || 'authenticated',
+        created_at: user.created_at || new Date().toISOString(),
+      };
       setUser(updatedUser);
-      localStorage.setItem('user_data', JSON.stringify(updatedUser));
+      localStorage.setItem('flapabay_user_session', JSON.stringify(updatedUser));
       toast({
         title: `Switched to ${newRole}`,
         description: `You are now in ${newRole} mode.`,

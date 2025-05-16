@@ -139,7 +139,7 @@ const ExperienceBooking: React.FC<ExperienceBookingProps> = ({
         </div>
         
         <div className="flex items-center">
-          <Star className="h-4 w-4 text-primary fill-primary mr-1" />
+          <Star className="h-4 w-4 text-flapabay-yellow fill-primary mr-1" />
           <span className="font-medium">{rating}</span>
           <span className="text-gray-600 mx-1">·</span>
           <span className="text-gray-600">{reviewCount} reviews</span>
@@ -184,7 +184,7 @@ const ExperienceBooking: React.FC<ExperienceBookingProps> = ({
                   variant="ghost" 
                   size="sm" 
                   onClick={resetSelection}
-                  className="mt-2 text-primary"
+                  className="mt-2 text-flapabay-yellow"
                 >
                   Reset date
                 </Button>

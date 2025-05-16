@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "rounded-2xl bg-flapabay-yellow text-primary-foreground hover:bg-flapabay-yellow/90",
+        default: "rounded-2xl bg-flapabay-yellow text-flapabay-yellow-foreground hover:bg-flapabay-yellow/90",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
@@ -17,7 +17,7 @@ const buttonVariants = cva(
         secondary:
           "bg-flapabay-yellow text-secondary-foreground hover:bg-flapabay-yellow/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-flapabay-yellow underline-offset-4 hover:underline",
       },
       size: {
         default: "h-12 font-semibold rounded-2xl px-4 py-2",

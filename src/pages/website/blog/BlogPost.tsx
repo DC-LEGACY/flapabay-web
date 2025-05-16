@@ -179,7 +179,7 @@ const BlogPost = () => {
                   <TabsContent value="toc" className="bg-gray-50 p-4 rounded-lg">
                     <ul className="space-y-2 text-sm">
                       {post.tableOfContents?.map((item, index) => (
-                        <li key={index} className="hover:text-primary cursor-pointer">
+                        <li key={index} className="hover:text-flapabay-yellow cursor-pointer">
                           {item}
                         </li>
                       ))}

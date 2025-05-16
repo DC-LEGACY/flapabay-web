@@ -37,7 +37,7 @@ const DefaultHeader: React.FC = () => {
   return (
     <>
       <header
-        className={`header-nav nav-homepage-style main-menu ${
+        className={`header-nav nav-homepage-style main-menu z-[90] ${
           navbar ? "sticky slideInDown animated" : ""
         }`}
       >

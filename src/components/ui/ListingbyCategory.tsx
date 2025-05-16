@@ -67,7 +67,7 @@ const ListingbyCategory = ({ categories }: ListingbyCategoryProps) => {
       {/* Navigation buttons */}
 
       {/* Navigation buttons */}
-      <div className="absolute top-[2.5rem] -translate-y-1/2 w-full flex justify-between items-center px-1 z-20 pointer-events-none">
+      <div className="absolute top-[2.5rem] -translate-y-1/2 w-full flex justify-between items-center px-1 z-0 pointer-events-none">
         <div className="pointer-events-auto">
           <Button
             ref={prevRef}

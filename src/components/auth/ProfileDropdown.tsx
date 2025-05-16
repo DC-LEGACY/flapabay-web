@@ -15,7 +15,6 @@ import {
   Logout,
   CloseCircle
 } from "iconsax-react";
-import { createPortal } from 'react-dom';
 
 interface ProfileDropdownProps {
   open: boolean;
@@ -81,20 +80,19 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, onClose }) => {
 
   if (!open) return null;
 
-  // Dropdown content
-  const dropdownContent = (
-    <>
+  return (
+    <div className="fixed inset-0 z-[100] md:static">
       {/* Overlay for mobile to close dropdown */}
       <div
-        className="fixed inset-0 z-[99999] !important md:hidden bg-black/30"
+        className="fixed inset-0 bg-black/30 md:hidden"
         onClick={onClose}
       />
       <div
         className={
-          `z-[99999] !important ${
-            // Mobile: fixed top, full width; Desktop: absolute left with negative margin
-            'md:absolute right-0 md:mt-16 md:w-64 md:rounded-xl md:shadow-lg md:border md:bg-white' +
-            ' fixed top-0 right-0 w-full md:static bg-white' +
+          `${
+            // Mobile: fixed top, full width; Desktop: absolute right
+            'md:absolute md:right-0 md:mt-16 md:w-64 md:rounded-xl md:shadow-lg md:border md:bg-white' +
+            ' fixed top-0 right-0 w-full bg-white' +
             ' transition-all duration-200'
           }
           ${open ? 'block' : 'hidden'}
@@ -102,12 +100,15 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, onClose }) => {
         }
         style={{
           maxWidth: '100vw',
+          height: '100vh',
+          maxHeight: '100vh',
+          overflowY: 'auto'
         }}
       >
-        <div className="px-4 py-4 border-b border-gray-100 md:rounded-t-xl flex justify-between items-center">
+        <div className="px-4 py-4 border-b border-gray-100 md:rounded-t-xl flex justify-between items-center sticky top-0 bg-white z-10">
           <div>
             <div className="font-medium text-black text-base md:text-sm">{user?.user_metadata?.name}</div>
-            <div className="text-xs  text-gray-500 break-all">{user?.email}</div>
+            <div className="text-xs text-gray-500 break-all">{user?.email}</div>
           </div>
           <button
             onClick={onClose}
@@ -138,11 +139,8 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, onClose }) => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
-
-  // Use portal for mobile (always for simplicity)
-  return createPortal(dropdownContent, document.body);
 };
 
 export default ProfileDropdown; 

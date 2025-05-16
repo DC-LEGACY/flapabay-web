@@ -30,7 +30,7 @@ const ExperienceHeader: React.FC<ExperienceHeaderProps> = ({
       transition={{ duration: 0.3 }}
     >
       {category && (
-        <Badge variant="outline" className="mb-2 bg-primary/10 text-primary border-primary/20">
+        <Badge variant="outline" className="mb-2 bg-primary/10 text-flapabay-yellow border-primary/20">
           {category}
         </Badge>
       )}

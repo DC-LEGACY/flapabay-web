@@ -38,7 +38,7 @@ const Profile = () => {
                   <div className="flex items-center gap-4">
                     <Avatar className="h-20 w-20 border-2 border-primary">
                       <AvatarImage src={user?.user_metadata?.avatar_url || "/placeholder.svg"} alt="Profile" />
-                      <AvatarFallback className="bg-primary/20 text-primary text-xl">
+                      <AvatarFallback className="bg-primary/20 text-flapabay-yellow text-xl">
                         {user?.email?.charAt(0).toUpperCase() || "U"}
                       </AvatarFallback>
                     </Avatar>
@@ -78,15 +78,15 @@ const Profile = () => {
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                     <div className="flex items-center gap-2 bg-primary/5 p-3 rounded-lg">
-                      <CheckCircle className="h-5 w-5 text-primary" />
+                      <CheckCircle className="h-5 w-5 text-flapabay-yellow" />
                       <span className="text-sm font-medium">Email Verified</span>
                     </div>
                     <div className="flex items-center gap-2 bg-primary/5 p-3 rounded-lg">
-                      <CheckCircle className="h-5 w-5 text-primary" />
+                      <CheckCircle className="h-5 w-5 text-flapabay-yellow" />
                       <span className="text-sm font-medium">ID Verified</span>
                     </div>
                     <div className="flex items-center gap-2 bg-primary/5 p-3 rounded-lg">
-                      <Shield className="h-5 w-5 text-primary" />
+                      <Shield className="h-5 w-5 text-flapabay-yellow" />
                       <span className="text-sm font-medium">Emergency Contact</span>
                     </div>
                   </div>
@@ -215,38 +215,38 @@ const Profile = () => {
                     <div>
                       <h3 className="font-medium mb-2">Accommodation Types</h3>
                       <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Entire homes</span>
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Luxury</span>
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Beach houses</span>
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Unique stays</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">Entire homes</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">Luxury</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">Beach houses</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">Unique stays</span>
                       </div>
                     </div>
                     
                     <div>
                       <h3 className="font-medium mb-2">Travel Interests</h3>
                       <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Food & Wine</span>
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Nature</span>
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Photography</span>
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Cultural</span>
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Adventure</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">Food & Wine</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">Nature</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">Photography</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">Cultural</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">Adventure</span>
                       </div>
                     </div>
                     
                     <div>
                       <h3 className="font-medium mb-2">Budget Range</h3>
                       <div className="flex items-center gap-2">
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">$100 - $250 per night</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">$100 - $250 per night</span>
                       </div>
                     </div>
                     
                     <div>
                       <h3 className="font-medium mb-2">Must-have Amenities</h3>
                       <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">WiFi</span>
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Kitchen</span>
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Air conditioning</span>
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Workspace</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">WiFi</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">Kitchen</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">Air conditioning</span>
+                        <span className="px-3 py-1 bg-primary/10 text-flapabay-yellow rounded-full text-sm">Workspace</span>
                       </div>
                     </div>
                   </div>
@@ -267,7 +267,7 @@ const Profile = () => {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     <div className="flex flex-col items-center text-center">
                       <div className="bg-primary/10 p-4 rounded-full mb-3">
-                        <Award className="h-10 w-10 text-primary" />
+                        <Award className="h-10 w-10 text-flapabay-yellow" />
                       </div>
                       <h4 className="font-medium">Super Traveler</h4>
                       <p className="text-xs text-muted-foreground mt-1">5+ trips completed</p>
@@ -275,7 +275,7 @@ const Profile = () => {
                     
                     <div className="flex flex-col items-center text-center">
                       <div className="bg-primary/10 p-4 rounded-full mb-3">
-                        <Globe className="h-10 w-10 text-primary" />
+                        <Globe className="h-10 w-10 text-flapabay-yellow" />
                       </div>
                       <h4 className="font-medium">Globetrotter</h4>
                       <p className="text-xs text-muted-foreground mt-1">Visited 3+ countries</p>
@@ -283,7 +283,7 @@ const Profile = () => {
                     
                     <div className="flex flex-col items-center text-center">
                       <div className="bg-primary/10 p-4 rounded-full mb-3">
-                        <Star className="h-10 w-10 text-primary" />
+                        <Star className="h-10 w-10 text-flapabay-yellow" />
                       </div>
                       <h4 className="font-medium">5-Star Guest</h4>
                       <p className="text-xs text-muted-foreground mt-1">Maintained 5-star rating</p>
@@ -291,7 +291,7 @@ const Profile = () => {
                     
                     <div className="flex flex-col items-center text-center">
                       <div className="bg-primary/10 p-4 rounded-full mb-3">
-                        <BookOpen className="h-10 w-10 text-primary" />
+                        <BookOpen className="h-10 w-10 text-flapabay-yellow" />
                       </div>
                       <h4 className="font-medium">Reviewer</h4>
                       <p className="text-xs text-muted-foreground mt-1">10+ detailed reviews</p>

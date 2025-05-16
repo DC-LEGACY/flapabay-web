@@ -566,12 +566,12 @@ const FilterContent = () => {
   }, [CalendertwoModal]);
 
   return (
-    <div className="mx-auto advance-style4 at-home10 mt-100 mt50-lg mb10 animate-up-2">
-      <ul className="pr-6 m-0 nav nav-tabs flex flex-row justify-start">
+    <div className="mx-auto z-0 advance-style4 at-home10 mt-100 mt50-lg mb10 animate-up-2">
+      <ul className="z-0 pr-6 m-0 nav nav-tabs flex flex-row justify-start">
         {tabs.map((tab) => (
-          <li className="nav-item flex-1  text-center" key={tab.id}>
+          <li className="z-0 nav-item flex-1  text-center" key={tab.id}>
             <button
-              className={`nav-link text-left w-full ${activeTab === tab.id ? "active" : ""}`}
+              className={`z-0 nav-link text-left w-full ${activeTab === tab.id ? "active" : ""}`}
               onClick={() => handleTabClick(tab.id)}
             >
               {tab.label}
@@ -583,13 +583,13 @@ const FilterContent = () => {
       {activeTab === "Explore" ? (
         !isMobile ? (
           <div>
-            <div className="tab-content text-start">
+            <div className="z-0 tab-content text-start">
               {tabs.map((tab) => (
                 <div
                   className={`${activeTab === tab.id ? "active" : ""} tab-pane`}
                   key={tab.id}
                 >
-                  <div className="advance-content-style3 at-home5">
+                  <div className="z-0 advance-content-style3 at-home5">
                     <div className="row align-items-center">
                       <div className="col-6 col-md-6 col-xl-4 bdrr1 bdrrn-sm">
                         <label className="mb-1 form-label fz16">

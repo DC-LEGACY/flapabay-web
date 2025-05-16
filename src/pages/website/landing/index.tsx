@@ -70,7 +70,7 @@ const Home_V1 = () => {
         </div>
       </section>
       {!isMobile && (
-        <section className="filtericons">
+        <section className="filtericons z-0">
           <div className="container-fluid  container-fluidest">
             <div className="row">
               <motion.section
@@ -79,7 +79,7 @@ const Home_V1 = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="w-full p-0"
               >
-                <div className="relative w-full">
+                <div className="relative w-full z-0">
                   <ListingbyCategory categories={categories} />
                 </div>
               </motion.section>

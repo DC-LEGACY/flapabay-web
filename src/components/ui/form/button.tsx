@@ -17,7 +17,7 @@ const buttonVariants = cva(
         secondary:
           "bg-white text-black hover:bg-flapabay-black hover:text-flapabay-white",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-flapabay-yellow underline-offset-4 hover:underline",
       },
       size: {
         default: "bg-white text-black px-4 py-3 font-semiBold",

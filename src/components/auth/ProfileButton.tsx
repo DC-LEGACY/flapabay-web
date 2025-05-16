@@ -26,15 +26,17 @@ const getInitials = (user: any) => {
 export const ProfileButton = () => {
   const [user] = useAtom(userAtom);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const buttonRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isDropdownOpen) return;
+    
     function handleClickOutside(event: MouseEvent) {
-      if (buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setIsDropdownOpen(false);
       }
     }
+    
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isDropdownOpen]);
@@ -58,7 +60,7 @@ export const ProfileButton = () => {
   const altText = user.user_metadata?.name || user.email || 'Profile';
 
   return (
-    <div className="relative" ref={buttonRef}>
+    <div className="relative" ref={containerRef}>
       <button
         onClick={() => setIsDropdownOpen((v) => !v)}
         className="flex items-center space-x-2 focus:outline-none"

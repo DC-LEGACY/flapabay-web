@@ -55,39 +55,41 @@ const MainMenu: React.FC = () => {
   };
 
   return (
-    <ul className="ace-responsive-menu">
-      <li className="visible_list dropitem">
-        <a className="list-item" href="/">
-          <span className={topMenu === "home" ? "title menuActive" : "title"}>
-            Explore
-          </span>
-        </a>
-      </li>
+    <nav className="ace-responsive-menu z-[80]">
+      <ul className="ace-responsive-menu">
+        <li className="visible_list dropitem">
+          <a className="list-item" href="/">
+            <span className={topMenu === "home" ? "title menuActive" : "title"}>
+              Explore
+            </span>
+          </a>
+        </li>
 
-      <li className="megamenu_style dropitem">
-        <a className="list-item" href="/experiences">
-          <span className={topMenu === "property" ? "title menuActive" : "title"}>
-            Experiences
-          </span>
-        </a>
-      </li>
+        <li className="megamenu_style dropitem">
+          <a className="list-item" href="/experiences">
+            <span className={topMenu === "property" ? "title menuActive" : "title"}>
+              Experiences
+            </span>
+          </a>
+        </li>
 
-      <li className="megamenu_style dropitem">
-        <a className="list-item" href="/contact">
-          <span className={topMenu === "pages" ? "title menuActive" : "title"}>
-            Contact Us
-          </span>
-        </a>
-      </li>
+        <li className="megamenu_style dropitem">
+          <a className="list-item" href="/contact">
+            <span className={topMenu === "pages" ? "title menuActive" : "title"}>
+              Contact Us
+            </span>
+          </a>
+        </li>
 
-      <li className="megamenu_style dropitem">
-        <a className="list-item" href="/help-center">
-          <span className={topMenu === "property" ? "title menuActive" : "title"}>
-            Help Center
-          </span>
-        </a>
-      </li>
-    </ul>
+        <li className="megamenu_style dropitem">
+          <a className="list-item" href="/help-center">
+            <span className={topMenu === "property" ? "title menuActive" : "title"}>
+              Help Center
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

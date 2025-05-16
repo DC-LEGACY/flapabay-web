@@ -33,7 +33,7 @@ const ExperienceOverview: React.FC<ExperienceOverviewProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-            <Clock className="h-5 w-5 text-primary" />
+            <Clock className="h-5 w-5 text-flapabay-yellow" />
           </div>
           <div>
             <p className="text-sm text-gray-500">Duration</p>
@@ -43,7 +43,7 @@ const ExperienceOverview: React.FC<ExperienceOverviewProps> = ({
         
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-            <Users className="h-5 w-5 text-primary" />
+            <Users className="h-5 w-5 text-flapabay-yellow" />
           </div>
           <div>
             <p className="text-sm text-gray-500">Group size</p>
@@ -53,7 +53,7 @@ const ExperienceOverview: React.FC<ExperienceOverviewProps> = ({
         
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-            <Globe className="h-5 w-5 text-primary" />
+            <Globe className="h-5 w-5 text-flapabay-yellow" />
           </div>
           <div>
             <p className="text-sm text-gray-500">Languages</p>
@@ -64,9 +64,9 @@ const ExperienceOverview: React.FC<ExperienceOverviewProps> = ({
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
             {skillLevel === 'All skill levels' ? (
-              <Award className="h-5 w-5 text-primary" />
+              <Award className="h-5 w-5 text-flapabay-yellow" />
             ) : (
-              <AlertCircle className="h-5 w-5 text-primary" />
+              <AlertCircle className="h-5 w-5 text-flapabay-yellow" />
             )}
           </div>
           <div>

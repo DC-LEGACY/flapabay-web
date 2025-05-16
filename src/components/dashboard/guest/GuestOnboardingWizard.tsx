@@ -142,9 +142,9 @@ const GuestOnboardingWizard: React.FC<GuestOnboardingWizardProps> = ({ onComplet
                   <div 
                     className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium ${
                       index < currentStep 
-                        ? 'bg-primary text-primary-foreground' 
+                        ? 'bg-primary text-flapabay-yellow-foreground' 
                         : index === currentStep 
-                        ? 'bg-primary text-primary-foreground'
+                        ? 'bg-primary text-flapabay-yellow-foreground'
                         : 'bg-muted text-muted-foreground'
                     }`}
                   >
@@ -340,7 +340,7 @@ const GuestOnboardingWizard: React.FC<GuestOnboardingWizardProps> = ({ onComplet
               <div className="space-y-6">
                 <div className="bg-primary/5 p-4 rounded-lg mb-6">
                   <div className="flex items-center gap-3">
-                    <Shield className="h-6 w-6 text-primary" />
+                    <Shield className="h-6 w-6 text-flapabay-yellow" />
                     <div>
                       <h3 className="font-medium">Why verify your identity?</h3>
                       <p className="text-sm text-muted-foreground">Identity verification helps keep our community safe and builds trust between guests and hosts.</p>
@@ -427,7 +427,7 @@ const GuestOnboardingWizard: React.FC<GuestOnboardingWizardProps> = ({ onComplet
               <div className="space-y-6">
                 <div className="bg-primary/5 p-4 rounded-lg mb-6">
                   <div className="flex items-center gap-3">
-                    <HelpCircle className="h-6 w-6 text-primary" />
+                    <HelpCircle className="h-6 w-6 text-flapabay-yellow" />
                     <div>
                       <h3 className="font-medium">Emergency Contact Information</h3>
                       <p className="text-sm text-muted-foreground">We'll only use this information in case of emergencies during your trips.</p>

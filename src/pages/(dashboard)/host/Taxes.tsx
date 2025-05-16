@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "@/components/dashboard/host/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/dashboard/host/ui/card";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/dashboard/host/ui/dialog";
+import { Input } from "@/components/dashboard/host/ui/input";
+import { Label } from "@/components/dashboard/host/ui/label";
 import { Link } from "react-router-dom";
 import { ArrowLeft, FileText, Upload, X, Check, Calendar, Flag } from "lucide-react";
 import { toast } from "sonner";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/dashboard/host/ui/select";
 import { usePage } from '@/contexts/PageContext';
 
 const Taxes = () => {

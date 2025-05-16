@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/dashboard/host/ui/card";
+import { Progress } from "@/components/dashboard/host/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/dashboard/host/ui/tabs";
 import { ArrowDown, ArrowUp, Activity, DollarSign, Calendar, Home as HomeIcon } from "lucide-react";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { usePage } from '@/contexts/PageContext';
-import { DayPicker } from "@/components/ui/calendar";
+import { DayPicker } from "@/components/dashboard/host/ui/calendar";
 
 const earningsData = [
   { month: 'Jan', earnings: 1200 },

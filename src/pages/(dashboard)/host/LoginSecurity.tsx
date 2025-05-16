@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { usePage } from "@/contexts/PageContext";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
-import { Switch } from "@/components/ui/switch";
+import { Button } from "@/components/dashboard/host/ui/button";
+import { Input } from "@/components/dashboard/host/ui/input";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/dashboard/host/ui/card";
+import { Label } from "@/components/dashboard/host/ui/label";
+import { Separator } from "@/components/dashboard/host/ui/separator";
+import { Switch } from "@/components/dashboard/host/ui/switch";
 import { toast } from "sonner";
 import { ArrowLeft, Check, MailCheck, Phone, Shield, Smartphone } from "lucide-react";
 import { Link } from "react-router-dom";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/dashboard/host/ui/input-otp";
 
 const LoginSecurity = () => {
   const { setPageTitle, setPageSubtitle } = usePage();

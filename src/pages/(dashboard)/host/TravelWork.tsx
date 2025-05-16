@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
+import { Button } from "@/components/dashboard/host/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/dashboard/host/ui/card";
+import { Input } from "@/components/dashboard/host/ui/input";
+import { Label } from "@/components/dashboard/host/ui/label";
+import { Switch } from "@/components/dashboard/host/ui/switch";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Briefcase, Building, Mail, MapPin } from "lucide-react";
 import { toast } from "sonner";

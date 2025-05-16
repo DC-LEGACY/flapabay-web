@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { usePage } from "@/contexts/PageContext";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/dashboard/host/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/dashboard/host/ui/card";
+import { Input } from "@/components/dashboard/host/ui/input";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Copy, Gift, Share2, Users } from "lucide-react";
 import { toast } from "sonner";

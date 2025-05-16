@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { usePage } from "@/contexts/PageContext";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/dashboard/host/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/dashboard/host/ui/card";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock, Globe, Languages } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/dashboard/host/ui/select";
+import { RadioGroup, RadioGroupItem } from "@/components/dashboard/host/ui/radio-group";
+import { Label } from "@/components/dashboard/host/ui/label";
 
 const Preferences = () => {
   const { setPageTitle, setPageSubtitle } = usePage();

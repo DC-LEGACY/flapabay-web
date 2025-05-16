@@ -1,18 +1,18 @@
 import { useState } from "react";
 import Dashboard from "@/components/dashboard/Dashboard";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
+import { Button } from "@/components/dashboard/host/ui/button";
+import { Input } from "@/components/dashboard/host/ui/input";
+import { Separator } from "@/components/dashboard/host/ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/dashboard/host/ui/avatar";
+import { Badge } from "@/components/dashboard/host/ui/badge";
+import { Card, CardContent } from "@/components/dashboard/host/ui/card";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/dashboard/host/ui/dialog";
 import { ProfileWizard } from "@/components/dashboard/host/profile/ProfileWizard";
 import { VerificationWizard } from "@/components/dashboard/host/profile/VerificationWizard";
 import { toast } from "sonner";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { BookOpen, Briefcase, Camera, Check, Clock, Edit, Globe, GraduationCap, Heart, Home, LightbulbIcon, MapPin, Dog, Pencil, BadgeCheck } from "lucide-react";
-import { Textarea } from "@/components/ui/textarea";
+import { Textarea } from "@/components/dashboard/host/ui/textarea";
 
 const Profile = () => {
   const [showProfileWizard, setShowProfileWizard] = useState(false);

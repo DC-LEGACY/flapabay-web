@@ -1,6 +1,5 @@
-
-import { PublicProfileHeader } from "@/components/profile/PublicProfileHeader";
-import { PublicProfileContent } from "@/components/profile/PublicProfileContent";
+import { PublicProfileHeader } from "@/components/dashboard/host/profile/PublicProfileHeader";
+import { PublicProfileContent } from "@/components/dashboard/host/profile/PublicProfileContent";
 
 const PublicHostProfile = () => {
   // In a real app, we would fetch this data from an API based on the host ID

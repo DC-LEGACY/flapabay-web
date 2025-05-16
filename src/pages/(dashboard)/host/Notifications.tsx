@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { usePage } from "@/contexts/PageContext";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/dashboard/host/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/dashboard/host/ui/card";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BellIcon, Mail, Smartphone } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
+import { Switch } from "@/components/dashboard/host/ui/switch";
 
 const Notifications = () => {
   const { setPageTitle, setPageSubtitle } = usePage();

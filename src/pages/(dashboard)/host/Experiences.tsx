@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { usePage } from "@/contexts/PageContext";
 import { useNavigate } from "react-router-dom";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/dashboard/host/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/dashboard/host/ui/tabs";
+import { Button } from "@/components/dashboard/host/ui/button";
+import { Input } from "@/components/dashboard/host/ui/input";
+import { Badge } from "@/components/dashboard/host/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/dashboard/host/ui/select";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/dashboard/host/ui/dialog";
+import { Switch } from "@/components/dashboard/host/ui/switch";
+import { Label } from "@/components/dashboard/host/ui/label";
+import { Textarea } from "@/components/dashboard/host/ui/textarea";
 import { toast } from "sonner";
 import { 
   Calendar, 
@@ -36,7 +36,7 @@ import {
   Tag,
   Clock3
 } from "lucide-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/dashboard/host/ui/dropdown-menu";
 
 // Sample experience data
 const experiences = [

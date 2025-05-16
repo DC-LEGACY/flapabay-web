@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { usePage } from "@/contexts/PageContext";
 import { Link } from "react-router-dom";
-import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/dashboard/host/ui/card";
+import { Button } from "@/components/dashboard/host/ui/button";
 import { 
   UserIcon, 
   Shield, 

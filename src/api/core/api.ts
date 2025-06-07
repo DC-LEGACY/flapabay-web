@@ -1,17 +1,19 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios';
 
-const baseURL = 'YOUR_PHP_API_BASE_URL/v1'; // Replace with your actual API base URL
+// API Configuration
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://api.flapabay.com/v1/api';
 
 const api: AxiosInstance = axios.create({
-  baseURL,
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
+// Request interceptor for adding auth token
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig<any>) => {
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem('auth_token');
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -22,17 +24,15 @@ api.interceptors.request.use(
   }
 );
 
+// Response interceptor for handling token expiration
 api.interceptors.response.use(
-  (response: AxiosResponse) => {
-    return response;
-  },
-  (error: AxiosError) => {
-    if (error.response) {
-      console.error('API Error:', error.response.status, error.response.data);
-    } else if (error.request) {
-      console.error('API Request Error:', error.request);
-    } else {
-      console.error('API General Error:', error.message);
+  (response) => response,
+  async (error: AxiosError) => {
+    if (error.response?.status === 401) {
+      // Token expired or invalid
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('flapabay_user_session');
+      window.location.href = '/auth/login';
     }
     return Promise.reject(error);
   }

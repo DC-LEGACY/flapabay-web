@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import ConfirmationModal from "./verify/ConfirmationModal";
 
-import FinishSignupModal from "./complete-registration/FinishSignupModal.";
+import FinishSignupModal from "./complete-registration/FinishSignupModal";
 import { Button } from "@/components/ui/button";
 import apple from "../../assets/apple-logo.png";
 import facebook from "../../assets/facebook.png";
@@ -216,20 +216,31 @@ interface SignupModalProps {
 }
 
 const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
-  const { signInWithGoogle, authLoading, error: authError } = useAuth();
-  const handleGoogleSignIn = () => {
-    signInWithGoogle();
-  };
+  const { 
+    signInWithGoogle, 
+    loading, 
+    error: authError,
+    getSignupPhoneOtp,
+    getSignupEmailOtp,
+    verifyOtpByPhone,
+    verifyOtpByEmail
+  } = useAuth();
+
   const modalRef = useRef<HTMLDivElement>(null);
+  const [selectedCountryCode, setSelectedCountryCode] = useState(countries[194].code);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [isEmailMode, setIsEmailMode] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [showFinishModal, setShowFinishModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
-        onClose(); // Close modal if clicked outside
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        onClose();
       }
     };
 
@@ -239,68 +250,91 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
     };
   }, [onClose]);
 
-  const [selectedCountryCode, setSelectedCountryCode] = useState(
-    countries[194].code
-  ); // Default to the first country
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [isEmailMode, setIsEmailMode] = useState(false);
-  const [showFinishModal, setShowFinishModal] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const handlePhoneContinue = async () => {
+    try {
+      setIsLoading(true);
+      setError("");
 
-  const [error, setError] = useState("");
-  const handleContinue = () => {
-    if (isEmailMode) {
-      if (!email || !isValidEmail(email)) {
-        setError("Please enter a valid email first.");
+      if (!phoneNumber) {
+        setError("Please enter your phone number.");
         return;
       }
-    }
-    setError(""); // Clear any previous errors
-    setShowFinishModal(true);
-  };
 
-  // Function to validate email format
-  const isValidEmail = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
+      const [response, error] = await getSignupPhoneOtp({
+        phone: phoneNumber,
+        code: selectedCountryCode.replace('+', '')
+      });
 
-  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const handlePhoneContinue = () => {
-    setShowConfirmationModal(true);
-  };
+      if (error) throw error;
 
-  if (showFinishModal) {
-    return <FinishSignupModal onClose={() => setShowFinishModal(false)} email = {email} />;
-  }
-  if (showConfirmationModal) {
-    return (
-      <FinishSignupModal onClose={() => setShowConfirmationModal(false)} email = {email} />
-    );
-  }
-  // Handle country code change
-  const handleCountryCodeChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setSelectedCountryCode(event.target.value);
-  };
-
-  // Handle phone number input (allow only numbers)
-  const handlePhoneNumberChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = event.target.value;
-    if (/^\d*$/.test(value)) {
-      setPhoneNumber(value); // Only update state if input is numeric
+      setShowConfirmationModal(true);
+    } catch (err: any) {
+      setError(err.message || 'Failed to send OTP');
+    } finally {
+      setIsLoading(false);
     }
   };
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
+
+  const handleEmailContinue = async () => {
+    try {
+      setIsLoading(true);
+      setError("");
+
+      if (!email) {
+        setError("Please enter your email.");
+        return;
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setError("Please enter a valid email address.");
+        return;
+      }
+
+      const [response, error] = await getSignupEmailOtp(email);
+
+      if (error) throw error;
+
+      setShowConfirmationModal(true);
+    } catch (err: any) {
+      setError(err.message || 'Failed to send OTP');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle();
   };
 
   const toggleMode = () => {
-    setIsEmailMode((prevMode) => !prevMode); // Toggle between email and phone mode
+    setIsEmailMode(!isEmailMode);
+    setError("");
   };
+
+  const handleCountryCodeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCountryCode(e.target.value);
+  };
+
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhoneNumber(e.target.value);
+  };
+
+  if (showConfirmationModal) {
+    return (
+      <ConfirmationModal 
+        onClose={() => setShowConfirmationModal(false)} 
+        phone={phoneNumber}
+        code={selectedCountryCode.replace('+', '')}
+      />
+    );
+  }
+
+  if (showFinishModal) {
+    return (
+      <FinishSignupModal 
+        onClose={() => setShowFinishModal(false)} 
+        email={email}
+      />
+    );
+  }
 
   return (
     <div>
@@ -337,7 +371,8 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
                     type="text"
                     className="bg-white flex-1 text-[16px] rounded-r-md shadow-sm sm:text-sm p-2 outline-none"
                     value={phoneNumber}
-                    onChange={handlePhoneNumberChange}
+                    onChange={handlePhoneNumberChange} 
+                    minLength={9} maxLength={13}
                   />
                 </div>
               </div>
@@ -350,7 +385,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
                   placeholder="Email"
                   className="w-full text-[16px] rounded-2xl p-[12px] sm:text-sm"
                   value={email}
-                  onChange={handleEmailChange}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
@@ -367,39 +402,45 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
 
           {isEmailMode ? (
             <Button
-              // onClick={handleContinue}
-              onClick={handleContinue}
-              className=" mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-2xl"
+              onClick={handleEmailContinue}
+              className="mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-2xl"
               disabled={isLoading}
             >
-              Continue
+              {isLoading ? 'Sending...' : 'Continue'}
             </Button>
           ) : (
             <Button
               onClick={handlePhoneContinue}
               className="mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-2xl"
+              disabled={isLoading}
             >
-              Continue with phone
+              {isLoading ? 'Sending...' : 'Continue with phone'}
             </Button>
           )}
 
           {/* Divider */}
           <div className="flex items-center my-4">
-            <div className="border-t  border-gray-400 w-full"></div>
+            <div className="border-t border-gray-400 w-full"></div>
             <span className="mx-4 text-black text-sm">or</span>
             <div className="border-t border-gray-400 w-full"></div>
           </div>
 
           {/* Social login buttons */}
           <div className="space-y-2">
-            <Button onClick={handleGoogleSignIn} variant="ghost" className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0">
+            <Button 
+              onClick={handleGoogleSignIn} 
+              variant="ghost" 
+              className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0"
+              disabled={loading}
+            >
               <img src={google} alt="Google" className="h-4 w-7 pl-3" />
               <span className="flex-1 text-center text-[16px]">
-                Continue with Google
+                {loading ? 'Signing in...' : 'Continue with Google'}
               </span>
             </Button>
-           
-            <Button variant="ghost"
+            
+            <Button 
+              variant="ghost"
               onClick={toggleMode}
               className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0"
             >

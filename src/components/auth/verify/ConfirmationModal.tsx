@@ -1,88 +1,93 @@
 import React, { useState } from "react";
-
-import FinishSignupModal from "@/components/auth/complete-registration/FinishSignupModal.";
+import { useAuth } from "@/contexts/AuthContext";
 import left from "@/assets/left.png";
 
 interface ConfirmationModalProps {
-  phoneNumber: string; // Pass the phone number to display
   onClose: () => void;
-  onBack: () => void;
+  phone: string;
+  code: string;
 }
 
-const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
-  phoneNumber,
-  onClose,
-  onBack,
-}) => {
-  const [code, setCode] = useState("");
-   const [showFinishModal, setShowFinishModal] = useState(false);
+const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, phone, code }) => {
+  const { loginWithOtp } = useAuth();
+  const [otp, setOtp] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOtpChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     if (/^\d*$/.test(value)) {
-      setCode(value); // Only update state if input is numeric
+      setOtp(value);
+      setError("");
     }
   };
 
-  // const handleContinue = () => {
-  //   setShowFinishModal(true);
-    
-  //   console.log("Code entered:", code);
-  // };
-  // if (showFinishModal) {
-  //   return <FinishSignupModal onClose={() => setShowFinishModal(false)} />;
-  // }
+  const handleVerifyOtp = async () => {
+    try {
+      setIsLoading(true);
+      setError("");
+
+      if (!otp) {
+        setError("Please enter the OTP code.");
+        return;
+      }
+
+      const [response, error] = await loginWithOtp({
+        phone,
+        code,
+        otp
+      });
+
+      if (error) throw error;
+
+      onClose(); // Close modal on successful verification
+    } catch (err: any) {
+      setError(err.message || 'Failed to verify OTP');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <div
-      className="  w-full h-full  bg-opacity-50 flex justify-center z-50"
-      onClick={onClose}
-    >
-      <div
-        className="bg-white  rounded-2xl shadow-lg w-full h-full max-w-md z-60 p-6"
-        onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside
-      >
-        <div className="flex items-center text-center space-x-20">
-          <button className="  top-4 right-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={onClose}>
+      <div className="bg-white rounded-2xl shadow-lg w-full max-w-md relative z-60 p-6" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between">
+          <button onClick={onClose}>
             <img src={left} alt="Close" className="h-5 w-5" />
           </button>
-          <div className="text-center text-lg font-semibold">
-            Confirm your number
-          </div>
+          <h2 className="text-lg font-semibold text-center flex-1">Verify your phone</h2>
         </div>
         <div className="h-[.5px] w-full bg-gray-400 mt-2" />
-        <p className="text-sm text-gray-800 mb-4 pt-3">
-          Enter the code we sent over SMS to {phoneNumber}:
-        </p>
-        <div className="flex  bg-white items-center mb-4">
-          <input
-            type="text"
-            maxLength={6} // Assume the code has 6 digits
-            className="text-center text-2xl border bg-white border-gray-400 rounded-2xl p-2 w-[50%] outline-none"
-            value={code}
-            onChange={handleCodeChange}
-            placeholder="- - - - - -"
-          />
-        </div>
-        <div className=" flex items-center justify-between">
-          <div className="text-center">
-            <button
-              onClick={onBack}
-              className="text-sm text-black underline mt-4 font-semibold"
-            >
-              More options
-            </button>
+
+        <div className="mt-6">
+          <p className="text-sm text-gray-600 mb-4">
+            Enter the verification code sent to {phone}
+          </p>
+          <div className="flex justify-center space-x-2 mb-4">
+            {[...Array(6)].map((_, i) => (
+              <input
+                key={i}
+                type="text"
+                maxLength={1}
+                className="w-12 h-12 border bg-white border-gray-300 rounded-2xl text-center text-lg"
+                onChange={handleOtpChange}
+              />
+            ))}
           </div>
-          <button
-            
-            className={`mt-4 w-[30%] font-semibold py-2 rounded-2xl ${
-              code.length === 6
-                ? "bg-[#ffc500] text-white"
-                : "bg-gray-300 text-gray-600"
-            }`}
-            disabled={code.length !== 6}
-          >
-            Continue
+          {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+        </div>
+
+        <button 
+          className="w-full bg-[#ffc500] text-white font-semibold py-2 rounded-2xl mt-4"
+          onClick={handleVerifyOtp}
+          disabled={isLoading}
+        >
+          {isLoading ? 'Verifying...' : 'Verify'}
+        </button>
+
+        <div className="text-center mt-4">
+          <button className="text-sm text-black underline font-semibold">
+            Didn't receive the code? Resend
           </button>
         </div>
       </div>

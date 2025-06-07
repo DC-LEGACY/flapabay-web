@@ -10,35 +10,55 @@ let initialUser: User | null = null;
 if (storedUserString) {
   try {
     const parsedUser = JSON.parse(storedUserString);
-    // Basic validation to ensure it looks like our User object (optional but good practice)
+    // Basic validation to ensure it looks like our User object
     if (parsedUser && typeof parsedUser.id === 'string' && parsedUser.user_metadata) {
       initialUser = parsedUser as User;
     } else {
-      localStorage.removeItem("flapabay_user_session"); // Clear invalid data
+      localStorage.removeItem("flapabay_user_session");
+      localStorage.removeItem("auth_token");
     }
   } catch (e) {
     console.error("Error parsing stored user from localStorage:", e);
-    localStorage.removeItem("flapabay_user_session"); // Clear corrupted data
+    localStorage.removeItem("flapabay_user_session");
+    localStorage.removeItem("auth_token");
   }
 }
 
-// This atom will now primarily be a derived/synced atom from AuthContext
-// The localStorage persistence here can be a secondary backup or be handled by the authService mock more explicitly.
-// For now, we keep its localStorage logic but change the key.
+// User state atom
 export const userAtom = atom<User | null>(initialUser);
 
-// Atom to manually set the user, which also updates localStorage.
-// AuthContext will call this.
-export const setUserAtom = atom(
-  null, // initial value for setter-only atom is null
-  (get, set, newUser: User | null) => {
-    set(userAtom, newUser);
-    if (newUser) {
-      localStorage.setItem("flapabay_user_session", JSON.stringify(newUser));
+// Authentication state atom
+export const isAuthenticatedAtom = atom((get) => !!get(userAtom));
+
+// Token atom
+export const tokenAtom = atom<string | null>(
+  typeof window !== "undefined" ? localStorage.getItem("auth_token") : null
+);
+
+// Setter atom for user and token
+export const setAuthAtom = atom(
+  null,
+  (get, set, { user, token }: { user: User | null; token: string | null }) => {
+    set(userAtom, user);
+    set(tokenAtom, token);
+    
+    if (user && token) {
+      localStorage.setItem("flapabay_user_session", JSON.stringify(user));
+      localStorage.setItem("auth_token", token);
     } else {
       localStorage.removeItem("flapabay_user_session");
+      localStorage.removeItem("auth_token");
     }
   }
 );
 
-export const isAuthenticatedAtom = atom((get) => !!get(userAtom)); 
+// Clear auth state
+export const clearAuthAtom = atom(
+  null,
+  (get, set) => {
+    set(userAtom, null);
+    set(tokenAtom, null);
+    localStorage.removeItem("flapabay_user_session");
+    localStorage.removeItem("auth_token");
+  }
+); 

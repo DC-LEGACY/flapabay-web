@@ -218,10 +218,14 @@ interface LoginModalProps {
 
 const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   const modalRef = useRef<HTMLDivElement>(null);
-  const { signInWithGoogle, loading, error } = useAuth();
-  const handleGoogleSignIn = () => {
-    signInWithGoogle();
-  };
+  const { 
+    signInWithGoogle, 
+    loading, 
+    error,
+    getOtp,
+    loginWithOtp
+  } = useAuth();
+
   // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -239,91 +243,106 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
     };
   }, [onClose]);
 
-  const [selectedCountryCode, setSelectedCountryCode] = useState(
-    countries[194].code
-  ); // Default to the first country
+  const [selectedCountryCode, setSelectedCountryCode] = useState(countries[194].code);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [isEmailMode, setIsEmailMode] = useState(false);
-
-  const [showEmailConfirmationModal, setShowEmailConfirmationModal] =
-    useState(false);
+  const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-
   const [emailError, setEmailError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handlePhoneContinue = () => {
-    setShowEmailConfirmationModal(true);
-  };
-  const handleEmailContinue = () => {
-    // Validate email input
-    if (!email) {
-      setEmailError("Please enter your email.");
-      return;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setEmailError("Please enter a valid email address.");
-      return;
-    } else {
-      setEmailError(""); // Clear error if valid
+  const handlePhoneContinue = async () => {
+    try {
+      setIsLoading(true);
+      setEmailError("");
+      
+      if (!phoneNumber) {
+        setEmailError("Please enter your phone number.");
+        return;
+      }
+
+      const [response, error] = await getOtp({
+        phone: phoneNumber,
+        code: selectedCountryCode.replace('+', '')
+      });
+
+      if (error) throw error;
+      
+      setShowEmailConfirmationModal(true);
+    } catch (err: any) {
+      setEmailError(err.message || 'Failed to send OTP');
+    } finally {
+      setIsLoading(false);
     }
+  };
 
-    // Show the password entry modal instead of making an API call here
-    setShowConfirmationModal(true);
+  const handleEmailContinue = async () => {
+    try {
+      setIsLoading(true);
+      setEmailError("");
+      
+      if (!email) {
+        setEmailError("Please enter your email.");
+        return;
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setEmailError("Please enter a valid email address.");
+        return;
+      }
+
+      const [response, error] = await getOtp({
+        email
+      });
+
+      if (error) throw error;
+      
+      setShowConfirmationModal(true);
+    } catch (err: any) {
+      setEmailError(err.message || 'Failed to send OTP');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle();
+  };
+
+  const toggleMode = () => {
+    setIsEmailMode(!isEmailMode);
+    setEmailError("");
+  };
+
+  const handleCountryCodeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCountryCode(e.target.value);
+  };
+
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhoneNumber(e.target.value);
   };
 
   if (showEmailConfirmationModal) {
     return (
-      <ConfirmationModal onClose={() => setShowEmailConfirmationModal(false)} />
+      <ConfirmationModal 
+        onClose={() => setShowEmailConfirmationModal(false)} 
+        phone={phoneNumber}
+        code={selectedCountryCode.replace('+', '')}
+      />
     );
   }
+
   if (showConfirmationModal) {
     return (
-      <EnterCodeModal
-        onClose={() => setShowConfirmationModal(false)}
+      <EnterCodeModal 
+        onClose={() => setShowConfirmationModal(false)} 
         email={email}
       />
     );
   }
 
-  // Handle country code change
-  const handleCountryCodeChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setSelectedCountryCode(event.target.value);
-  };
-
-  // Handle phone number input (allow only numbers)
-  const handlePhoneNumberChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = event.target.value;
-    if (/^\d*$/.test(value)) {
-      setPhoneNumber(value); // Only update state if input is numeric
-    }
-  };
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
-
-  const toggleMode = () => {
-    setIsEmailMode((prevMode) => !prevMode); // Toggle between email and phone mode
-  };
-
-
-
-
-
-
-
-
-
-
-  
   return (
     <div>
-      <div
-      // Prevent closing modal when clicking inside
-      >
+      <div>
         <div className="">
           {!isEmailMode ? (
             <div>
@@ -356,7 +375,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
                     type="text"
                     className="bg-white flex-1 text-[16px] rounded-r-md shadow-sm sm:text-sm p-2 outline-none"
                     value={phoneNumber}
-                    onChange={handlePhoneNumberChange}
+                    onChange={handlePhoneNumberChange} minLength={9} maxLength={13}
                   />
                 </div>
               </div>
@@ -379,7 +398,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
           )}
 
           <p className="text-xs text-gray-500 pt-2">
-            We’ll call or text you to confirm your number. Standard message and
+            We'll call or text you to confirm your number. Standard message and
             data rates apply.{" "}
             <a href="#" className="text-black underline">
               Privacy Policy
@@ -389,36 +408,44 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
           {isEmailMode ? (
             <Button
               onClick={handleEmailContinue}
-              className=" mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-2xl"
+              className="mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-2xl"
+              disabled={isLoading}
             >
-              Continue
-              </Button>
+              {isLoading ? 'Sending...' : 'Continue'}
+            </Button>
           ) : (
             <Button
               onClick={handlePhoneContinue}
               className="mt-2 w-full bg-[#ffc500] font-semibold text-white py-2 rounded-2xl"
+              disabled={isLoading}
             >
-              Continue with phone
+              {isLoading ? 'Sending...' : 'Continue with phone'}
             </Button>
           )}
 
           {/* Divider */}
           <div className="flex items-center my-4">
-            <div className="border-t  border-gray-400 w-full"></div>
+            <div className="border-t border-gray-400 w-full"></div>
             <span className="mx-4 text-black text-sm">or</span>
             <div className="border-t border-gray-400 w-full"></div>
           </div>
 
           {/* Social login buttons */}
           <div className="space-y-2">
-            <Button onClick={handleGoogleSignIn} variant="ghost" className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0">
+            <Button 
+              onClick={handleGoogleSignIn} 
+              variant="ghost" 
+              className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0"
+              disabled={loading}
+            >
               <img src={google} alt="Google" className="h-4 w-7 pl-3" />
               <span className="flex-1 text-center text-[16px]">
-                Continue with Google
+                {loading ? 'Signing in...' : 'Continue with Google'}
               </span>
             </Button>
             
-            <Button variant="ghost"
+            <Button 
+              variant="ghost"
               onClick={toggleMode}
               className="w-full border border-gray-600 rounded-2xl py-2 flex items-center space-x-0"
             >

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 import ForgotPassword from "@/components/auth/ForgotPassword";
-import axios from "axios";
 import left from "@/assets/left.png";
 import { useNavigate } from "react-router-dom";
 import { useSetAtom } from "jotai";
-import { userAtom } from "@/store/authStore";
+import { setAuthAtom } from "@/store/authStore";
+import { authService } from "@/api/services/auth";
 
 interface EnterCodeModalProps {
   onClose: () => void;
@@ -17,7 +17,7 @@ const EnterCodeModal: React.FC<EnterCodeModalProps> = ({ onClose, email }) => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showForgotPassword, setShowForgotPassword] = useState(false);
-  const setUser = useSetAtom(userAtom);
+  const [, setAuth] = useSetAtom(setAuthAtom);
 
   const handleForgotPassword = () => {
     setShowForgotPassword(true);
@@ -30,19 +30,17 @@ const EnterCodeModal: React.FC<EnterCodeModalProps> = ({ onClose, email }) => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost/flapabay-engine-main/api/v1/login",
-        { email, password }
-      );
-
-      if (response.status === 200) {
-        const userData = response.data.data;
-        localStorage.setItem("user", JSON.stringify(userData));
-        setUser(userData);
-        console.log("Login successful:", userData);
-        onClose();
-      }
-    } catch (error) {
+      const { data } = await authService.login({ email, password });
+      
+      // Update auth state with backend token and user
+      setAuth({
+        user: data.user,
+        token: data.token
+      });
+      
+      console.log("Login successful:", data.user);
+      onClose();
+    } catch (error: any) {
       console.error("Login failed:", error.response?.data || error.message);
       setPasswordError("Incorrect Email or password. Please try again.");
     }

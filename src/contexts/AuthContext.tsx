@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useCallback } from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useAtom } from 'jotai';
 import { userAtom, setAuthAtom, clearAuthAtom } from '@/store/authStore';
@@ -42,31 +42,44 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Initialize user from localStorage on mount
   useEffect(() => {
-    setLoading(true);
-    const storedUser = localStorage.getItem('flapabay_user_session');
-    if (storedUser) {
-      try {
-        let userData = JSON.parse(storedUser);
-        // Map to the User interface from authService
-        userData = {
-          id: userData.id || '',
-          app_metadata: userData.app_metadata || {},
-          user_metadata: userData.user_metadata || { name: userData.user_metadata?.name, picture: userData.user_metadata?.picture },
-          aud: userData.aud || 'authenticated',
-          email: typeof userData.email === 'string' ? userData.email : '',
-          role: userData.role || 'guest',
-          created_at: userData.created_at || new Date().toISOString(),
-        };
-        setUser(userData);
-      } catch (err) {
-        console.error('Failed to parse stored user data:', err);
-        clearAuth();
+    const initializeAuth = () => {
+      const storedUser = localStorage.getItem('flapabay_user_session');
+      if (storedUser) {
+        try {
+          let userData = JSON.parse(storedUser);
+          // Map to the User interface from authService
+          userData = {
+            id: userData.id || '',
+            app_metadata: userData.app_metadata || {},
+            user_metadata: userData.user_metadata || { name: userData.user_metadata?.name, picture: userData.user_metadata?.picture },
+            aud: userData.aud || 'authenticated',
+            email: typeof userData.email === 'string' ? userData.email : '',
+            role: userData.role || 'guest',
+            created_at: userData.created_at || new Date().toISOString(),
+          };
+          setUser(userData);
+        } catch (err) {
+          console.error('Failed to parse stored user data:', err);
+          clearAuth();
+        }
+      } else {
+        setUser(null);
       }
-    } else {
-      setUser(null);
-    }
-    setLoading(false);
-  }, [setUser, clearAuth]);
+    };
+
+    initializeAuth();
+  }, []); // Remove dependencies to prevent re-runs
+
+  const handleAuthError = useCallback((err: any, defaultMessage: string) => {
+    console.error(defaultMessage, err);
+    const errorMessage = err?.message || defaultMessage;
+    setError(errorMessage);
+    toast({
+      title: "Error",
+      description: errorMessage,
+      variant: "destructive",
+    });
+  }, [toast]);
 
   const login = useGoogleLogin({
     onSuccess: async (response) => {
@@ -93,25 +106,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           description: "You have successfully signed in.",
         });
       } catch (err) {
-        console.error('Failed to authenticate:', err);
-        setError('Failed to authenticate');
-        toast({
-          title: "Sign in failed",
-          description: "Failed to authenticate with the server",
-          variant: "destructive",
-        });
+        handleAuthError(err, 'Failed to authenticate');
       } finally {
         setLoading(false);
       }
     },
     onError: () => {
-      setError('Failed to sign in with Google');
+      handleAuthError(new Error('Google sign in failed'), 'Failed to sign in with Google');
       setLoading(false);
-      toast({
-        title: "Sign in failed",
-        description: "Failed to sign in with Google",
-        variant: "destructive",
-      });
     },
   });
 
@@ -125,13 +127,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         description: "You have been successfully signed out.",
       });
     } catch (err) {
-      console.error('Sign out failed:', err);
-      setError('Failed to sign out');
-      toast({
-        title: "Sign out failed",
-        description: "Failed to sign out",
-        variant: "destructive",
-      });
+      handleAuthError(err, 'Failed to sign out');
     } finally {
       setLoading(false);
     }
@@ -154,12 +150,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           description: `You are now in ${newRole} mode.`,
         });
       } catch (err) {
-        console.error('Failed to switch role:', err);
-        toast({
-          title: "Role switch failed",
-          description: "Failed to switch role",
-          variant: "destructive",
-        });
+        handleAuthError(err, 'Failed to switch role');
       } finally {
         setLoading(false);
       }
@@ -178,14 +169,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         title: "OTP Sent",
         description: "Please check your email or phone for the OTP code.",
       });
-    } catch (err: any) {
-      console.error('Failed to send OTP:', err);
-      setError(err.message || 'Failed to send OTP');
-      toast({
-        title: "OTP Request Failed",
-        description: err.message || 'Failed to send OTP',
-        variant: "destructive",
-      });
+    } catch (err) {
+      handleAuthError(err, 'Failed to send OTP');
     } finally {
       setLoading(false);
     }
@@ -199,11 +184,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       if (error) throw error;
       
-      if (response && 'data' in response) {
-        const authResponse = response as AxiosResponse<{ data: { user: User; token: string } }>;
+      if (response?.data) {
         setAuth({
-          user: authResponse.data.data.user,
-          token: authResponse.data.data.token
+          user: response.data.user,
+          token: response.data.token
         });
         
         toast({
@@ -211,14 +195,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           description: "You have successfully signed in.",
         });
       }
-    } catch (err: any) {
-      console.error('Failed to login with OTP:', err);
-      setError(err.message || 'Failed to login with OTP');
-      toast({
-        title: "Login Failed",
-        description: err.message || 'Failed to login with OTP',
-        variant: "destructive",
-      });
+    } catch (err) {
+      handleAuthError(err, 'Failed to login with OTP');
     } finally {
       setLoading(false);
     }

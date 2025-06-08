@@ -16,86 +16,86 @@ import {
 export const authService = {
   // Regular authentication
   login: withTryCatch(async (data: LoginRequest) => 
-    api.post<{ data: AuthResponse }>('/login', data)
+    api.post<AuthResponse>('/auth/login', data)
   ),
   
   register: withTryCatch(async (data: RegisterRequest) => 
-    api.post<{ data: AuthResponse }>('/register', data)
+    api.post<AuthResponse>('/auth/register', data)
   ),
 
   // Google OAuth
   googleAuth: withTryCatch(async (googleToken: string, userInfo: any) => 
-    api.post<{ data: AuthResponse }>('/google-auth', { googleToken, userInfo })
+    api.post<AuthResponse>('/auth/google-auth', { googleToken, userInfo })
   ),
 
   // OTP verification
   getEmailOtp: withTryCatch(async (email: string) => 
-    api.post('/get-email-otp', { email })
+    api.post<OtpResponse>('/auth/get-email-otp', { email })
   ),
   
   getPhoneOtp: withTryCatch(async (phone: string) => 
-    api.post('/get-phone-otp', { phone })
+    api.post<OtpResponse>('/auth/get-phone-otp', { phone })
   ),
   
   verifyOtp: withTryCatch(async (data: VerifyOtpRequest) => 
-    api.get<{ data: AuthResponse }>('/verify-otp', { params: data })
+    api.post<AuthResponse>('/auth/verify-otp', data)
   ),
 
   // Password management
   forgotPassword: withTryCatch(async (email: string) => 
-    api.post('/forgot-password', { email })
+    api.post<{ message: string }>('/auth/forgot-password', { email })
   ),
   
   resetPassword: withTryCatch(async (data: { token: string; password: string }) => 
-    api.post('/reset-password', data)
+    api.post<{ message: string }>('/auth/reset-password', data)
   ),
 
   // Session management
   logout: withTryCatch(async () => 
-    api.post('/logout')
+    api.post<{ message: string }>('/auth/logout')
   ),
 
   // User management
   updateUser: withTryCatch(async (data: Partial<UserResponse>) => 
-    api.put<{ data: { user: UserResponse } }>('/user', data)
+    api.put<{ user: UserResponse }>('/auth/user', data)
   ),
 
   // Role management
   switchRole: withTryCatch(async (role: 'guest' | 'host') => 
-    api.put<{ data: { user: UserResponse } }>('/user/role', { role })
+    api.put<{ user: UserResponse }>('/auth/user/role', { role })
   ),
 
   // Additional services
   getCategories: withTryCatch(async () => api.get('/categories')),
   addCategory: withTryCatch(async (data: {name: string}) => api.post('categories/add', data)),
 
-  // New OTP-based Authentication
+  // OTP-based Authentication
   getEmailOrPhoneOtp: withTryCatch(async (data: OtpRequest) => 
-    api.post<{ data: OtpResponse }>('/get-email-phone-otp', data)
+    api.post<OtpResponse>('/auth/get-email-phone-otp', data)
   ),
 
   loginWithOtp: withTryCatch(async (data: LoginWithOtpRequest) => 
-    api.post<{ data: AuthResponse }>('/login-with-otp', data)
+    api.post<AuthResponse>('/auth/login-with-otp', data)
   ),
 
   // Signup Process
   getSignupPhoneOtp: withTryCatch(async (data: SignupOtpRequest) => 
-    api.post<{ data: OtpResponse }>('/get-phone-otp', data)
+    api.post<OtpResponse>('/auth/get-phone-otp', data)
   ),
 
   getSignupEmailOtp: withTryCatch(async (data: { email: string }) => 
-    api.post<{ data: OtpResponse }>('/get-email-otp', data)
+    api.post<OtpResponse>('/auth/get-email-otp', data)
   ),
 
   verifyOtpByPhone: withTryCatch(async (data: VerifyOtpRequest) => 
-    api.post<{ data: OtpResponse }>('/verify-otp-byphone', data)
+    api.post<OtpResponse>('/auth/verify-otp-byphone', data)
   ),
 
   verifyOtpByEmail: withTryCatch(async (data: VerifyOtpRequest) => 
-    api.post<{ data: OtpResponse }>('/verify-otp-byemail', data)
+    api.post<OtpResponse>('/auth/verify-otp-byemail', data)
   ),
 
   registerUserDetails: withTryCatch(async (data: RegisterUserDetailsRequest) => 
-    api.post<{ data: AuthResponse }>('/register-user-details', data)
+    api.post<AuthResponse>('/auth/register-user-details', data)
   ),
 };

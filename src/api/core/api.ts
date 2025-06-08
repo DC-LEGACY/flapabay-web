@@ -8,7 +8,7 @@ const api: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-});
+} );
 
 // Request interceptor for adding auth token
 api.interceptors.request.use(

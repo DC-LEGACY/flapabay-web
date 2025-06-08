@@ -1,11 +1,37 @@
-import api from '../core/api';
-import { withTryCatch } from '../core/withTryCatch';
-import { RegisterRequest, UserUpdateRequest } from '../types/apiTypes';
+import { api } from '../api';
+import { User } from '../types';
 
 export const userService = {
-  getUser: withTryCatch(async (userId: number) => api.get(`/users/${userId}`)),
-  updateUser: withTryCatch(async (userId: number, data: UserUpdateRequest) => api.put(`/users/${userId}`, data)),
-  updateProfilePicture: withTryCatch(async (userId: number, formData: FormData) => api.post(`/users/${userId}/profile-picture`, formData, { headers: { 'Content-Type': 'multipart/form-data' } })),
-  getUserReviews: withTryCatch(async (userId: number) => api.get(`/users/${userId}/reviews`)),
-  registerHost: withTryCatch(async (data: RegisterRequest) => api.post('/host/signup', data)),
+  /**
+   * Get user profile
+   */
+  getProfile: async (): Promise<User> => {
+    const response = await api.get<User>('/user/profile');
+    return response.data;
+  },
+
+  /**
+   * Update user profile
+   */
+  updateProfile: async (data: Partial<User>): Promise<User> => {
+    const response = await api.put<User>('/user/profile', data);
+    return response.data;
+  },
+
+  /**
+   * Complete user registration
+   */
+  completeRegistration: async (data: {
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    address: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    country: string;
+  }): Promise<User> => {
+    const response = await api.post<User>('/user/complete-registration', data);
+    return response.data;
+  }
 };

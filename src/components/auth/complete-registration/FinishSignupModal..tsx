@@ -75,7 +75,7 @@ const FinishSignupModal: React.FC<FinishSignupModalProps> = ({ onClose, email })
       };
 
       localStorage.setItem("user_data", JSON.stringify(userData));
-      setUser(userData);
+      setUser(userData); 
 
       // Call Email OTP API
       const [otpResponse, otpError] = await authService.getEmailOtp(email);

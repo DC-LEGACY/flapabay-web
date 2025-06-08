@@ -57,9 +57,9 @@ const CurrencyModal: React.FC<CurrencyModalProps> = ({
     }
 
     if (response?.data.success) {
-      setLanguages(response.data.data);
-    }
-    setLoading(false);
+        setLanguages(response.data.data);
+      }
+      setLoading(false);
   };
 
   const fetchCurrencies = async () => {
@@ -95,7 +95,7 @@ const CurrencyModal: React.FC<CurrencyModalProps> = ({
       });
       return;
     }
-
+  
     if (response?.data.success) {
       onSelect(currencyCode);
       toast({
@@ -139,7 +139,7 @@ const CurrencyModal: React.FC<CurrencyModalProps> = ({
           <h2 className="text-xl font-semibold">Language and Region</h2>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
             <IoClose size={24} />
-          </button>
+        </button>
         </div>
 
         <div className="flex border-b mb-4">
@@ -192,8 +192,8 @@ const CurrencyModal: React.FC<CurrencyModalProps> = ({
                     {language.name} ({language.native_name})
                   </button>
                 ))}
-              </div>
-            )}
+          </div>
+        )}
           </div>
         )}
       </div>

@@ -9,21 +9,31 @@ interface ErrorResponse {
 }
 
 // API Configuration
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://api.flapabay.com/v1/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.flapabay.com/api/v1';
 
 // Create axios instance with default config
 const api: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
+    'Accept': 'application/json',
   },
-  timeout: 10000, // 10 seconds
+  timeout: 30000, // 30 seconds
   withCredentials: true, // Enable cookies
 });
 
 // Request interceptor for adding auth token and handling request errors
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig<any>) => {
+    // Log request details
+    console.log('Request Config:', {
+      url: config.url,
+      method: config.method,
+      headers: config.headers,
+      data: config.data,
+      params: config.params
+    });
+
     // Add auth token if available
     const token = localStorage.getItem('auth_token');
     if (token && config.headers) {
@@ -41,7 +51,11 @@ api.interceptors.request.use(
     return config;
   },
   (error: AxiosError) => {
-    console.error('Request Error:', error);
+    console.error('Request Error:', {
+      message: error.message,
+      code: error.code,
+      config: error.config
+    });
     return Promise.reject(error);
   }
 );
@@ -49,12 +63,41 @@ api.interceptors.request.use(
 // Response interceptor for handling responses and errors
 api.interceptors.response.use(
   (response: AxiosResponse) => {
-    // Handle successful response
+    // Log successful response
+    console.log('Response:', {
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers,
+      data: response.data
+    });
     return response;
   },
   async (error: AxiosError<ErrorResponse>) => {
+    // Log detailed error information
+    console.error('Response Error:', {
+      message: error.message,
+      code: error.code,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+      headers: error.response?.headers,
+      data: error.response?.data,
+      config: {
+        url: error.config?.url,
+        method: error.config?.method,
+        headers: error.config?.headers,
+        data: error.config?.data,
+        params: error.config?.params
+      }
+    });
+
     // Handle network errors
     if (!error.response) {
+      console.error('Network Error Details:', {
+        message: error.message,
+        code: error.code,
+        stack: error.stack
+      });
+
       toast.error('Network error. Please check your connection.', {
         position: "top-right",
         autoClose: 5000,
@@ -146,6 +189,11 @@ api.interceptors.response.use(
     // Set retry count
     config.__retryCount = config.__retryCount || 0;
     config.__retryCount++;
+
+    console.log(`Retrying request (${config.__retryCount}/${MAX_RETRIES}):`, {
+      url: config.url,
+      method: config.method
+    });
 
     // Create new promise with exponential backoff
     const backoff = new Promise(resolve => {

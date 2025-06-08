@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../hooks/useAuth';
-import { userService } from '../../../api/services/user';
+import { useAuth } from '@/hooks/useAuth';
+import { userService } from '@/api/services/user';
 import { toast } from 'react-hot-toast';
 
 interface FinishSignupModalProps {

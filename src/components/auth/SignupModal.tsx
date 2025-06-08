@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import ConfirmationModal from "./verify/ConfirmationModal";
 
-import FinishSignupModal from "./complete-registration/FinishSignupModal";
+import { FinishSignupModal } from "./complete-registration/FinishSignupModal";
 import { Button } from "@/components/ui/button";
 import apple from "../../assets/apple-logo.png";
 import facebook from "../../assets/facebook.png";

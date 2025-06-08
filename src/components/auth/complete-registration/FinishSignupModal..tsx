@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-
 import EmailConfirmationModal from "@/components/auth/verify/EmailConfirmationModal";
-import axios from "axios";
 import close from "@/assets/left.png";
 import { useAtom } from "jotai";
 import { userAtom } from "@/store/authStore";
+import { authService } from "@/api/services/auth";
+import { useToast } from "@/hooks/use-toast";
+import { RegisterUserDetailsRequest, AuthResponse } from "@/api/types/apiTypes";
 
-const FinishSignupModal = ({ onClose, email }: { onClose: () => void; email: string }) => {
+interface FinishSignupModalProps {
+  onClose: () => void;
+  email: string;
+}
+
+const FinishSignupModal: React.FC<FinishSignupModalProps> = ({ onClose, email }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [birthdate, setBirthdate] = useState("");
@@ -16,6 +22,8 @@ const FinishSignupModal = ({ onClose, email }: { onClose: () => void; email: str
   const [loading, setLoading] = useState(false);
   const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
   const [, setUser] = useAtom(userAtom);
+  const { toast } = useToast();
+
   // Validation Function
   const validateForm = () => {
     let newErrors: { [key: string]: string } = {};
@@ -37,38 +45,63 @@ const FinishSignupModal = ({ onClose, email }: { onClose: () => void; email: str
     setLoading(true);
     try {
       // Register User
-      const response = await axios.post("https://localhost:8000/api/v1/register", {
+      const registerData: RegisterUserDetailsRequest = {
         fname: firstName,
         lname: lastName,
         email,
         phone,
         password,
-      });
+        dob: birthdate,
+      };
 
-      console.log("User registered:", response.data);
+      const [registerResponse, registerError] = await authService.registerUserDetails(registerData);
+
+      if (registerError) {
+        throw new Error(registerError.message);
+      }
+
+      if (!registerResponse?.data.success) {
+        throw new Error("Registration failed");
+      }
+
+      const authData = registerResponse.data.data as AuthResponse;
 
       // Store user data in localStorage
       const userData = {
-        firstName,
-        lastName,
-        email,
-        phone,
-        token: response.data.token, // Assuming backend sends a token
+        id: authData.user.id,
+        email: authData.user.email,
+        name: authData.user.name,
+        picture: undefined, // Optional field
       };
 
-      localStorage.setItem("user", JSON.stringify(userData));
-      setUser(userData); 
+      localStorage.setItem("user_data", JSON.stringify(userData));
+      setUser(userData);
 
       // Call Email OTP API
-      await axios.post("https://localhost:8000/api/v1/get-email-otp", { email });
+      const [otpResponse, otpError] = await authService.getEmailOtp(email);
 
-      console.log("OTP sent successfully");
+      if (otpError) {
+        throw new Error(otpError.message);
+      }
+
+      if (!otpResponse?.data.success) {
+        throw new Error("Failed to send OTP");
+      }
 
       // Show Email Confirmation Modal
       setShowEmailConfirmationModal(true);
+      toast({
+        title: "Success",
+        description: "Registration successful! Please verify your email.",
+      });
     } catch (error: any) {
       console.error("Registration failed:", error);
-      setErrors({ server: error.response?.data?.message || "Registration failed. Try again." });
+      setErrors({ server: error.message || "Registration failed. Try again." });
+      toast({
+        title: "Error",
+        description: error.message || "Registration failed. Try again.",
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }

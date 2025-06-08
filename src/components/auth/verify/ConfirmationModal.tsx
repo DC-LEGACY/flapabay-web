@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import left from "@/assets/left.png";
+import { Button } from "@/components/ui/button";
 
 interface ConfirmationModalProps {
   onClose: () => void;
@@ -55,15 +56,15 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, phone, c
           <button onClick={onClose}>
             <img src={left} alt="Close" className="h-5 w-5" />
           </button>
-          <h2 className="text-lg font-semibold text-center flex-1">Verify your phone</h2>
+          <h2 className="text-lg font-semibold text-center flex-1 ">Verify your phone</h2>
         </div>
-        <div className="h-[.5px] w-full bg-gray-400 mt-2" />
+        {/* <div className="h-[.5px] w-full bg-gray-400 pt-2" /> */}
 
-        <div className="mt-6">
-          <p className="text-sm text-gray-600 mb-4">
+        <div className="pt-6">
+          <p className="text-sm text-gray-600 pb-4">
             Enter the verification code sent to {phone}
           </p>
-          <div className="flex justify-center space-x-2 mb-4">
+          <div className="flex justify-center space-x-2 pb-4">
             {[...Array(6)].map((_, i) => (
               <input
                 key={i}
@@ -74,16 +75,16 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, phone, c
               />
             ))}
           </div>
-          {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+          {error && <p className="text-red-500 text-sm pt-1">{error}</p>}
         </div>
 
-        <button 
-          className="w-full bg-[#ffc500] text-white font-semibold py-2 rounded-2xl mt-4"
+        <Button 
+          className="w-full  text-white font-semibold py-2 rounded-2xl mt-4"
           onClick={handleVerifyOtp}
           disabled={isLoading}
         >
           {isLoading ? 'Verifying...' : 'Verify'}
-        </button>
+        </Button>
 
         <div className="text-center mt-4">
           <button className="text-sm text-black underline font-semibold">

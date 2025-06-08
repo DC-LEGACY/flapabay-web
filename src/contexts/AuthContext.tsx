@@ -4,7 +4,7 @@ import { useAtom } from 'jotai';
 import { userAtom, setAuthAtom, clearAuthAtom } from '@/store/authStore';
 import { useToast } from '@/hooks/use-toast';
 import type { User } from '@/services/authService';
-import { authService } from '@/api/services/auth';
+import { authService } from '@/services/authService';
 import { 
   OtpRequest, 
   LoginWithOtpRequest,
@@ -12,7 +12,6 @@ import {
   VerifyOtpRequest,
   RegisterUserDetailsRequest
 } from '@/api/types/apiTypes';
-import { AxiosResponse } from 'axios';
 
 interface AuthContextType {
   user: User | null;
@@ -47,7 +46,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (storedUser) {
         try {
           let userData = JSON.parse(storedUser);
-          // Map to the User interface from authService
           userData = {
             id: userData.id || '',
             app_metadata: userData.app_metadata || {},
@@ -68,11 +66,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     initializeAuth();
-  }, []); // Remove dependencies to prevent re-runs
+  }, [setUser, clearAuth]);
 
-  const handleAuthError = useCallback((err: any, defaultMessage: string) => {
+  const handleAuthError = useCallback((err: Error | unknown, defaultMessage: string) => {
     console.error(defaultMessage, err);
-    const errorMessage = err?.message || defaultMessage;
+    const errorMessage = err instanceof Error ? err.message : defaultMessage;
     setError(errorMessage);
     toast({
       title: "Error",
@@ -82,23 +80,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [toast]);
 
   const login = useGoogleLogin({
-    onSuccess: async (response) => {
+    onSuccess: async (googleResponse) => {
       try {
         setLoading(true);
         setError(null);
 
         // Get user info from Google
         const userInfo = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-          headers: { Authorization: `Bearer ${response.access_token}` },
+          headers: { Authorization: `Bearer ${googleResponse.access_token}` },
         }).then(res => res.json());
 
-        // Send Google token to our backend for verification
-        const { data } = await authService.googleAuth(response.access_token, userInfo);
+        // Use service layer for Google auth
+        const result = await authService.signInWithGoogle(googleResponse.access_token, userInfo);
         
-        // Update auth state with backend token and user
         setAuth({
-          user: data.user,
-          token: data.token
+          user: result.user,
+          token: result.token
         });
         
         toast({
@@ -120,7 +117,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const signOut = async () => {
     try {
       setLoading(true);
-      await authService.logout();
+      await authService.signOut();
       clearAuth();
       toast({
         title: "Signed out",
@@ -138,10 +135,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       try {
         setLoading(true);
         const newRole = user.role === 'guest' ? 'host' : 'guest';
-        const { data } = await authService.switchRole(newRole);
+        const result = await authService.switchRole(newRole);
         
         setAuth({
-          user: data.user,
+          user: result.user,
           token: localStorage.getItem('auth_token')
         });
         
@@ -161,9 +158,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setLoading(true);
       setError(null);
-      const [response, error] = await authService.getEmailOrPhoneOtp(data);
-      
-      if (error) throw error;
+      await authService.getOtp(data);
       
       toast({
         title: "OTP Sent",
@@ -180,21 +175,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setLoading(true);
       setError(null);
-      const [response, error] = await authService.loginWithOtp(data);
+      const result = await authService.loginWithOtp(data);
       
-      if (error) throw error;
+      setAuth({
+        user: result.user,
+        token: result.token
+      });
       
-      if (response?.data) {
-        setAuth({
-          user: response.data.user,
-          token: response.data.token
-        });
-        
-        toast({
-          title: "Welcome to FlapaBay!",
-          description: "You have successfully signed in.",
-        });
-      }
+      toast({
+        title: "Welcome to FlapaBay!",
+        description: "You have successfully signed in.",
+      });
     } catch (err) {
       handleAuthError(err, 'Failed to login with OTP');
     } finally {
@@ -202,27 +193,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  // Signup Process Methods
   const getSignupPhoneOtp = async (data: SignupOtpRequest) => {
     try {
       setLoading(true);
       setError(null);
-      const [response, error] = await authService.getSignupPhoneOtp(data);
-      
-      if (error) throw error;
+      await authService.getSignupPhoneOtp(data);
       
       toast({
         title: "OTP Sent",
         description: "Please check your phone for the OTP code.",
       });
-    } catch (err: any) {
-      console.error('Failed to send phone OTP:', err);
-      setError(err.message || 'Failed to send OTP');
-      toast({
-        title: "OTP Request Failed",
-        description: err.message || 'Failed to send OTP',
-        variant: "destructive",
-      });
+    } catch (err) {
+      handleAuthError(err, 'Failed to send OTP');
     } finally {
       setLoading(false);
     }
@@ -232,22 +214,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setLoading(true);
       setError(null);
-      const [response, error] = await authService.getSignupEmailOtp({ email });
-      
-      if (error) throw error;
+      await authService.getSignupEmailOtp(email);
       
       toast({
         title: "OTP Sent",
         description: "Please check your email for the OTP code.",
       });
-    } catch (err: any) {
-      console.error('Failed to send email OTP:', err);
-      setError(err.message || 'Failed to send OTP');
-      toast({
-        title: "OTP Request Failed",
-        description: err.message || 'Failed to send OTP',
-        variant: "destructive",
-      });
+    } catch (err) {
+      handleAuthError(err, 'Failed to send OTP');
     } finally {
       setLoading(false);
     }
@@ -257,22 +231,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setLoading(true);
       setError(null);
-      const [response, error] = await authService.verifyOtpByPhone(data);
-      
-      if (error) throw error;
+      await authService.verifyOtpByPhone(data);
       
       toast({
         title: "OTP Verified",
         description: "Phone number verified successfully.",
       });
-    } catch (err: any) {
-      console.error('Failed to verify phone OTP:', err);
-      setError(err.message || 'Failed to verify OTP');
-      toast({
-        title: "Verification Failed",
-        description: err.message || 'Failed to verify OTP',
-        variant: "destructive",
-      });
+    } catch (err) {
+      handleAuthError(err, 'Failed to verify OTP');
     } finally {
       setLoading(false);
     }
@@ -282,22 +248,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setLoading(true);
       setError(null);
-      const [response, error] = await authService.verifyOtpByEmail(data);
-      
-      if (error) throw error;
+      await authService.verifyOtpByEmail(data);
       
       toast({
         title: "OTP Verified",
         description: "Email verified successfully.",
       });
-    } catch (err: any) {
-      console.error('Failed to verify email OTP:', err);
-      setError(err.message || 'Failed to verify OTP');
-      toast({
-        title: "Verification Failed",
-        description: err.message || 'Failed to verify OTP',
-        variant: "destructive",
-      });
+    } catch (err) {
+      handleAuthError(err, 'Failed to verify OTP');
     } finally {
       setLoading(false);
     }
@@ -307,30 +265,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setLoading(true);
       setError(null);
-      const [response, error] = await authService.registerUserDetails(data);
+      const result = await authService.registerUserDetails(data);
       
-      if (error) throw error;
-      
-      if (response && 'data' in response) {
-        const authResponse = response as AxiosResponse<{ data: { user: User; token: string } }>;
-        setAuth({
-          user: authResponse.data.data.user,
-          token: authResponse.data.data.token
-        });
-        
-        toast({
-          title: "Welcome to FlapaBay!",
-          description: "Your account has been created successfully.",
-        });
-      }
-    } catch (err: any) {
-      console.error('Failed to register user:', err);
-      setError(err.message || 'Failed to register user');
-      toast({
-        title: "Registration Failed",
-        description: err.message || 'Failed to register user',
-        variant: "destructive",
+      setAuth({
+        user: result.user,
+        token: result.token
       });
+      
+      toast({
+        title: "Welcome to FlapaBay!",
+        description: "Your account has been created successfully.",
+      });
+    } catch (err) {
+      handleAuthError(err, 'Failed to register user');
     } finally {
       setLoading(false);
     }

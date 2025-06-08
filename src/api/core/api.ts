@@ -19,8 +19,19 @@ const api: AxiosInstance = axios.create({
     'Accept': 'application/json',
   },
   timeout: 30000, // 30 seconds
-  withCredentials: true, // Enable cookies
+  // Removed withCredentials: true to use same-origin by default
 });
+
+// Helper function to convert object to FormData
+const createFormData = (data: Record<string, any>): FormData => {
+  const formData = new FormData();
+  Object.entries(data).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      formData.append(key, value);
+    }
+  });
+  return formData;
+};
 
 // Request interceptor for adding auth token and handling request errors
 api.interceptors.request.use(
@@ -38,6 +49,14 @@ api.interceptors.request.use(
     const token = localStorage.getItem('auth_token');
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    // Convert object to FormData for POST/PUT/PATCH requests
+    if (config.data && !(config.data instanceof FormData) && typeof config.data === 'object') {
+      if (config.method === 'post' || config.method === 'put' || config.method === 'patch') {
+        config.data = createFormData(config.data);
+        config.headers['Content-Type'] = 'multipart/form-data';
+      }
     }
 
     // Add request timestamp to prevent caching

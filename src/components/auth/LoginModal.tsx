@@ -1,11 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAuth } from '@/contexts/AuthContext';
-import ConfirmationModal from "./verify/ConfirmationModal";
-import EnterCodeModal from "./verify/EnterCodeModal";
-import { Link } from "react-router-dom";
-import apple from "@/assets/apple-logo.png";
-import axios from "axios";
-import close from "@/assets/close.png";
+import ConfirmationModal from "@/components/auth/verify/ConfirmationModal";
+import EnterCodeModal from "@/components/auth/verify/EnterCodeModal";
 import facebook from "@/assets/facebook.png";
 import google from "@/assets/google.png";
 import { Input } from "@/components/ui/input";
@@ -223,7 +219,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
     loading, 
     error,
     getOtp,
-    loginWithOtp
   } = useAuth();
 
   // Close modal when clicking outside
@@ -262,12 +257,10 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
         return;
       }
 
-      const [response, error] = await getOtp({
+      await getOtp({
         phone: phoneNumber,
         code: selectedCountryCode.replace('+', '')
       });
-
-      if (error) throw error;
       
       setShowEmailConfirmationModal(true);
     } catch (err: any) {
@@ -290,11 +283,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
         return;
       }
 
-      const [response, error] = await getOtp({
+      await getOtp({
         email
       });
-
-      if (error) throw error;
       
       setShowConfirmationModal(true);
     } catch (err: any) {
@@ -347,14 +338,16 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
           {!isEmailMode ? (
             <div>
               <div className="border border-gray-400 rounded-t-md">
-                <label className="block text-sm text-gray-400 pl-2 pt-1">
+                <label className="block text-sm text-gray-400 pl-2 pt-1" htmlFor="country-code">
                   Country code
                 </label>
                 <select
+                  id="country-code"
                   style={{ outline: "none" }}
                   className="bg-white block w-full rounded-2xl sm:text-sm h-10 pl-1"
                   value={selectedCountryCode}
                   onChange={handleCountryCodeChange}
+                  aria-label="Select country code"
                 >
                   {countries.map((country) => (
                     <option key={`${country.name}-${country.code}`} value={country.code}>
@@ -364,18 +357,23 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
                 </select>
               </div>
               <div className="border border-gray-400 rounded-b-md">
-                <label className="block text-sm text-gray-400 pt-1 pl-2">
+                <label className="block text-sm text-gray-400 pt-1 pl-2" htmlFor="phone-number">
                   Phone number
                 </label>
                 <div className="flex items-center">
-                  <span className="pl-2 text-[16px]">
+                  <span className="pl-2 text-[16px]" aria-hidden="true">
                     {selectedCountryCode}
                   </span>
                   <input
-                    type="text"
+                    id="phone-number"
+                    type="tel"
                     className="bg-white flex-1 text-[16px] rounded-r-md shadow-sm sm:text-sm p-2 outline-none"
                     value={phoneNumber}
-                    onChange={handlePhoneNumberChange} minLength={9} maxLength={13}
+                    onChange={handlePhoneNumberChange}
+                    minLength={9}
+                    maxLength={13}
+                    aria-label="Enter phone number"
+                    aria-required="true"
                   />
                 </div>
               </div>
@@ -389,6 +387,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
                   className="bg-white w-full text-[16px] rounded-2xl shadow-sm p-[12px] sm:text-sm"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  aria-label="Enter email address"
+                  aria-required="true"
                 />
               </div>
               {emailError && (

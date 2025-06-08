@@ -40,6 +40,8 @@ export interface Session {
 export interface AuthError {
   message: string;
   status?: number; // Optional: for HTTP status codes from a REST API
+  code?: string;
+  details?: any;
 }
 
 // Define Auth response structures
@@ -79,3 +81,81 @@ export interface AuthService {
 // If you have data operations currently mocked in the supabase client (from, storage)
 // you might want to define separate service interfaces for those as well, e.g., DataService, StorageService.
 // For now, focusing on Auth. 
+
+import { authService as apiService } from '@/api/services/auth';
+import { User } from './types';
+import { 
+  LoginRequest, 
+  RegisterRequest, 
+  VerifyOtpRequest,
+  AuthResponse,
+  OtpRequest,
+  LoginWithOtpRequest,
+  SignupOtpRequest,
+  RegisterUserDetailsRequest
+} from '@/api/types/apiTypes';
+
+export class AuthService {
+  async signInWithGoogle(googleToken: string, userInfo: any) {
+    const [response, error] = await apiService.googleAuth(googleToken, userInfo);
+    if (error) throw error;
+    return response.data;
+  }
+
+  async signOut() {
+    const [response, error] = await apiService.logout();
+    if (error) throw error;
+    return response.data;
+  }
+
+  async switchRole(role: 'guest' | 'host') {
+    const [response, error] = await apiService.switchRole(role);
+    if (error) throw error;
+    return response.data;
+  }
+
+  async getOtp(data: OtpRequest) {
+    const [response, error] = await apiService.getEmailOrPhoneOtp(data);
+    if (error) throw error;
+    return response.data;
+  }
+
+  async loginWithOtp(data: LoginWithOtpRequest) {
+    const [response, error] = await apiService.loginWithOtp(data);
+    if (error) throw error;
+    return response.data;
+  }
+
+  async getSignupPhoneOtp(data: SignupOtpRequest) {
+    const [response, error] = await apiService.getSignupPhoneOtp(data);
+    if (error) throw error;
+    return response.data;
+  }
+
+  async getSignupEmailOtp(email: string) {
+    const [response, error] = await apiService.getSignupEmailOtp({ email });
+    if (error) throw error;
+    return response.data;
+  }
+
+  async verifyOtpByPhone(data: VerifyOtpRequest) {
+    const [response, error] = await apiService.verifyOtpByPhone(data);
+    if (error) throw error;
+    return response.data;
+  }
+
+  async verifyOtpByEmail(data: VerifyOtpRequest) {
+    const [response, error] = await apiService.verifyOtpByEmail(data);
+    if (error) throw error;
+    return response.data;
+  }
+
+  async registerUserDetails(data: RegisterUserDetailsRequest) {
+    const [response, error] = await apiService.registerUserDetails(data);
+    if (error) throw error;
+    return response.data;
+  }
+}
+
+// Export a singleton instance
+export const authService = new AuthService(); 

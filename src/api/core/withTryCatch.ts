@@ -11,6 +11,7 @@ export interface ApiResponse<T = any> {
   data: T;
   message?: string;
   status: number;
+  success: boolean;
 }
 
 export const withTryCatch = <T extends (...args: any[]) => Promise<AxiosResponse<ApiResponse<any>>>>(
@@ -19,6 +20,17 @@ export const withTryCatch = <T extends (...args: any[]) => Promise<AxiosResponse
   return async (...args: Parameters<T>): Promise<[ApiResponse<any> | null, ApiError | null]> => {
     try {
       const response = await apiFunction(...args);
+      
+      // Check if the response indicates failure
+      if (!response.data.success) {
+        return [null, {
+          message: response.data.message || 'Operation failed',
+          status: response.status,
+          code: 'API_ERROR',
+          details: response.data
+        }];
+      }
+
       return [response.data, null];
     } catch (error) {
       const apiError: ApiError = {
@@ -34,10 +46,11 @@ export const withTryCatch = <T extends (...args: any[]) => Promise<AxiosResponse
           apiError.status = 0;
         } else {
           // Handle API errors
-          apiError.message = error.response.data?.message || error.message;
+          const responseData = error.response.data;
+          apiError.message = responseData?.message || error.message;
           apiError.status = error.response.status;
-          apiError.code = error.code;
-          apiError.details = error.response.data;
+          apiError.code = responseData?.code || error.code;
+          apiError.details = responseData;
         }
       } else if (error instanceof Error) {
         apiError.message = error.message;

@@ -357,7 +357,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
                   onChange={handleCountryCodeChange}
                 >
                   {countries.map((country) => (
-                    <option key={country.code} value={country.code}>
+                    <option key={`${country.name}-${country.code}`} value={country.code}>
                       {country.name} ({country.code})
                     </option>
                   ))}

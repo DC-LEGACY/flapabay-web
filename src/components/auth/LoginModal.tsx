@@ -7,6 +7,7 @@ import google from "@/assets/google.png";
 import { Input } from "@/components/ui/input";
 import { Mobile, Sms } from "iconsax-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
 // List of countries with phone codes
 const countries = [
   { name: "Afghanistan", code: "+93" },
@@ -219,6 +220,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
     loading, 
     error,
     getOtp,
+    loginWithPassword
   } = useAuth();
 
   // Close modal when clicking outside
@@ -241,6 +243,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   const [selectedCountryCode, setSelectedCountryCode] = useState(countries[194].code);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isEmailMode, setIsEmailMode] = useState(false);
   const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -283,13 +286,27 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
         return;
       }
 
-      await getOtp({
-        email
-      });
+      const response = await loginWithPassword({
+          email,
+          password
+        });
       
-      setShowConfirmationModal(true);
+      console.log("responce",response);
+
+      if (response?.success) {
+      console.log("Login successful");
+      toast({
+        title: "Login Successful",
+        description: "You have been logged in.",
+      });
+    } else {
+      setEmailError("User not found or incorrect credentials.");
+    }
+
+
+      
     } catch (err: any) {
-      setEmailError(err.message || 'Failed to send OTP');
+      setEmailError(err.message || 'Failed to send login request');
     } finally {
       setIsLoading(false);
     }
@@ -389,6 +406,15 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
                   onChange={(e) => setEmail(e.target.value)}
                   aria-label="Enter email address"
                   aria-required="true"
+                />
+                <Input
+                type = "text"
+                placeholder="Passowrd"
+                className="bg-white w-full text-[16px] rounded-2xl shadow-sm p-[12px] sm:text-sm mt-2"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                aria-label="Enter password"
+                aria-required="true"
                 />
               </div>
               {emailError && (

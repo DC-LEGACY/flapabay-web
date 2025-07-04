@@ -198,3 +198,7 @@ export interface RegisterUserDetailsRequest {
   password: string;
   dob: string;
 }
+export interface loginWithPassword{
+  email: string;
+  password: string;
+}

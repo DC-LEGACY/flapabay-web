@@ -10,8 +10,11 @@ import {
   LoginWithOtpRequest,
   SignupOtpRequest,
   VerifyOtpRequest,
-  RegisterUserDetailsRequest
+  RegisterUserDetailsRequest,
+  loginWithPassword
 } from '@/api/types/apiTypes';
+
+import { set } from 'date-fns';
 
 interface AuthContextType {
   user: User | null;
@@ -27,6 +30,7 @@ interface AuthContextType {
   verifyOtpByPhone: (data: VerifyOtpRequest) => Promise<void>;
   verifyOtpByEmail: (data: VerifyOtpRequest) => Promise<void>;
   registerUserDetails: (data: RegisterUserDetailsRequest) => Promise<void>;
+  loginWithPassword: (data: loginWithPassword) => Promise<loginWithPassword>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -84,6 +88,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       try {
         setLoading(true);
         setError(null);
+
+        //onSuccess: async (googleResponse) comes from the @react-oauth/google library. This hook helps you sign in with Google using OAuth 2.0.
 
         // Get user info from Google
         const userInfo = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
@@ -283,6 +289,41 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+const loginWithPassword = async (data: loginWithPassword) => {
+  try {
+    setLoading(true);
+    setError(null);
+
+    const result = await authService.loginWithPassword(data);
+
+    setAuth({
+      user: result.user,
+      token: result.token
+    });
+
+    toast({
+      title: "Login Successful",
+      description: "You have successfully logged in.",
+    });
+
+
+    return {
+      success: true,
+      user: result.user,
+      token: result.token
+    }; // ✅ Return this
+
+  } catch (err) {
+    handleAuthError(err, 'Failed to login with password');
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Login failed',
+    }; // ✅ Also return on error
+  } finally {
+    setLoading(false);
+  }
+};
+
   return (
     <AuthContext.Provider 
       value={{ 
@@ -298,7 +339,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         getSignupEmailOtp,
         verifyOtpByPhone,
         verifyOtpByEmail,
-        registerUserDetails
+        registerUserDetails,
+        loginWithPassword
       }}
     >
       {children}
@@ -313,3 +355,4 @@ export const useAuth = () => {
   }
   return context;
 }; 
+

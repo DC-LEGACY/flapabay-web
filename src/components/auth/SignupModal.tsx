@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import ConfirmationModal from "./verify/ConfirmationModal";
-
-import { FinishSignupModal } from "./complete-registration/FinishSignupModal";
+import FinishSignupModal from "./complete-registration/FinishSignupModal..tsx";
 import { Button } from "@/components/ui/button";
 import apple from "../../assets/apple-logo.png";
 import facebook from "../../assets/facebook.png";
@@ -210,7 +208,6 @@ const countries = [
   { name: "Zimbabwe", code: "+263" }
 ];
 
-
 interface SignupModalProps {
   onClose: () => void;
 }
@@ -288,11 +285,8 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
         return;
       }
 
-      const [response, error] = await getSignupEmailOtp(email);
-
+      setShowFinishModal(true);
       if (error) throw error;
-
-      setShowConfirmationModal(true);
     } catch (err: any) {
       setError(err.message || 'Failed to send OTP');
     } finally {
@@ -335,6 +329,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ onClose }) => {
       />
     );
   }
+
 
   return (
     <div>

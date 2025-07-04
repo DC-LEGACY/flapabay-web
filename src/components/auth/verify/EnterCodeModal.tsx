@@ -17,7 +17,7 @@ const EnterCodeModal: React.FC<EnterCodeModalProps> = ({ onClose, email }) => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showForgotPassword, setShowForgotPassword] = useState(false);
-  const [, setAuth] = useSetAtom(setAuthAtom);
+  const  setAuth = useSetAtom(setAuthAtom);
 
   const handleForgotPassword = () => {
     setShowForgotPassword(true);

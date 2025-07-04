@@ -7,4 +7,4 @@ export const guestRoutes = [
   { path: "/account-savelists", key: "accountSavelists" },
   { path: "/account-password", key: "accountPassword" },
   { path: "/account-billing", key: "accountBilling" }
-]; 
+];

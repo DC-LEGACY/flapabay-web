@@ -5,13 +5,13 @@ const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 export const api = axios.create({
   baseURL,
+  timeout: 100000, // Set a timeout of 10 seconds
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   },
   withCredentials: false,
 });
-
 // Request interceptor
 api.interceptors.request.use(
   (config) => {

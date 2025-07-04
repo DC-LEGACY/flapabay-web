@@ -10,6 +10,7 @@ import Preloader from '@/components/common/Preloader';
 import { useAuth } from '@/contexts/AuthContext';
 import { Navigate } from 'react-router-dom';
 
+
 // Layout components
 const WebsiteLayoutWrapper = () => (
   <WebsiteLayout />
@@ -23,8 +24,10 @@ const DashboardLayoutWrapper = () => (
 
 // Route component mapping
 const getRouteComponent = (key: string) => {
+  // this creates the key value pair. 
   const components: Record<string, React.LazyExoticComponent<React.FC>> = {
     // Auth Pages
+    // key is login and value is the component that is imported lazily
     login: lazy(() => import('@/pages/auth/login/')),
     register: lazy(() => import('@/pages/auth/register')),
 

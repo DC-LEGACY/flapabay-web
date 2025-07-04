@@ -10,13 +10,18 @@ import {
   OtpResponse,
   LoginWithOtpRequest,
   SignupOtpRequest,
-  RegisterUserDetailsRequest
+  RegisterUserDetailsRequest,
+  loginWithPassword
 } from '../types/apiTypes';
 
 export const authService = {
   // Regular authentication
   login: withTryCatch(async (data: LoginRequest) => 
     api.post<AuthResponse>('/auth/login', data)
+  ),
+  //login with password
+  loginwithpassword: withTryCatch(async (data: loginWithPassword) =>
+    api.post<AuthResponse>('/auth/loginWithPassword', data)
   ),
   
   register: withTryCatch(async (data: RegisterRequest) => 
@@ -99,3 +104,5 @@ export const authService = {
     api.post<AuthResponse>('/auth/register-user-details', data)
   ),
 };
+
+

@@ -9,7 +9,7 @@ const EmailConfirmationModal = ({
   email: string;
   onClose: () => void;
 }) => {
-  const [code, setCode] = useState(["", "", "", "", "", ""]);
+  const [code, setCode] = useState(["", "", "", "", ""]);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleCodeChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,6 +60,38 @@ const EmailConfirmationModal = ({
             />
           ))}
         </div>
+        <button
+          onClick={async () => {
+            const enteredOtp = code.join("");
+            try {
+              const response = await fetch("http://localhost:8000/api/v1/auth/verify-otp-byemail", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json",
+                },
+                body: JSON.stringify({
+                  email,
+                  otp: enteredOtp,
+                }),
+              });
+
+              const data = await response.json();
+
+              if (data.status) {
+                alert("✅ OTP verification successful. You can now log in.");
+                onClose(); // Optionally close the modal
+              } else {
+                alert("❌ " + (data.error || "OTP verification failed."));
+              }
+            } catch (err) {
+              alert("🚨 Server error during OTP verification.");
+            }
+          }}
+          className="bg-black text-white rounded-lg px-4 py-2 mt-2 mx-auto block"
+        >
+          Verify OTP
+        </button>
         <p className="text-sm text-gray-600">
           Didn’t get an email? <a href="#" className="text-black underline">Try again</a>
         </p>

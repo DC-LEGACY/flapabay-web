@@ -13,6 +13,7 @@ interface FinishSignupModalProps {
 }
 
 const FinishSignupModal: React.FC<FinishSignupModalProps> = ({ onClose, email }) => {
+  console.log("FinishSignupModal rendered with email:", email);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [birthdate, setBirthdate] = useState("");
@@ -38,74 +39,114 @@ const FinishSignupModal: React.FC<FinishSignupModalProps> = ({ onClose, email })
     return Object.keys(newErrors).length === 0; // Returns true if no errors
   };
 
-  // Handle Signup
+
+
   const handleSignup = async () => {
-    if (!validateForm()) return; // Stop if validation fails
+      if (!validateForm()) return;
+      console.log("Form is valid, proceeding with signup...");
 
-    setLoading(true);
-    try {
-      // Register User
-      const registerData: RegisterUserDetailsRequest = {
-        fname: firstName,
-        lname: lastName,
-        email,
-        phone,
-        password,
-        dob: birthdate,
-      };
+      setLoading(true);
+      try {
+        const registerData: RegisterUserDetailsRequest = {
+          fname: firstName,
+          lname: lastName,
+          email,
+          phone,
+          password,
+          dob: birthdate,
+        };
 
-      const [registerResponse, registerError] = await authService.registerUserDetails(registerData);
+        const [registerResponse, registerError] = await authService.registerUserDetails(registerData);
+        console.log("Register response:", registerResponse);
+        console.log("Register error:", registerError);
 
-      if (registerError) {
-        throw new Error(registerError.message);
+        if (registerError) {
+            throw new Error(registerError.message || "Registration request failed");
+          }
+        if (registerResponse?.data?.alreadyRegistered) {
+         
+          const user = registerResponse?.data?.user;
+          console.log("User data from response:", user);
+
+          if (!user) {
+            throw new Error("rushiii -----User data missing in response.");
+          }
+
+
+          console.log("User already registered:", user);
+
+          
+          // Optional: Save user info if needed
+          localStorage.setItem("user_data", JSON.stringify(user));
+          setUser(user);
+
+          // Directly send OTP request
+          const [otpResponse, otpError] = await authService.getEmailOtp(email);
+
+          if (otpError) throw new Error(otpError.message);
+
+          if (!otpResponse?.data?.success) throw new Error("Failed to send OTP");
+
+          setShowEmailConfirmationModal(true);
+          toast({
+            title: "Welcome back",
+            description: "OTP sent! Please verify your email.",
+          });
+          return;
+        }
+
+
+
+        const authData = registerResponse?.data;
+
+        if (!authData?.user) {
+          throw new Error("User data is missing in registration response.");
+        }
+
+        const userData = {
+          id: authData.user.id,
+          email: authData.user.email,
+          name: authData.user.name,
+          picture: undefined,
+        };
+
+        localStorage.setItem("user_data", JSON.stringify(userData));
+        setUser(userData);
+
+        const [otpResponse, otpError] = await authService.getEmailOtp(email);
+        console.log("OTP response:", otpResponse);
+        console.log("OTP error:", otpError);
+
+        if (otpError) {
+          throw new Error(otpError.message);
+        }
+
+        if (!otpResponse?.success) {
+          throw new Error("Failed to send OTP");
+        }
+
+        setShowEmailConfirmationModal(true);
+        toast({
+          title: "Success",
+          description: "Registration successful! Please verify your email.",
+        });
+
+      } catch (error: any) {
+        console.error("Registration failed:", error);
+        setErrors({ server: error.message || "Registration failed. Try again." });
+        toast({
+          title: "Error",
+          description: error.message || "Registration failed. Try again.",
+          variant: "destructive",
+        });
+      } finally {
+        setLoading(false);
       }
+};
 
-      if (!registerResponse?.data.success) {
-        throw new Error("Registration failed");
-      }
 
-      const authData = registerResponse.data.data as AuthResponse;
 
-      // Store user data in localStorage
-      const userData = {
-        id: authData.user.id,
-        email: authData.user.email,
-        name: authData.user.name,
-        picture: undefined, // Optional field
-      };
 
-      localStorage.setItem("user_data", JSON.stringify(userData));
-      setUser(userData); 
-
-      // Call Email OTP API
-      const [otpResponse, otpError] = await authService.getEmailOtp(email);
-
-      if (otpError) {
-        throw new Error(otpError.message);
-      }
-
-      if (!otpResponse?.data.success) {
-        throw new Error("Failed to send OTP");
-      }
-
-      // Show Email Confirmation Modal
-      setShowEmailConfirmationModal(true);
-      toast({
-        title: "Success",
-        description: "Registration successful! Please verify your email.",
-      });
-    } catch (error: any) {
-      console.error("Registration failed:", error);
-      setErrors({ server: error.message || "Registration failed. Try again." });
-      toast({
-        title: "Error",
-        description: error.message || "Registration failed. Try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
 
   if (showEmailConfirmationModal) {
     return <EmailConfirmationModal onClose={() => setShowEmailConfirmationModal(false)} email={email} />;

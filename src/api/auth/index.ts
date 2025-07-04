@@ -24,10 +24,12 @@ export const authApi = {
   /**
    * Register new user
    */
+
   signUp: async (credentials: RegisterRequest): Promise<SessionResponse> => {
     return apiClient.post<SessionResponse>('/auth/register', credentials);
   },
 
+  
   /**
    * Sign in with OAuth provider
    */

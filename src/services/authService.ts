@@ -92,7 +92,8 @@ import {
   OtpRequest,
   LoginWithOtpRequest,
   SignupOtpRequest,
-  RegisterUserDetailsRequest
+  RegisterUserDetailsRequest,
+  loginWithPassword
 } from '@/api/types/apiTypes';
 
 export class AuthService {
@@ -119,6 +120,15 @@ export class AuthService {
     if (error) throw error;
     return response.data;
   }
+
+  //login with Password
+  async loginWithPassword(data: loginWithPassword) {
+    const [response, error] = await apiService.loginwithpassword(data);
+    if (error) throw error;
+    return response.data;
+  } 
+
+
 
   async loginWithOtp(data: LoginWithOtpRequest) {
     const [response, error] = await apiService.loginWithOtp(data);
